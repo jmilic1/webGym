@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.26)  26 OCT 2020 18:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.26)  26 OCT 2020 20:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1014,31 +1014,31 @@ LaTeX Info: Redefining \nameref on input line 76.
 \openout3 = `PROGI_ProjektnaDokumentacija_v6.out'.
 
 LaTeX Font Info:    Trying to load font information for U+jkpsya on input line 
-94.
+98.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpsya.fd
 File: ujkpsya.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    Trying to load font information for U+jkpsyb on input line 
-94.
+98.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpsyb.fd
 File: ujkpsyb.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    Trying to load font information for OT1+txr on input line 9
-4.
+8.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/ot1txr.fd
 File: ot1txr.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Trying to load font information for U+jkpmia on input line 
-94.
+98.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpmia.fd
 File: ujkpmia.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    Trying to load font information for U+jkpsyc on input line 
-94.
+98.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpsyc.fd
 File: ujkpsyc.fd 2006/08/15 v1.0
@@ -1056,7 +1056,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.29 ...{Indeks slika i dijagrama}{25}{chapter*.5}
+l.29 ...{Indeks slika i dijagrama}{26}{chapter*.5}
                                                   % [1
 
 ])
@@ -1167,55 +1167,50 @@ Overfull \hbox (6.59265pt too wide) in paragraph at lines 36--36
 
  (./Opis_projektnog_zadatka.tex
 Poglavlje 2.
-
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
-
- []
-
-LaTeX Font Info:    Trying to load font information for TS1+jkp on input line 7
-.
+LaTeX Font Info:    Trying to load font information for TS1+jkp on input line 1
+8.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ts1jkp.fd
 File: ts1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for TS1/jkp.
 ) [5
 
 
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 20--21
+] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
 
  []
 
 LaTeX Font Info:    Trying to load font information for OT1+jkptt on input line
- 24.
+ 53.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ot1jkptt.fd
 File: ot1jkptt.fd 2007/01/26 Fontinst v1.928 font definitions for OT1/jkptt.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 26--27
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
 
  []
 
-[6]
-<slike/aktivnost.PNG, id=193, 670.75594pt x 689.57625pt>
+[7]
+<slike/aktivnost.PNG, id=198, 670.75594pt x 689.57625pt>
 File: slike/aktivnost.PNG Graphic file (type png)
 <use slike/aktivnost.PNG>
-Package pdftex.def Info: slike/aktivnost.PNG  used on input line 109.
+Package pdftex.def Info: slike/aktivnost.PNG  used on input line 138.
 (pdftex.def)             Requested size: 268.2976pt x 275.8256pt.
 File: slike/aktivnost.PNG Graphic file (type png)
 <use slike/aktivnost.PNG>
-Package pdftex.def Info: slike/aktivnost.PNG  used on input line 116.
+Package pdftex.def Info: slike/aktivnost.PNG  used on input line 145.
 (pdftex.def)             Requested size: 392.04704pt x 403.04799pt.
- [7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+ [8pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.120 		
-         <./slike/aktivnost.PNG>] [8pdfTeX warning (ext4): destination with the
+l.149 		
+         <./slike/aktivnost.PNG>] [9pdfTeX warning (ext4): destination with the
  same identifier (name{figure.2.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.123 		\eject
+l.152 		\eject
               ])
 \openout2 = `Specifikacija_programske_potpore.aux'.
 
@@ -1236,7 +1231,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
  []
 
-[9
+[10
 
 
 
@@ -1245,17 +1240,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 61--62
 
  []
 
-[10]
+[11]
 Underfull \hbox (badness 10000) in paragraph at lines 107--108
 
  []
 
-[11]
+[12]
 Underfull \hbox (badness 10000) in paragraph at lines 114--115
 
  []
 
-) [12]
+) [13]
 \openout2 = `Arhitektura.aux'.
 
  (./Arhitektura.tex
@@ -1287,11 +1282,11 @@ Overfull \hbox (1.82492pt too wide) in paragraph at lines 47--47
 []\OT1/jkp/m/n/12 korisnickoIme|  
  []
 
-[13
+[14
 
 
 
-] [14]
+] [15]
 Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
@@ -1311,22 +1306,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 64--65
 
  []
 
-[15]
+[16]
 Underfull \hbox (badness 10000) in paragraph at lines 75--76
 
  []
 
-[16]
+[17]
 Underfull \hbox (badness 10000) in paragraph at lines 84--85
 
  []
 
-[17]
+[18]
 Underfull \hbox (badness 10000) in paragraph at lines 91--92
 
  []
 
-) [18]
+) [19]
 \openout2 = `Implementacija.aux'.
 
  (./Implementacija.tex
@@ -1346,7 +1341,7 @@ Overfull \hbox (10.38434pt too wide) in paragraph at lines 1--1
 |[]\OT1/jkp/b/n/24.88 Implementacija i ko-risni[]cko su[]celje| 
  []
 
-[19
+[20
 
 
 
@@ -1360,12 +1355,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
 
-[20] [21]
+[21] [22]
 Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
-[22])
+[23])
 \openout2 = `Zakljucak.aux'.
 
  (./Zakljucak.tex
@@ -1380,7 +1375,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[23
+[24
 
 
 
@@ -1399,7 +1394,7 @@ Overfull \hbox (7.06pt too wide) in paragraph at lines 18--19
 12 http : / / www . ece . rutgers . edu / []marsic /
  []
 
-) [24
+) [25
 
 
 
@@ -1407,7 +1402,7 @@ Overfull \hbox (7.06pt too wide) in paragraph at lines 18--19
 \tf@lof=\write5
 \openout5 = `PROGI_ProjektnaDokumentacija_v6.lof'.
 
- [25
+ [26
 
 
 ]
@@ -1418,7 +1413,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
-[26
+[27
 
 
 ]
@@ -1426,12 +1421,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--42
 
  []
 
-[27] [28]
+[28] [29]
 Underfull \hbox (badness 10000) in paragraph at lines 103--104
 
  []
 
-) [29] 
+) [30] 
 AED: lastpage setting LastPage
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 138.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 138.
@@ -1446,13 +1441,13 @@ Package rerunfilecheck Info: File `PROGI_ProjektnaDokumentacija_v6.out' has not
 (rerunfilecheck)             Checksum: 26A8BCB67D725A514DBBD4F4C06AD182;1813.
  ) 
 Here is how much of TeX's memory you used:
- 11818 strings out of 480608
- 169940 string characters out of 5903629
- 509431 words of memory out of 5000000
+ 11819 strings out of 480608
+ 169947 string characters out of 5903629
+ 509408 words of memory out of 5000000
  27270 multiletter control sequences out of 15000+600000
  583485 words of font info for 138 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,14n,45p,897b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 45i,12n,45p,897b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1464,11 +1459,11 @@ mf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2020/texmf-
 dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2020/texmf-dist
 /fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2020/texmf-dist/fonts
 /type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija_v6.pdf (30 pages, 143858 bytes).
+Output written on PROGI_ProjektnaDokumentacija_v6.pdf (31 pages, 142858 bytes).
 
 PDF statistics:
- 413 PDF objects out of 1000 (max. 8388607)
- 368 compressed objects within 4 object streams
- 98 named destinations out of 1000 (max. 500000)
+ 419 PDF objects out of 1000 (max. 8388607)
+ 373 compressed objects within 4 object streams
+ 99 named destinations out of 1000 (max. 500000)
  222 words of extra memory for PDF output out of 10000 (max. 10000000)
 
