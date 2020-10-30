@@ -6,3 +6,4 @@
 /dokumentacija/*.pdf
 /dokumentacija/*.synctex.gz
 /dokumentacija/*.toc
+*.DS_Store
