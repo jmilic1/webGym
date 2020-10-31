@@ -1,14 +1,26 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.26)  31 OCT 2020 20:41
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.27)  27 OCT 2020 19:06
+>>>>>>> devdoc
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **PROGI_ProjektnaDokumentacija_v6.tex
 (./PROGI_ProjektnaDokumentacija_v6.tex
+<<<<<<< HEAD
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-03-06>
 (/usr/local/texlive/2020/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
 (/usr/local/texlive/2020/texmf-dist/tex/latex/base/size12.clo
+=======
+LaTeX2e <2020-02-02> patch level 2
+L3 programming layer <2020-02-14>
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
+>>>>>>> devdoc
 File: size12.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 )
 \c@part=\count167
@@ -24,6 +36,7 @@ File: size12.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 \belowcaptionskip=\skip48
 \bibindent=\dimen134
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2020/03/22 3.42 The Babel package
 
@@ -48,17 +61,48 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks15
+=======
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2020/02/14 3.40 The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2020/02/14 3.40 Babel switching mechanism
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-croatian/croatian.ldf
+Language: croatian 2014/03/31 v1.3m Croatian support from the babel system
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2020/02/14 3.40 Babel common definitions
+\babel@savecnt=\count176
+\U@D=\dimen135
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count177
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks14
+>>>>>>> devdoc
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsmath.sty
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+>>>>>>> devdoc
 Package: amsmath 2020/01/20 v2.17e AMS math features
 \@mathmargin=\skip49
 
 For additional information on amsmath, use the `?' option.
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
@@ -72,6 +116,21 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen137
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks15
+\ex@=\dimen136
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen137
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+>>>>>>> devdoc
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count178
@@ -94,17 +153,26 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 \dotsspace@=\muskip16
 \c@parentequation=\count185
 \dspbrk@lvl=\count186
+<<<<<<< HEAD
 \tag@help=\toks17
 \row@=\count187
 \column@=\count188
 \maxfields@=\count189
 \andhelp@=\toks18
+=======
+\tag@help=\toks16
+\row@=\count187
+\column@=\count188
+\maxfields@=\count189
+\andhelp@=\toks17
+>>>>>>> devdoc
 \eqnshift@=\dimen139
 \alignsep@=\dimen140
 \tagshift@=\dimen141
 \tagwidth@=\dimen142
 \totwidth@=\dimen143
 \lineht@=\dimen144
+<<<<<<< HEAD
 \@envbody=\toks19
 \multlinegap=\skip50
 \multlinetaggap=\skip51
@@ -113,6 +181,16 @@ LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/txfonts.sty
+=======
+\@envbody=\toks18
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks19
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/txfonts/txfonts.sty
+>>>>>>> devdoc
 Package: txfonts 2008/01/22 v3.2.1
 LaTeX Font Info:    Redeclaring symbol font `operators' on input line 21.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
@@ -198,7 +276,11 @@ LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `bold'
 LaTeX Font Info:    Redeclaring math symbol \mathsterling on input line 164.
 LaTeX Info: Redefining \not on input line 1043.
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/generic/mathdots/mathdots.sty
+=======
+(/usr/share/texlive/texmf-dist/tex/generic/mathdots/mathdots.sty
+>>>>>>> devdoc
 Package: mathdots 2014/06/11 v0.9 Improve and add various macros for dots in ma
 th.
 \MDo@unit=\dimen145
@@ -207,28 +289,45 @@ th.
 \MDopostkern=\muskip18
 \MDodotkern=\muskip19
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/titlesec/titlesec.sty
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
+>>>>>>> devdoc
 Package: titlesec 2019/10/16 v2.13 Sectioning titles
 \ttl@box=\box48
 \beforetitleunit=\skip52
 \aftertitleunit=\skip53
 \ttl@plus=\dimen146
 \ttl@minus=\dimen147
+<<<<<<< HEAD
 \ttl@toksa=\toks21
+=======
+\ttl@toksa=\toks20
+>>>>>>> devdoc
 \titlewidth=\dimen148
 \titlewidthlast=\dimen149
 \titlewidthfirst=\dimen150
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/array.sty
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+>>>>>>> devdoc
 Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
 \col@sep=\dimen151
 \ar@mcellbox=\box49
 \extrarowheight=\dimen152
+<<<<<<< HEAD
 \NC@list=\toks22
+=======
+\NC@list=\toks21
+>>>>>>> devdoc
 \extratabsurround=\skip54
 \backup@length=\skip55
 \ar@cellbox=\box50
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
 )
@@ -237,6 +336,16 @@ Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count190
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/longtable.sty
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
+Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count190
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
+>>>>>>> devdoc
 Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \LTleft=\skip56
 \LTright=\skip57
@@ -252,12 +361,22 @@ Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \LT@rows=\count193
 \c@LT@tables=\count194
 \c@LT@chunks=\count195
+<<<<<<< HEAD
 \LT@p@ftn=\toks23
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/tabu/tabu.sty
 Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/varwidth/varwidth.sty
+=======
+\LT@p@ftn=\toks22
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tabu/tabu.sty
+Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed) + inter
+mediate FMi
+
+(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
+>>>>>>> devdoc
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box55
 \sift@deathcycles=\count196
@@ -279,22 +398,35 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \abovetabulinesep=\dimen162
 \belowtabulinesep=\dimen163
 \tabustrutrule=\dimen164
+<<<<<<< HEAD
 \tabu@thebody=\toks24
 \tabu@footnotes=\toks25
+=======
+\tabu@thebody=\toks23
+\tabu@footnotes=\toks24
+>>>>>>> devdoc
 \tabu@box=\box56
 \tabu@arstrutbox=\box57
 \tabu@hleads=\box58
 \tabu@vleads=\box59
 \tabu@cellskip=\skip60
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2019/11/23 v1.2a Standard LaTeX Color (DPC)
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/color.cfg
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2019/11/23 v1.2a Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+>>>>>>> devdoc
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
 
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
@@ -335,6 +467,48 @@ Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
+\everycr=\toks25
+\minrowclearance=\skip61
+)
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2019/01/04 v1.2 Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks26
+\XKV@tempa@toks=\toks27
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/keyval.tex))
+\XKV@depth=\count269
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2018/04/08 v1.1 Trim and clip general TeX material
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+>>>>>>> devdoc
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
@@ -342,7 +516,11 @@ Package graphics Info: Driver file: pdftex.def on input line 105.
 \Gin@req@height=\dimen165
 \Gin@req@width=\dimen166
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/collectbox/collectbox.sty
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
+>>>>>>> devdoc
 Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \collectedbox=\box60
 )
@@ -352,7 +530,11 @@ Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \tc@ury=\dimen170
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+>>>>>>> devdoc
 File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 ))
 \adjbox@Width=\dimen171
@@ -364,6 +546,7 @@ File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 \adjbox@pdepth=\dimen177
 \adjbox@ptotalheight=\dimen178
 
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
 \c@checkoddpage=\count270
@@ -376,6 +559,20 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
 (/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count270
+))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2019/11/07 v1.0c TeX engine tests
+>>>>>>> devdoc
 ))
 \Gm@cnth=\count271
 \Gm@cntv=\count272
@@ -388,12 +585,21 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@layoutheight=\dimen184
 \Gm@layouthoffset=\dimen185
 \Gm@layoutvoffset=\dimen186
+<<<<<<< HEAD
 \Gm@dimlist=\toks29
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/kpfonts.sty
 Package: kpfonts  2010/08/20 v3.31
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/base/textcomp.sty
+=======
+\Gm@dimlist=\toks28
+)
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/kpfonts.sty
+Package: kpfonts  2010/08/20 v3.31
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+>>>>>>> devdoc
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 LaTeX Font Info:    Changing ? sub-encoding to TS1/0 on input line 75.
 )
@@ -729,6 +935,7 @@ LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `boldsf'
 LaTeX Font Info:    Redeclaring math symbol \n@tch@r on input line 1578.
 LaTeX Info: Redefining \not on input line 1580.
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
 
@@ -740,12 +947,26 @@ Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
 )
 
 (/usr/local/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+>>>>>>> devdoc
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )
@@ -765,17 +986,43 @@ Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+=======
+(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+>>>>>>> devdoc
 Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
 )
 \@linkdim=\dimen187
 \Hy@linkcounter=\count278
 \Hy@pagecounter=\count279
 
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/pd1enc.def
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+>>>>>>> devdoc
 File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
@@ -783,6 +1030,16 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
 \Hy@SavedSpaceFactor=\count280
+=======
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count280
+\pdfmajorversion=\count281
+>>>>>>> devdoc
 Package hyperref Info: Hyper figures OFF on input line 4547.
 Package hyperref Info: Link nesting OFF on input line 4552.
 Package hyperref Info: Hyper index ON on input line 4555.
@@ -790,15 +1047,22 @@ Package hyperref Info: Plain pages OFF on input line 4562.
 Package hyperref Info: Backreferencing OFF on input line 4567.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4800.
+<<<<<<< HEAD
 \c@Hy@tempcnt=\count281
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/url/url.sty
+=======
+\c@Hy@tempcnt=\count282
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+>>>>>>> devdoc
 \Urlmuskip=\muskip20
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5159.
 \XeTeXLinkMargin=\dimen188
 
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
@@ -807,6 +1071,16 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
 \Fld@menulength=\count282
+=======
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count283
+>>>>>>> devdoc
 \Field@Width=\dimen189
 \Fld@charsize=\dimen190
 Package hyperref Info: Hyper figures OFF on input line 6430.
@@ -819,6 +1093,7 @@ Package hyperref Info: PDF/A mode OFF on input line 6460.
 LaTeX Info: Redefining \ref on input line 6500.
 LaTeX Info: Redefining \pageref on input line 6504.
 
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/generic/atbegshi/atbegshi.sty
 Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
 )
@@ -841,13 +1116,42 @@ Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
 
 (/usr/local/texlive/2020/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+=======
+(/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty
+Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+)
+\Hy@abspage=\count284
+\c@Item=\count285
+\c@Hfootnote=\count286
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2020/01/14 v7.00d Hyperref driver for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/atveryend/atveryend.sty
+Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
+)
+\Fld@listcount=\count287
+\c@bookmark@seq@number=\count288
+
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+>>>>>>> devdoc
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
 \Hy@SectionHShift=\skip62
+<<<<<<< HEAD
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+=======
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+>>>>>>> devdoc
 Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
 s
 \f@nch@headwidth=\skip63
@@ -860,6 +1164,7 @@ s
 \f@nch@O@olf=\skip70
 \f@nch@O@orf=\skip71
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count288
@@ -892,13 +1197,42 @@ LaTeX Warning: Label `fig:promjene' multiply defined.
 
 ) (./Specifikacija_programske_potpore.aux) (./Arhitektura.aux)
 (./Implementacija.aux) (./Zakljucak.aux) (./Literatura.aux) (./Dodatak.aux))
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count289
+\float@exts=\toks29
+\float@box=\box61
+\@float@everytoks=\toks30
+\@floatcapt=\box62
+)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+\@float@every@table=\toks31
+Package hyperref Info: Option `colorlinks' set `true' on input line 40.
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count290
+\l__pdf_internal_box=\box63
+)
+(./PROGI_ProjektnaDokumentacija_v6.aux (./Dnevnik_promjena_dokumentacije.aux)
+(./Opis_projektnog_zadatka.aux) (./Specifikacija_programske_potpore.aux)
+(./Arhitektura.aux) (./Implementacija.aux) (./Zakljucak.aux) (./Literatura.aux)
+(./Dodatak.aux))
+>>>>>>> devdoc
 \openout1 = `PROGI_ProjektnaDokumentacija_v6.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/jkp/m/it on input line 76.
 LaTeX Font Info:    Trying to load font information for OML+jkp on input line 7
 6.
+<<<<<<< HEAD
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/omljkp.fd
+=======
+ (/usr/share/texlive/texmf-dist/tex/latex/kpfonts/omljkp.fd
+>>>>>>> devdoc
 File: omljkp.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 76.
@@ -906,7 +1240,11 @@ LaTeX Font Info:    Checking defaults for OMS/jkp/m/n on input line 76.
 LaTeX Font Info:    Trying to load font information for OMS+jkp on input line 7
 6.
 
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/omsjkp.fd
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/omsjkp.fd
+>>>>>>> devdoc
 File: omsjkp.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 76.
@@ -920,7 +1258,11 @@ LaTeX Font Info:    Checking defaults for OMX/jkp/m/n on input line 76.
 LaTeX Font Info:    Trying to load font information for OMX+jkp on input line 7
 6.
 
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/omxjkp.fd
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/omxjkp.fd
+>>>>>>> devdoc
 File: omxjkp.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 76.
@@ -928,7 +1270,11 @@ LaTeX Font Info:    Checking defaults for U/jkpexa/m/n on input line 76.
 LaTeX Font Info:    Trying to load font information for U+jkpexa on input line 
 76.
 
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpexa.fd
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ujkpexa.fd
+>>>>>>> devdoc
 File: ujkpexa.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 76.
@@ -937,13 +1283,18 @@ LaTeX Font Info:    ... okay on input line 76.
 LaTeX Font Info:    Trying to load font information for OT1+jkp on input line 7
 6.
 
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ot1jkp.fd
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ot1jkp.fd
+>>>>>>> devdoc
 File: ot1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for OT1/jkp.
 )
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
 (lastpage)             ! on input line 76.
 
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count290
@@ -958,11 +1309,31 @@ Package lastpage Info: Please have a look at the pageslts package at
 \makeMPintoPDFobject=\count295
 \everyMPtoPDFconversion=\toks34
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+=======
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count291
+\scratchdimen=\dimen191
+\scratchbox=\box64
+\nofMPsegments=\count292
+\nofMParguments=\count293
+\everyMPshowfont=\toks32
+\MPscratchCnt=\count294
+\MPscratchDim=\dimen192
+\MPnumerator=\count295
+\makeMPintoPDFobject=\count296
+\everyMPtoPDFconversion=\toks33
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+>>>>>>> devdoc
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+>>>>>>> devdoc
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
@@ -1002,6 +1373,7 @@ e
 
 \AtBeginShipoutBox=\box65
 Package hyperref Info: Link coloring ON on input line 76.
+<<<<<<< HEAD
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -1013,16 +1385,34 @@ ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count296
+=======
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count297
+>>>>>>> devdoc
 )
 LaTeX Info: Redefining \ref on input line 76.
 LaTeX Info: Redefining \pageref on input line 76.
 LaTeX Info: Redefining \nameref on input line 76.
+<<<<<<< HEAD
  (./PROGI_ProjektnaDokumentacija_v6.out)
 (./PROGI_ProjektnaDokumentacija_v6.out)
+=======
+
+(./PROGI_ProjektnaDokumentacija_v6.out) (./PROGI_ProjektnaDokumentacija_v6.out)
+>>>>>>> devdoc
 \@outlinefile=\write3
 \openout3 = `PROGI_ProjektnaDokumentacija_v6.out'.
 
 LaTeX Font Info:    Trying to load font information for U+jkpsya on input line 
+<<<<<<< HEAD
 98.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpsya.fd
@@ -1055,6 +1445,39 @@ File: ujkpsyc.fd 2006/08/15 v1.0
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (./PROGI_ProjektnaDokumentacija_v6.toc
+=======
+88.
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ujkpsya.fd
+File: ujkpsya.fd 2006/08/15 v1.0
+)
+LaTeX Font Info:    Trying to load font information for U+jkpsyb on input line 
+88.
+
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ujkpsyb.fd
+File: ujkpsyb.fd 2006/08/15 v1.0
+)
+LaTeX Font Info:    Trying to load font information for OT1+txr on input line 8
+8.
+
+(/usr/share/texlive/texmf-dist/tex/latex/txfonts/ot1txr.fd
+File: ot1txr.fd 2000/12/15 v3.1
+)
+LaTeX Font Info:    Trying to load font information for U+jkpmia on input line 
+88.
+
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ujkpmia.fd
+File: ujkpmia.fd 2006/08/15 v1.0
+)
+LaTeX Font Info:    Trying to load font information for U+jkpsyc on input line 
+88.
+
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ujkpsyc.fd
+File: ujkpsyc.fd 2006/08/15 v1.0
+) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./PROGI_ProjektnaDokument
+acija_v6.toc
+>>>>>>> devdoc
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
 Make it at least 14.49998pt.
@@ -1065,7 +1488,11 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
+<<<<<<< HEAD
 l.29 ...{Indeks slika i dijagrama}{28}{chapter*.5}
+=======
+l.29 ...{Indeks slika i dijagrama}{27}{chapter*.5}
+>>>>>>> devdoc
                                                   % [1
 
 ])
@@ -1177,6 +1604,7 @@ Overfull \hbox (6.59265pt too wide) in paragraph at lines 36--36
  (./Opis_projektnog_zadatka.tex
 Poglavlje 2.
 
+<<<<<<< HEAD
 Overfull \hbox (1.1857pt too wide) in paragraph at lines 4--14
 []\OT1/jkp/m/it/12 "WebGym" \OT1/jkp/m/n/12 je web apli-ka-cija na-mi-je-njena 
 svim lju-dima []zeljnim or-ga-ni-za-cije svog
@@ -1194,10 +1622,22 @@ File: slike/trainerizeme1.PNG Graphic file (type png)
 Package pdftex.def Info: slike/trainerizeme1.PNG  used on input line 29.
 (pdftex.def)             Requested size: 288.67339pt x 146.34415pt.
 [5
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+LaTeX Font Info:    Trying to load font information for TS1+jkp on input line 7
+.
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ts1jkp.fd
+File: ts1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for TS1/jkp.
+) [5
+>>>>>>> devdoc
 
 
 
 ]
+<<<<<<< HEAD
 <slike/trainerizeme2.PNG, id=180, 1439.3775pt x 699.61375pt>
 File: slike/trainerizeme2.PNG Graphic file (type png)
 <use slike/trainerizeme2.PNG>
@@ -1235,10 +1675,14 @@ LaTeX Font Info:    Trying to load font information for TS1+jkp on input line 7
 File: ts1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for TS1/jkp.
 ) [7] [8]
 Underfull \hbox (badness 10000) in paragraph at lines 118--119
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 20--21
+>>>>>>> devdoc
 
  []
 
 LaTeX Font Info:    Trying to load font information for OT1+jkptt on input line
+<<<<<<< HEAD
  122.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ot1jkptt.fd
 File: ot1jkptt.fd 2007/01/26 Fontinst v1.928 font definitions for OT1/jkptt.
@@ -1269,11 +1713,44 @@ e same identifier (name{figure.2.5}) has been already used, duplicate ignored
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.221 		\eject
+=======
+ 24.
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ot1jkptt.fd
+File: ot1jkptt.fd 2007/01/26 Fontinst v1.928 font definitions for OT1/jkptt.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
+
+ []
+
+[6]
+<slike/aktivnost.PNG, id=193, 670.75594pt x 689.57625pt>
+File: slike/aktivnost.PNG Graphic file (type png)
+<use slike/aktivnost.PNG>
+Package pdftex.def Info: slike/aktivnost.PNG  used on input line 109.
+(pdftex.def)             Requested size: 268.2976pt x 275.8256pt.
+File: slike/aktivnost.PNG Graphic file (type png)
+<use slike/aktivnost.PNG>
+Package pdftex.def Info: slike/aktivnost.PNG  used on input line 116.
+(pdftex.def)             Requested size: 392.04704pt x 403.04799pt.
+ [7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.120 		
+         <./slike/aktivnost.PNG>] [8pdfTeX warning (ext4): destination with the
+ same identifier (name{figure.2.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.123 		\eject
+>>>>>>> devdoc
               ])
 \openout2 = `Specifikacija_programske_potpore.aux'.
 
  (./Specifikacija_programske_potpore.tex
 Poglavlje 3.
+<<<<<<< HEAD
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
@@ -1295,10 +1772,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 61--62
+=======
+[9
+
+
+
+] [10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
+>>>>>>> devdoc
 
  []
 
 [13]
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 107--108
 
  []
@@ -1309,6 +1800,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--115
  []
 
 ) [15]
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
+
+ []
+
+) [14]
+>>>>>>> devdoc
 \openout2 = `Arhitektura.aux'.
 
  (./Arhitektura.tex
@@ -1340,11 +1838,19 @@ Overfull \hbox (1.82492pt too wide) in paragraph at lines 47--47
 []\OT1/jkp/m/n/12 korisnickoIme|  
  []
 
+<<<<<<< HEAD
 [16
 
 
 
 ] [17]
+=======
+[15
+
+
+
+] [16]
+>>>>>>> devdoc
 Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
@@ -1364,22 +1870,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 64--65
 
  []
 
+<<<<<<< HEAD
 [18]
+=======
+[17]
+>>>>>>> devdoc
 Underfull \hbox (badness 10000) in paragraph at lines 75--76
 
  []
 
+<<<<<<< HEAD
 [19]
+=======
+[18]
+>>>>>>> devdoc
 Underfull \hbox (badness 10000) in paragraph at lines 84--85
 
  []
 
+<<<<<<< HEAD
 [20]
+=======
+[19]
+>>>>>>> devdoc
 Underfull \hbox (badness 10000) in paragraph at lines 91--92
 
  []
 
+<<<<<<< HEAD
 ) [21]
+=======
+) [20]
+>>>>>>> devdoc
 \openout2 = `Implementacija.aux'.
 
  (./Implementacija.tex
@@ -1399,7 +1921,11 @@ Overfull \hbox (10.38434pt too wide) in paragraph at lines 1--1
 |[]\OT1/jkp/b/n/24.88 Implementacija i ko-risni[]cko su[]celje| 
  []
 
+<<<<<<< HEAD
 [22
+=======
+[21
+>>>>>>> devdoc
 
 
 
@@ -1413,12 +1939,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
 
+<<<<<<< HEAD
 [23] [24]
+=======
+[22] [23]
+>>>>>>> devdoc
 Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
+<<<<<<< HEAD
 [25])
+=======
+[24])
+>>>>>>> devdoc
 \openout2 = `Zakljucak.aux'.
 
  (./Zakljucak.tex
@@ -1433,7 +1967,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
+<<<<<<< HEAD
 [26
+=======
+[25
+>>>>>>> devdoc
 
 
 
@@ -1452,7 +1990,11 @@ Overfull \hbox (7.06pt too wide) in paragraph at lines 18--19
 12 http : / / www . ece . rutgers . edu / []marsic /
  []
 
+<<<<<<< HEAD
 ) [27
+=======
+) [26
+>>>>>>> devdoc
 
 
 
@@ -1460,7 +2002,11 @@ Overfull \hbox (7.06pt too wide) in paragraph at lines 18--19
 \tf@lof=\write5
 \openout5 = `PROGI_ProjektnaDokumentacija_v6.lof'.
 
+<<<<<<< HEAD
  [28
+=======
+ [27
+>>>>>>> devdoc
 
 
 ]
@@ -1471,7 +2017,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
+<<<<<<< HEAD
 [29
+=======
+[28
+>>>>>>> devdoc
 
 
 ]
@@ -1479,12 +2029,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--42
 
  []
 
+<<<<<<< HEAD
 [30] [31]
+=======
+[29] [30]
+>>>>>>> devdoc
 Underfull \hbox (badness 10000) in paragraph at lines 103--104
 
  []
 
+<<<<<<< HEAD
 ) [32] 
+=======
+) [31] 
+>>>>>>> devdoc
 AED: lastpage setting LastPage
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 138.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 138.
@@ -1497,6 +2055,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 138.
 Package rerunfilecheck Info: File `PROGI_ProjektnaDokumentacija_v6.out' has not
  changed.
 (rerunfilecheck)             Checksum: 26A8BCB67D725A514DBBD4F4C06AD182;1813.
+<<<<<<< HEAD
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1528,4 +2087,32 @@ PDF statistics:
  390 compressed objects within 4 object streams
  104 named destinations out of 1000 (max. 500000)
  237 words of extra memory for PDF output out of 10000 (max. 10000000)
+=======
+ ) 
+Here is how much of TeX's memory you used:
+ 11863 strings out of 481239
+ 169067 string characters out of 5920376
+ 505732 words of memory out of 5000000
+ 26645 multiletter control sequences out of 15000+600000
+ 588455 words of font info for 150 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 45i,14n,45p,897b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
+st, replaced by a fixed one
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/kpfonts/jkpbit8a.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/kpfonts/jkpmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/kpfonts/jkpmit8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/kpfont
+s/jkpmn8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/kpfonts/jkpsy.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
+Output written on PROGI_ProjektnaDokumentacija_v6.pdf (32 pages, 147648 bytes).
+
+PDF statistics:
+ 474 PDF objects out of 1000 (max. 8388607)
+ 426 compressed objects within 5 object streams
+ 141 named destinations out of 1000 (max. 500000)
+ 222 words of extra memory for PDF output out of 10000 (max. 10000000)
+>>>>>>> devdoc
 
