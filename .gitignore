@@ -6,6 +6,7 @@
 /dokumentacija/*.pdf
 /dokumentacija/*.synctex.gz
 /dokumentacija/*.toc
+*.DS_Store
 
 HELP.md
 target/
