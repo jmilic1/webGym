@@ -2,22 +2,20 @@
 		
 	\section{Funkcionalni zahtjevi}
 			
+			\textbf{\textit{dio 1. revizije}}\\
+			
+			\textit{Navesti \textbf{dionike} koji imaju \textbf{interes u ovom sustavu} ili  \textbf{su nositelji odgovornosti}. To su prije svega korisnici, ali i administratori sustava, naručitelji, razvojni tim.}\\
+				
+			\textit{Navesti \textbf{aktore} koji izravno \textbf{koriste} ili \textbf{komuniciraju sa sustavom}. Oni mogu imati inicijatorsku ulogu, tj. započinju određene procese u sustavu ili samo sudioničku ulogu, tj. obavljaju određeni posao. Za svakog aktora navesti funkcionalne zahtjeve koji se na njega odnose.}\\
+			
 			
 			\noindent \textbf{Dionici:}
 			
 			\begin{packed_enum}
 				
-				\item Klijent teretane
-				\begin{packed_enum}
-					
-					\item registrirani
-					\item neregistrirani
-					
-				\end{packed_enum}
-				\item Trener
-				\item Voditelj teretane			
-				\item Administrator
-				\item Razvojni tim
+				\item Dionik 1
+				\item Dionik 2				
+				\item ...
 				
 			\end{packed_enum}
 			
@@ -25,93 +23,30 @@
 			
 			
 			\begin{packed_enum}
-				\item  \underbar{Neregistrirani/neprijavljeni korisnik (inicijator) može:}
+				\item  \underbar{Aktor 1 (inicijator) može:}
 				
 				\begin{packed_enum}
 					
-					\item pregledati popis svih teretana na platformi
-					\item sortirati spomenuti popis prema sljedećim kriterijima: ime teretane, lokacija, trener
-					\item otvoriti početnu stranicu svake teretane na kojoj se nalaze osnovne informacije (radno vrijeme, lokacija, cijena
-					članarine…)
-					\item izraditi administratorski, voditeljski, trenerski ili korisnički račun s namjerom treniranja u teretani za koje je potrebno navesti ime, prezime i email adresu, dok se može, ali ne mora dodati PayPal račun te je za izradu trenerskog korisničkog računa posebno potrebno navesti posebne podatke poput visine i težine
-					
+					\item funkcionalnost 1
+					\item funkcionalnost 2
+					\begin{packed_enum}
+						
+						\item  podfunkcionalnost 1 
+						\item  podfunkcionalnost 2
+				
+					\end{packed_enum}
+					\item  funkcionalnost 3
 					
 				\end{packed_enum}
 			
-				\item  \underbar{Klijent (inicijator) može:}
+				\item  \underbar{Aktor 2 (sudionik) može:}
 				
 				\begin{packed_enum}
 					
-					\item pregledavati i sortirati popis registriranih teretana
-					\item pregledavati i mijenjati osobne podatke
-					\item izbrisati svoj korisnički račun
-					\item plaćati članarine u teretanama putem interneta
-					\item pregledavati sve izvršene transakcije u kojima su sudjelovali
-					\item pregledavati popis teretana u kojima smiju vježbati, odnosno u kojima su platili članarinu
-					\item kupovati planove prehrane i vježbanja od trenera
-					\item ugovarati privatne ili grupne treninge
-					\item voditi i pratiti napredak u vlastitom planu vježbanja
+					\item funkcionalnost 1
+					\item funkcionalnost 2
 					
 				\end{packed_enum}
-			
-				\item  \underbar{Trener (inicijator) može:}
-				
-				\begin{packed_enum}
-					
-					\item pregledavati i sortirati popis registriranih teretana
-					\item pregledavati i mijenjati osobne podatke
-					\item izbrisati svoj korisnički račun
-					\item objavljivati ponude planova treninga i/ili vježbanja
-					\item objavljivati i ugovarati termine privatnih i grupnih treninga u teretanama gdje imaju te ovlasti
-					\item pregledavati sve izvršene transakcije u kojima su sudjelovali
-					\item pregledavati popis teretana u kojima smiju djelovati, odnosno raditi (voditi treninge, planovi prehrane i sl.)
-					\item nuditi usluge treniranja teretanama
-					
-				\end{packed_enum}
-		
-				\item  \underbar{Voditelj teretane (inicijator) može:}
-				
-				\begin{packed_enum}
-					
-					\item pregledavati i sortirati popis registriranih teretana
-					\item pregledavati i mijenjati osobne podatke
-					\item izbrisati svoj korisnički račun
-					\item stvarati nove teretane u sustavu
-					\item davati dozvolu drugim voditeljima da vode neke njegove teretane
-					\item mijenjati važne informacije o teretanama (radno vrijeme, lokacija i sl.)
-					\item dopuštati registriranim trenerima rad u teretanama koje vodi
-					\item vidjeti sve izvršene transakcije na aplikaciji unutar vlastite teretane
-					
-				\end{packed_enum}
-	
-				\item  \underbar{Administrator (inicijator) može:}
-				
-				\begin{packed_enum}
-					
-					\item pregledavati i sortirati popis registriranih teretana
-					\item pregledavati i mijenjati osobne podatke
-					\item vidjeti sve korisničke račune
-					\item izbrisati svoj korisnički račun
-					\item stvarati nove i brisati postojeće teretane u sustavu
-					\item pregledati sve izvršene transakcije u aplikaciji
-					\item davati dozvolu  voditeljima da vode pojedine teretane
-					\item mijenjati važne informacije o teretanama (radno vrijeme, lokacija i sl.)
-					\item dopuštati registriranim trenerima rad u teretanama
-					
-				\end{packed_enum}
-
-
-				\item  \underbar{Baza podataka (sudionik):}
-				
-				\begin{packed_enum}
-					
-					\item pohranjuje sve podatke o korisnicima
-					\item čuva informacije o ulogama pojedinih korisnika
-					\item pohranjuje podatke o svim teretanama, njihovim voditeljima, trenerima i članovima
-					\item pohranjuje izvršene transakcije
-					
-				\end{packed_enum}
-		
 			\end{packed_enum}
 			
 			\eject 
@@ -123,41 +58,231 @@
 				\textbf{\textit{dio 1. revizije}}
 				
 				\subsubsection{Opis obrazaca uporabe}
-					\textit{Funkcionalne zahtjeve razraditi u obliku obrazaca uporabe. Svaki obrazac je potrebno razraditi prema donjem predlošku. Ukoliko u nekom koraku može doći do odstupanja, potrebno je to odstupanje opisati i po mogućnosti ponuditi rješenje kojim bi se tijek obrasca vratio na osnovni tijek.}\\
 					
 
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\noindent \underbar{\textbf{UC1 - Pregled teretana}}
 					\begin{packed_item}
 	
-						\item \textbf{Glavni sudionik: }$<$sudionik$>$
-						\item  \textbf{Cilj:} $<$cilj$>$
-						\item  \textbf{Sudionici:} $<$sudionici$>$
-						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item \textbf{Glavni sudionik: }neregistrirani korisnik, klijent, trener, voditelj teretane i administrator
+						\item  \textbf{Cilj:} Pregled teretana
+						\item  \textbf{Preduvjet:} -
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
 	
-							\item $<$opis korak jedan$>$
-							\item $<$opis korak dva$>$
-							\item $<$opis korak tri$>$
-							\item $<$opis korak četiri$>$
-							\item $<$opis korak pet$>$
+							\item Prikazan popis teretana
+							\item Korisnik može tražit teretane (prema nekim kriterijima - search)
+							\item Korisnik može birati teretanu o kojoj će dobiti informacije
 						\end{packed_enum}
+						\end{packed_item}
 						
+						
+						\noindent \underbar{\textbf{UC2 - Registracija korisnika}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }Neregistrirani korisnik
+						\item  \textbf{Cilj:} Izrada korisničkog računa kojim korisnik dobiva dodatne funkcionalnosti sustava
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} -
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item Neprijavljeni korisnik odabire opciju registracije
+							\item Neprijavljeni korisnik unosi potrebne podatke
+							\item Korisnik prima obavijest o uspješnoj registraciji
+						\end{packed_enum}
+					
 						\item  \textbf{Opis mogućih odstupanja:}
 						
 						\item[] \begin{packed_item}
 	
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[2.a]
+							Odabir zauzetog korisničkog imena ili e-maila, odabir nepostojećeg e-maila ili nedozvoljen format unosa nekog od podataka
 							\item[] \begin{packed_enum}
 								
-								\item $<$opis rješenja mogućeg scenarija korak 1$>$
-								\item $<$opis rješenja mogućeg scenarija korak 2$>$
+								\item Sustav neprijavljenom korisniku šalje objavu o neuspješnoj registraciji te ga vraća na početnu stranicu za registraciju
+								\item Korisnik mijenja neispravne podatke i završava unos ili odustaje od registriranja
 								
 							\end{packed_enum}
-							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
-							
+						\end{packed_item}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC3 - Prijava u sustav}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }Klijent
+						\item  \textbf{Cilj:} Dobiti pristup korisničkom sučelju
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Registracija
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item Unos korisničkog imena i lozinke
+							\item Potvrda o ispravnosti unesenih podataka
+							\item Pristup korisničkim funkcionalnostima
+						\end{packed_enum}
+					
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+	
+							\item[2.a]
+							Neispravno korisničko ime i/ili lozinka
+							\item[] \begin{packed_enum}
+								
+								\item Sustav obavještava korisnika o neuspješnom upisu i vraća ga na stranicu za prijavu
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC4 - Pregled osobnih podataka}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }Klijent
+						\item  \textbf{Cilj:} Pregledati osobne podatke korisnika
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Klijent je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item Klijent odabire opciju "Osobni podaci"
+							\item Aplikacija prikazuje osobne podatke korisnika
+						\end{packed_enum}
+					\end{packed_item}
+					
+					
+					\noindent \underbar{\textbf{UC5 - Promjena osobnih podataka}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }Klijent, trener, voditelj, administrator
+						\item  \textbf{Cilj:} Promijeniti osobne podatke
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Korisnik je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item Korisnik odabire opciju promjene osobnih podataka
+							\item Korisnik mijenja svoje osobne podatke
+							\begin{packed_item}
+	
+							\item Ako je korsnik prijavljen kao običan korisnik, on može postaviti svoje ciljeve i rezultate
+							\item Ako je korisnik prijavljen kao trener, on može uređivati svoju stranicu
+						\end{packed_item}
+							\item Korisnik bira opciju "Spremi promjenu"
+							\item Ažuracija baze podataka
+						\end{packed_enum}
+					
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+	
+							\item[2.a]
+						Korisnik promijeni podatke, ali ne odabere opciju "Spremi promjenu"
+							\item[] \begin{packed_enum}
+								
+								\item Sustav obavještava korisnika da nije spremio podatke prije izlaska iz prozora
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC6 - Brisanje korisničkog računa}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }Klijent, trener, voditelj, administrator
+						\item  \textbf{Cilj:} Izbrisati svoj korisnički račun
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Korisnik je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item Korisnik pregledava osobne podatke
+							\item Korisnik bira opciju "Obriši račun"
+							\item Korisnik briše račun
+							\item Korisnikov račun se briše iz baze podataka
+							\item Otvara se početna stranica
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC7 - Pregled specifične teretane}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }Neregistrirani korisnik, klijent, trener, voditelj, administrator
+						\item  \textbf{Cilj:} Vidjeti osnovne podatke o teretani i trenere u toj teretani
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} -
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item Korisnik odabire željenu teretanu
+							\item Prikazuju se voditelji teretane, treneri koji su dio te teretane, lokacija i radno vrijeme te ponuda članarine
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\underbar{\textbf{UC8 - Pregled transakcija}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }Klijent, trener, voditelj
+						\item  \textbf{Cilj:} Pregled transakcija u kojima je korisnik do sada sudjelovao
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Korisnik je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	                        \item Korisnik odabire opciju pregleda osobnih podataka
+							\item Korisnik odabire opciju pregleda transakcija
+							\item Korisnik dobiva prikaz svih transakcija u kojima je sudjelovao
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\underbar{\textbf{UC9 - Pregled određene transakcije}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }Klijent, trener, voditelj
+						\item  \textbf{Cilj:} Pregled sudionika u transakciji, opis usluge, iznos plaćanja u kunama i datum izvršenja transakcije
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Korisnik je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							\item Korisnik odabire opciju pregleda transakcija
+							\item Korisnik odabire opciju pregleda određene transakcije
+							\item Pregled detalja odabrane transakcije
+						\end{packed_enum}
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC10 - Učlanjivanje korisnika u određenu teretanu}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }Klijent
+						\item  \textbf{Cilj:} Učlanjivanje korisnika u određenu teretanu (ili lanac teretana)
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Korisnik je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item Korisnik odabire određenu teretanu
+							\item Korisniku se prikazuje ponuda vrsta članarina
+							\item Korisnik odabire opciju članarine koju želi platiti
+						\end{packed_enum}
+					
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+	
+							\item[3.a]
+						Korisnik pokušava kupiti članarinu u teretani u kojo već ima aktivnu članarinu istog tipa
+							\item[] \begin{packed_enum}
+								
+								\item Sustav obavještava korisnika da već postoji aktivna članarina tog tipa
+								\item Vraća ga na stranicu s popisom članarina te teretane
+							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
 				
