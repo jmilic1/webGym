@@ -3,30 +3,31 @@
 \BOOKMARK [1][-]{section.2.1}{Primjeri u LaTeXu}{chapter.2}% 3
 \BOOKMARK [0][-]{chapter.3}{Specifikacija programske potpore}{}% 4
 \BOOKMARK [1][-]{section.3.1}{Funkcionalni zahtjevi}{chapter.3}% 5
-\BOOKMARK [2][-]{subsection.3.1.1}{Obrasci uporabe}{section.3.1}% 6
-\BOOKMARK [2][-]{subsection.3.1.2}{Sekvencijski dijagrami}{section.3.1}% 7
-\BOOKMARK [1][-]{section.3.2}{Ostali zahtjevi}{chapter.3}% 8
-\BOOKMARK [0][-]{chapter.4}{Specifikacija programske potpore}{}% 9
-\BOOKMARK [1][-]{section.4.1}{Funkcionalni zahtjevi}{chapter.4}% 10
-\BOOKMARK [2][-]{subsection.4.1.1}{Obrasci uporabe}{section.4.1}% 11
-\BOOKMARK [2][-]{subsection.4.1.2}{Sekvencijski dijagrami}{section.4.1}% 12
-\BOOKMARK [1][-]{section.4.2}{Ostali zahtjevi}{chapter.4}% 13
-\BOOKMARK [0][-]{chapter.5}{Arhitektura i dizajn sustava}{}% 14
-\BOOKMARK [1][-]{section.5.1}{Baza podataka}{chapter.5}% 15
-\BOOKMARK [2][-]{subsection.5.1.1}{Opis tablica}{section.5.1}% 16
-\BOOKMARK [2][-]{subsection.5.1.2}{Dijagram baze podataka}{section.5.1}% 17
-\BOOKMARK [1][-]{section.5.2}{Dijagram razreda}{chapter.5}% 18
-\BOOKMARK [1][-]{section.5.3}{Dijagram stanja}{chapter.5}% 19
-\BOOKMARK [1][-]{section.5.4}{Dijagram aktivnosti}{chapter.5}% 20
-\BOOKMARK [1][-]{section.5.5}{Dijagram komponenti}{chapter.5}% 21
-\BOOKMARK [0][-]{chapter.6}{Implementacija i korisnicko sucelje}{}% 22
-\BOOKMARK [1][-]{section.6.1}{Kori\235tene tehnologije i alati}{chapter.6}% 23
-\BOOKMARK [1][-]{section.6.2}{Ispitivanje programskog rje\235enja}{chapter.6}% 24
-\BOOKMARK [2][-]{subsection.6.2.1}{Ispitivanje komponenti}{section.6.2}% 25
-\BOOKMARK [2][-]{subsection.6.2.2}{Ispitivanje sustava}{section.6.2}% 26
-\BOOKMARK [1][-]{section.6.3}{Dijagram razmje\235taja}{chapter.6}% 27
-\BOOKMARK [1][-]{section.6.4}{Upute za pu\235tanje u pogon}{chapter.6}% 28
-\BOOKMARK [0][-]{chapter.7}{Zakljucak i buduci rad}{}% 29
-\BOOKMARK [0][-]{chapter*.6}{Popis literature}{}% 30
-\BOOKMARK [0][-]{chapter*.7}{Indeks slika i dijagrama}{}% 31
-\BOOKMARK [0][-]{chapter*.8}{Dodatak: Prikaz aktivnosti grupe}{}% 32
+\BOOKMARK [1][-]{section.3.2}{Funkcionalni zahtjevi}{chapter.3}% 6
+\BOOKMARK [2][-]{subsection.3.2.1}{Obrasci uporabe}{section.3.2}% 7
+\BOOKMARK [2][-]{subsection.3.2.2}{Sekvencijski dijagrami}{section.3.2}% 8
+\BOOKMARK [1][-]{section.3.3}{Ostali zahtjevi}{chapter.3}% 9
+\BOOKMARK [0][-]{chapter.4}{Specifikacija programske potpore}{}% 10
+\BOOKMARK [1][-]{section.4.1}{Funkcionalni zahtjevi}{chapter.4}% 11
+\BOOKMARK [2][-]{subsection.4.1.1}{Obrasci uporabe}{section.4.1}% 12
+\BOOKMARK [2][-]{subsection.4.1.2}{Sekvencijski dijagrami}{section.4.1}% 13
+\BOOKMARK [1][-]{section.4.2}{Ostali zahtjevi}{chapter.4}% 14
+\BOOKMARK [0][-]{chapter.5}{Arhitektura i dizajn sustava}{}% 15
+\BOOKMARK [1][-]{section.5.1}{Baza podataka}{chapter.5}% 16
+\BOOKMARK [2][-]{subsection.5.1.1}{Opis tablica}{section.5.1}% 17
+\BOOKMARK [2][-]{subsection.5.1.2}{Dijagram baze podataka}{section.5.1}% 18
+\BOOKMARK [1][-]{section.5.2}{Dijagram razreda}{chapter.5}% 19
+\BOOKMARK [1][-]{section.5.3}{Dijagram stanja}{chapter.5}% 20
+\BOOKMARK [1][-]{section.5.4}{Dijagram aktivnosti}{chapter.5}% 21
+\BOOKMARK [1][-]{section.5.5}{Dijagram komponenti}{chapter.5}% 22
+\BOOKMARK [0][-]{chapter.6}{Implementacija i korisnicko sucelje}{}% 23
+\BOOKMARK [1][-]{section.6.1}{Kori\235tene tehnologije i alati}{chapter.6}% 24
+\BOOKMARK [1][-]{section.6.2}{Ispitivanje programskog rje\235enja}{chapter.6}% 25
+\BOOKMARK [2][-]{subsection.6.2.1}{Ispitivanje komponenti}{section.6.2}% 26
+\BOOKMARK [2][-]{subsection.6.2.2}{Ispitivanje sustava}{section.6.2}% 27
+\BOOKMARK [1][-]{section.6.3}{Dijagram razmje\235taja}{chapter.6}% 28
+\BOOKMARK [1][-]{section.6.4}{Upute za pu\235tanje u pogon}{chapter.6}% 29
+\BOOKMARK [0][-]{chapter.7}{Zakljucak i buduci rad}{}% 30
+\BOOKMARK [0][-]{chapter*.6}{Popis literature}{}% 31
+\BOOKMARK [0][-]{chapter*.7}{Indeks slika i dijagrama}{}% 32
+\BOOKMARK [0][-]{chapter*.8}{Dodatak: Prikaz aktivnosti grupe}{}% 33

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.26)  31 OCT 2020 22:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.26)  31 OCT 2020 22:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1056,7 +1056,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.33 ...ute za puštanje u pogon}{35}{section.6.4}
+l.33 ....3}Dijagram razmještaja}{36}{section.6.3}
                                                   % [1
 
 ])
@@ -1195,7 +1195,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--27
  []
 
 [6]
-<slike/aktivnost.PNG, id=218, 670.75594pt x 689.57625pt>
+<slike/aktivnost.PNG, id=223, 670.75594pt x 689.57625pt>
 File: slike/aktivnost.PNG Graphic file (type png)
 <use slike/aktivnost.PNG>
 Package pdftex.def Info: slike/aktivnost.PNG  used on input line 109.
@@ -1224,90 +1224,75 @@ l.123 		\eject
 
 ]
 Poglavlje 3.
-
-Underfull \hbox (badness 10000) in paragraph at lines 7--8
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--10
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 11--12
-
- []
-
 [10
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 63--64
+] [11] [12]
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
 
  []
 
-[11] [12] [13]
-<slike/obrazac1.jpg, id=305, 2609.75pt x 1647.15375pt>
+[13] [14] [15]
+<slike/obrazac1.jpg, id=363, 2609.75pt x 1647.15375pt>
 File: slike/obrazac1.jpg Graphic file (type jpg)
 <use slike/obrazac1.jpg>
-Package pdftex.def Info: slike/obrazac1.jpg  used on input line 365.
+Package pdftex.def Info: slike/obrazac1.jpg  used on input line 433.
 (pdftex.def)             Requested size: 522.7372pt x 369.88986pt.
 
-Overfull \hbox (87.1264pt too wide) in paragraph at lines 365--367
+Overfull \hbox (87.1264pt too wide) in paragraph at lines 433--435
 [][]
  []
 
-<slike/obrazac2.jpg, id=306, 2453.165pt x 1585.925pt>
+<slike/obrazac2.jpg, id=364, 2453.165pt x 1585.925pt>
 File: slike/obrazac2.jpg Graphic file (type jpg)
 <use slike/obrazac2.jpg>
-Package pdftex.def Info: slike/obrazac2.jpg  used on input line 371.
+Package pdftex.def Info: slike/obrazac2.jpg  used on input line 439.
 (pdftex.def)             Requested size: 522.70374pt x 369.88531pt.
 
-Overfull \hbox (87.09294pt too wide) in paragraph at lines 371--373
+Overfull \hbox (87.09294pt too wide) in paragraph at lines 439--441
 [][]
  []
 
-<slike/obrazac3.jpg, id=307, 2874.74pt x 2008.50375pt>
+<slike/obrazac3.jpg, id=365, 2874.74pt x 2008.50375pt>
 File: slike/obrazac3.jpg Graphic file (type jpg)
 <use slike/obrazac3.jpg>
-Package pdftex.def Info: slike/obrazac3.jpg  used on input line 376.
+Package pdftex.def Info: slike/obrazac3.jpg  used on input line 444.
 (pdftex.def)             Requested size: 522.73854pt x 369.88177pt.
 
-Overfull \hbox (87.12775pt too wide) in paragraph at lines 376--378
+Overfull \hbox (87.12775pt too wide) in paragraph at lines 444--446
 [][]
  []
 
-[14] [15 <./slike/obrazac1.jpg>] [16 <./slike/obrazac2.jpg>] [17 <./slike/obraz
+[16] [17 <./slike/obrazac1.jpg>] [18 <./slike/obrazac2.jpg>] [19 <./slike/obraz
 ac3.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 387--388
+Underfull \hbox (badness 10000) in paragraph at lines 455--456
 
  []
 
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 394--395
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 462--463
 
  []
 
-[19]
+[21]
 Poglavlje 4.
-[20
+[22
 
-] [21] [22]
-Underfull \hbox (badness 10000) in paragraph at lines 526--527
-
- []
-
-[23]
-Underfull \hbox (badness 10000) in paragraph at lines 572--573
+] [23] [24]
+Underfull \hbox (badness 10000) in paragraph at lines 594--595
 
  []
 
-[24]
-Underfull \hbox (badness 10000) in paragraph at lines 579--580
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 640--641
 
  []
 
-) [25]
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 647--648
+
+ []
+
+) [27]
 \openout2 = `Arhitektura.aux'.
 
  (./Arhitektura.tex
@@ -1339,11 +1324,11 @@ Overfull \hbox (1.82492pt too wide) in paragraph at lines 47--47
 []\OT1/jkp/m/n/12 korisnickoIme|  
  []
 
-[26
+[28
 
 
 
-] [27]
+] [29]
 Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
@@ -1363,22 +1348,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 64--65
 
  []
 
-[28]
+[30]
 Underfull \hbox (badness 10000) in paragraph at lines 75--76
 
  []
 
-[29]
+[31]
 Underfull \hbox (badness 10000) in paragraph at lines 84--85
 
  []
 
-[30]
+[32]
 Underfull \hbox (badness 10000) in paragraph at lines 91--92
 
  []
 
-) [31]
+) [33]
 \openout2 = `Implementacija.aux'.
 
  (./Implementacija.tex
@@ -1398,7 +1383,7 @@ Overfull \hbox (10.38434pt too wide) in paragraph at lines 1--1
 |[]\OT1/jkp/b/n/24.88 Implementacija i ko-risni[]cko su[]celje| 
  []
 
-[32
+[34
 
 
 
@@ -1412,12 +1397,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
 
-[33] [34]
+[35] [36]
 Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
-[35])
+[37])
 \openout2 = `Zakljucak.aux'.
 
  (./Zakljucak.tex
@@ -1432,7 +1417,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[36
+[38
 
 
 
@@ -1451,7 +1436,7 @@ Overfull \hbox (7.06pt too wide) in paragraph at lines 18--19
 12 http : / / www . ece . rutgers . edu / []marsic /
  []
 
-) [37
+) [39
 
 
 
@@ -1459,7 +1444,7 @@ Overfull \hbox (7.06pt too wide) in paragraph at lines 18--19
 \tf@lof=\write5
 \openout5 = `PROGI_ProjektnaDokumentacija_v6.lof'.
 
- [38
+ [40
 
 
 ]
@@ -1470,7 +1455,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
-[39
+[41
 
 
 ]
@@ -1478,12 +1463,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--42
 
  []
 
-[40] [41]
+[42] [43]
 Underfull \hbox (badness 10000) in paragraph at lines 103--104
 
  []
 
-) [42] 
+) [44] 
 AED: lastpage setting LastPage
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 138.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 138.
@@ -1495,13 +1480,13 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 138.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 138.
 Package rerunfilecheck Info: File `PROGI_ProjektnaDokumentacija_v6.out' has not
  changed.
-(rerunfilecheck)             Checksum: 2BD288B2449005A9A050DCA6C55B2E00;2156.
+(rerunfilecheck)             Checksum: F0AB6FDB2FBCF08CE0BB7FAB1759C861;2224.
  ) 
 Here is how much of TeX's memory you used:
- 11967 strings out of 480608
- 171434 string characters out of 5903629
+ 12014 strings out of 480608
+ 171816 string characters out of 5903629
  509438 words of memory out of 5000000
- 27300 multiletter control sequences out of 15000+600000
+ 27301 multiletter control sequences out of 15000+600000
  588455 words of font info for 150 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,14n,45p,897b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1516,11 +1501,11 @@ mf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2020/texmf-
 dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2020/texmf-dist
 /fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2020/texmf-dist/fonts
 /type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija_v6.pdf (43 pages, 1188122 bytes)
+Output written on PROGI_ProjektnaDokumentacija_v6.pdf (45 pages, 1192321 bytes)
 .
 PDF statistics:
- 633 PDF objects out of 1000 (max. 8388607)
- 567 compressed objects within 6 object streams
- 211 named destinations out of 1000 (max. 500000)
- 277 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 703 PDF objects out of 1000 (max. 8388607)
+ 634 compressed objects within 7 object streams
+ 257 named destinations out of 1000 (max. 500000)
+ 285 words of extra memory for PDF output out of 10000 (max. 10000000)
 
