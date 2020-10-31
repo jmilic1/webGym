@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.26)  31 OCT 2020 22:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.26)  31 OCT 2020 22:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1225,19 +1225,6 @@ l.123 		\eject
 ]
 Poglavlje 3.
 
-! LaTeX Error: Can be used only in preamble.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3 \usepackage
-               {graphicx}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 7--8
 
  []
@@ -1260,73 +1247,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 63--64
  []
 
 [11] [12] [13]
+<slike/obrazac1.jpg, id=305, 2609.75pt x 1647.15375pt>
+File: slike/obrazac1.jpg Graphic file (type jpg)
+<use slike/obrazac1.jpg>
+Package pdftex.def Info: slike/obrazac1.jpg  used on input line 365.
+(pdftex.def)             Requested size: 522.7372pt x 369.88986pt.
 
-LaTeX Warning: File `dokumentacija/slike/obrazac1.jpg' not found on input line 
-365.
-
-
-! Package pdftex.def Error: File `dokumentacija/slike/obrazac1.jpg' not found: 
-using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.365 ...twidth]{dokumentacija/slike/obrazac1.jpg}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \hbox (87.26482pt too wide) in paragraph at lines 365--367
+Overfull \hbox (87.1264pt too wide) in paragraph at lines 365--367
 [][]
  []
 
+<slike/obrazac2.jpg, id=306, 2453.165pt x 1585.925pt>
+File: slike/obrazac2.jpg Graphic file (type jpg)
+<use slike/obrazac2.jpg>
+Package pdftex.def Info: slike/obrazac2.jpg  used on input line 371.
+(pdftex.def)             Requested size: 522.70374pt x 369.88531pt.
 
-LaTeX Warning: File `dokumentacija/slike/obrazac2.jpg' not found on input line 
-371.
-
-
-! Package pdftex.def Error: File `dokumentacija/slike/obrazac2.jpg' not found: 
-using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.371 ...twidth]{dokumentacija/slike/obrazac2.jpg}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \hbox (87.26482pt too wide) in paragraph at lines 371--373
+Overfull \hbox (87.09294pt too wide) in paragraph at lines 371--373
 [][]
  []
 
+<slike/obrazac3.jpg, id=307, 2874.74pt x 2008.50375pt>
+File: slike/obrazac3.jpg Graphic file (type jpg)
+<use slike/obrazac3.jpg>
+Package pdftex.def Info: slike/obrazac3.jpg  used on input line 376.
+(pdftex.def)             Requested size: 522.73854pt x 369.88177pt.
 
-LaTeX Warning: File `dokumentacija/slike/obrazac3.jpg' not found on input line 
-376.
-
-
-! Package pdftex.def Error: File `dokumentacija/slike/obrazac3.jpg' not found: 
-using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.376 ...twidth]{dokumentacija/slike/obrazac3.jpg}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \hbox (87.26482pt too wide) in paragraph at lines 376--378
+Overfull \hbox (87.12775pt too wide) in paragraph at lines 376--378
 [][]
  []
 
-[14] [15] [16] [17]
+[14] [15 <./slike/obrazac1.jpg>] [16 <./slike/obrazac2.jpg>] [17 <./slike/obraz
+ac3.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 387--388
 
  []
@@ -1546,10 +1498,10 @@ Package rerunfilecheck Info: File `PROGI_ProjektnaDokumentacija_v6.out' has not
 (rerunfilecheck)             Checksum: 2BD288B2449005A9A050DCA6C55B2E00;2156.
  ) 
 Here is how much of TeX's memory you used:
- 12012 strings out of 480608
- 172827 string characters out of 5903629
+ 11967 strings out of 480608
+ 171434 string characters out of 5903629
  509438 words of memory out of 5000000
- 27330 multiletter control sequences out of 15000+600000
+ 27300 multiletter control sequences out of 15000+600000
  588455 words of font info for 150 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,14n,45p,897b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1564,11 +1516,11 @@ mf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2020/texmf-
 dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2020/texmf-dist
 /fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2020/texmf-dist/fonts
 /type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija_v6.pdf (43 pages, 164027 bytes).
-
+Output written on PROGI_ProjektnaDokumentacija_v6.pdf (43 pages, 1188122 bytes)
+.
 PDF statistics:
- 627 PDF objects out of 1000 (max. 8388607)
+ 633 PDF objects out of 1000 (max. 8388607)
  567 compressed objects within 6 object streams
  211 named destinations out of 1000 (max. 500000)
- 262 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 277 words of extra memory for PDF output out of 10000 (max. 10000000)
 
