@@ -1,55 +1,121 @@
 \chapter{Specifikacija programske potpore}
 		
-	\section{Funkcionalni zahtjevi}
+		\section{Funkcionalni zahtjevi}
+		
+		
+		\noindent \textbf{Dionici:}
+		
+		\begin{packed_enum}
 			
-			\textbf{\textit{dio 1. revizije}}\\
-			
-			\textit{Navesti \textbf{dionike} koji imaju \textbf{interes u ovom sustavu} ili  \textbf{su nositelji odgovornosti}. To su prije svega korisnici, ali i administratori sustava, naručitelji, razvojni tim.}\\
+			\item Klijent teretane
+			\begin{packed_enum}
 				
-			\textit{Navesti \textbf{aktore} koji izravno \textbf{koriste} ili \textbf{komuniciraju sa sustavom}. Oni mogu imati inicijatorsku ulogu, tj. započinju određene procese u sustavu ili samo sudioničku ulogu, tj. obavljaju određeni posao. Za svakog aktora navesti funkcionalne zahtjeve koji se na njega odnose.}\\
+				\item registrirani
+				\item neregistrirani
+				
+			\end{packed_enum}
+			\item Trener
+			\item Voditelj teretane			
+			\item Administrator
+			\item Razvojni tim
 			
-			
-			\noindent \textbf{Dionici:}
+		\end{packed_enum}
+		
+		\noindent \textbf{Aktori i njihovi funkcionalni zahtjevi:}
+		
+		
+		\begin{packed_enum}
+			\item  \underbar{Neregistrirani/neprijavljeni korisnik (inicijator) može:}
 			
 			\begin{packed_enum}
 				
-				\item Dionik 1
-				\item Dionik 2				
-				\item ...
+				\item pregledati popis svih teretana na platformi
+				\item sortirati spomenuti popis prema sljedećim kriterijima: ime teretane, lokacija, trener
+				\item otvoriti početnu stranicu svake teretane na kojoj se nalaze osnovne informacije (radno vrijeme, lokacija, cijena
+				članarine…)
+				\item izraditi administratorski, voditeljski, trenerski ili korisnički račun s namjerom treniranja u teretani za koje je potrebno navesti ime, prezime i email adresu, dok se može, ali ne mora dodati PayPal račun te je za izradu trenerskog korisničkog računa posebno potrebno navesti posebne podatke poput visine i težine
+				
 				
 			\end{packed_enum}
 			
-			\noindent \textbf{Aktori i njihovi funkcionalni zahtjevi:}
-			
+			\item  \underbar{Klijent (inicijator) može:}
 			
 			\begin{packed_enum}
-				\item  \underbar{Aktor 1 (inicijator) može:}
 				
-				\begin{packed_enum}
-					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
-					\begin{packed_enum}
-						
-						\item  podfunkcionalnost 1 
-						\item  podfunkcionalnost 2
+				\item pregledavati i sortirati popis registriranih teretana
+				\item pregledavati i mijenjati osobne podatke
+				\item izbrisati svoj korisnički račun
+				\item plaćati članarine u teretanama putem interneta
+				\item pregledavati sve izvršene transakcije u kojima su sudjelovali
+				\item pregledavati popis teretana u kojima smiju vježbati, odnosno u kojima su platili članarinu
+				\item kupovati planove prehrane i vježbanja od trenera
+				\item ugovarati privatne ili grupne treninge
+				\item voditi i pratiti napredak u vlastitom planu vježbanja
 				
-					\end{packed_enum}
-					\item  funkcionalnost 3
-					
-				\end{packed_enum}
-			
-				\item  \underbar{Aktor 2 (sudionik) može:}
-				
-				\begin{packed_enum}
-					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
-					
-				\end{packed_enum}
 			\end{packed_enum}
 			
-			\eject 
+			\item  \underbar{Trener (inicijator) može:}
+			
+			\begin{packed_enum}
+				
+				\item pregledavati i sortirati popis registriranih teretana
+				\item pregledavati i mijenjati osobne podatke
+				\item izbrisati svoj korisnički račun
+				\item objavljivati ponude planova treninga i/ili vježbanja
+				\item objavljivati i ugovarati termine privatnih i grupnih treninga u teretanama gdje imaju te ovlasti
+				\item pregledavati sve izvršene transakcije u kojima su sudjelovali
+				\item pregledavati popis teretana u kojima smiju djelovati, odnosno raditi (voditi treninge, planovi prehrane i sl.)
+				\item nuditi usluge treniranja teretanama
+				
+			\end{packed_enum}
+			
+			\item  \underbar{Voditelj teretane (inicijator) može:}
+			
+			\begin{packed_enum}
+				
+				\item pregledavati i sortirati popis registriranih teretana
+				\item pregledavati i mijenjati osobne podatke
+				\item izbrisati svoj korisnički račun
+				\item stvarati nove teretane u sustavu
+				\item davati dozvolu drugim voditeljima da vode neke njegove teretane
+				\item mijenjati važne informacije o teretanama (radno vrijeme, lokacija i sl.)
+				\item dopuštati registriranim trenerima rad u teretanama koje vodi
+				\item vidjeti sve izvršene transakcije na aplikaciji unutar vlastite teretane
+				
+			\end{packed_enum}
+			
+			\item  \underbar{Administrator (inicijator) može:}
+			
+			\begin{packed_enum}
+				
+				\item pregledavati i sortirati popis registriranih teretana
+				\item pregledavati i mijenjati osobne podatke
+				\item vidjeti sve korisničke račune
+				\item izbrisati svoj korisnički račun
+				\item stvarati nove i brisati postojeće teretane u sustavu
+				\item pregledati sve izvršene transakcije u aplikaciji
+				\item davati dozvolu  voditeljima da vode pojedine teretane
+				\item mijenjati važne informacije o teretanama (radno vrijeme, lokacija i sl.)
+				\item dopuštati registriranim trenerima rad u teretanama
+				
+			\end{packed_enum}
+			
+			
+			\item  \underbar{Baza podataka (sudionik):}
+			
+			\begin{packed_enum}
+				
+				\item pohranjuje sve podatke o korisnicima
+				\item čuva informacije o ulogama pojedinih korisnika
+				\item pohranjuje podatke o svim teretanama, njihovim voditeljima, trenerima i članovima
+				\item pohranjuje izvršene transakcije
+				
+			\end{packed_enum}
+			
+		\end{packed_enum}
+		
+		\eject
+
 			
 			
 				
