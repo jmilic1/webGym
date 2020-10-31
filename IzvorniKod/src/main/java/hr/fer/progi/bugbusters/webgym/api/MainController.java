@@ -1,6 +1,6 @@
 package hr.fer.progi.bugbusters.webgym.api;
 
-import hr.fer.progi.bugbusters.webgym.model.City;
+import hr.fer.progi.bugbusters.webgym.model.Gym;
 import hr.fer.progi.bugbusters.webgym.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Controller of the application which can receive a GET request on URL "/".
- * After receiving the request the controller uses its service to create and return instances of the City model.
+ * After receiving the request the controller uses its service to create and return instances of the Gym model.
  *
  * @author jmilic
  */
@@ -25,7 +25,7 @@ public class MainController {
     /**
      * Constructs MainController and wires it with the service.
      *
-     * @param userService Service which returns the City instances
+     * @param userService Service which returns the Gym instances
      */
     @Autowired
     public MainController(@Qualifier("userService") UserService userService) {
@@ -34,12 +34,12 @@ public class MainController {
 
     /**
      * This method is called upon recieving a GET request on URL "/".
-     * Calls the UserService to create hardcoded Cities.
+     * Calls the UserService to create hardcoded Gyms.
      *
-     * @return list of Cities
+     * @return list of Gyms
      */
     @GetMapping("/")
-    public List<City> getAllCities() {
-        return service.createCities();
+    public List<Gym> getAllGyms() {
+        return service.createGyms();
     }
 }
