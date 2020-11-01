@@ -11,7 +11,7 @@ class GymList extends React.Component{
     }
 
     componentDidMount(){
-        fetch('https://a3f8f382-ec4c-455f-817b-45bef89e1ceb.mock.pstmn.io', {
+        fetch('https://web-gym2.herokuapp.com/', {
             method: 'GET'
         }).then(response => {
             return response.json()
