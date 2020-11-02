@@ -348,6 +348,208 @@
 						\end{packed_item}
 					\end{packed_item}
 				
+				\noindent \underbar{\textbf{UC11 - Plaćanje narudžbe}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Klijent
+					\item  \textbf{Cilj:} Platiti željenu narudžbu
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Korisnik je prijavljen i napravio je narudžbu
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Prikazuju se podaci o narudžbi
+						\item Klijent odabire opciju dovrši narudžbu
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[-] Nedovoljno stanje računa klijenta
+						\item[] \begin{packed_enum}
+							
+							\item Sustav obavještava klijenta da nema dovoljno sredstava na računu
+							
+						\end{packed_enum}
+						
+					\end{packed_item}
+				\end{packed_item}
+				
+				
+				\noindent \underbar{\textbf{UC12 - Pregled informacija o određenom treneru}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Registrirani i neregistrirani korisnici
+					\item  \textbf{Cilj:} Dobiti informacije odabranog trenera
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} -
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Odabrati određenog trenera
+						\item Prikaz osnovnih informacija (ime, prezime, popis teretana u kojima radi)
+						\item Prikaz ponuda treninga i plana prehrane
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC13 - Odabir trenerovog programa treniranja ili plana prehrane}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Klijent
+					\item  \textbf{Cilj:} Odabrati trenerov programa treniranja ili plana prehrane
+					\item  \textbf{Sudionici:} Baza podataka, Trener
+					\item  \textbf{Preduvjet:} Korisnik je prijavljen
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Klijent odabire određenu ponudu treninga ili plana prehrane
+						\item Ima opciju izrade narudžbe
+						\item Klijent potvrđuje narudžbu
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[-] Klijent pokušava rezervirati program treninga koji je popunjen
+						\item[] \begin{packed_enum}
+							
+							\item Sustav javlja da je termin popunjen i nudi mu slobodne termine
+							
+						\end{packed_enum}
+						
+					\end{packed_item}
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC14 - Pregled, uređivanje i postavljanje vlastitih ciljeva}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Klijent
+					\item  \textbf{Cilj:} Pregled, uređivanje i postavljanje vlastitih ciljeva
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Korisnik je prijavljen i odabrao je promjenu svojih podataka
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Odabire opciju “Moji ciljevi”
+						\item Pregled postojećih ciljeva
+						\item Postavljanje novih ciljeva i izmjena postojećih (može ga se izmijeniti ili postavit kao odrađenog)
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC15 - Uređivanje trenerove ponude za treninge}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Trener
+					\item  \textbf{Cilj:} Uređivanje ponude za treninge
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Trener je prijavljen i odabrao je promjenu svojih podataka
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Trener uređuje svoju ponudu
+						\item Izmjena se pohrani
+						\item Baza podataka se ažurira
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC16 - Uređivanje trenerove ponude za plan prehrane}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Trener
+					\item  \textbf{Cilj:} Uređivanje ponude za plan prehrane
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Trener je prijavljen i odabrao je promjenu svojih podataka
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Trener uređuje svoju ponudu
+						\item Izmjena se pohrani
+						\item Baza podataka se ažurira
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC17 - Dozvola za rad trenera u teretani}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Trener
+					\item  \textbf{Cilj:} Dobiti dozvolu za rad u određenoj teretani
+					\item  \textbf{Sudionici:} Baza podataka, Voditelji odabrane teretane
+					\item  \textbf{Preduvjet:} Trener je prijavljen, odabrana željena teretana
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Trener odabire opciju za pisanje zamolbe
+						\item Trener piše zamolbu
+						\item Trener šalje zamolbu za dozvolu za rad u toj teretani
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[-] Trener je već zaposlen u toj teretani
+						\item[] \begin{packed_enum}
+							
+							\item Sustav mu javlja da je već zaposlen u toj teretani
+							
+						\end{packed_enum}
+						
+					\end{packed_item}
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC18 - Pregled postojećih klijenata}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Trener
+					\item  \textbf{Cilj:} Pregled postojećih klijenata i popis zajedničkih termina treninga
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Trener je prijavljen, odabran pregled podataka
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Trener odabire opciju za popis klijenata
+						\item Treneru se prikazuje cijeli popis klijenata i za svakog popis zajedničkih termina treninga
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC19 - Pregled podataka određenog klijenta}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Trener
+					\item  \textbf{Cilj:} Pogledati podatke određenog klijenta
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Trener je prijavljen, odabran pregled podataka
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Trener odabrire određenog klijenta
+						\item Treneru se prikazuju osobni podatci klijenta
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				\subsubsection{Dijagrami obrazaca uporabe}
+				
+				\textit{Prikazati odnos aktora i obrazaca uporabe odgovarajućim UML dijagramom. Nije nužno nacrtati sve na jednom dijagramu. Modelirati po razinama apstrakcije i skupovima srodnih funkcionalnosti.}
+				\eject	
+				
+				
 					
 				\subsubsection{Dijagrami obrazaca uporabe}
 					
