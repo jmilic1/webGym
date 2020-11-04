@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -38,8 +39,26 @@ public class MainController {
      *
      * @return list of Gyms
      */
+    /*
     @GetMapping("/")
-    public List<Gym> getAllGyms() {
+    public List<Gym> getAllGyms(final HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
         return service.createGyms();
+    }*/
+
+    @GetMapping("/gymList")
+    public List<Gym> getGymsInDatabase(final HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        return service.databaseGyms();
+    }
+
+    /**
+     * for testing for now
+     */
+    @GetMapping("/")
+    public String getString(){
+        return "respone";
     }
 }
