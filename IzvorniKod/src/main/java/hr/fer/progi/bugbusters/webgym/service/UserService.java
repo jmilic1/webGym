@@ -47,4 +47,19 @@ public class UserService {
         }
         return gyms;
     }
+
+    public boolean addGym(Gym gym){
+       /* try {
+        if (gymRepository.existsById(gym.getId())){
+            return false;
+        }}
+        catch (IllegalArgumentException ex){
+
+        }*/
+       /* Gym newGym = new Gym(gym.getName(), gym.getCity(), gym.getId());
+        newGym.setId(796);
+        System.out.println("THE GYM IS\n OF NAME\n " + newGym.getName() + "City: " + newGym.getCity() + "and id: " + newGym.getId());
+       */ gymRepository.save(gym);
+        return true;
+    }
 }

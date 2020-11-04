@@ -5,6 +5,8 @@ import hr.fer.progi.bugbusters.webgym.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -60,5 +62,14 @@ public class MainController {
     @GetMapping("/")
     public String getString(){
         return "respone";
+    }
+    
+    @PostMapping("/addGym")
+    public String insertGym(@RequestBody Gym gym){
+        System.out.println("OVDJE\n\n\n" + gym.getId());
+        if (!service.addGym(gym)){
+            return "Gym with that id already exists";
+        }
+        return "Added gym!";
     }
 }
