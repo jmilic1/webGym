@@ -9,7 +9,7 @@ const Header = () => (
             <Logo className='logo'/>
         </Link>
         <div className = 'link-container'>
-            <Link to = '/gymList'>Popis teretara</Link> 
+            <Link to = '/gymList'>Popis teretana</Link>
             <Link to = '/auth'>Prijava</Link> 
         </div>
     </div>

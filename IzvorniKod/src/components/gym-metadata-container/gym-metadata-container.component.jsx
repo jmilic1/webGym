@@ -1,10 +1,11 @@
 import React from 'react'
 import './gym-metadata-container.styles.scss'
 
-const GymMetaDataContainer = ({name}) => (
+const GymMetaDataContainer = ({name, city}) => (
     <div className = 'gym-metadata-container'>
         <p>{name}</p>
-        <p>Prostor za ostale podatke</p>
+        <p>{city}</p>
+        {/*<p>Prostor za ostale podatke</p>*/}
     </div>
 )
 
