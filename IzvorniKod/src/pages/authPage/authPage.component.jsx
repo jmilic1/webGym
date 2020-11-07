@@ -34,6 +34,7 @@ class AuthPage extends React.Component {
   handleButtonLoginClick = () => {
     fetch(this.props.backendURL + "login", {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
       body: JSON.stringify({username:this.state.usernameLogin, password:this.state.passwordLogin})
     }).then(response => {
@@ -51,7 +52,8 @@ class AuthPage extends React.Component {
 
   handleButtonRegisterClick = () => {
     fetch(this.props.backendURL + "registration", {
-      method: 'POST'
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
       body: JSON.stringify({username:this.state.usernameRegistration, password:this.state.passwordRegistration, name:this.state.name, surname: this.state.surname,
                                   email:this.state.email, coach: this.state.coach, gymOwner: this.state.gymOwner})
