@@ -10,41 +10,236 @@
 	\end{itemize}
 
 	
-		
-
-		
-
-				
 		\section{Baza podataka}
-			
-			\textbf{\textit{dio 1. revizije}}\\
-			
-		\textit{Potrebno je opisati koju vrstu i implementaciju baze podataka ste odabrali, glavne komponente od kojih se sastoji i slično.}
+		Za potrebe WebGym sustava koristit ćemo relacijsku bazu podataka koja nam pojednostavljuje modeliranje odnosa i scenarija koji se u realnosti dešavaju. Svaka je tablica definirana svojim imenom te skupom atributa koji su nam potrebni za punu funkcionalnost pojma ili odnosa opisanim tablicom. Brza i jednostavna pohrana te pristup samim podacima je zadaća ovog sustava pohranjivanja podataka u bazu. Baza podataka sastoji se od sljedećih entiteta:
+		\begin{itemize}
+	        	\item 	Korisnik
+	        	\item 	Teretana 
+	        	\item 	TeretanaLokacija 
+	        	\item   Ciljevi
+	        	\item 	PlanTreningaIPrehrane
+	        	\item 	Članarina
+	        	\item 	ČlanarinaKlijent
+	        	\item 	Prijava
+	        	\item   PlanKlijent
+	        	\item   TeretanaKorisnik
+        	\end{itemize}
 		
-			\subsection{Opis tablica}
-			
-
-				\textit{Svaku tablicu je potrebno opisati po zadanom predlošku. Lijevo se nalazi točno ime varijable u bazi podataka, u sredini se nalazi tip podataka, a desno se nalazi opis varijable. Svjetlozelenom bojom označite primarni ključ. Svjetlo plavom označite strani ključ}
+		
+		\subsection{Opis tablica}
+		\textbf{Korisnik} Ovaj entitet sadržava sve bitne informacije o korisniku WebGym web aplikacije. Sadrži atribute kao što su: korisničko ime, ime, prezime, email, hashiranu lozinku, broj mobitela, broj PayPala, visinu, težinu te ulogu u sustavu. U ulozi ovise ovlasti koje korisnik u sustavu i u odnosima ima. Ovaj entitet je u vezi s entitetom Ciljevi preko korisničkog imena klijenta koji je i sam korisnik, u vezi s entitetom PlanTreningaIPrehrane preko korisničkog imena trenera koji je i sam korisnik, u vezi s entitetom ČlanarinaKlijent preko korisničkog imena klijenta, u vezi s entitetom prijava preko korisničkog imena trenera, u vezi s entitetom PlanKlijent preko korisničkog imena klijenta te u vezi s entitetom TeretanaKorisnik preko korisničkog imena trenera ili voditelja koji su i sami korisnici.
 				
-				\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
-					
-					\hline \multicolumn{3}{|c|}{\textbf{korisnik - ime tablice}}	 \\[3pt] \hline
-					\endfirsthead
-					
-					\hline \multicolumn{3}{|c|}{\textbf{korisnik - ime tablice}}	 \\[3pt] \hline
-					\endhead
-					
-					\hline 
-					\endlastfoot
-					
-					\cellcolor{LightGreen}IDKorisnik & INT	&  	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam 	\\ \hline
-					korisnickoIme	& VARCHAR &   	\\ \hline 
-					email & VARCHAR &   \\ \hline 
-					ime & VARCHAR	&  		\\ \hline 
-					\cellcolor{LightBlue} primjer	& VARCHAR &   	\\ \hline 
+				
+    			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{Korisnik}}	 \\[3pt] \hline
+    				\endfirsthead
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{Korisnik}}	 \\[3pt] \hline
+    				\endhead
+    					
+    				\hline 
+    				\endlastfoot
+    					
+    					\cellcolor{LightGreen}korisničkoIme  & VARCHAR	&  	jedinstveno ime korisnika 	\\ \hline
+    					ime	& VARCHAR & ime korisnika  	\\ \hline 
+    					prezime & VARCHAR & prezime korisnika   \\ \hline 
+    					email & VARCHAR	&  	e mail korisnika s kojim je napravio račun	\\ \hline 
+    					lozinka	& VARCHAR & hash korisnikove lozinke za prijavu  	\\ \hline
+    					brojMobitela	& VARCHAR & korisnikov broj mobitela  	\\ \hline
+    					PayPal	& VARCHAR & korisnikov PayPal za plaćanje usluga  	\\ \hline
+    					visina	& INT & korisnikova težina  	\\ \hline
+    					težina	& INT & korisnikova visina  	\\ \hline
+    					uloga	& VARCHAR & korisnikova uloga u sustavu  	\\ \hline
 					
 					
 				\end{longtabu}
+				
+				\textbf{Teretana} ovaj entitet sadrži sve bitne informacije o lancu teretani. Sadrži atribute: id, ime, opis te email, a ovaj je entitet u vezi s entitetom TeretanaLokacija preko jedinstvenog brojčanog identifikatora teretane te u vezi s entitetom članarina preko jedinstvenog brojčanog identifikatora teretane.
+				\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{Teretana}}	 \\[3pt] \hline
+    				\endfirsthead
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{Teretana}}	 \\[3pt] \hline
+    				\endhead
+    					
+    				\hline 
+    				\endlastfoot
+    					
+    					\cellcolor{LightGreen}id  & INT	&  	jedinstveni brojčani identifikator teretane 	\\ \hline
+    					ime	& VARCHAR & ime teretane  	\\ \hline 
+    					opis & VARCHAR & opis teretane   \\ \hline 
+    					email & VARCHAR	&  	e mail teretane	\\ \hline 
+					
+					
+				\end{longtabu}
+				
+			\textbf{TeretanaLokacija} ovaj entitet sadrži sve bitne informacije o pojedinoj teretani. Sadrži atribute: id,id lanca teretani, država u kojoj se nalazi, grad u kojem se nalazi, ulica u kojoj se nalazi, početak ranog vremena teretane, kraj radnog vremena teretane te broj telefona teretane, a ovaj je entitet u vezi s entitetom Teretana preko jedinstvenog brojčanog identifikatora teretane, u vezi s entitetom Prijava preko jedinstvenog brojčanog identifikatora pojedine teretane te je u vezi s entitetom TeretanaKorisnik preko jedinstvenog brojčanog identifikatora pojedine teretane.
+			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{TeretanaLokacija}}	 \\[3pt] \hline
+    				\endfirsthead
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{TeretanaLokacija}}	 \\[3pt] \hline
+    				\endhead
+    					
+    				\hline 
+    				\endlastfoot
+    					
+    					\cellcolor{LightGreen}id  & INT	&  	jedinstveni brojčani identifikator pojedine teretane 	\\ \hline
+    					\cellcolor{LightBlue} idTeretana	& INT & jedinstveni brojčani identifikator lanca teretani (Teretana.id)  	\\ \hline 
+    					država & VARCHAR & država u kojoj se teretana nalazi   \\ \hline 
+    					grad & VARCHAR	&  	grad u kojem se teretana nalazi	\\ \hline 
+    					ulica	& VARCHAR & ulica u kojoj se teretana nalazi  	\\ \hline
+    					radnoVrijemePoc	& TIME & vrijeme početka rada teretane  	\\ \hline
+    					radnoVrijemeKraj	& TIME & vrijeme kraja rada teretane  	\\ \hline
+    					telefon	& VARCHAR & broj na koji se teretana može nazvati  	\\ \hline
+					
+					
+			\end{longtabu}
+			
+			\textbf{Ciljevi} ovaj entitet sadrži sve važne informacije o ciljevima samog klijenta. Sadrži atribute: id,korisničko ime klijenta te opis cilja, a ovaj je entitet u vezi s entitetom Korisnik preko korisničkog imena.
+			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{Ciljevi}}	 \\[3pt] \hline
+    				\endfirsthead
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{Ciljevi}}	 \\[3pt] \hline
+    				\endhead
+    					
+    				\hline 
+    				\endlastfoot
+    					
+    					\cellcolor{LightGreen}id  & INT	&  	jedinstveni brojčani identifikator cilja 	\\ \hline
+    					\cellcolor{LightBlue} korisničkoImeKlijent	& VARCHAR & jedinstveni brojčani identifikator klijenta koji cilj obavlja (Korisnik.korisničkoIme)  	\\ \hline 
+    					opis & VARCHAR & opis cilja   \\ \hline 
+    					obavljeno & BOOLEAN	& je li cilj obavljen	\\ \hline 
+					
+					
+			\end{longtabu}
+			
+			
+			\textbf{PlanTreningaIPrehrane} ovaj entitet sadrži sve važne informacije o planu treninga i prehrane. Korisnik može kupiti trening te onda ima individualni pristup trenera, ili može samo kupiti plan te dobiti gotov file sa treninzima i preporučenim načinom prehrane. Sadrži atribute: id,korisničko ime trenera, opis plana, datum početka plana, datum isteka plana te atribut koji nam govori je li trening u pitanju, a ovaj je entitet u vezi s entitetom Korisnik preko korisničkog imena.
+			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{PlanTreningaIPrehrane}}	 \\[3pt] \hline
+    				\endfirsthead
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{PlanTreningaIPrehrane}}	 \\[3pt] \hline
+    				\endhead
+    					
+    				\hline 
+    				\endlastfoot
+    					
+    					\cellcolor{LightGreen}id  & INT	&  	jedinstveni brojčani identifikator plana treninga i prehrane 	\\ \hline
+    					\cellcolor{LightBlue} korisničkoImeTrener 	& VARCHAR & jedinstveni brojčani identifikator trenera čiji je plan (Korisnik.korisničkoIme)  	\\ \hline 
+    					opis & VARCHAR & opis plana treninga i prehrane   \\ \hline 
+    					datumPočetka & TIMESTAMP & vrijeme početka plana   \\ \hline
+    					datumIsteka & TIMESTAMP & vrijeme kraja plana   \\ \hline
+    					cijena & DECIMAL & cijena plana   \\ \hline
+    					jeLiTrening & BOOLEAN	& je li plan individalni plan, inače je samo kupljeni gotovi plan treninga i prehrane	\\ \hline
+					
+					
+			\end{longtabu}
+			
+			\textbf{Članarina} ovaj entitet sadrži sve važne informacije o članarini u teretani.  Sadrži atribute: id,id pojedine teretane, cijena članarine, opis te trajanje, a ovaj je entitet u vezi s entitetom Teretana preko jedinstvenog brojčanog identifikatora teretane.
+			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{Članarina}}	 \\[3pt] \hline
+    				\endfirsthead
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{Članarina}}	 \\[3pt] \hline
+    				\endhead
+    					
+    				\hline 
+    				\endlastfoot
+    					
+    					\cellcolor{LightGreen}id  & INT	&  	jedinstveni brojčani identifikator članarine 	\\ \hline
+    					\cellcolor{LightBlue} idTeretana  	& INT & jedinstveni brojčani identifikator trenere koja nudi članarinu (Teretana.id)  	\\ \hline
+    					cijena & DECIMAL & cijena članarine   \\ \hline
+    					opis & VARCHAR & opis članarine (što se članarina uključuje)   \\ \hline
+    					trajanje & INTERVAL & trajanje članarine   \\ \hline
+					
+					
+			\end{longtabu}
+			
+			\textbf{ČlanarinaKlijent} ovaj entitet sadrži sve važne informacije o članarini koju klijent posjeduje. Sadrži atribute: id,korisničko ime klijenta, id članarine koju teretana nudi, datum početka te dazum isteka trajanja članarine, a ovaj je entitet u vezi s entitetom Korisnik preko korisničkog imena klijenta te je u vezi s entitetom Članarina preko jedinstvenog brojčanog identifikatora članarine.
+			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{ČlanarinaKlijent}}	 \\[3pt] \hline
+    				\endfirsthead
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{ČlanarinaKlijent}}	 \\[3pt] \hline
+    				\endhead
+    					
+    				\hline 
+    				\endlastfoot
+    					
+    					\cellcolor{LightGreen}id  & INT	&  	jedinstveni brojčani identifikator članarine koju klijent posjeduje 	\\ \hline
+    					\cellcolor{LightBlue} korisničkoImeKlijent  	& VARCHAR & korisničko ime klijenta koji posjeduje članarinu (Korisnik.korisničkoIme)  	\\ \hline
+    					\cellcolor{LightBlue} idČlanarina  	& INT & jedinstveni brojčani identifikator članarine (Članarina.id)    \\ \hline
+					    datumPočetka & TIMESTAMP & datum početka trajanja članarine   \\ \hline
+    					datumIsteka & TIMESTAMP & datum kraja trajanja članarine   \\ \hline
+					
+			\end{longtabu}
+			
+			\textbf{Prijava} ovaj entitet sadrži sve važne informacije o prijavi za posao koju trener šalje pojedinoj teretani. Sadrži atribute: id,korisničko ime trenera, id pojedine teretane u kojoj se trener za posao prijavljuje, te opis prijave, a ovaj je entitet u vezi s entitetom Korisnik preko korisničkog imena trenera te je u vezi s entitetom Teretana preko jedinstvenog brojčanog identifikatora teretane.
+			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{Prijava}}	 \\[3pt] \hline
+    				\endfirsthead
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{Prijava}}	 \\[3pt] \hline
+    				\endhead
+    					
+    				\hline 
+    				\endlastfoot
+    					
+    					\cellcolor{LightGreen}id  & INT	&  	jedinstveni brojčani identifikator prijave 	\\ \hline
+    					\cellcolor{LightBlue} korisničkoImeTrener 	& VARCHAR & korisničko ime trenera koji se prijavljuje za posao u teretani (Korisnik.korisničkoIme)  	\\ \hline
+    					\cellcolor{LightBlue} idTeretana  	& INT & jedinstveni identifikator teretane u koju se prijavljuje (TeretanaLokacija.id)    \\ \hline
+					    opis & VARCHAR & opis prijave za posao   \\ \hline
+    					dozvola & BOOLEAN & je li treneru odobren rad u teretani   \\ \hline
+					
+			\end{longtabu}
+			
+			\textbf{PlanKlijent} ovaj entitet sadrži sve važne informacije o planu prehrane i treninga kojeg klijent posjeduje. Sadrži atribute: id, id plana, korisničko ime klijenta, te datum kupnje, a ovaj je entitet u vezi s entitetom Korisnik preko korisničkog imena klijenta te je u vezi s entitetom PlanTreningaIPrehrane preko jedinstvenog brojčanog identifikatora plana.
+			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{PlanKlijent}}	 \\[3pt] \hline
+    				\endfirsthead
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{PlanKlijent}}	 \\[3pt] \hline
+    				\endhead
+    					
+    				\hline 
+    				\endlastfoot
+    					
+    					\cellcolor{LightGreen}id  & INT	&  	jedinstveni brojčani identifikator plana kojeg klijent posjeduje 	\\ \hline
+    					\cellcolor{LightBlue} idPlan 	& INT & jedinstveni brojčani identifikator plana treninga i prehrane (PlanTreningaIPrehrane.id)  	\\ \hline
+    					\cellcolor{LightBlue} korisničkoImeKlijent  & VARCHAR & korisničko ime klijenta koji plan posjeduje (Korisnik.korisničkoIme) \\ \hline
+					    datumKupnje & TIMESTAMP & datum kupnje plana   \\ \hline
+		    \end{longtabu}
+			
+			\textbf{TeretanaKorisnik} ovaj entitet sadrži sve važne informacije o korisniku koji radi u teretani kao voditelj ili kao trener. Sadrži atribute: id, id pojedine teretane, korisničko ime korisnika, te datum početka rada, a ovaj je entitet u vezi s entitetom Korisnik preko korisničkog imena korisnika te je u vezi s entitetom TeretanaLokacija preko jedinstvenog brojčanog identifikatora pojedine teretane.
+			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{TeretanaKorisnik}}	 \\[3pt] \hline
+    				\endfirsthead
+    					
+    				\hline \multicolumn{3}{|c|}{\textbf{TeretanaKorisnik}}	 \\[3pt] \hline
+    				\endhead
+    					
+    				\hline 
+    				\endlastfoot
+    					
+    					\cellcolor{LightGreen}id  & INT	&  	jedinstveni brojčani identifikator odnosa korisnika i teretane 	\\ \hline
+    					\cellcolor{LightBlue} idTeretana 	& INT & jedinstveni brojčani identifikator plana treninga i prehrane (TeretanaLokacija.id)  	\\ \hline
+    					\cellcolor{LightBlue} korisničkoImeKorisnik  & VARCHAR & korisničko ime trenera ili voditelja u teretani (Korisnik.korisničkoIme)   \\ \hline
+					    datumPočetkaRada & TIMESTAMP & datum zaposlenja trenera u teretani   \\ \hline
+					
+			\end{longtabu}
 			
 			
 			\subsection{Dijagram baze podataka}
