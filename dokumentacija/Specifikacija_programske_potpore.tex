@@ -122,12 +122,14 @@
 				
 				\subsubsection{Opis obrazaca uporabe}
 
+
 					\noindent \underbar{\textbf{UC1 - Pregled teretana}}
 					\begin{packed_item}
 	
 						\item \textbf{Glavni sudionik: }neregistrirani korisnik, klijent, trener, voditelj teretane i administrator
 						\item  \textbf{Cilj:} Pregled teretana
 						\item  \textbf{Preduvjet:} -
+
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
@@ -180,7 +182,7 @@
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-	
+
 							\item Unos korisničkog imena i lozinke
 							\item Potvrda o ispravnosti unesenih podataka
 							\item Pristup korisničkim funkcionalnostima
@@ -226,7 +228,7 @@
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-	
+
 							\item Korisnik odabire opciju promjene osobnih podataka
 							\item Korisnik mijenja svoje osobne podatke
 							\begin{packed_item}
@@ -261,7 +263,6 @@
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-	
 							\item Korisnik pregledava osobne podatke
 							\item Korisnik bira opciju "Obriši račun"
 							\item Korisnik briše račun
@@ -544,17 +545,346 @@
 					
 				\end{packed_item}
 				
-				\subsubsection{Dijagrami obrazaca uporabe}
 				
-				\textit{Prikazati odnos aktora i obrazaca uporabe odgovarajućim UML dijagramom. Nije nužno nacrtati sve na jednom dijagramu. Modelirati po razinama apstrakcije i skupovima srodnih funkcionalnosti.}
-				\eject	
-				
-				
+				\noindent \underbar{\textbf{UC$$20$$ - $$Pregled trenerove ponude$$}}
+				\begin{packed_item}
 					
-				\subsubsection{Dijagrami obrazaca uporabe}
+					\item \textbf{Glavni sudionik: } Trener
+					\item  \textbf{Cilj:} Pregledati trenerovu ponudu programa i plana prehrane
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Prijavljen je trener
+					\item  \textbf{Opis osnovnog tijeka:}
 					
-					\textit{Prikazati odnos aktora i obrazaca uporabe odgovarajućim UML dijagramom. Nije nužno nacrtati sve na jednom dijagramu. Modelirati po razinama apstrakcije i skupovima srodnih funkcionalnosti.}
-				\eject		
+					\item[] \begin{packed_enum}
+						
+						\item Trener odabire pregled svoje ponude
+						\item Prikazuje mu se njegova ponuda treninga i plana prehrane
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				
+				\noindent \underbar{\textbf{UC$$21$$ - $$Stvaranje nove teretane$$}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Voditelj, admin
+					\item  \textbf{Cilj:} Stvoriti novu teretanu u sustavu
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Prijavljen je voditelj ili admin
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Voditelj ili admin je odabrao opciju stvaranje nove teretane
+						\item Voditelj ili admin postavlja podatke teretane i stvara ju
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[-] Teretana takvog imena već postoji u sustavu
+						\item[] \begin{packed_enum}
+							
+							\item[1.] Sustav šalje poruku da je ime teretane već zauzeto
+							\item[2.] Voditelj ili admin odabire novo ime teretane
+							
+						\end{packed_enum}
+						
+						
+					\end{packed_item}
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC$$22$$ - $$Pregled voditeljevih teretana$$}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Voditelj
+					\item  \textbf{Cilj:} Pregledati popis teretana kojima je on voditelj
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:}
+					\item[] \begin{packed_enum}
+						
+						\item Prijavljen je voditelj
+						\item Voditelj je odabrao pregled svojih teretana
+						
+					\end{packed_enum}
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Voditelj  je odabrao opciju "moje teretane"
+						\item Prikazuje se popis teretana tog voditelja
+					\end{packed_enum}
+					
+					
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC$$23$$ - $$Micanje teretane s voditeljevog popisa$$}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Voditelj
+					\item  \textbf{Cilj:} Maknuti teretanu s popisa svojih teretana
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} 
+					\item[] \begin{packed_enum}
+						
+						\item Prijavljen je voditelj
+						\item Voditelj je odabrao pregled svojih teretana
+						
+					\end{packed_enum}
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Voditelj odabire teretanu koju želi maknuti s popisa
+						\item Voditelj potvrđuje odabir
+						\item Baza podataka se ažurira
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[-] Ako voditelj pokuša maknuti teretanu sa svog popisa i on je jedini voditelj
+						\item[] \begin{packed_enum}
+							
+							\item[1.] Sustav obavještava voditelja da je on jedini voditelj
+							
+							
+						\end{packed_enum}
+						
+						
+					\end{packed_item}
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC$$24$$ - $$Brisanje teretane iz sustava$$}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Voditelj, admin
+					\item  \textbf{Cilj:} Obrisati teretanu iz sustava
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:}
+					\item[] \begin{packed_enum}
+						
+						\item Prijavljen je voditelj ili admin
+						\item Ako je prijavljen voditelj,on odabire pregled svojih teretana
+						
+					\end{packed_enum}
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Voditelj ili admin odabire teretanu koju želi maknuti s popisa
+						
+						\item Voditelj ili admin potvrđuje odabir
+						
+						\item Baza podataka se ažurira
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC$$25$$ - $$Izmjena podataka teretane od strane voditelja$$}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Voditelj
+					\item  \textbf{Cilj:} Izmjena podataka određene teretane voditelja
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:}
+					\item[] \begin{packed_enum}
+						
+						\item Prijavljen je voditelj 
+						\item Voditelj odabire pregled svojih teretana
+						
+					\end{packed_enum}
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Voditelj odabire teretatnu kojoj želi izmjeniti podatke
+						\item Voditelj potvrđuje izmjenu podataka
+						\item Baza podataka se ažurira
+					\end{packed_enum}
+					
+					
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC$$26$$ - $$Dodavanje trenera u određenu teretanu$$}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Voditelj
+					\item  \textbf{Cilj:} Davanje treneru dozvolu za rad u toj teretani
+					\item  \textbf{Sudionici:} Baza podataka,trener
+					\item  \textbf{Preduvjet:}
+					\item[] \begin{packed_enum}
+						
+						\item Prijavljen je voditelj
+						\item Trener se prijavio za rad u toj teretani
+						
+					\end{packed_enum}
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Voditelj otvara zamolbu trenera za dozvolu za rad
+						\item Voditelj  potvrđuje trenera za rad u teretani
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[-] Trener je već zaposlen u teretani
+						\item[] \begin{packed_enum}
+							
+							\item[1.] Sustav obavještava voditelja da je trener već zaposlen u teretani
+							
+							
+						\end{packed_enum}
+						
+						
+					\end{packed_item}
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC$$27$$ - $$Dodavanje voditelja u svoju teretanu$$}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Voditelj
+					\item  \textbf{Cilj:} Davanje voditelju dozvolu za rad u toj teretani
+					\item  \textbf{Sudionici:} Baza podataka,voditelj
+					\item  \textbf{Preduvjet:} Prijavljen je voditelj
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						\item Voditelju se prikazuje popis svih voditelja
+						\item Voditelj odabire voditelja kojeg želi
+						\item Voditelj dodaje voditelja u svoju teretanu
+						\item Baza podataka se ažurira
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[-] Voditelj je već zaposlen u teretani
+						\item[] \begin{packed_enum}
+							
+							\item[1.] Sustav obavještava voditelja da je voditelj već zaposlen u teretani
+							
+							
+						\end{packed_enum}
+						
+						
+					\end{packed_item}
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC$$28$$ - $$Pregled svih korisničkih računa$$}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Admin
+					\item  \textbf{Cilj:} Pregledati sve korisniče račune
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Prijavljen je admin
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Admin odabire pregled svih korisničkih računa
+						\item Adminu se prikazuju svi korisnički računi
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC$$29$$ - $$Pregled svih transakcija$$}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Admin
+					\item  \textbf{Cilj:} Pregledati sve transkacije
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Prijavljen je admin
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Admin odabire pregled svih transakcija
+						\item Adminu se prikazuju sve transakcije
+					\end{packed_enum}
+					
+					
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC$$30$$ - $$Dodavanje voditelja u bilo koju teretanu$$}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Admin
+					\item  \textbf{Cilj:} Davanje voditelju dozvolu za rad u nekoj teretani
+					\item  \textbf{Sudionici:} Baza podataka, voditelj
+					\item  \textbf{Preduvjet:} Prijavljen je admin
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Admin dodaje voditelja u tu teretanu
+						\item Baza podataka se ažurira
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[-] Voditelj je već zaposlen u teretani
+						\item[] \begin{packed_enum}
+							
+							\item[1.] Sustav obavještava admina da je voditelj već zaposlen u teretani
+							
+							
+						\end{packed_enum}
+						
+						
+					\end{packed_item}
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC$$31$$ - $$Izmjena podataka bilo koje teretane od strane admina$$}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: } Admin
+					\item  \textbf{Cilj:} Izmjena podataka neke teretane 
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Prijavljen je admin
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Admin odabire teretatnu kojoj želi izmjeniti podatke
+						\item Admin potvrđuje izmjenu podataka
+						\item Baza podataka se ažurira
+					\end{packed_enum}
+				\end{packed_item}
+				\eject
+				
+				
+				\subsubsection{Dijagrami obrazaca uporabe}
+				\begin{figure}[!htb]
+					\includegraphics[height= 13cm,width=1.2\textwidth]{slike/obrazac1.jpg}
+					\textbf{Slika 3.1: Dijagram obrasca uporabe, funkcionalnost korisnika i neregistriranog korisnika u aplikaciji  }
+					
+				\end{figure}
+				
+				\begin{figure}
+					
+					\includegraphics[height=13cm,width=1.2\textwidth]{slike/obrazac2.jpg}
+					
+					\textbf{Slika 3.2: Dijagram obrasca uporabe, funkcionalnost korisnika i trenera u aplikaciji}
+				\end{figure}
+				
+				\begin{figure}
+					\includegraphics[height= 13cm,width=1.2\textwidth]{slike/obrazac3.jpg}
+					\textbf{Slika 3.3: Dijagram obrasca uporabe, Funkcionalnost korisnika i neregistriranog korisnika u aplikaciji}
+					
+				\end{figure}
+				
+				
+				\eject
+					
 				
 			\subsection{Sekvencijski dijagrami}
 				
@@ -574,10 +904,6 @@
 	        	\item 	Baza podataka mora biti brza i zaštićena od bilo kakvih vanjskih utjecaja
 	        	\item 	Odgovor na korisnikov upit koji je povezan sa bazom podatak bi trebao biti najduže par sekundi
 	        	\item 	Nepravilne akcije korisnika, trenera ili voditelja u korisničkom sučelju ne smiju narušiti postojeće funkcionalnosti sustava
-	        	\item 	Sustav kao valutu dopušta euro ili hrvatsku kunu
+	        	\item 	Sustav kao valutu dopušta hrvatsku kunu
 	        	\item 	Sustavu se treba moći pristupiti iz javne mreže sigurnim protokolom(HTTPS)
         	\end{itemize}
-			 
-			 
-			 
-	
