@@ -1,6 +1,17 @@
 \chapter{Specifikacija programske potpore}
+<<<<<<< HEAD
+=======
+
+		
+	\section{Funkcionalni zahtjevi}
+	    
+>>>>>>> e1bbabb5d00befa86acec0b262980ec5e9b365e4
 			
-			\section{Funkcionalni zahtjevi}
+			\textbf{\textit{dio 1. revizije}}\\
+			
+			\textit{Navesti \textbf{dionike} koji imaju \textbf{interes u ovom sustavu} ili  \textbf{su nositelji odgovornosti}. To su prije svega korisnici, ali i administratori sustava, naručitelji, razvojni tim.}\\
+				
+			\textit{Navesti \textbf{aktore} koji izravno \textbf{koriste} ili \textbf{komuniciraju sa sustavom}. Oni mogu imati inicijatorsku ulogu, tj. započinju određene procese u sustavu ili samo sudioničku ulogu, tj. obavljaju određeni posao. Za svakog aktora navesti funkcionalne zahtjeve koji se na njega odnose.}\\
 			
 			
 			\noindent \textbf{Dionici:}
@@ -8,17 +19,9 @@
 			\begin{packed_enum}
 			
 				
-				\item Klijent teretane
-				\begin{packed_enum}
-					
-					\item registrirani
-					\item neregistrirani
-					
-				\end{packed_enum}
-				\item Trener
-				\item Voditelj teretane			
-				\item Administrator
-				\item Razvojni tim
+				\item Dionik 1
+				\item Dionik 2				
+				\item ...
 				
 			\end{packed_enum}
 			
@@ -26,97 +29,33 @@
 			
 			
 			\begin{packed_enum}
-				\item  \underbar{Neregistrirani/neprijavljeni korisnik (inicijator) može:}
+				\item  \underbar{Aktor 1 (inicijator) može:}
 				
 				\begin{packed_enum}
 					
-					\item pregledati popis svih teretana na platformi
-					\item sortirati spomenuti popis prema sljedećim kriterijima: ime teretane, lokacija, trener
-					\item otvoriti početnu stranicu svake teretane na kojoj se nalaze osnovne informacije (radno vrijeme, lokacija, cijena
-					članarine…)
-					\item izraditi administratorski, voditeljski, trenerski ili korisnički račun s namjerom treniranja u teretani za koje je potrebno navesti ime, prezime i email adresu, dok se može, ali ne mora dodati PayPal račun te je za izradu trenerskog korisničkog računa posebno potrebno navesti posebne podatke poput visine i težine
-					
+					\item funkcionalnost 1
+					\item funkcionalnost 2
+					\begin{packed_enum}
+						
+						\item  podfunkcionalnost 1 
+						\item  podfunkcionalnost 2
+				
+					\end{packed_enum}
+					\item  funkcionalnost 3
 					
 				\end{packed_enum}
-				
-				\item  \underbar{Klijent (inicijator) može:}
+			
+				\item  \underbar{Aktor 2 (sudionik) može:}
 				
 				\begin{packed_enum}
 					
-					\item pregledavati i sortirati popis registriranih teretana
-					\item pregledavati i mijenjati osobne podatke
-					\item izbrisati svoj korisnički račun
-					\item plaćati članarine u teretanama putem interneta
-					\item pregledavati sve izvršene transakcije u kojima su sudjelovali
-					\item pregledavati popis teretana u kojima smiju vježbati, odnosno u kojima su platili članarinu
-					\item kupovati planove prehrane i vježbanja od trenera
-					\item ugovarati privatne ili grupne treninge
-					\item voditi i pratiti napredak u vlastitom planu vježbanja
+					\item funkcionalnost 1
+					\item funkcionalnost 2
 					
 				\end{packed_enum}
-				
-				\item  \underbar{Trener (inicijator) može:}
-				
-				\begin{packed_enum}
-					
-					\item pregledavati i sortirati popis registriranih teretana
-					\item pregledavati i mijenjati osobne podatke
-					\item izbrisati svoj korisnički račun
-					\item objavljivati ponude planova treninga i/ili vježbanja
-					\item objavljivati i ugovarati termine privatnih i grupnih treninga u teretanama gdje imaju te ovlasti
-					\item pregledavati sve izvršene transakcije u kojima su sudjelovali
-					\item pregledavati popis teretana u kojima smiju djelovati, odnosno raditi (voditi treninge, planovi prehrane i sl.)
-					\item nuditi usluge treniranja teretanama
-					
-				\end{packed_enum}
-				
-				\item  \underbar{Voditelj teretane (inicijator) može:}
-				
-				\begin{packed_enum}
-					
-					\item pregledavati i sortirati popis registriranih teretana
-					\item pregledavati i mijenjati osobne podatke
-					\item izbrisati svoj korisnički račun
-					\item stvarati nove teretane u sustavu
-					\item davati dozvolu drugim voditeljima da vode neke njegove teretane
-					\item mijenjati važne informacije o teretanama (radno vrijeme, lokacija i sl.)
-					\item dopuštati registriranim trenerima rad u teretanama koje vodi
-					\item vidjeti sve izvršene transakcije na aplikaciji unutar vlastite teretane
-					
-				\end{packed_enum}
-				
-				\item  \underbar{Administrator (inicijator) može:}
-				
-				\begin{packed_enum}
-					
-					\item pregledavati i sortirati popis registriranih teretana
-					\item pregledavati i mijenjati osobne podatke
-					\item vidjeti sve korisničke račune
-					\item izbrisati svoj korisnički račun
-					\item stvarati nove i brisati postojeće teretane u sustavu
-					\item pregledati sve izvršene transakcije u aplikaciji
-					\item davati dozvolu  voditeljima da vode pojedine teretane
-					\item mijenjati važne informacije o teretanama (radno vrijeme, lokacija i sl.)
-					\item dopuštati registriranim trenerima rad u teretanama
-					
-				\end{packed_enum}
-				
-				
-				\item  \underbar{Baza podataka (sudionik):}
-				
-				\begin{packed_enum}
-					
-					\item pohranjuje sve podatke o korisnicima
-					\item čuva informacije o ulogama pojedinih korisnika
-					\item pohranjuje podatke o svim teretanama, njihovim voditeljima, trenerima i članovima
-					\item pohranjuje izvršene transakcije
-					
-				\end{packed_enum}
-				
 			\end{packed_enum}
 			
 			\eject 
-			
 			
 			
 				
@@ -227,6 +166,10 @@
 						\item  \textbf{Opis mogućih odstupanja:}
 						
 						\item[] \begin{packed_item}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> e1bbabb5d00befa86acec0b262980ec5e9b365e4
 							\item[-] Ako voditelj pokuša maknuti teretanu sa svog popisa i on je jedini voditelj
 							\item[] \begin{packed_enum}
 								
@@ -250,7 +193,10 @@
 	
 							\item Prijavljen je voditelj ili admin
 							\item Ako je prijavljen voditelj,on odabire pregled svojih teretana
+<<<<<<< HEAD
 
+=======
+>>>>>>> e1bbabb5d00befa86acec0b262980ec5e9b365e4
 
 						\end{packed_enum}
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -258,8 +204,12 @@
 						\item[] \begin{packed_enum}
 	
 							\item Voditelj ili admin odabire teretanu koju želi maknuti s popisa
+<<<<<<< HEAD
 							\item Voditelj ili admin potvrđuje odabir
 
+=======
+							\item voditelj ili admin potvrđuje odabir
+>>>>>>> e1bbabb5d00befa86acec0b262980ec5e9b365e4
 							\item Baza podataka se ažurira
 						\end{packed_enum}
 						
@@ -346,6 +296,10 @@
 						\item  \textbf{Opis mogućih odstupanja:}
 						
 						\item[] \begin{packed_item}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> e1bbabb5d00befa86acec0b262980ec5e9b365e4
 							\item[-] Voditelj je već zaposlen u teretani
 							\item[] \begin{packed_enum}
 								
@@ -445,6 +399,7 @@
                
 			\subsubsection{Dijagrami obrazaca uporabe}
 				\begin{figure}[!htb]
+<<<<<<< HEAD
 					\includegraphics[height= 13cm,width=1.2\textwidth]{slike/obrazac1.jpg}
 					\textbf{Slika 3.1: Dijagram obrasca uporabe, funkcionalnost korisnika i neregistriranog korisnika u aplikaciji  }
 
@@ -453,19 +408,39 @@
 				\begin{figure}
 
     				\includegraphics[height=13cm,width=1.2\textwidth]{slike/obrazac2.jpg}
+=======
+    				\includegraphics[height= 13cm,width=1.2\textwidth]{dokumentacija/slike/obrazac1.jpg}
+    				\textbf{Slika 3.1: Dijagram obrasca uporabe, funkcionalnost korisnika i neregistriranog korisnika u aplikaciji  }
+				
+				\end{figure}
+				
+				\begin{figure}
+    				\includegraphics[height= 13cm,width=1.2\textwidth]{dokumentacija/slike/obrazac2.jpg}
+>>>>>>> e1bbabb5d00befa86acec0b262980ec5e9b365e4
     				\textbf{Slika 3.2: Dijagram obrasca uporabe, funkcionalnost korisnika i trenera u aplikaciji}
 				\end{figure}
 				
 				\begin{figure}
     				\includegraphics[height= 13cm,width=1.2\textwidth]{slike/obrazac3.jpg}
     				\textbf{Slika 3.3: Dijagram obrasca uporabe, Funkcionalnost korisnika i neregistriranog korisnika u aplikaciji}
+<<<<<<< HEAD
 
+=======
+>>>>>>> e1bbabb5d00befa86acec0b262980ec5e9b365e4
 				\end{figure}
 			     
 			       
 			    \eject	
 			 
+<<<<<<< HEAD
 
+=======
+				
+		
+				
+		    
+				
+>>>>>>> e1bbabb5d00befa86acec0b262980ec5e9b365e4
 			\subsection{Sekvencijski dijagrami}
 				
 				\textbf{\textit{dio 1. revizije}}\\
@@ -479,4 +454,10 @@
 		 
 			 \textit{Nefunkcionalni zahtjevi i zahtjevi domene primjene dopunjuju funkcionalne zahtjeve. Oni opisuju \textbf{kako se sustav treba ponašati} i koja \textbf{ograničenja} treba poštivati (performanse, korisničko iskustvo, pouzdanost, standardi kvalitete, sigurnost...). Primjeri takvih zahtjeva u Vašem projektu mogu biti: podržani jezici korisničkog sučelja, vrijeme odziva, najveći mogući podržani broj korisnika, podržane web/mobilne platforme, razina zaštite (protokoli komunikacije, kriptiranje...)... Svaki takav zahtjev potrebno je navesti u jednoj ili dvije rečenice.}
 			 
+<<<<<<< HEAD
 			
+=======
+			 
+			 
+	
+>>>>>>> e1bbabb5d00befa86acec0b262980ec5e9b365e4
