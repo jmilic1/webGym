@@ -8,6 +8,32 @@
 		\item 	\textit{organizaciju sustava s najviše razine apstrakcije (npr. klijent-poslužitelj, baza podataka, datotečni sustav, grafičko sučelje)}
 		\item 	\textit{organizaciju aplikacije (npr. slojevi frontend i backend, MVC arhitektura) }		
 	\end{itemize}
+	
+	Arhitektura korištena pri izradi WebGym web aplikacije sastoji se od:
+	\begin{itemize}
+		\item   Web poslužitelj
+		\item 	Web aplikacija
+		\item 	Baza podataka		
+	\end{itemize}
+	
+	\begin{figure}[H]
+			\includegraphics[scale=1.0]{slike/arh.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			\centering
+			\caption{Arhitektura sustava}
+			\label{fig:promjene}
+		\end{figure}
+	Prilikom programiranja sustava prvo se bilo bitno dogovoriti oko korištene arhitekture i tehnologije koja će se za izradu web aplikacije koristiti. Odluke kao što su programski jezik i razvojno okruženje za korištenje same internet aplikacije. Arhitekturu smo odabrali kako bi zadovoljavala mnoge značajke kao što su fleksibilnost, mogućnost nadogradnje, što jeftinije održavanje. Web aplikacije nam se činila kao najlogičniji odabir iz razloga što ne ovisi o uređaju na kojem se prikazuje te se nismo morali opredijeljivati za operacijski sustav u kojem će raditi najefikasnije. Također odabrana arhitektura od korisnika naše web aplikacije zahtjeva samo pristup internet te internetski preglednik što je dostupno većini.  \newline
+	\indent Pregled web-stranice te svih podataka i zatraženih medija odvija se uz pomoć \underbar{\textit{web preglednika}}. Web preglednik ima nekoliko uloga, jedna od njih je prikaz stranice na način čitljiv čovjeku. Stoga možemo reći da web preglednik ima funkciju prevoditelja. Također, upravo web preglednik je alat pomoću kojeg korisnik šalje zahtjev web poslužitelju. \newline
+	\indent Iduća funkcionalnost je komunkacija s aplikacijom. Tome služi \underbar{\textit{web poslužitelj}} koji je poput motora web aplikacije. Sama komunikacija odvija se pomoću HTTP protokola koji služi za prijenos informacija i komunikaciju na internetu. \newline
+	\indent \underbar{\textit{Web aplikacija}} se pokreće pomoću web poslužitelja koji joj prosljeđuje zahjtev, a sama web aplikacija služi za obradu zahtjeva prosljeđenih s web poslužitelja. Web aplikacija ima mogućnost pristupa bazi podataka. Podaci iz baze se kasnije prikazuju korisniku. Za sami prikaz je zaslužen već prije spomenuti web poslužitelj koji vraća korisniku HTML dokument kao odgovor, a čitljivi prikaz korisniku je osiguran pomoću web preglednika. \newline
+	\indent Web aplikacija nam se sastoji od front-enda i back-enda. Tehnologija koju smo odabrali za izradu back-enda je Java Spring Boot, dok smo za front-end odabrali React.js. Arhitektura sustava za koju smo se odlučili je MVC odnosno (Model-View-Controller) koncept. \newline
+	\indent Glavna korist MVC kocepta je ta što dijelovi aplikacije nisu usko povezani te se lakše testiraju, a i greška u jednom od dijelova neće utjecati na rad ostalih. \newline
+	MVC koncept sastoji se od:
+	\begin{itemize}
+		\item   \textbf{Model} - klase koje opisuju same podatke koji se koriste u aplikaciji. Klase također sadrže i logiku vezanu za te podatke. Podaci u modelu ne ovise o korisničkom sučelju. Model prima ulazne podatke od Controllera.
+		\item 	\textbf{View} - omogućuje komunikaciju s korisnikom te definira kako će korisničko sučelje biti prikazano korisniku.
+		\item 	\textbf{Controller}	- klase koje kontroliraju komunikaciju korisnika sa aplikacijom. To je sloj aplikacije koji obrađuje korisničke zahtjeve. Controller prihvaća sve ulaze i pretvara ih u naredbe za Model i View.   	
+	\end{itemize}
 
 	
 		\section{Baza podataka}
@@ -30,7 +56,7 @@
 		\textbf{Korisnik} Ovaj entitet sadržava sve bitne informacije o korisniku WebGym web aplikacije. Sadrži atribute kao što su: korisničko ime, ime, prezime, email, hashiranu lozinku, broj mobitela, broj PayPala, visinu, težinu te ulogu u sustavu. U ulozi ovise ovlasti koje korisnik u sustavu i u odnosima ima. Ovaj entitet je u vezi \emph{One-to-Many} s entitetom Ciljevi preko korisničkog imena klijenta koji je i sam korisnik, u vezi s \emph{Many-to-Many} entitetom PlanTreningaIPrehrane preko korisničkog imena trenera koji je i sam korisnik, u vezi \emph{One-to-Many} s entitetom ČlanarinaKlijent preko korisničkog imena klijenta, u vezi \emph{One-to-Many} s entitetom  Zamolba korisničkog imena trenera, u vezi \emph{Many-to-Many} s entitetom PlanKlijent preko korisničkog imena klijenta te u vezi \emph{Many-to-Many} s entitetom TeretanaKorisnik preko korisničkog imena trenera ili voditelja koji su i sami korisnici.
 				
 				
-    			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+    			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{Korisnik}}	 \\[3pt] \hline
     				\endfirsthead
@@ -44,7 +70,7 @@
     					\cellcolor{LightGreen}korisničkoIme  & VARCHAR	&  	jedinstveno ime korisnika 	\\ \hline
     					ime	& VARCHAR & ime korisnika  	\\ \hline 
     					prezime & VARCHAR & prezime korisnika   \\ \hline 
-    					email & VARCHAR	&  	e mail korisnika s kojim je napravio račun	\\ \hline 
+    					email & VARCHAR	&  	email korisnika s kojim je napravio račun	\\ \hline 
     					lozinka	& VARCHAR & hash korisnikove lozinke za prijavu  	\\ \hline
     					brojMobitela	& VARCHAR & korisnikov broj mobitela  	\\ \hline
     					PayPal	& VARCHAR & korisnikov PayPal za plaćanje usluga  	\\ \hline
@@ -56,7 +82,7 @@
 				\end{longtabu}
 				
 				\textbf{Teretana} ovaj entitet sadrži sve bitne informacije o lancu teretani. Sadrži atribute: id, ime, opis te email, a ovaj je entitet u vezi \emph{One-to-Many} s entitetom TeretanaLokacija preko jedinstvenog brojčanog identifikatora teretane te u vezi \emph{One-to-Many} s entitetom članarina preko jedinstvenog brojčanog identifikatora teretane.
-				\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+				\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{Teretana}}	 \\[3pt] \hline
     				\endfirsthead
@@ -76,7 +102,7 @@
 				\end{longtabu}
 				
 			\textbf{TeretanaLokacija} ovaj entitet sadrži sve bitne informacije o pojedinoj teretani. Sadrži atribute: id,id lanca teretani, država u kojoj se nalazi, grad u kojem se nalazi, ulica u kojoj se nalazi, početak ranog vremena teretane, kraj radnog vremena teretane te broj telefona teretane, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Teretana preko jedinstvenog brojčanog identifikatora teretane, u vezi \emph{One-to-Many} s entitetom Zamolba preko jedinstvenog brojčanog identifikatora pojedine teretane te je u vezi \emph{One-to-Many} s entitetom TeretanaKorisnik preko jedinstvenog brojčanog identifikatora pojedine teretane.
-			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{TeretanaLokacija}}	 \\[3pt] \hline
     				\endfirsthead
@@ -92,7 +118,7 @@
     					država & VARCHAR & država u kojoj se teretana nalazi   \\ \hline 
     					grad & VARCHAR	&  	grad u kojem se teretana nalazi	\\ \hline 
     					ulica	& VARCHAR & ulica u kojoj se teretana nalazi  	\\ \hline
-    					radnoVrijemePoc	& TIME & vrijeme početka rada teretane  	\\ \hline
+    					radnoVrijemePočetak	& TIME & vrijeme početka rada teretane  	\\ \hline
     					radnoVrijemeKraj	& TIME & vrijeme kraja rada teretane  	\\ \hline
     					telefon	& VARCHAR & broj na koji se teretana može nazvati  	\\ \hline
 					
@@ -100,7 +126,7 @@
 			\end{longtabu}
 			
 			\textbf{Ciljevi} ovaj entitet sadrži sve važne informacije o ciljevima samog klijenta. Sadrži atribute: id,korisničko ime klijenta te opis cilja, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena.
-			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{Ciljevi}}	 \\[3pt] \hline
     				\endfirsthead
@@ -121,7 +147,7 @@
 			
 			
 			\textbf{PlanTreningaIPrehrane} ovaj entitet sadrži sve važne informacije o planu treninga i prehrane. Korisnik može kupiti trening te onda ima individualni pristup trenera, ili može samo kupiti plan te dobiti gotov file sa treninzima i preporučenim načinom prehrane. Sadrži atribute: id,korisničko ime trenera, opis plana, datum početka plana, datum isteka plana te atribut koji nam govori je li trening u pitanju, a ovaj je entitet u vezi \emph{Many-to-Many} s entitetom Korisnik preko korisničkog imena.
-			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{PlanTreningaIPrehrane}}	 \\[3pt] \hline
     				\endfirsthead
@@ -144,7 +170,7 @@
 			\end{longtabu}
 			
 			\textbf{Članarina} ovaj entitet sadrži sve važne informacije o članarini u teretani.  Sadrži atribute: id,id pojedine teretane, cijena članarine, opis te trajanje, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Teretana preko jedinstvenog brojčanog identifikatora teretane te je u vezi \emph{One-to-Many} s entitetom ČlanarinaKlijent preko jedinstvenog brojčanog identifikatora članarine.
-			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{Članarina}}	 \\[3pt] \hline
     				\endfirsthead
@@ -165,7 +191,7 @@
 			\end{longtabu}
 			
 			\textbf{ČlanarinaKlijent} ovaj entitet sadrži sve važne informacije o članarini koju klijent posjeduje. Sadrži atribute: id,korisničko ime klijenta, id članarine koju teretana nudi, datum početka te dazum isteka trajanja članarine, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena klijenta te je u vezi \emph{Many-to-One} s entitetom Članarina preko jedinstvenog brojčanog identifikatora članarine.
-			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{ČlanarinaKlijent}}	 \\[3pt] \hline
     				\endfirsthead
@@ -185,7 +211,7 @@
 			\end{longtabu}
 			
 			\textbf{Zamolba} ovaj entitet sadrži sve važne informacije o prijavi za posao koju trener šalje pojedinoj teretani. Sadrži atribute: id,korisničko ime trenera, id pojedine teretane u kojoj se trener za posao prijavljuje, te opis prijave, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena trenera te je u vezi \emph{Many-to-One} s entitetom Teretana preko jedinstvenog brojčanog identifikatora teretane.
-			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{Zamolba}}	 \\[3pt] \hline
     				\endfirsthead
@@ -205,7 +231,7 @@
 			\end{longtabu}
 			
 			\textbf{PlanKlijent} ovaj entitet sadrži sve važne informacije o planu prehrane i treninga kojeg klijent posjeduje. Sadrži atribute: id, id plana, korisničko ime klijenta, te datum kupnje, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena klijenta te je u vezi  \emph{Many-to-One} s entitetom PlanTreningaIPrehrane preko jedinstvenog brojčanog identifikatora plana.
-			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{PlanKlijent}}	 \\[3pt] \hline
     				\endfirsthead
@@ -223,7 +249,7 @@
 		    \end{longtabu}
 			
 			\textbf{TeretanaKorisnik} ovaj entitet sadrži sve važne informacije o korisniku koji radi u teretani kao voditelj ili kao trener. Sadrži atribute: id, id pojedine teretane, korisničko ime korisnika, te datum početka rada, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena korisnika te je u vezi \emph{Many-to-One} s entitetom TeretanaLokacija preko jedinstvenog brojčanog identifikatora pojedine teretane.
-			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{TeretanaKorisnik}}	 \\[3pt] \hline
     				\endfirsthead
