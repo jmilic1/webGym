@@ -66,6 +66,8 @@ class AuthPage extends React.Component {
       }
     }).then(err => {
       alert(err.reason)
+    }, function(){
+      console.log("Prijava uspjesna");
     })
   }
 
