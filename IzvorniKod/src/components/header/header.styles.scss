@@ -1,16 +1,15 @@
 .header-container{
     overflow: hidden;
     height: 110px;
-    max-width: 1200px;
-    margin: 35px auto 50px;
-    padding-bottom: 0px;
+    width: 80%;
+    margin: 0 auto;
     background-color: transparent;
-    box-sizing: border-box;
 }
 
 .logo-container{
     position: relative;
     float: left;
+    width: 20%;
 }
 .logo{
     height: 100px;
@@ -19,10 +18,9 @@
 
 .link-container{
     position: relative;
-    //float: right;
+    float: right;
+    width: 20%;
     top: 33%;
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    column-gap: 20px;
 }

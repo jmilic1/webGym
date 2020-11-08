@@ -10,7 +10,8 @@ const Header = () => (
         </Link>
         <div className = 'link-container'>
             <Link to = '/gymList'>Popis teretana</Link>
-            <Link to = '/auth'>Prijava</Link> 
+            {/*<Link to='/'>Moj racun</Link>*/}
+            <Link to = '/auth'>Prijava</Link>
         </div>
     </div>
 )
