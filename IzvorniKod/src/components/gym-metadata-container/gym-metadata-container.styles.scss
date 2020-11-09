@@ -1,5 +1,10 @@
 .gym-metadata-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.gym-grid-content{
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
 }
