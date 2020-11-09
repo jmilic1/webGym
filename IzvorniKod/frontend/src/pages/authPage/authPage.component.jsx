@@ -7,9 +7,18 @@ class AuthPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
-      password: '',
-      error: ''
+      usernameLogin: '',
+      passwordLogin: '',
+      usernameRegistration: '',
+      passwordRegistration: '',
+      name:"",
+      surname: "",
+      email: "",
+      gymOwner: false,
+      coach: false,
+      client: true,
+      selectedOption: "client"
+
     }
   }
 
