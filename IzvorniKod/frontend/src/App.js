@@ -1,3 +1,7 @@
+import React from 'react';
+import './App.css';
+import { Switch, Route} from 'react-router-dom';
+import Header from './components/header/header.component'
 import Homepage from './pages/homepage/homepage.component'
 import AuthPage from './pages/authPage/authPage.component'
 import GymList from './pages/gymList/gymList.component'
