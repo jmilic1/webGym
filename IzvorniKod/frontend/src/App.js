@@ -24,10 +24,11 @@ class App extends React.Component {
     }
   }
 
-  handleLogin = (username, name, surname, coach, admin, gymOwner) => {
+  handleLogin = (username, name, surname, client, coach, admin, gymOwner) => {
     this.setState({
       name:name,
       surname: surname,
+      client: client,
       coach: coach,
       admin:admin,
       gymOwner: gymOwner,
@@ -43,6 +44,7 @@ class App extends React.Component {
       coach: '',
       admin:false,
       gymOwner: false,
+      client: false,
       username: false,
       loggedIn: false
     })

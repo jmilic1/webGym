@@ -27,8 +27,8 @@ class AuthPage extends React.Component {
     this.setState({ [name]: value });
   };
 
-  handleLogin = async (username, name, surname, coach, admin, gymOwner) => {
-      await this.props.handleLogin(username, name, surname, coach, admin, gymOwner)
+  handleLogin = async (username, name, surname, client, coach, admin, gymOwner) => {
+      await this.props.handleLogin(username, name, surname, client, coach, admin, gymOwner)
       this.props.history.push("/")
   }
 
@@ -53,18 +53,15 @@ class AuthPage extends React.Component {
   }
 
   handleButtonRegisterClick = () => {
-    console.log("client:"+this.state.client);
-    console.log("owner:"+this.state.gymOwner);
-    console.log("coach:"+this.state.coach);
     fetch(this.props.backendURL + "registration", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
       body: JSON.stringify({username:this.state.usernameRegistration, password:this.state.passwordRegistration, name:this.state.name, surname: this.state.surname,
-                                  email:this.state.email, coach: this.state.coach, gymOwner: this.state.gymOwner})
+                                  email:this.state.email, client: this.state.client, coach: this.state.coach, gymOwner: this.state.gymOwner})
     }).then(response => {
       if(response.status === 200){
-        this.handleLogin(this.state.usernameRegistration, this.state.name, this.state.surname, this.state.coach, false, this.state.gymOwner)
+        this.handleLogin(this.state.usernameRegistration, this.state.name, this.state.surname, this.state.client, this.state.coach, false, this.state.gymOwner)
         return Promise.reject()
       } else{
         return response.json()
