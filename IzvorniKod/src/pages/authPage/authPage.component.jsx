@@ -15,7 +15,9 @@ class AuthPage extends React.Component {
       surname: "",
       email: "",
       gymOwner: false,
-      coach: false
+      coach: false,
+      client: true,
+      selectedOption: "client"
     }
   }
 
@@ -51,6 +53,9 @@ class AuthPage extends React.Component {
   }
 
   handleButtonRegisterClick = () => {
+    console.log("client:"+this.state.client);
+    console.log("owner:"+this.state.gymOwner);
+    console.log("coach:"+this.state.coach);
     fetch(this.props.backendURL + "registration", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -71,16 +76,14 @@ class AuthPage extends React.Component {
     })
   }
 
-  handleCoachCheckboxClick = event => {
+  handleRoleChange = changeEvent => {
     this.setState({
-      coach: event.target.checked
-    })
-  }
-  handleGymOwnerCheckboxClick = event => {
-    this.setState({
-      gymOwner: event.target.checked
-    })
-  }
+      selectedOption: changeEvent.target.value,
+      client: changeEvent.target.value === "client",
+      coach: changeEvent.target.value === "coach",
+      gymOwner: changeEvent.target.value === "gymOwner"
+    });
+  };
 
 
   render() {
@@ -162,11 +165,15 @@ class AuthPage extends React.Component {
             </div>
             <div className='role-input-container'>
               <div>
-                <input type='checkbox' onChange={this.handleCoachCheckboxClick}/>
+                <input type='radio' value='client'  checked={this.state.selectedOption === "client"} onChange={this.handleRoleChange}/>
+                <label>Klijent</label>
+              </div>
+              <div>
+                <input type='radio' value='coach' checked={this.state.selectedOption === "coach"} onChange={this.handleRoleChange}/>
                 <label>Trener</label>
               </div>
               <div>
-                <input type='checkbox' onChange={this.handleGymOwnerCheckboxClick}/>
+                <input type='radio' value='gymOwner' checked={this.state.selectedOption === "gymOwner"} onChange={this.handleRoleChange}/>
                 <label>Voditelj teretane</label>
               </div>
             </div>
