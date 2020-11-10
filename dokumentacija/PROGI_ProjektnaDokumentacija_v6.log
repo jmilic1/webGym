@@ -1,14 +1,14 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.26)  9 NOV 2020 23:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.27)  10 NOV 2020 18:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **PROGI_ProjektnaDokumentacija_v6.tex
 (./PROGI_ProjektnaDokumentacija_v6.tex
-LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-03-06>
-(/usr/local/texlive/2020/texmf-dist/tex/latex/base/report.cls
+LaTeX2e <2020-02-02> patch level 2
+L3 programming layer <2020-02-14>
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
-(/usr/local/texlive/2020/texmf-dist/tex/latex/base/size12.clo
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 )
 \c@part=\count167
@@ -24,54 +24,54 @@ File: size12.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 \belowcaptionskip=\skip48
 \bibindent=\dimen134
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2020/03/22 3.42 The Babel package
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2020/02/14 3.40 The Babel package
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/switch.def
-File: switch.def 2020/03/22 3.42 Babel switching mechanism
+(/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2020/02/14 3.40 Babel switching mechanism
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/babel-croatian/croatian.ldf
+(/usr/share/texlive/texmf-dist/tex/generic/babel-croatian/croatian.ldf
 Language: croatian 2014/03/31 v1.3m Croatian support from the babel system
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2020/03/22 3.42 Babel common definitions
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2020/02/14 3.40 Babel common definitions
 \babel@savecnt=\count176
 \U@D=\dimen135
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count177
 )))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks15
+\@emptytoks=\toks14
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsmath.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2020/01/20 v2.17e AMS math features
 \@mathmargin=\skip49
 
 For additional information on amsmath, use the `?' option.
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks16
+\@emptytoks=\toks15
 \ex@=\dimen136
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen137
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count178
@@ -94,25 +94,25 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 \dotsspace@=\muskip16
 \c@parentequation=\count185
 \dspbrk@lvl=\count186
-\tag@help=\toks17
+\tag@help=\toks16
 \row@=\count187
 \column@=\count188
 \maxfields@=\count189
-\andhelp@=\toks18
+\andhelp@=\toks17
 \eqnshift@=\dimen139
 \alignsep@=\dimen140
 \tagshift@=\dimen141
 \tagwidth@=\dimen142
 \totwidth@=\dimen143
 \lineht@=\dimen144
-\@envbody=\toks19
+\@envbody=\toks18
 \multlinegap=\skip50
 \multlinetaggap=\skip51
-\mathdisplay@stack=\toks20
+\mathdisplay@stack=\toks19
 LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/txfonts.sty
+(/usr/share/texlive/texmf-dist/tex/latex/txfonts/txfonts.sty
 Package: txfonts 2008/01/22 v3.2.1
 LaTeX Font Info:    Redeclaring symbol font `operators' on input line 21.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
@@ -198,7 +198,7 @@ LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `bold'
 LaTeX Font Info:    Redeclaring math symbol \mathsterling on input line 164.
 LaTeX Info: Redefining \not on input line 1043.
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/mathdots/mathdots.sty
+(/usr/share/texlive/texmf-dist/tex/generic/mathdots/mathdots.sty
 Package: mathdots 2014/06/11 v0.9 Improve and add various macros for dots in ma
 th.
 \MDo@unit=\dimen145
@@ -207,36 +207,36 @@ th.
 \MDopostkern=\muskip18
 \MDodotkern=\muskip19
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/titlesec/titlesec.sty
+(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2019/10/16 v2.13 Sectioning titles
 \ttl@box=\box48
 \beforetitleunit=\skip52
 \aftertitleunit=\skip53
 \ttl@plus=\dimen146
 \ttl@minus=\dimen147
-\ttl@toksa=\toks21
+\ttl@toksa=\toks20
 \titlewidth=\dimen148
 \titlewidthlast=\dimen149
 \titlewidthfirst=\dimen150
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/array.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
 \col@sep=\dimen151
 \ar@mcellbox=\box49
 \extrarowheight=\dimen152
-\NC@list=\toks22
+\NC@list=\toks21
 \extratabsurround=\skip54
 \backup@length=\skip55
 \ar@cellbox=\box50
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/lastpage/lastpage.sty
+(/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count190
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/longtable.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \LTleft=\skip56
 \LTright=\skip57
@@ -252,12 +252,13 @@ Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \LT@rows=\count193
 \c@LT@tables=\count194
 \c@LT@chunks=\count195
-\LT@p@ftn=\toks23
+\LT@p@ftn=\toks22
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tabu/tabu.sty
-Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
+(/usr/share/texlive/texmf-dist/tex/latex/tabu/tabu.sty
+Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed) + inter
+mediate FMi
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/varwidth/varwidth.sty
+(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box55
 \sift@deathcycles=\count196
@@ -279,62 +280,62 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \abovetabulinesep=\dimen162
 \belowtabulinesep=\dimen163
 \tabustrutrule=\dimen164
-\tabu@thebody=\toks24
-\tabu@footnotes=\toks25
+\tabu@thebody=\toks23
+\tabu@footnotes=\toks24
 \tabu@box=\box56
 \tabu@arstrutbox=\box57
 \tabu@hleads=\box58
 \tabu@vleads=\box59
 \tabu@cellskip=\skip60
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2019/11/23 v1.2a Standard LaTeX Color (DPC)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/colortbl/colortbl.sty
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
-\everycr=\toks26
+\everycr=\toks25
 \minrowclearance=\skip61
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
 Package: adjustbox 2019/01/04 v1.2 Adjusting TeX boxes (trim, clip, ...)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(/usr/local/texlive/2020/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks27
-\XKV@tempa@toks=\toks28
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks26
+\XKV@tempa@toks=\toks27
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/xkeyval/keyval.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/keyval.tex))
 \XKV@depth=\count269
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
 Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
 -ends (calc, etex, pgfmath)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/adjustbox/trimclip.sty
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
 Package: trimclip 2018/04/08 v1.1 Trim and clip general TeX material
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
@@ -342,7 +343,7 @@ Package graphics Info: Driver file: pdftex.def on input line 105.
 \Gin@req@height=\dimen165
 \Gin@req@width=\dimen166
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/collectbox/collectbox.sty
+(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
 Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \collectedbox=\box60
 )
@@ -352,7 +353,7 @@ Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \tc@ury=\dimen170
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
 File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 ))
 \adjbox@Width=\dimen171
@@ -364,18 +365,18 @@ File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 \adjbox@pdepth=\dimen177
 \adjbox@ptotalheight=\dimen178
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
 \c@checkoddpage=\count270
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2020/03/06 v1.0d TeX engine tests
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2019/11/07 v1.0c TeX engine tests
 ))
 \Gm@cnth=\count271
 \Gm@cntv=\count272
@@ -388,12 +389,12 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@layoutheight=\dimen184
 \Gm@layouthoffset=\dimen185
 \Gm@layoutvoffset=\dimen186
-\Gm@dimlist=\toks29
+\Gm@dimlist=\toks28
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/kpfonts.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/kpfonts.sty
 Package: kpfonts  2010/08/20 v3.31
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 LaTeX Font Info:    Changing ? sub-encoding to TS1/0 on input line 75.
 )
@@ -729,60 +730,61 @@ LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `boldsf'
 LaTeX Font Info:    Redeclaring math symbol \n@tch@r on input line 1578.
 LaTeX Info: Redefining \not on input line 1580.
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/hycolor/hycolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/auxhook/auxhook.sty
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
 )
 \@linkdim=\dimen187
 \Hy@linkcounter=\count278
 \Hy@pagecounter=\count279
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/pd1enc.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/intcalc/intcalc.sty
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
 \Hy@SavedSpaceFactor=\count280
+\pdfmajorversion=\count281
 Package hyperref Info: Hyper figures OFF on input line 4547.
 Package hyperref Info: Link nesting OFF on input line 4552.
 Package hyperref Info: Hyper index ON on input line 4555.
@@ -790,23 +792,23 @@ Package hyperref Info: Plain pages OFF on input line 4562.
 Package hyperref Info: Backreferencing OFF on input line 4567.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4800.
-\c@Hy@tempcnt=\count281
+\c@Hy@tempcnt=\count282
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/url/url.sty
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip20
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5159.
 \XeTeXLinkMargin=\dimen188
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count282
+\Fld@menulength=\count283
 \Field@Width=\dimen189
 \Fld@charsize=\dimen190
 Package hyperref Info: Hyper figures OFF on input line 6430.
@@ -819,35 +821,36 @@ Package hyperref Info: PDF/A mode OFF on input line 6460.
 LaTeX Info: Redefining \ref on input line 6500.
 LaTeX Info: Redefining \pageref on input line 6504.
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/atbegshi/atbegshi.sty
+(/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty
 Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
 )
-\Hy@abspage=\count283
-\c@Item=\count284
-\c@Hfootnote=\count285
+\Hy@abspage=\count284
+\c@Item=\count285
+\c@Hfootnote=\count286
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2020/01/14 v7.00d Hyperref driver for pdfTeX
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/atveryend/atveryend.sty
+(/usr/share/texlive/texmf-dist/tex/latex/atveryend/atveryend.sty
 Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
 )
-\Fld@listcount=\count286
-\c@bookmark@seq@number=\count287
+\Fld@listcount=\count287
+\c@bookmark@seq@number=\count288
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
 \Hy@SectionHShift=\skip62
-) (/usr/local/texlive/2020/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
 s
 \f@nch@headwidth=\skip63
@@ -860,28 +863,28 @@ s
 \f@nch@O@olf=\skip70
 \f@nch@O@orf=\skip71
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/float/float.sty
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count288
-\float@exts=\toks30
+\c@float@type=\count289
+\float@exts=\toks29
 \float@box=\box61
-\@float@everytoks=\toks31
+\@float@everytoks=\toks30
 \@floatcapt=\box62
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/setspace/setspace.sty
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
-\@float@every@table=\toks32
+\@float@every@table=\toks31
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
 LaTeX Info: Redefining \color on input line 709.
-\rownum=\count289
+\rownum=\count290
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
 Package xcolor Info: Model `RGB' extended on input line 1364.
@@ -894,9 +897,9 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 40.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
-File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count290
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count291
 \l__pdf_internal_box=\box63
 )
 (./PROGI_ProjektnaDokumentacija_v6.aux (./Dnevnik_promjena_dokumentacije.aux)
@@ -934,7 +937,7 @@ LaTeX Font Info:    Checking defaults for OML/jkp/m/it on input line 76.
 LaTeX Font Info:    Trying to load font information for OML+jkp on input line 7
 6.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/omljkp.fd
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/omljkp.fd
 File: omljkp.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 76.
@@ -942,7 +945,7 @@ LaTeX Font Info:    Checking defaults for OMS/jkp/m/n on input line 76.
 LaTeX Font Info:    Trying to load font information for OMS+jkp on input line 7
 6.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/omsjkp.fd
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/omsjkp.fd
 File: omsjkp.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 76.
@@ -956,7 +959,7 @@ LaTeX Font Info:    Checking defaults for OMX/jkp/m/n on input line 76.
 LaTeX Font Info:    Trying to load font information for OMX+jkp on input line 7
 6.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/omxjkp.fd
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/omxjkp.fd
 File: omxjkp.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 76.
@@ -964,7 +967,7 @@ LaTeX Font Info:    Checking defaults for U/jkpexa/m/n on input line 76.
 LaTeX Font Info:    Trying to load font information for U+jkpexa on input line 
 76.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpexa.fd
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ujkpexa.fd
 File: ujkpexa.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 76.
@@ -973,30 +976,30 @@ LaTeX Font Info:    ... okay on input line 76.
 LaTeX Font Info:    Trying to load font information for OT1+jkp on input line 7
 6.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ot1jkp.fd
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ot1jkp.fd
 File: ot1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for OT1/jkp.
 )
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
 (lastpage)             ! on input line 76.
 
-(/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count291
+\scratchcounter=\count292
 \scratchdimen=\dimen191
 \scratchbox=\box64
-\nofMPsegments=\count292
-\nofMParguments=\count293
-\everyMPshowfont=\toks33
-\MPscratchCnt=\count294
+\nofMPsegments=\count293
+\nofMParguments=\count294
+\everyMPshowfont=\toks32
+\MPscratchCnt=\count295
 \MPscratchDim=\dimen192
-\MPnumerator=\count295
-\makeMPintoPDFobject=\count296
-\everyMPtoPDFconversion=\toks34
-) (/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+\MPnumerator=\count296
+\makeMPintoPDFobject=\count297
+\everyMPtoPDFconversion=\toks33
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/grfext/grfext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/grfext/grfext.sty
 Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
 )
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1006,7 +1009,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 504.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
@@ -1046,59 +1049,57 @@ e
 
 \AtBeginShipoutBox=\box65
 Package hyperref Info: Link coloring ON on input line 76.
-(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/refcount/refcount.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
-ty
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count297
+\c@section@level=\count298
 )
 LaTeX Info: Redefining \ref on input line 76.
 LaTeX Info: Redefining \pageref on input line 76.
 LaTeX Info: Redefining \nameref on input line 76.
- (./PROGI_ProjektnaDokumentacija_v6.out)
-(./PROGI_ProjektnaDokumentacija_v6.out)
+
+(./PROGI_ProjektnaDokumentacija_v6.out) (./PROGI_ProjektnaDokumentacija_v6.out)
 \@outlinefile=\write3
 \openout3 = `PROGI_ProjektnaDokumentacija_v6.out'.
 
 LaTeX Font Info:    Trying to load font information for U+jkpsya on input line 
 100.
-
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpsya.fd
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ujkpsya.fd
 File: ujkpsya.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    Trying to load font information for U+jkpsyb on input line 
 100.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpsyb.fd
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ujkpsyb.fd
 File: ujkpsyb.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    Trying to load font information for OT1+txr on input line 1
 00.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/ot1txr.fd
+(/usr/share/texlive/texmf-dist/tex/latex/txfonts/ot1txr.fd
 File: ot1txr.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Trying to load font information for U+jkpmia on input line 
 100.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpmia.fd
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ujkpmia.fd
 File: ujkpmia.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    Trying to load font information for U+jkpsyc on input line 
 100.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpsyc.fd
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ujkpsyc.fd
 File: ujkpsyc.fd 2006/08/15 v1.0
 ) [1
 
-{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./PROGI_ProjektnaDokumentacija_v6.toc
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./PROGI_ProjektnaDokument
+acija_v6.toc
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
 Make it at least 14.49998pt.
@@ -1200,12 +1201,11 @@ l.63
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.63 		
-        <./slike/trainerizeme1.PNG> <./slike/trainerizeme2.PNG> <./slike/ultima
-teperformance.PNG>]
+        <./slike/trainerizeme1.png> <./slike/trainerizeme2.png> <./slike/ultima
+teperformance.png>]
 LaTeX Font Info:    Trying to load font information for TS1+jkp on input line 6
 9.
-
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ts1jkp.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ts1jkp.fd
 File: ts1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for TS1/jkp.
 )
 Overfull \hbox (5.69768pt too wide) in paragraph at lines 92--98
@@ -1432,7 +1432,7 @@ e.4.2}) has been already used, duplicate ignored
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.282 			\eject
-                <./dijagrami/dijagram_baze_podataka.PNG>]
+                <./dijagrami/dijagram_baze_podataka.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 287--288
 
  []
@@ -1498,7 +1498,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--17
 
 LaTeX Font Info:    Trying to load font information for OT1+jkptt on input line
  28.
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kpfonts/ot1jkptt.fd
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ot1jkptt.fd
 File: ot1jkptt.fd 2007/01/26 Fontinst v1.928 font definitions for OT1/jkptt.
 )
 Underfull \hbox (badness 10000) in paragraph at lines 28--29
@@ -1607,24 +1607,24 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 12481 strings out of 480608
- 177731 string characters out of 5903629
- 520086 words of memory out of 5000000
- 27726 multiletter control sequences out of 15000+600000
+ 12471 strings out of 481239
+ 176323 string characters out of 5920376
+ 516384 words of memory out of 5000000
+ 27091 multiletter control sequences out of 15000+600000
  580285 words of font info for 129 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,13n,45p,1103b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
-live/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbit8a.pfb></usr/local/texliv
-e/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/20
-20/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2020/tex
-mf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2020/texmf-
-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2020/texmf-dist
-/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija_v6.pdf (57 pages, 12685439 bytes
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/kpfonts/jkpbit8a.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/kpfonts/jkpmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/kpfonts/jkpmit8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/kpfont
+s/jkpmn8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/kpfonts/jkpttmn
+8a.pfb>
+Output written on PROGI_ProjektnaDokumentacija_v6.pdf (57 pages, 12685484 bytes
 ).
 PDF statistics:
  769 PDF objects out of 1000 (max. 8388607)
