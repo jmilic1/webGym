@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.27)  10 NOV 2020 18:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.27)  10 NOV 2020 19:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1386,30 +1386,6 @@ m-ski je-zici, ra-zvojna okru[]zenja
  []
 
 
-Overfull \hbox (14.71518pt too wide) in paragraph at lines 26--34
-\OT1/jkp/m/n/12 mnoge zna[]cajke kao []sto su flek-si-bil-nost, mogu[]cnost na-
-do-grad-nje i jef-ti-nije odr[]zavanje.
- []
-
-
-Overfull \hbox (53.95195pt too wide) in paragraph at lines 26--34
-[]\OT1/jkp/m/n/12 Pregled web-stranice, svih po-da-taka i za-tra[]zenih me-dija
- odvija se pomo[]cu $[]$.
- []
-
-
-Overfull \hbox (40.61357pt too wide) in paragraph at lines 26--34
-[]\OT1/jkp/m/n/12 Idu[]ca funk-ci-onal-nost je ko-mun-ka-cija ko-ris-nika s apl
-i-ka-ci-jom. Tome slu[]zi $[]$
- []
-
-
-Overfull \hbox (6.23363pt too wide) in paragraph at lines 26--34
-[]$[]$ \OT1/jkp/m/n/12 is-pu-njava ulogu ko-mu-ni-ka-cije s ba-zom po-da-taka. 
-Dakle,
- []
-
-
 Overfull \hbox (0.18077pt too wide) in paragraph at lines 26--34
 \OT1/jkp/m/n/12 apli-ka-cije ($[]$ i $[]$) i sla-nje zah-tjeva za po-da-cima pr
 ema back-
@@ -1665,7 +1641,7 @@ type1/public/kpfonts/jkpmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/kpfonts/jkpmit8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/kpfont
 s/jkpmn8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/kpfonts/jkpttmn
 8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija_v6.pdf (57 pages, 12690015 bytes
+Output written on PROGI_ProjektnaDokumentacija_v6.pdf (57 pages, 12690060 bytes
 ).
 PDF statistics:
  769 PDF objects out of 1000 (max. 8388607)
