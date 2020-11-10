@@ -13,7 +13,12 @@
 	\begin{itemize}
 		\item   Web poslužitelj
 		\item 	Web aplikacija
+<<<<<<< HEAD
 		\item 	Baza podataka		
+=======
+		\item 	Baza podataka
+		\item   Poslužitelj baze podataka	
+>>>>>>> devdoc
 	\end{itemize}
 	
 	\begin{figure}[H]
@@ -22,6 +27,7 @@
 			\caption{Arhitektura sustava}
 			\label{fig:promjene}
 		\end{figure}
+<<<<<<< HEAD
 	Prilikom programiranja sustava prvo se bilo bitno dogovoriti oko korištene arhitekture i tehnologije koja će se za izradu web aplikacije koristiti. Odluke kao što su programski jezik i razvojno okruženje za korištenje same internet aplikacije. Arhitekturu smo odabrali kako bi zadovoljavala mnoge značajke kao što su fleksibilnost, mogućnost nadogradnje, što jeftinije održavanje. Web aplikacije nam se činila kao najlogičniji odabir iz razloga što ne ovisi o uređaju na kojem se prikazuje te se nismo morali opredijeljivati za operacijski sustav u kojem će raditi najefikasnije. Također odabrana arhitektura od korisnika naše web aplikacije zahtjeva samo pristup internet te internetski preglednik što je dostupno većini.  \newline
 	\indent Pregled web-stranice te svih podataka i zatraženih medija odvija se uz pomoć \underbar{\textit{web preglednika}}. Web preglednik ima nekoliko uloga, jedna od njih je prikaz stranice na način čitljiv čovjeku. Stoga možemo reći da web preglednik ima funkciju prevoditelja. Također, upravo web preglednik je alat pomoću kojeg korisnik šalje zahtjev web poslužitelju. \newline
 	\indent Iduća funkcionalnost je komunkacija s aplikacijom. Tome služi \underbar{\textit{web poslužitelj}} koji je poput motora web aplikacije. Sama komunikacija odvija se pomoću HTTP protokola koji služi za prijenos informacija i komunikaciju na internetu. \newline
@@ -31,6 +37,18 @@
 	MVC koncept sastoji se od:
 	\begin{itemize}
 		\item   \textbf{Model} - klase koje opisuju same podatke koji se koriste u aplikaciji. Klase također sadrže i logiku vezanu za te podatke. Podaci u modelu ne ovise o korisničkom sučelju. Model prima ulazne podatke od Controllera.
+=======
+	Na samom početku programiranja sustava bilo je neophodno dogovoriti se oko arhitekture i tehnologija koje će se koristiti za izradu programskog rješenja. Preciznije, dogovaralo se o pojedinostima kao što su programski jezici, razvojna okruženja i koncepti za razvoj aplikacije. Arhitekturu smo odabrali kako bi zadovoljavala mnoge značajke kao što su fleksibilnost, mogućnost nadogradnje i jeftinije održav-\\anje. Web aplikacija je razuman odabir zato što ovisi samo o veličini ekrana uređaja na kojoj se koristi, a taj problem je jednostavniji za riješiti nego problem specifične arhitekture pojedinih operacijskih sustava. Također, odabrana arhitektura od korisnika naše web aplikacije zahtijeva samo pristup internetu te web preglednik.  \newline
+	\indent Pregled web-stranice, svih podataka i zatraženih medija odvija se pomoću \linebreak \underbar{\textit{web preglednika}}. Web preglednik ima nekoliko uloga, jedna od njih je prikaz stranice na način koji je čitljiv čovjeku. Stoga, možemo reći da web preglednik ima ulogu, odnosno funkciju prevoditelja. Također, upravo je web preglednik alat pomoću kojeg korisnik šalje zahtjeve web poslužitelju. \newline
+	\indent Iduća funkcionalnost je komunkacija korisnika s aplikacijom. Tome služi \linebreak \underbar{\textit{web poslužitelj}} koji je svojevrsni motor web aplikacije. Sama komunikacija odvija se pomoću HTTP protokola koji služi za prijenos informacija i komunikaciju na internetu. \newline
+	\indent \underbar{\textit{Web aplikacija}} se pokreće pomoću web poslužitelja kojemu šalje zahtjeve, a web poslužitelj služi za obradu tih zahtjeva. Za prikaz je zaslužan već prije spomenuti web poslužitelj koji vraća korisniku HTML dokument kao odgovor, a čitljivi prikaz korisniku osiguran je pomoću web preglednika. Također, web poslužitelj zahtjeve vezane uz podatke u bazi podataka prosljeđuje prema poslužitelju baze podataka. \newline
+	\indent \underbar{\textit{Poslužitelj baze podataka}} ispunjava ulogu komunikacije s bazom podataka. Dak-\\le, on zaprima i obrađuje zahtjeve za podacima poslane iz web aplikacije koje mu prosljeđuje web poslužitelj. Ovisno o vrsti zathjeva, u odgovorima se mogu nalaziti zatraženi podatci ili informacije o uspješnosti nekih operacija, na primjer autentifikacije ili umetanja novih podataka u bazu podataka.\newline
+	\indent Aplikacija se sastoji od front-enda i back-enda. S jedne strane, tehnologija koju smo odabrali za izradu back-enda je Java Spring Boot. Konkretno, back-end obuhvaća komunikaciju s bazom podataka (\underbar{\textit{poslužitelj baze podataka}}). S druge strane, za front-end smo odabrali React.js. Front-end obuhvaća prikaz korisničkog sučelja aplikacije (\underbar{\textit{web aplikacija}} i \underbar{\textit{web poslužitelj}}) i slanje zahtjeva za podacima prema back-endu. Arhitektura sustava za koju smo se odlučili je MVC odnosno (Model-View-Controller) koncept. \newline
+	\indent Glavna korist MVC kocepta je ta što dijelovi aplikacije nisu usko povezani i omogućavaju se jednostavnije testiranje, a i greška u jednom od dijelova neće utjecati na rad ostalih. \newline
+	MVC koncept sastoji se od:
+	\begin{itemize}
+		\item   \textbf{Model} - klase koje opisuju same podatke koji se koriste u aplikaciji. Uz to, klase sadrže i logiku vezanu za te podatke. Podaci u modelu ne ovise o korisničkom sučelju. Model prima ulazne podatke od Controllera.
+>>>>>>> devdoc
 		\item 	\textbf{View} - omogućuje komunikaciju s korisnikom te definira kako će korisničko sučelje biti prikazano korisniku.
 		\item 	\textbf{Controller}	- klase koje kontroliraju komunikaciju korisnika sa aplikacijom. To je sloj aplikacije koji obrađuje korisničke zahtjeve. Controller prihvaća sve ulaze i pretvara ih u naredbe za Model i View.   	
 	\end{itemize}
