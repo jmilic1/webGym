@@ -283,26 +283,34 @@
 			
 			
 		\section{Dijagram razreda}
-		
 		\begin{figure}[!htb]
-			\includegraphics[height= 13cm,width=1.2\textwidth]{dokumentacija/slike/Controllers.jpg}
-			\textbf{Slika 4.3: Dijagram razreda - dio Controllers}
+		    Na slikama 4.3, 4.4 i 4.5 su prikazani razredi koji pripadaju backend dijelu MVC
+            arhitekture. Razredi prikazani na slici 4.3 prikazuju razrede koji nasljeđuju Controller. Unutar implementiranih controllera koriste se metode pomoću kojih se manipulira i "razgovara" s DTO (data transfer object). Funkcionalnost metoda unutar pojedinih controllera isprogramirana je da vraća JSON datoteke s html status kodom. Razredi su podijeljeni logički po imenima aktora u našoj web aplikaciji te implementirani s pripadajućim metodama , ovisno o ovlasti pojedinačnog aktora.
+            Razredi prikazani na slici 4.4 predstavljaju DTO(data transfer object) razred.U području programiranja DTO je objekt koji prenosi podatke između procesa. Motivacija za njegovu upotrebu je ta da se komunikacija između procesa obično vrši pribjegavanjem udaljenim sučeljima (npr. Web uslugama), gdje je svaki poziv skupa operacija. Rješenje za smanjenje poziva je enkapsulacija  podataka u vrijednosni objekt koji se može prenositi preko mreže , odnosno korištenje DTO-a.
 		\end{figure}
-		Model razredi preslikavaju strukturu baze podataka u aplikaciji. Implementirane metode direktno komuniciraju s bazom podataka te vracaju tražene podatke. Razred Korisnik predstavlja uniju svih različitih entiteta koji se mogu registrirati u aplikaciji. Razred klijent predstavlja registriranog korisnika te on može koristiti sve rezervirane funkcionalnosti. Razred Administrator predstavlja administratora koji može koristiti više manje sve metode i ima najveće ovlasti te u suštini on upravlja cijelom aplikacijom. Razred Trener predstavlja trenera koji može raditi u nekoj od ponuđenih teretana te koristiti teretanu kao platformu za prodavanje svojih planova treninga i prehrane. Razred Voditelj predstavlja voditelja teretane, voditelj koristi svoje ovlasti kako bi osigurao pravilnu povezanost teretane , trenera i klijenata. Razred Zamolba predstavlja trenerov upit odnosno zamolbu za rad u određenoj teretani. Razred Ciljevi predstavlja određeni cilj pojedinog klijenta. Razred PlanTreningaIPrehrane predstavlja trenerov proizvod koji se nalazi u teretani u kojoj trener radi te ga mogu kupiti trenerovi klijenti.
-		\begin{figure}[!htb]
-			\includegraphics[height= 20cm,width=1.2\textwidth]{dokumentacija/slike/models.jpg}
+		
+		\begin{figure}
+			\includegraphics[height= 13cm,width=1.2\textwidth]{dokumentacija/slike/ControllerClass.jpg}
+			\begin{center}
+			    Slika 4.3: Dijagram razreda - dio Controllers
+			\end{center}
+		\end{figure}
+		\begin{figure}
+			\includegraphics[height= 13cm,width=1.2\textwidth]{dokumentacija/slike/DTOClass.jpg}
+			\begin{center}
+			    Slika 4.4: Dijagram razreda - dio Data transfer objects
+			\end{center}
+		\end{figure}
+		\begin{figure}
+		    Model razredi preslikavaju strukturu baze podataka u aplikaciji. Implementirane metode direktno komuniciraju s bazom podataka te vracaju tražene podatke. Razred Korisnik predstavlja uniju svih različitih entiteta koji se mogu registrirati u aplikaciji. Razred klijent predstavlja registriranog korisnika te on može koristiti sve rezervirane funkcionalnosti. Razred Administrator predstavlja administratora koji može koristiti više manje sve metode i ima najveće ovlasti te u suštini on upravlja cijelom aplikacijom. Razred Trener predstavlja trenera koji može raditi u nekoj od ponuđenih teretana te koristiti teretanu kao platformu za prodavanje svojih planova treninga i prehrane. Razred Voditelj predstavlja voditelja teretane, voditelj koristi svoje ovlasti kako bi osigurao pravilnu povezanost teretane , trenera i klijenata. Razred Zamolba predstavlja trenerov upit odnosno zamolbu za rad u određenoj teretani. Razred Ciljevi predstavlja određeni cilj pojedinog klijenta. Razred PlanTreningaIPrehrane predstavlja trenerov proizvod koji se nalazi u teretani u kojoj trener radi te ga mogu kupiti trenerovi klijenti.
+		\end{figure}
+		\begin{figure}
+			\includegraphics[height= 20cm,width=1.2\textwidth]{dokumentacija/slike/modelsClass.jpg}
 			\textbf{Slika 4.5: Dijagram razreda - dio Models}
 		\end{figure}
-		
-		
-		
-		
-		
-		
+	
 		\eject
-			
-			
-			
+	
 			\eject
 		
 		\section{Dijagram stanja}
