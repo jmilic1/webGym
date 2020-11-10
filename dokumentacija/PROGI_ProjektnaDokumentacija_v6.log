@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.27)  10 NOV 2020 18:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.27)  10 NOV 2020 18:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1365,64 +1365,105 @@ Overfull \hbox (4.51157pt too wide) in paragraph at lines 7--8
 ka-za-nih na pre-da-va-njima (objas-
  []
 
-<slike/arh.PNG, id=499, 348.70274pt x 274.626pt>
+<slike/arh.PNG, id=499, 441.44925pt x 369.17924pt>
 File: slike/arh.PNG Graphic file (type png)
 <use slike/arh.PNG>
-Package pdftex.def Info: slike/arh.PNG  used on input line 20.
-(pdftex.def)             Requested size: 348.70187pt x 274.62532pt.
+Package pdftex.def Info: slike/arh.PNG  used on input line 21.
+(pdftex.def)             Requested size: 441.44815pt x 369.17834pt.
+
+Overfull \hbox (5.83736pt too wide) in paragraph at lines 21--23
+ [][] 
+ []
+
 [31
 
 
 
-] [32pdfTeX warning (ext4): destination with the same identifier (name{figure.4
-.1}) has been already used, duplicate ignored
+]
+Overfull \hbox (1.45761pt too wide) in paragraph at lines 26--34
+\OT1/jkp/m/n/12 nije, do-go-va-ralo se o po-je-di-nos-tima kao []sto su pro-gra
+m-ski je-zici, ra-zvojna okru[]zenja
+ []
+
+
+Overfull \hbox (14.71518pt too wide) in paragraph at lines 26--34
+\OT1/jkp/m/n/12 mnoge zna[]cajke kao []sto su flek-si-bil-nost, mogu[]cnost na-
+do-grad-nje i jef-ti-nije odr[]zavanje.
+ []
+
+
+Overfull \hbox (53.95195pt too wide) in paragraph at lines 26--34
+[]\OT1/jkp/m/n/12 Pregled web-stranice, svih po-da-taka i za-tra[]zenih me-dija
+ odvija se pomo[]cu $[]$.
+ []
+
+
+Overfull \hbox (40.61357pt too wide) in paragraph at lines 26--34
+[]\OT1/jkp/m/n/12 Idu[]ca funk-ci-onal-nost je ko-mun-ka-cija ko-ris-nika s apl
+i-ka-ci-jom. Tome slu[]zi $[]$
+ []
+
+
+Overfull \hbox (6.23363pt too wide) in paragraph at lines 26--34
+[]$[]$ \OT1/jkp/m/n/12 is-pu-njava ulogu ko-mu-ni-ka-cije s ba-zom po-da-taka. 
+Dakle,
+ []
+
+
+Overfull \hbox (0.18077pt too wide) in paragraph at lines 26--34
+\OT1/jkp/m/n/12 apli-ka-cije ($[]$ i $[]$) i sla-nje zah-tjeva za po-da-cima pr
+ema back-
+ []
+
+[32pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.32 	\begin{itemize}
+l.34 	\begin{itemize}
                       <./slike/arh.PNG>] [33] [34]
-Overfull \hbox (2.90126pt too wide) in paragraph at lines 126--126
+Overfull \hbox (2.90126pt too wide) in paragraph at lines 128--128
 []\OT1/jkp/m/n/12 radnoVrijemePo[]cetak|  
  []
 
 [35]
-Overfull \hbox (3.87679pt too wide) in paragraph at lines 170--170
+Overfull \hbox (3.87679pt too wide) in paragraph at lines 172--172
 []\OT1/jkp/m/n/12 TIMESTAMP|  
  []
 
 
-Overfull \hbox (3.87679pt too wide) in paragraph at lines 170--170
+Overfull \hbox (3.87679pt too wide) in paragraph at lines 172--172
 []\OT1/jkp/m/n/12 TIMESTAMP|  
  []
 
 [36]
-Overfull \hbox (3.87679pt too wide) in paragraph at lines 211--211
+Overfull \hbox (3.87679pt too wide) in paragraph at lines 213--213
 []\OT1/jkp/m/n/12 TIMESTAMP|  
  []
 
 
-Overfull \hbox (3.87679pt too wide) in paragraph at lines 211--211
+Overfull \hbox (3.87679pt too wide) in paragraph at lines 213--213
 []\OT1/jkp/m/n/12 TIMESTAMP|  
  []
 
 [37]
-Overfull \hbox (5.66966pt too wide) in paragraph at lines 249--249
+Overfull \hbox (5.66966pt too wide) in paragraph at lines 251--251
 []\OT1/jkp/m/n/12 TIMESTAMP|  
  []
 
 [38]
-Overfull \hbox (5.66966pt too wide) in paragraph at lines 268--268
+Overfull \hbox (5.66966pt too wide) in paragraph at lines 270--270
 []\OT1/jkp/m/n/12 TIMESTAMP|  
  []
 
-<dijagrami/dijagram_baze_podataka.PNG, id=553, 1323.94624pt x 984.67876pt>
+<dijagrami/dijagram_baze_podataka.PNG, id=552, 1323.94624pt x 984.67876pt>
 File: dijagrami/dijagram_baze_podataka.PNG Graphic file (type png)
 <use dijagrami/dijagram_baze_podataka.PNG>
 Package pdftex.def Info: dijagrami/dijagram_baze_podataka.PNG  used on input li
-ne 276.
+ne 278.
 (pdftex.def)             Requested size: 529.56912pt x 393.86452pt.
 
-Overfull \hbox (53.60721pt too wide) in paragraph at lines 275--278
+Overfull \hbox (53.60721pt too wide) in paragraph at lines 277--280
  []|  [] 
  []
 
@@ -1431,13 +1472,8 @@ e.4.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.282 			\eject
+l.284 			\eject
                 <./dijagrami/dijagram_baze_podataka.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 287--288
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 289--290
 
  []
@@ -1452,18 +1488,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 293--294
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 295--296
+
+ []
+
 [41]
-Underfull \hbox (badness 10000) in paragraph at lines 304--305
+Underfull \hbox (badness 10000) in paragraph at lines 306--307
 
  []
 
 [42]
-Underfull \hbox (badness 10000) in paragraph at lines 313--314
+Underfull \hbox (badness 10000) in paragraph at lines 315--316
 
  []
 
 [43]
-Underfull \hbox (badness 10000) in paragraph at lines 320--321
+Underfull \hbox (badness 10000) in paragraph at lines 322--323
 
  []
 
@@ -1624,7 +1665,7 @@ type1/public/kpfonts/jkpmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/kpfonts/jkpmit8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/kpfont
 s/jkpmn8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/kpfonts/jkpttmn
 8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija_v6.pdf (57 pages, 12685484 bytes
+Output written on PROGI_ProjektnaDokumentacija_v6.pdf (57 pages, 12690015 bytes
 ).
 PDF statistics:
  769 PDF objects out of 1000 (max. 8388607)

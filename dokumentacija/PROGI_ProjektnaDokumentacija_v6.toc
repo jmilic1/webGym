@@ -13,7 +13,7 @@
 \contentsline {subsubsection}{Obrazac uporabe UC17 - Dozvola za rad trenera u teretani}{29}{subsubsection*.7}%
 \contentsline {section}{\numberline {3.2}Ostali zahtjevi}{30}{section.3.2}%
 \contentsline {chapter}{\numberline {4}Arhitektura i dizajn sustava}{31}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Baza podataka}{33}{section.4.1}%
+\contentsline {section}{\numberline {4.1}Baza podataka}{34}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Opis tablica}{34}{subsection.4.1.1}%
 \contentsline {subsection}{\numberline {4.1.2}Dijagram baze podataka}{39}{subsection.4.1.2}%
 \contentsline {section}{\numberline {4.2}Dijagram razreda}{41}{section.4.2}%
