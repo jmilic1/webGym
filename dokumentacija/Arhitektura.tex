@@ -23,6 +23,7 @@
 			\caption{Arhitektura sustava}
 			\label{fig:promjene}
 		\end{figure}
+
 	Na samom početku programiranja sustava bilo je neophodno dogovoriti se oko arhitekture i tehnologija koje će se koristiti za izradu programskog rješenja. Preciznije, dogovaralo se o pojedinostima kao što su programski jezici, razvojna okruženja i koncepti za razvoj aplikacije. Arhitekturu smo odabrali kako bi zadovoljavala mnoge značajke kao što su fleksibilnost, mogućnost nadogradnje i jeftinije održav-\\anje. Web aplikacija je razuman odabir zato što ovisi samo o veličini ekrana uređaja na kojoj se koristi, a taj problem je jednostavniji za riješiti nego problem specifične arhitekture pojedinih operacijskih sustava. Također, odabrana arhitektura od korisnika naše web aplikacije zahtijeva samo pristup internetu te web preglednik.  \newline
 	\indent Pregled web-stranice, svih podataka i zatraženih medija odvija se pomoću \linebreak \underbar{\textit{web preglednika}}. Web preglednik ima nekoliko uloga, jedna od njih je prikaz stranice na način koji je čitljiv čovjeku. Stoga, možemo reći da web preglednik ima ulogu, odnosno funkciju prevoditelja. Također, upravo je web preglednik alat pomoću kojeg korisnik šalje zahtjeve web poslužitelju. \newline
 	\indent Iduća funkcionalnost je komunkacija korisnika s aplikacijom. Tome služi \linebreak \underbar{\textit{web poslužitelj}} koji je svojevrsni motor web aplikacije. Sama komunikacija odvija se pomoću HTTP protokola koji služi za prijenos informacija i komunikaciju na internetu. \newline
@@ -33,6 +34,7 @@
 	MVC koncept sastoji se od:
 	\begin{itemize}
 		\item   \textbf{Model} - klase koje opisuju same podatke koji se koriste u aplikaciji. Uz to, klase sadrže i logiku vezanu za te podatke. Podaci u modelu ne ovise o korisničkom sučelju. Model prima ulazne podatke od Controllera.
+
 		\item 	\textbf{View} - omogućuje komunikaciju s korisnikom te definira kako će korisničko sučelje biti prikazano korisniku.
 		\item 	\textbf{Controller}	- klase koje kontroliraju komunikaciju korisnika sa aplikacijom. To je sloj aplikacije koji obrađuje korisničke zahtjeve. Controller prihvaća sve ulaze i pretvara ih u naredbe za Model i View.   	
 	\end{itemize}
@@ -285,19 +287,34 @@
 			
 			
 		\section{Dijagram razreda}
+		\begin{figure}[!htb]
+		    Na slikama 4.3, 4.4 i 4.5 su prikazani razredi koji pripadaju backend dijelu MVC
+            arhitekture. Razredi prikazani na slici 4.3 prikazuju razrede koji nasljeđuju Controller. Unutar implementiranih controllera koriste se metode pomoću kojih se manipulira i "razgovara" s DTO (data transfer object). Funkcionalnost metoda unutar pojedinih controllera isprogramirana je da vraća JSON datoteke s html status kodom. Razredi su podijeljeni logički po imenima aktora u našoj web aplikaciji te implementirani s pripadajućim metodama , ovisno o ovlasti pojedinačnog aktora.
+            Razredi prikazani na slici 4.4 predstavljaju DTO(data transfer object) razred.U području programiranja DTO je objekt koji prenosi podatke između procesa. Motivacija za njegovu upotrebu je ta da se komunikacija između procesa obično vrši pribjegavanjem udaljenim sučeljima (npr. Web uslugama), gdje je svaki poziv skupa operacija. Rješenje za smanjenje poziva je enkapsulacija  podataka u vrijednosni objekt koji se može prenositi preko mreže , odnosno korištenje DTO-a.
+		\end{figure}
 		
-			\textit{Potrebno je priložiti dijagram razreda s pripadajućim opisom. Zbog preglednosti je moguće dijagram razlomiti na više njih, ali moraju biti grupirani prema sličnim razinama apstrakcije i srodnim funkcionalnostima.}\\
-			
-			\textbf{\textit{dio 1. revizije}}\\
-			
-			\textit{Prilikom prve predaje projekta, potrebno je priložiti potpuno razrađen dijagram razreda vezan uz \textbf{generičku funkcionalnost} sustava. Ostale funkcionalnosti trebaju biti idejno razrađene u dijagramu sa sljedećim komponentama: nazivi razreda, nazivi metoda i vrste pristupa metodama (npr. javni, zaštićeni), nazivi atributa razreda, veze i odnosi između razreda.}\\
-			
-			\textbf{\textit{dio 2. revizije}}\\			
-			
-			\textit{Prilikom druge predaje projekta dijagram razreda i opisi moraju odgovarati stvarnom stanju implementacije}
-			
-			
-			
+		\begin{figure}
+			\includegraphics[height= 13cm,width=1.2\textwidth]{dijagrami/ControllerClass.jpg}
+			\begin{center}
+			    Slika 4.3: Dijagram razreda - dio Controllers
+			\end{center}
+		\end{figure}
+		\begin{figure}
+			\includegraphics[height= 13cm,width=1.2\textwidth]{dijagrami/DTOClass.jpg}
+			\begin{center}
+			    Slika 4.4: Dijagram razreda - dio Data transfer objects
+			\end{center}
+		\end{figure}
+		\begin{figure}
+		    Model razredi preslikavaju strukturu baze podataka u aplikaciji. Implementirane metode direktno komuniciraju s bazom podataka te vracaju tražene podatke. Razred Korisnik predstavlja uniju svih različitih entiteta koji se mogu registrirati u aplikaciji. Razred klijent predstavlja registriranog korisnika te on može koristiti sve rezervirane funkcionalnosti. Razred Administrator predstavlja administratora koji može koristiti više manje sve metode i ima najveće ovlasti te u suštini on upravlja cijelom aplikacijom. Razred Trener predstavlja trenera koji može raditi u nekoj od ponuđenih teretana te koristiti teretanu kao platformu za prodavanje svojih planova treninga i prehrane. Razred Voditelj predstavlja voditelja teretane, voditelj koristi svoje ovlasti kako bi osigurao pravilnu povezanost teretane , trenera i klijenata. Razred Zamolba predstavlja trenerov upit odnosno zamolbu za rad u određenoj teretani. Razred Ciljevi predstavlja određeni cilj pojedinog klijenta. Razred PlanTreningaIPrehrane predstavlja trenerov proizvod koji se nalazi u teretani u kojoj trener radi te ga mogu kupiti trenerovi klijenti.
+		\end{figure}
+		\begin{figure}
+			\includegraphics[height= 20cm,width=1.2\textwidth]{dijagrami/modelsClass.jpg}
+			\textbf{Slika 4.5: Dijagram razreda - dio Models}
+		\end{figure}
+	
+		\eject
+	
 			\eject
 		
 		\section{Dijagram stanja}
