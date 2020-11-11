@@ -57,7 +57,7 @@
 		
 		
 		\subsection{Opis tablica}
-		\textbf{Korisnik} Ovaj entitet sadržava sve bitne informacije o korisniku WebGym web aplikacije. Sadrži atribute kao što su: korisničko ime, ime, prezime, email, hashiranu lozinku, broj mobitela, broj PayPala, visinu, težinu te ulogu u sustavu. Primarni ključ ovog entiteta je korisničkoIme te je stoga taj atribut boldan u tablici. U ulozi ovise ovlasti koje korisnik u sustavu i u odnosima ima. Ovaj entitet je u vezi \emph{One-to-Many} s entitetom Ciljevi preko korisničkog imena klijenta koji je i sam korisnik, u vezi s \emph{Many-to-Many} entitetom PlanTreningaIPrehrane preko korisničkog imena trenera koji je i sam korisnik, u vezi \emph{One-to-Many} s entitetom ČlanarinaKlijent preko korisničkog imena klijenta, u vezi \emph{One-to-Many} s entitetom  Zamolba korisničkog imena trenera, u vezi \emph{Many-to-Many} s entitetom PlanKlijent preko korisničkog imena klijenta te u vezi \emph{Many-to-Many} s entitetom TeretanaKorisnik preko korisničkog imena trenera ili voditelja koji su i sami korisnici.
+		\textbf{Korisnik} Ovaj entitet sadržava sve bitne informacije o korisniku WebGym web aplikacije. Sadrži atribute kao što su: korisničko ime, ime, prezime, email, hashiranu lozinku, broj mobitela, broj PayPala, visinu, težinu te ulogu u sustavu. Primarni ključ ovog entiteta je korisničkoIme te je stoga taj atribut boldan u tablici. Uloga definira ovlasti koje korisnik u sustavu i u odnosima ima. Ovaj entitet je u vezi \emph{One-to-Many} s entitetom Ciljevi preko korisničkog imena klijenta koji je i sam korisnik, u vezi s \emph{Many-to-Many} entitetom PlanTreningaIPrehrane preko korisničkog imena trenera koji je i sam korisnik, u vezi \emph{One-to-Many} s entitetom ČlanarinaKlijent preko korisničkog imena klijenta, u vezi \emph{One-to-Many} s entitetom  Zamolba korisničkog imena trenera, u vezi \emph{Many-to-Many} s entitetom PlanKlijent preko korisničkog imena klijenta te u vezi \emph{Many-to-Many} s entitetom TeretanaKorisnik preko korisničkog imena trenera ili voditelja koji su i sami korisnici.
 				
 				
     			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
@@ -85,7 +85,7 @@
 					
 				\end{longtabu}
 				
-				\textbf{Teretana} ovaj entitet sadrži sve bitne informacije o lancu teretani. Sadrži atribute: id, ime, opis te email, a ovaj je entitet u vezi \emph{One-to-Many} s entitetom TeretanaLokacija preko jedinstvenog brojčanog identifikatora teretane te u vezi \emph{One-to-Many} s entitetom članarina preko jedinstvenog brojčanog identifikatora teretane. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici.
+				\textbf{Teretana} Ovaj entitet sadrži sve bitne informacije o lancu teretani. Sadrži atribute: id, ime, opis te email, a ovaj je entitet u vezi \emph{One-to-Many} s entitetom TeretanaLokacija preko jedinstvenog brojčanog identifikatora teretane te u vezi \emph{One-to-Many} s entitetom članarina preko jedinstvenog brojčanog identifikatora teretane. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici.
 				\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{Teretana}}	 \\[3pt] \hline
@@ -105,7 +105,7 @@
 					
 				\end{longtabu}
 				
-			\textbf{TeretanaLokacija} ovaj entitet sadrži sve bitne informacije o pojedinoj teretani. Sadrži atribute: id,id lanca teretani, država u kojoj se nalazi, grad u kojem se nalazi, ulica u kojoj se nalazi, početak ranog vremena teretane, kraj radnog vremena teretane te broj telefona teretane, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Teretana preko jedinstvenog brojčanog identifikatora teretane, u vezi \emph{One-to-Many} s entitetom Zamolba preko jedinstvenog brojčanog identifikatora pojedine teretane te je u vezi \emph{One-to-Many} s entitetom TeretanaKorisnik preko jedinstvenog brojčanog identifikatora pojedine teretane. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok je idTeretana strani ključ te je stoga taj atribut pisan formatom italic u tablici.
+			\textbf{TeretanaLokacija} Ovaj entitet sadrži sve bitne informacije o pojedinoj teretani. Sadrži atribute: id, id lanca teretani, država u kojoj se nalazi, grad u kojem se nalazi, ulica u kojoj se nalazi, početak radnog vremena teretane, kraj radnog vremena teretane te broj telefona teretane, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Teretana preko jedinstvenog brojčanog identifikatora teretane, u vezi \emph{One-to-Many} s entitetom Zamolba preko jedinstvenog brojčanog identifikatora pojedine teretane te je u vezi \emph{One-to-Many} s entitetom TeretanaKorisnik preko jedinstvenog brojčanog identifikatora pojedine teretane. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok je idTeretana strani ključ te je stoga taj atribut pisan formatom italic u tablici.
 			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{TeretanaLokacija}}	 \\[3pt] \hline
@@ -129,7 +129,7 @@
 					
 			\end{longtabu}
 			
-			\textbf{Ciljevi} ovaj entitet sadrži sve važne informacije o ciljevima samog klijenta. Sadrži atribute: id,korisničko ime klijenta te opis cilja, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena.Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok je korisničkoImeKlijent strani ključ te je stoga taj atribut pisan formatom italic u tablici.
+			\textbf{Ciljevi} Ovaj entitet sadrži sve važne informacije o ciljevima samog klijenta. Sadrži atribute: id,korisničko ime klijenta te opis cilja, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena.Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok je korisničkoImeKlijent strani ključ te je stoga taj atribut pisan formatom italic u tablici.
 			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{Ciljevi}}	 \\[3pt] \hline
@@ -142,7 +142,7 @@
     				\endlastfoot
     					
     					\textbf{id}  & INT	&  	jedinstveni brojčani identifikator cilja 	\\ \hline
-    					\textit{korisničkoImeKlijent}	& VARCHAR & jedinstveni brojčani identifikator klijenta koji cilj obavlja (Korisnik.korisničkoIme)  	\\ \hline 
+    					\textit{korisničkoImeKlijent}	& VARCHAR & jedinstveni identifikator klijenta koji cilj obavlja (Korisnik.korisničkoIme)  	\\ \hline 
     					opis & VARCHAR & opis cilja   \\ \hline 
     					obavljeno & BOOLEAN	& je li cilj obavljen	\\ \hline 
 					
@@ -150,7 +150,7 @@
 			\end{longtabu}
 			
 			
-			\textbf{PlanTreningaIPrehrane} ovaj entitet sadrži sve važne informacije o planu treninga i prehrane. Korisnik može kupiti trening te onda ima individualni pristup trenera, ili može samo kupiti plan te dobiti gotov file sa treninzima i preporučenim načinom prehrane. Sadrži atribute: id,korisničko ime trenera, opis plana, datum početka plana, datum isteka plana te atribut koji nam govori je li trening u pitanju, a ovaj je entitet u vezi \emph{Many-to-Many} s entitetom Korisnik preko korisničkog imena. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok je korisničkoImeTrener strani ključ te je stoga taj atribut pisan formatom italic u tablici.
+			\textbf{PlanTreningaIPrehrane} Ovaj entitet sadrži sve važne informacije o planu treninga i prehrane. Korisnik može kupiti trening te onda ima individualni pristup trenera, ili može samo kupiti plan te dobiti gotov file sa treninzima i preporučenim načinom prehrane. Sadrži atribute: id, korisničko ime trenera, opis plana, datum početka plana, datum isteka plana te atribut koji nam govori je li trening u pitanju, a ovaj je entitet u vezi \emph{Many-to-Many} s entitetom Korisnik preko korisničkog imena. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok je korisničkoImeTrener strani ključ te je stoga taj atribut pisan formatom italic u tablici.
 			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{PlanTreningaIPrehrane}}	 \\[3pt] \hline
@@ -163,7 +163,7 @@
     				\endlastfoot
     					
     					\textbf{id}  & INT	&  	jedinstveni brojčani identifikator plana treninga i prehrane 	\\ \hline
-    					\textit{korisničkoImeTrener} 	& VARCHAR & jedinstveni brojčani identifikator trenera čiji je plan (Korisnik.korisničkoIme)  	\\ \hline 
+    					\textit{korisničkoImeTrener} 	& VARCHAR & jedinstveni identifikator trenera čiji je plan (Korisnik.korisničkoIme)  	\\ \hline 
     					opis & VARCHAR & opis plana treninga i prehrane   \\ \hline 
     					datumPočetka & TIMESTAMP & vrijeme početka plana   \\ \hline
     					datumIsteka & TIMESTAMP & vrijeme kraja plana   \\ \hline
@@ -173,7 +173,7 @@
 					
 			\end{longtabu}
 			
-			\textbf{Članarina} ovaj entitet sadrži sve važne informacije o članarini u teretani.  Sadrži atribute: id,id pojedine teretane, cijena članarine, opis te trajanje, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Teretana preko jedinstvenog brojčanog identifikatora teretane te je u vezi \emph{One-to-Many} s entitetom ČlanarinaKlijent preko jedinstvenog brojčanog identifikatora članarine. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok je idTeretana strani ključ te je stoga taj atribut pisan formatom italic u tablici.
+			\textbf{Članarina} Ovaj entitet sadrži sve važne informacije o članarini u teretani.  Sadrži atribute: id, id pojedine teretane, cijena članarine, opis te trajanje, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Teretana preko jedinstvenog brojčanog identifikatora teretane te je u vezi \emph{One-to-Many} s entitetom ČlanarinaKlijent preko jedinstvenog brojčanog identifikatora članarine. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok je idTeretana strani ključ te je stoga taj atribut pisan formatom italic u tablici.
 			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{Članarina}}	 \\[3pt] \hline
@@ -188,13 +188,13 @@
     					\textbf{id}  & INT	&  	jedinstveni brojčani identifikator članarine 	\\ \hline
     					\textit{idTeretana}  	& INT & jedinstveni brojčani identifikator trenere koja nudi članarinu (Teretana.id)  	\\ \hline
     					cijena & DECIMAL & cijena članarine   \\ \hline
-    					opis & VARCHAR & opis članarine (što se članarina uključuje)   \\ \hline
+    					opis & VARCHAR & opis članarine (što sve članarina uključuje)   \\ \hline
     					trajanje & INTERVAL & trajanje članarine   \\ \hline
 					
 					
 			\end{longtabu}
 			
-			\textbf{ČlanarinaKlijent} ovaj entitet sadrži sve važne informacije o članarini koju klijent posjeduje. Sadrži atribute: id,korisničko ime klijenta, id članarine koju teretana nudi, datum početka te dazum isteka trajanja članarine, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena klijenta te je u vezi \emph{Many-to-One} s entitetom Članarina preko jedinstvenog brojčanog identifikatora članarine. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok su korisničkoImeKlijent i idČlanarina strani ključevi te su stoga ti atributi pisani formatom italic u tablici.
+			\textbf{ČlanarinaKlijent} Ovaj entitet sadrži sve važne informacije o članarini koju klijent posjeduje. Sadrži atribute: id, korisničko ime klijenta, id članarine koju teretana nudi, datum početka te datum isteka trajanja članarine, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena klijenta te je u vezi \emph{Many-to-One} s entitetom Članarina preko jedinstvenog brojčanog identifikatora članarine. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok su korisničkoImeKlijent i idČlanarina strani ključevi te su stoga ti atributi pisani formatom italic u tablici.
 			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{ČlanarinaKlijent}}	 \\[3pt] \hline
@@ -214,7 +214,7 @@
 					
 			\end{longtabu}
 			
-			\textbf{Zamolba} ovaj entitet sadrži sve važne informacije o prijavi za posao koju trener šalje pojedinoj teretani. Sadrži atribute: id,korisničko ime trenera, id pojedine teretane u kojoj se trener za posao prijavljuje, te opis prijave, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena trenera te je u vezi \emph{Many-to-One} s entitetom Teretana preko jedinstvenog brojčanog identifikatora teretane. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok su korisničkoImeTrener i idTeretana strani ključevi te su stoga ti atributi pisani formatom italic u tablici.
+			\textbf{Zamolba} Ovaj entitet sadrži sve važne informacije o prijavi za posao koju trener šalje pojedinoj teretani. Sadrži atribute: id, korisničko ime trenera, id pojedine teretane u kojoj se trener za posao prijavljuje, te opis prijave, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena trenera te je u vezi \emph{Many-to-One} s entitetom Teretana preko jedinstvenog brojčanog identifikatora teretane. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok su korisničkoImeTrener i idTeretana strani ključevi te su stoga ti atributi pisani formatom italic u tablici.
 			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{Zamolba}}	 \\[3pt] \hline
@@ -234,7 +234,7 @@
 					
 			\end{longtabu}
 			
-			\textbf{PlanKlijent} ovaj entitet sadrži sve važne informacije o planu prehrane i treninga kojeg klijent posjeduje. Sadrži atribute: id, id plana, korisničko ime klijenta, te datum kupnje, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena klijenta te je u vezi  \emph{Many-to-One} s entitetom PlanTreningaIPrehrane preko jedinstvenog brojčanog identifikatora plana. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok su korisničkoImeKlijent i idPlan strani ključevi te su stoga ti atributi pisani formatom italic u tablici.
+			\textbf{PlanKlijent} Ovaj entitet sadrži sve važne informacije o planu prehrane i treninga kojeg klijent posjeduje. Sadrži atribute: id, id plana, korisničko ime klijenta, te datum kupnje, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena klijenta te je u vezi  \emph{Many-to-One} s entitetom PlanTreningaIPrehrane preko jedinstvenog brojčanog identifikatora plana. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok su korisničkoImeKlijent i idPlan strani ključevi te su stoga ti atributi pisani formatom italic u tablici.
 			\begin{longtabu} to \textwidth {|X[11, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{PlanKlijent}}	 \\[3pt] \hline
@@ -252,7 +252,7 @@
 					    datumKupnje & TIMESTAMP & datum kupnje plana   \\ \hline
 		    \end{longtabu}
 			
-			\textbf{TeretanaKorisnik} ovaj entitet sadrži sve važne informacije o korisniku koji radi u teretani kao voditelj ili kao trener. Sadrži atribute: id, id pojedine teretane, korisničko ime korisnika, te datum početka rada, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena korisnika te je u vezi \emph{Many-to-One} s entitetom TeretanaLokacija preko jedinstvenog brojčanog identifikatora pojedine teretane. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok su idTeretana i korisničkoImeKorisnik strani ključevi te su stoga ti atributi pisani formatom italic u tablici.
+			\textbf{TeretanaKorisnik} Ovaj entitet sadrži sve važne informacije o korisniku koji radi u teretani kao voditelj ili kao trener. Sadrži atribute: id, id pojedine teretane, korisničko ime korisnika, te datum početka rada, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena korisnika te je u vezi \emph{Many-to-One} s entitetom TeretanaLokacija preko jedinstvenog brojčanog identifikatora pojedine teretane. Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok su idTeretana i korisničkoImeKorisnik strani ključevi te su stoga ti atributi pisani formatom italic u tablici.
 			\begin{longtabu} to \textwidth {|X[11, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{TeretanaKorisnik}}	 \\[3pt] \hline
@@ -290,7 +290,7 @@
 		\begin{figure}[!htb]
 		    Na slikama 4.3, 4.4 i 4.5 su prikazani razredi koji pripadaju backend dijelu MVC
             arhitekture. Razredi prikazani na slici 4.3 prikazuju razrede koji nasljeđuju Controller. Unutar implementiranih controllera koriste se metode pomoću kojih se manipulira i "razgovara" s DTO (data transfer object). Funkcionalnost metoda unutar pojedinih controllera isprogramirana je da vraća JSON datoteke s html status kodom. Razredi su podijeljeni logički po imenima aktora u našoj web aplikaciji te implementirani s pripadajućim metodama , ovisno o ovlasti pojedinačnog aktora.
-            Razredi prikazani na slici 4.4 predstavljaju DTO(data transfer object) razred.U području programiranja DTO je objekt koji prenosi podatke između procesa. Motivacija za njegovu upotrebu je ta da se komunikacija između procesa obično vrši pribjegavanjem udaljenim sučeljima (npr. Web uslugama), gdje je svaki poziv skupa operacija. Rješenje za smanjenje poziva je enkapsulacija  podataka u vrijednosni objekt koji se može prenositi preko mreže , odnosno korištenje DTO-a.
+            Razredi prikazani na slici 4.4 predstavljaju DTO (data transfer object) razred. U području programiranja DTO je objekt koji prenosi podatke između procesa. Motivacija za njegovu upotrebu je ta da se komunikacija između procesa obično vrši pribjegavanjem udaljenim sučeljima (npr. Web uslugama), gdje je svaki poziv skupa operacija. Rješenje za smanjenje poziva je enkapsulacija  podataka u vrijednosni objekt koji se može prenositi preko mreže, odnosno korištenje DTO-a.
 		\end{figure}
 		
 		\begin{figure}

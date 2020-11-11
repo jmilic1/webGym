@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.26)  11 NOV 2020 12:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.26)  11 NOV 2020 13:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1428,6 +1428,12 @@ Overfull \hbox (3.87679pt too wide) in paragraph at lines 174--174
  []
 
 [36]
+Overfull \hbox (2.70566pt too wide) in paragraph at lines 176--177
+[][]\OT1/jkp/b/n/12 Clanarina \OT1/jkp/m/n/12 Ovaj en-ti-tet sadr[]zi sve va[]z
+ne in-for-ma-cije o []clanarini u te-re-tani. Sadr[]zi
+ []
+
+
 Overfull \hbox (3.87679pt too wide) in paragraph at lines 215--215
 []\OT1/jkp/m/n/12 TIMESTAMP|  
  []
@@ -1669,7 +1675,7 @@ e/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/20
 mf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2020/texmf-
 dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2020/texmf-dist
 /fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija_v6.pdf (60 pages, 14382580 bytes
+Output written on PROGI_ProjektnaDokumentacija_v6.pdf (60 pages, 14382641 bytes
 ).
 PDF statistics:
  791 PDF objects out of 1000 (max. 8388607)
