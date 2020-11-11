@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.27)  11 NOV 2020 13:04
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.26)  11 NOV 2020 12:49
+>>>>>>> devdoc
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1129,18 +1133,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
  []
 
 
-Overfull \hbox (6.59265pt too wide) in paragraph at lines 19--19
+Overfull \hbox (6.59265pt too wide) in paragraph at lines 29--29
 []\OT1/jkp/m/n/12 27.10.2020.|  
  []
 
 
-Overfull \hbox (6.59265pt too wide) in paragraph at lines 19--19
+Overfull \hbox (6.59265pt too wide) in paragraph at lines 29--29
 []\OT1/jkp/m/n/12 31.10.2020.|  
  []
 
 
-Overfull \hbox (6.59265pt too wide) in paragraph at lines 19--19
+Overfull \hbox (6.59265pt too wide) in paragraph at lines 29--29
 []\OT1/jkp/m/n/12 31.10.2020.|  
+ []
+
+
+Overfull \hbox (3.47266pt too wide) in paragraph at lines 29--29
+[]\OT1/jkp/m/n/12 10.11.2020|  
+ []
+
+
+Overfull \hbox (3.47266pt too wide) in paragraph at lines 29--29
+[]\OT1/jkp/m/n/12 10.11.2020|  
+ []
+
+
+Overfull \hbox (3.47266pt too wide) in paragraph at lines 29--29
+[]\OT1/jkp/m/n/12 10.11.2020|  
  []
 
 ) [3
@@ -1620,7 +1639,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 73--74
  []
 
 [57] [58]
-Underfull \hbox (badness 10000) in paragraph at lines 135--136
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
 
  []
 
@@ -1643,16 +1662,24 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  12492 strings out of 481239
  176827 string characters out of 5920376
  516384 words of memory out of 5000000
  27106 multiletter control sequences out of 15000+600000
+=======
+ 12504 strings out of 480608
+ 178255 string characters out of 5903629
+ 523083 words of memory out of 5000000
+ 27743 multiletter control sequences out of 15000+600000
+>>>>>>> devdoc
  580285 words of font info for 129 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,12n,45p,1213b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
+<<<<<<< HEAD
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
 texmf-dist/fonts/type1/public/kpfonts/jkpbit8a.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/share/texlive/texmf-dist/fonts/
@@ -1661,6 +1688,16 @@ c/kpfonts/jkpmit8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/kpfont
 s/jkpmn8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/kpfonts/jkpttmn
 8a.pfb>
 Output written on PROGI_ProjektnaDokumentacija_v6.pdf (60 pages, 14381590 bytes
+=======
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
+live/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbit8a.pfb></usr/local/texliv
+e/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/20
+20/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2020/tex
+mf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2020/texmf-
+dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2020/texmf-dist
+/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
+Output written on PROGI_ProjektnaDokumentacija_v6.pdf (60 pages, 14382580 bytes
+>>>>>>> devdoc
 ).
 PDF statistics:
  791 PDF objects out of 1000 (max. 8388607)
