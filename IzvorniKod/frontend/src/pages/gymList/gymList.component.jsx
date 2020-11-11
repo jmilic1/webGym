@@ -11,7 +11,7 @@ class GymList extends React.Component{
     }
 
     componentDidMount(){
-        fetch('https://web-gym2.herokuapp.com/', {
+        fetch('https://web-gym2.herokuapp.com/gymList', {
             method: 'GET',
             credentials: "include"
         }).then(response => {
@@ -25,10 +25,16 @@ class GymList extends React.Component{
 
     render(){
         return(
+
             <div className = 'gymList-container'>
-                 {this.state.gymList.map(gym => 
-                            <GymMetaDataContainer name = {gym.name} key = {gym.name}/>
-                        )}
+                <div className = 'gymList-header-container'>
+                    <h3>Ime teretane</h3>
+                    <h3>Grad</h3>
+                    <h3>Informacije</h3>
+                </div>
+                {this.state.gymList.map(gym =>
+                    <GymMetaDataContainer name = {gym.name} city = {gym.city} key = {gym.id}/>
+                )}
             </div>
         )
     }

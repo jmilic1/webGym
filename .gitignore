@@ -38,5 +38,40 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+# IntelliJ
+out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+### Java ###
+# Compiled class file
+*.class
+
+### react ###
+.DS_*
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
 ### VS Code ###
 .vscode/
+
+## React ##
+IzvorniKod/frontend/node_modules/
