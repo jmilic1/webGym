@@ -7,13 +7,8 @@
 		
 		\begin{packed_enum}
 			
-			\item Klijent teretane
-			\begin{packed_enum}
-				
-				\item registrirani
-				\item neregistrirani
-				
-			\end{packed_enum}
+			\item Neregistrirani korisnik
+			\item Klijent
 			\item Trener
 			\item Voditelj teretane			
 			\item Administrator
@@ -33,7 +28,7 @@
 				\item sortirati spomenuti popis prema sljedećim kriterijima: ime teretane, lokacija, trener
 				\item otvoriti početnu stranicu svake teretane na kojoj se nalaze osnovne informacije (radno vrijeme, lokacija, cijena
 				članarine…)
-				\item izraditi administratorski, voditeljski, trenerski ili korisnički račun s namjerom treniranja u teretani za koje je potrebno navesti ime, prezime i email adresu, dok se može, ali ne mora dodati PayPal račun te je za izradu trenerskog korisničkog računa posebno potrebno navesti posebne podatke poput visine i težine
+				\item izraditi administratorski, voditeljski, trenerski ili klijentski račun s namjerom treniranja u teretani za koje je potrebno navesti ime, prezime i email adresu, dok se može, ali ne mora dodati PayPal račun te je za izradu trenerskog korisničkog računa posebno potrebno navesti posebne podatke poput visine i težine
 				
 				
 			\end{packed_enum}
@@ -118,7 +113,6 @@
 				
 			\subsection{Obrasci uporabe}
 				
-				\textbf{\textit{dio 1. revizije}}
 				
 				\subsubsection{Opis obrazaca uporabe}
 
@@ -324,14 +318,14 @@
 						\item \textbf{Glavni sudionik: }Klijent
 						\item  \textbf{Cilj:} Učlanjivanje korisnika u određenu teretanu (ili lanac teretana)
 						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} Korisnik je prijavljen
+						\item  \textbf{Preduvjet:} Klijent je prijavljen
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
 	
-							\item Korisnik odabire određenu teretanu
-							\item Korisniku se prikazuje ponuda vrsta članarina
-							\item Korisnik odabire opciju članarine koju želi platiti
+							\item Klijent odabire određenu teretanu
+							\item Klijentu se prikazuje ponuda vrsta članarina
+							\item Klijent odabire opciju članarine koju želi platiti
 						\end{packed_enum}
 					
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -339,10 +333,10 @@
 						\item[] \begin{packed_item}
 	
 						\item[-]
-						Korisnik pokušava kupiti članarinu u teretani u kojoj već ima aktivnu članarinu istog tipa
+						Klijent pokušava kupiti članarinu u teretani u kojoj već ima aktivnu članarinu istog tipa
 							\item[] \begin{packed_enum}
 								
-								\item Sustav obavještava korisnika da već postoji aktivna članarina tog tipa
+								\item Sustav obavještava klijenta da već postoji aktivna članarina tog tipa
 								\item Vraća ga na stranicu s popisom članarina te teretane
 							\end{packed_enum}
 						\end{packed_item}
@@ -354,7 +348,7 @@
 					\item \textbf{Glavni sudionik: } Klijent
 					\item  \textbf{Cilj:} Platiti željenu narudžbu
 					\item  \textbf{Sudionici:} Baza podataka
-					\item  \textbf{Preduvjet:} Korisnik je prijavljen i napravio je narudžbu
+					\item  \textbf{Preduvjet:} Klijent je prijavljen i napravio je narudžbu
 					\item  \textbf{Opis osnovnog tijeka:}
 					
 					\item[] \begin{packed_enum}
@@ -402,7 +396,7 @@
 					\item \textbf{Glavni sudionik: } Klijent
 					\item  \textbf{Cilj:} Odabrati trenerov programa treniranja ili plana prehrane
 					\item  \textbf{Sudionici:} Baza podataka, Trener
-					\item  \textbf{Preduvjet:} Korisnik je prijavljen
+					\item  \textbf{Preduvjet:} Klijent je prijavljen
 					\item  \textbf{Opis osnovnog tijeka:}
 					
 					\item[] \begin{packed_enum}
@@ -432,7 +426,7 @@
 					\item \textbf{Glavni sudionik: } Klijent
 					\item  \textbf{Cilj:} Pregled, uređivanje i postavljanje vlastitih ciljeva
 					\item  \textbf{Sudionici:} Baza podataka
-					\item  \textbf{Preduvjet:} Korisnik je prijavljen i odabrao je promjenu svojih podataka
+					\item  \textbf{Preduvjet:} Klijent je prijavljen i odabrao je promjenu svojih podataka
 					\item  \textbf{Opis osnovnog tijeka:}
 					
 					\item[] \begin{packed_enum}
@@ -862,20 +856,20 @@
 				
 				\subsubsection{Dijagrami obrazaca uporabe}
 				\begin{figure}[!htb]
-					\includegraphics[height= 13cm,width=1.2\textwidth]{slike/obrazac1.jpg}
+					\includegraphics[height= 13cm,width=1.2\textwidth]{dijagrami/obrazac1.jpg}
 					\textbf{Slika 3.1: Dijagram obrasca uporabe, funkcionalnost korisnika i neregistriranog korisnika u aplikaciji  }
 					
 				\end{figure}
 				
 				\begin{figure}
 					
-					\includegraphics[height=13cm,width=1.2\textwidth]{slike/obrazac2.jpg}
+					\includegraphics[height=13cm,width=1.2\textwidth]{dijagrami/obrazac2.jpg}
 					
 					\textbf{Slika 3.2: Dijagram obrasca uporabe, funkcionalnost korisnika i trenera u aplikaciji}
 				\end{figure}
 				
 				\begin{figure}
-					\includegraphics[height= 13cm,width=1.2\textwidth]{slike/obrazac3.jpg}
+					\includegraphics[height= 13cm,width=1.2\textwidth]{dijagrami/obrazac3.jpg}
 					\textbf{Slika 3.3: Dijagram obrasca uporabe, Funkcionalnost korisnika i neregistriranog korisnika u aplikaciji}
 					
 				\end{figure}
@@ -886,9 +880,6 @@
 				
 			\subsection{Sekvencijski dijagrami}
 				
-				\textbf{\textit{dio 1. revizije}}\\
-				
-				\textit{Nacrtati sekvencijske dijagrame koji modeliraju najvažnije dijelove sustava (max. 4 dijagrama). Ukoliko postoji nedoumica oko odabira, razjasniti s asistentom. Uz svaki dijagram napisati detaljni opis dijagrama.}
 				
 					\subsubsection{Obrazac uporabe UC10 - Učlanjivanje korisnika u određenu teretanu (ili lanac teretana)}
 					\textit{}Klijent šalje zahtjev za popis svih teretana te web aplikacija dohvaća popis teretana
@@ -896,10 +887,10 @@
                     popis članarina unutar odabrane teretane, tada klijent odabire članarinu koju želi te 
                     ako trenutno nema odabranu članarinu aktivnu dobiva poruku kako je članarina odabrana, 
                     dok ga u suprotnom Web aplikacija preusmjerava natrag na popis članarina za odabrati
-                    iz odabrane teretane\\
+                    iz odabrane teretane.\\
                     
                     \begin{figure}[H]
-			            \includegraphics[scale=0.9]{slike/UC10.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			            \includegraphics[scale=0.9]{dijagrami/UC10.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 			            \centering
 			            \caption{Sekvencijski dijagram za UC10}
 			            \label{fig:promjene}
@@ -916,7 +907,7 @@
                     iz kojih potom bira novi termin.\\
                     
                     \begin{figure}[H]
-			            \includegraphics[scale=0.9]{slike/UC13.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			            \includegraphics[scale=0.9]{dijagrami/UC13.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 			            \centering
 			            \caption{Sekvencijski dijagram za UC13}
 			            \label{fig:promjene}
@@ -926,12 +917,12 @@
                     \subsubsection{Obrazac uporabe UC15 - Uređivanje trenerove ponude za treninge}
 					\textit{}Trener šalje zahtjev za popis svih njegovih programa te web aplikacija dohvaća popis
                     iz baze podataka te ih prikazuje treneru. Trener potom odabire jedan od ponuđenih programa
-                    te web aplikacija iz baze podataka povlači informacije o programu te izlistava sve treneru.
+                    te web aplikacija iz baze podataka povlači informacije o programu te ih prikazuje treneru.
                     Trener potom može izmjeniti program te se naknadno ta promjena zabilježava u bazu podataka
                     za buduće izmjene ili potražnje korisnika za tim programom.\\
                     
                     \begin{figure}[H]
-			            \includegraphics[scale=0.9]{slike/UC15.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			            \includegraphics[scale=0.9]{dijagrami/UC15.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 			            \centering
 			            \caption{Sekvencijski dijagram za UC15}
 			            \label{fig:promjene}
@@ -939,16 +930,16 @@
                     
                     
                     \subsubsection{Obrazac uporabe UC17 - Dozvola za rad trenera u teretani}
-					\textit{}Trener šalje zahtjev za popis svih teretani te web aplikacija dohvaća popis
+					\textit{}Trener šalje zahtjev za popis svih teretana te web aplikacija dohvaća popis
                     iz baze podataka te ih prikazuje treneru. Trener potom odabire teretanu za 
-                    koju je zainteresiran, a podaci o teretani se ponovo dohvaćaju iz baze podataka.
+                    koju je zainteresiran, a podaci o teretani se ponovno dohvaćaju iz baze podataka.
                     Tada trener šalje zahtjev za rad u teretanu, a web aplikacija u bazi provjerava
                     radi li već trener u odabranoj teretani. U slučaju da ne radi u odabranoj teretani
                     dobiva poruku kako je zahtjev uspješno zaprimljen te zahtjev čeka odobrenje voditelja
                     teretane, a u slučaju da trener ondje već radi dobiva poruku koja ga o tome obavještava.\\
                     
                     \begin{figure}[H]
-			            \includegraphics[scale=0.9]{slike/UC17.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			            \includegraphics[scale=0.9]{dijagrami/UC17.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 			            \centering
 			            \caption{Sekvencijski dijagram za UC17}
 			            \label{fig:promjene}
@@ -969,7 +960,7 @@
 	        	\item 	Sustav bi trebao jamčiti točnost i pouzdanost informacija u aplikaciji
 	        	\item 	Ažuriranje i nadogradnja sustava ne smije narušavati postojeće funkcionalnosti sustava
 	        	\item 	Baza podataka mora biti brza i zaštićena od bilo kakvih vanjskih utjecaja
-	        	\item 	Odgovor na korisnikov upit koji je povezan sa bazom podatak bi trebao biti najduže par sekundi
+	        	\item 	Odgovor na korisnikov upit koji je povezan sa bazom podataka trebao bi trajati najduže par sekundi
 	        	\item 	Nepravilne akcije korisnika, trenera ili voditelja u korisničkom sučelju ne smiju narušiti postojeće funkcionalnosti sustava
 	        	\item 	Sustav kao valutu dopušta hrvatsku kunu
 	        	\item 	Sustavu se treba moći pristupiti iz javne mreže sigurnim protokolom (HTTPS)

@@ -1,13 +1,5 @@
 \chapter{Arhitektura i dizajn sustava}
 		
-		\textbf{\textit{dio 1. revizije}}\\
-
-		\textit{ Potrebno je opisati stil arhitekture te identificirati: podsustave, preslikavanje na radnu platformu, spremišta podataka, mrežne protokole, globalni upravljački tok i sklopovsko-programske zahtjeve. Po točkama razraditi i popratiti odgovarajućim skicama:}
-	\begin{itemize}
-		\item 	\textit{izbor arhitekture temeljem principa oblikovanja pokazanih na predavanjima (objasniti zašto ste baš odabrali takvu arhitekturu)}
-		\item 	\textit{organizaciju sustava s najviše razine apstrakcije (npr. klijent-poslužitelj, baza podataka, datotečni sustav, grafičko sučelje)}
-		\item 	\textit{organizaciju aplikacije (npr. slojevi frontend i backend, MVC arhitektura) }		
-	\end{itemize}
 	
 	Arhitektura korištena pri izradi WebGym web aplikacije sastoji se od:
 	\begin{itemize}
@@ -30,7 +22,7 @@
 	\indent \underbar{\textit{Web aplikacija}} se pokreće pomoću web poslužitelja kojemu šalje zahtjeve, a web poslužitelj služi za obradu tih zahtjeva. Za prikaz je zaslužan već prije spomenuti web poslužitelj koji vraća korisniku HTML dokument kao odgovor, a čitljivi prikaz korisniku osiguran je pomoću web preglednika. Također, web poslužitelj zahtjeve vezane uz podatke u bazi podataka prosljeđuje prema poslužitelju baze podataka. \newline
 	\indent \underbar{\textit{Poslužitelj baze podataka}} ispunjava ulogu komunikacije s bazom podataka. Dak-\\le, on zaprima i obrađuje zahtjeve za podacima poslane iz web aplikacije koje mu prosljeđuje web poslužitelj. Ovisno o vrsti zathjeva, u odgovorima se mogu nalaziti zatraženi podatci ili informacije o uspješnosti nekih operacija, na primjer autentifikacije ili umetanja novih podataka u bazu podataka.\newline
 	\indent Aplikacija se sastoji od front-enda i back-enda. S jedne strane, tehnologija koju smo odabrali za izradu back-enda je Java Spring Boot. Konkretno, back-end obuhvaća komunikaciju s bazom podataka (\underbar{\textit{poslužitelj baze podataka}}). S druge strane, za front-end smo odabrali React.js. Front-end obuhvaća prikaz korisničkog sučelja aplikacije (\underbar{\textit{web aplikacija}} i \underbar{\textit{web poslužitelj}}) i slanje zahtjeva za podacima prema back-endu. Arhitektura sustava za koju smo se odlučili je MVC odnosno (Model-View-Controller) koncept. \newline
-	\indent Glavna korist MVC kocepta je ta što dijelovi aplikacije nisu usko povezani i omogućavaju se jednostavnije testiranje, a i greška u jednom od dijelova neće utjecati na rad ostalih. \newline
+	\indent Glavna korist MVC kocepta je ta što dijelovi aplikacije nisu usko povezani i omogućavaju se jednostavnije testiranje, a pogreška u jednom od dijelova neće utjecati na rad ostalih. \newline
 	MVC koncept sastoji se od:
 	\begin{itemize}
 		\item   \textbf{Model} - klase koje opisuju same podatke koji se koriste u aplikaciji. Uz to, klase sadrže i logiku vezanu za te podatke. Podaci u modelu ne ovise o korisničkom sučelju. Model prima ulazne podatke od Controllera.
@@ -41,7 +33,7 @@
 
 	
 		\section{Baza podataka}
-		Za potrebe WebGym sustava koristit ćemo relacijsku bazu podataka koja nam pojednostavljuje modeliranje odnosa i scenarija koji se u realnosti dešavaju. Svaka je tablica definirana svojim imenom te skupom atributa koji su nam potrebni za punu funkcionalnost pojma ili odnosa opisanim tablicom. Brza i jednostavna pohrana te pristup samim podacima je zadaća ovog sustava pohranjivanja podataka u bazu. Baza podataka sastoji se od sljedećih entiteta:
+		Za potrebe WebGym sustava koristit ćemo relacijsku bazu podataka koja nam pojednostavljuje modeliranje odnosa i scenarija koji se u realnosti događaju. Svaka je tablica definirana svojim imenom te skupom atributa koji su nam potrebni za punu funkcionalnost pojma ili odnosa opisanim tablicom. Brza i jednostavna pohrana te pristup samim podacima je zadaća ovog sustava pohranjivanja podataka u bazu. Baza podataka sastoji se od sljedećih entiteta:
 		\begin{itemize}
 	        	\item 	Korisnik
 	        	\item 	Teretana 
@@ -129,7 +121,7 @@
 					
 			\end{longtabu}
 			
-			\textbf{Ciljevi} Ovaj entitet sadrži sve važne informacije o ciljevima samog klijenta. Sadrži atribute: id,korisničko ime klijenta te opis cilja, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena.Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok je korisničkoImeKlijent strani ključ te je stoga taj atribut pisan formatom italic u tablici.
+			\textbf{Ciljevi} Ovaj entitet sadrži sve važne informacije o ciljevima samog klijenta. Sadrži atribute: id, korisničko ime klijenta te opis cilja, a ovaj je entitet u vezi \emph{Many-to-One} s entitetom Korisnik preko korisničkog imena.Primarni ključ ovog entiteta je id te je stoga taj atribut boldan u tablici, dok je korisničkoImeKlijent strani ključ te je stoga taj atribut pisan formatom italic u tablici.
 			\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
     					
     				\hline \multicolumn{3}{|c|}{\textbf{Ciljevi}}	 \\[3pt] \hline
@@ -273,7 +265,6 @@
 			
 			
 			\subsection{Dijagram baze podataka}
-				\textit{ U ovom potpoglavlju potrebno je umetnuti dijagram baze podataka. Primarni i strani ključevi moraju biti označeni, a tablice povezane. Bazu podataka je potrebno normalizirati. Podsjetite se kolegija "Baze podataka".}
 				
 				\begin{figure}[H]
 					\hspace*{-1.5cm}
@@ -288,7 +279,7 @@
 			
 		\section{Dijagram razreda}
 		\begin{figure}[!htb]
-		    Na slikama 4.3, 4.4 i 4.5 su prikazani razredi koji pripadaju backend dijelu MVC
+		    Na slikama 4.3, 4.4 i 4.5 su prikazani razredi koji pripadaju Controller i Model dijelovima MVC
             arhitekture. Razredi prikazani na slici 4.3 prikazuju razrede koji nasljeđuju Controller. Unutar implementiranih controllera koriste se metode pomoću kojih se manipulira i "razgovara" s DTO (data transfer object). Funkcionalnost metoda unutar pojedinih controllera isprogramirana je da vraća JSON datoteke s html status kodom. Razredi su podijeljeni logički po imenima aktora u našoj web aplikaciji te implementirani s pripadajućim metodama , ovisno o ovlasti pojedinačnog aktora.
             Razredi prikazani na slici 4.4 predstavljaju DTO (data transfer object) razred. U području programiranja DTO je objekt koji prenosi podatke između procesa. Motivacija za njegovu upotrebu je ta da se komunikacija između procesa obično vrši pribjegavanjem udaljenim sučeljima (npr. Web uslugama), gdje je svaki poziv skupa operacija. Rješenje za smanjenje poziva je enkapsulacija  podataka u vrijednosni objekt koji se može prenositi preko mreže, odnosno korištenje DTO-a.
 		\end{figure}
@@ -300,13 +291,13 @@
 			\end{center}
 		\end{figure}
 		\begin{figure}
-			\includegraphics[height= 13cm,width=1.2\textwidth]{dijagrami/DTOClass.jpg}
+			\includegraphics[height= 13cm,width=1.2\textwidth]{dijagrami/DTOClass.png}
 			\begin{center}
 			    Slika 4.4: Dijagram razreda - dio Data transfer objects
 			\end{center}
 		\end{figure}
 		\begin{figure}
-		    Model razredi preslikavaju strukturu baze podataka u aplikaciji. Implementirane metode direktno komuniciraju s bazom podataka te vracaju tražene podatke. Razred Korisnik predstavlja uniju svih različitih entiteta koji se mogu registrirati u aplikaciji. Razred klijent predstavlja registriranog korisnika te on može koristiti sve rezervirane funkcionalnosti. Razred Administrator predstavlja administratora koji može koristiti više manje sve metode i ima najveće ovlasti te u suštini on upravlja cijelom aplikacijom. Razred Trener predstavlja trenera koji može raditi u nekoj od ponuđenih teretana te koristiti teretanu kao platformu za prodavanje svojih planova treninga i prehrane. Razred Voditelj predstavlja voditelja teretane, voditelj koristi svoje ovlasti kako bi osigurao pravilnu povezanost teretane , trenera i klijenata. Razred Zamolba predstavlja trenerov upit odnosno zamolbu za rad u određenoj teretani. Razred Ciljevi predstavlja određeni cilj pojedinog klijenta. Razred PlanTreningaIPrehrane predstavlja trenerov proizvod koji se nalazi u teretani u kojoj trener radi te ga mogu kupiti trenerovi klijenti.
+		    Model razredi preslikavaju strukturu baze podataka u aplikaciji. Implementirane metode direktno komuniciraju s bazom podataka te vraćaju tražene podatke. Razred Korisnik predstavlja uniju svih različitih entiteta koji se mogu registrirati u aplikaciji. Razred klijent predstavlja registriranog korisnika te on može koristiti sve rezervirane funkcionalnosti. Razred Administrator predstavlja administratora koji može koristiti više manje sve metode i ima najveće ovlasti te u suštini on upravlja cijelom aplikacijom. Razred Trener predstavlja trenera koji može raditi u nekoj od ponuđenih teretana te koristiti teretanu kao platformu za prodavanje svojih planova treninga i prehrane. Razred Voditelj predstavlja voditelja teretane, voditelj koristi svoje ovlasti kako bi osigurao pravilnu povezanost teretane , trenera i klijenata. Razred Zamolba predstavlja trenerov upit odnosno zamolbu za rad u određenoj teretani. Razred Ciljevi predstavlja određeni cilj pojedinog klijenta. Razred PlanTreningaIPrehrane predstavlja trenerov proizvod koji se nalazi u teretani u kojoj trener radi te ga mogu kupiti trenerovi klijenti.
 		\end{figure}
 		\begin{figure}
 			\includegraphics[height= 20cm,width=1.2\textwidth]{dijagrami/modelsClass.jpg}
