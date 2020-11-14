@@ -1,8 +1,10 @@
 package hr.fer.progi.bugbusters.webgym.service;
 
 import hr.fer.progi.bugbusters.webgym.dao.GymRepository;
+import hr.fer.progi.bugbusters.webgym.dao.PlanRepository;
 import hr.fer.progi.bugbusters.webgym.dao.UserRepository;
 import hr.fer.progi.bugbusters.webgym.model.Gym;
+import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.User;
 import javassist.Loader;
 import org.apache.logging.log4j.message.SimpleMessage;
@@ -17,6 +19,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,29 +35,17 @@ public class UserService implements UserDetailsService {
     private EmailSenderService emailSenderService;
     private final GymRepository gymRepository;
     private final UserRepository userRepository;
+    private final PlanRepository planRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(@Qualifier("gymRep") GymRepository gymRepository, @Qualifier("userRep") UserRepository userRepository){
+    public UserService(@Qualifier("gymRep") GymRepository gymRepository, @Qualifier("userRep") UserRepository userRepository, @Qualifier("planRep") PlanRepository planRepository){
         this.gymRepository = gymRepository;
         this.userRepository = userRepository;
+        this.planRepository = planRepository;
     }
-
-    /**
-     * Creates the Gyms and returns them.
-     *
-     * @return created gyms
-     */
-    /*
-    public List<Gym> createGyms() {
-        List<Gym> gyms = new ArrayList<>();
-        gyms.add(new Gym(Long.valueOf(5), "American Top Team", "Zagreb"));
-        gyms.add(new Gym(Long.valueOf(12312), "CrossFit", "Osijek"));
-        gyms.add(new Gym(Long.valueOf(543), "Gyms4You", "Split"));
-        return gyms;
-    }*/
 
     public List<Gym> databaseGyms(){
         Iterable<Gym> it = gymRepository.findAll();
@@ -67,12 +58,6 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean addGym(Gym gym){
-
-       /* Gym newGym = new Gym(gym.getName(), gym.getCity(), gym.getId());
-        newGym.setId(796);
-        System.out.println("THE GYM IS\n OF NAME\n " + newGym.getName() + "City: " + newGym.getCity() + "and id: " + newGym.getId());
-       */
-        System.out.println(gym.getName());
         gymRepository.save(gym);
         return true;
     }
@@ -141,4 +126,43 @@ public class UserService implements UserDetailsService {
         return null;
     }
 
+    public void addPlan(Plan plan, String username){
+        if (username == null){
+            planRepository.save(plan);
+        } else {
+            Optional<User> optionalUser = userRepository.findByUsername(username);
+            if (optionalUser.isPresent()){
+                User user = optionalUser.get();
+                plan.setUser(user);
+                planRepository.save(plan);
+            } else {
+                throw new RuntimeException("Username not found!");
+            }
+        }
+    }
+
+    public List<Plan> getUserDietPlans(String username){
+        System.out.println("Inside service!");
+
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        if (optionalUser.isPresent()){
+            System.out.println("FOUND USER!");
+            User user = optionalUser.get();
+            List<Plan> plans = user.getPlans();
+            for (Plan plan:plans){
+                System.out.println(plan.getDescription());
+            }
+            plans.removeIf(p -> p.getIsWorkout());
+
+
+            for (Plan plan:plans){
+                //plan.getUser().setPlans(null);
+            }
+
+
+            return plans;
+        } else {
+            throw new RuntimeException("Currently logged in user not found!");
+        }
+    }
 }

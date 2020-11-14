@@ -1,5 +1,9 @@
 package hr.fer.progi.bugbusters.webgym.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,11 +14,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class User implements UserDetails {
 
     @Id
@@ -32,16 +38,11 @@ public class User implements UserDetails {
 
     private String password;
 
-    private Boolean client;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    private Boolean coach;
-
-    private Boolean gymOwner;
-
-    public User(Boolean coach, Boolean owner, Boolean client){
-        this.coach = coach;
-        this.gymOwner = owner;
-    }
+    @OneToMany
+    private List<Plan> plans;
 
     public User(String username, String email, String password, String name, String surname){
         this.username = username;
@@ -53,15 +54,8 @@ public class User implements UserDetails {
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
         final SimpleGrantedAuthority simpleGrantedAuthority;
-        if (coach){
-            simpleGrantedAuthority = new SimpleGrantedAuthority("coach");
-        } else {
-            if (gymOwner){
-                simpleGrantedAuthority = new SimpleGrantedAuthority("owner");
-            } else {
-                simpleGrantedAuthority = new SimpleGrantedAuthority("client");
-            }
-        }
+        simpleGrantedAuthority = new SimpleGrantedAuthority(getRole().toString());
+
         return Collections.singletonList(simpleGrantedAuthority);
     }
 

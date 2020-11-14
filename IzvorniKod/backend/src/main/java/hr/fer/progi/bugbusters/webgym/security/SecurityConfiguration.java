@@ -33,13 +33,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("coach")
                 .password("asd")
-                .roles("coach")
+                .roles("COACH")
                 .and().withUser("client")
                 .password("sad")
-                .roles("client")
+                .roles("CLIENT")
                 .and().withUser("owner")
                 .password("3124")
-                .roles("owner")
+                .roles("OWNER")
                 .and().withUser("unregistered")
                 .password("noPass")
                 .roles("unregistered");
@@ -50,9 +50,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/registration", "/login").permitAll()
                 .antMatchers("/gymList").permitAll()
-                .antMatchers("/testAuthorization/coach").hasAuthority("coach")
-                .antMatchers("/testAuthorization/user").hasAuthority("user")
-                .antMatchers("/testAuthorization/owner").hasAuthority("owner")
+                .antMatchers("/testAuthorization/coach").hasAuthority("COACH")
+                .antMatchers("/testAuthorization/user").hasAuthority("USER")
+                .antMatchers("/testAuthorization/owner").hasAuthority("OWNER")
                 .antMatchers("/testAuthorization/unregistered").permitAll();
 
         http.csrf().disable();
