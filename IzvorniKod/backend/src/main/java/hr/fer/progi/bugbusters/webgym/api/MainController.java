@@ -148,7 +148,7 @@ public class MainController {
 
     @PostMapping("/addPlan")
     public void addPlan(@RequestBody Plan plan, final HttpServletRequest request, final HttpServletResponse response){
-        if (plan.getUser().getUsername() == null){
+        if (plan.getUser() == null){
             Cookie[] cookies = request.getCookies();
 
             for (Cookie cookie:cookies){
