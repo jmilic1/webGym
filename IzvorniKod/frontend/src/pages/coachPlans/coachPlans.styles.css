@@ -1,0 +1,7 @@
+.coachPlans-plans{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center
+;
+}

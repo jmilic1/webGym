@@ -6,14 +6,16 @@ import Homepage from './pages/homepage/homepage.component'
 import AuthPage from './pages/authPage/authPage.component'
 import GymList from './pages/gymList/gymList.component'
 import Logout from './components/logout/logout.component'
+import CoachPlans from "./pages/coachPlans/coachPlans.component";
 
 class App extends React.Component {
 
   constructor(){
     super()
     this.state = {
-      backendURL: "https://web-gym2.herokuapp.com/",
+      //backendURL: "https://web-gym2.herokuapp.com/",
       //backendURL: "http://localhost:8080/",
+      backendURL: "https://f74a7152-35cc-4315-878e-7202dfe1b74c.mock.pstmn.io/",
       loggedIn: false,
       username: '',
       name: "",
@@ -41,7 +43,7 @@ class App extends React.Component {
     this.setState({
       name:'',
       surname: '',
-      coach: '',
+      coach: false,
       admin:false,
       gymOwner: false,
       client: false,
@@ -53,13 +55,14 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-          <Header loggedIn = {this.state.loggedIn}/>
+          <Header loggedIn = {this.state.loggedIn} coach = {this.state.coach}/>
           <div className = 'page-container'>
             <Switch>
               <Route exact path="/" component={Homepage} />
               <Route exact path="/auth" render={(props) => <AuthPage {...props} handleLogin={this.handleLogin} backendURL = {this.state.backendURL} />} />
               <Route exact path="/logout" render={(props) => <Logout {...props} handleLogout={this.handleLogout} backendURL = {this.state.backendURL}/>} />
-              <Route exact path="/gymList" component={GymList} backendURL = {this.state.backendURL}/>
+              <Route exact path="/gymList" render={(props) => <GymList {...props} backendURL = {this.state.backendURL}/>} />
+              <Route exact path="/myPlans" render={(props) => <CoachPlans {...props} backendURL = {this.state.backendURL}/>} />
             </Switch>
           </div>
       </div>

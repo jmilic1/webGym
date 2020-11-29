@@ -11,7 +11,7 @@ class GymList extends React.Component{
     }
 
     componentDidMount(){
-        fetch('https://web-gym2.herokuapp.com/gymList', {
+        fetch(this.props.backendURL, {
             method: 'GET',
             credentials: "include"
         }).then(response => {

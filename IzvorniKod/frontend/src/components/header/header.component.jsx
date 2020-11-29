@@ -12,6 +12,9 @@ class Header extends React.Component {
                     <Logo className='logo'/>
                 </Link>
                 <div className = 'link-container'>
+                    {!this.props.coach &&
+                    <Link to = '/myPlans'>Moji planovi</Link>
+                    }
                     <Link to = '/gymList'>Popis teretana</Link>
 
                     {this.props.loggedIn ?
