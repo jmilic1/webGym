@@ -72,6 +72,7 @@ public class TestService {
 
         userRepository.saveAll(users);
 
+
         List<Plan> plans = new ArrayList<>();
         Plan plan = new Plan();
         plan.setDateBegin(new Date(System.currentTimeMillis()));

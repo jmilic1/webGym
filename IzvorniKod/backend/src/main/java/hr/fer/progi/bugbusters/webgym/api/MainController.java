@@ -95,6 +95,7 @@ public class MainController {
 
             response.addCookie(cookie);
             response.addCookie(roleCookie);
+            addUserCookies(response, myUser);
             response.setStatus(200);
 
             changeRole(myUser);
@@ -113,7 +114,7 @@ public class MainController {
      * @return found user in database with given username
      */
     @PostMapping("/login")
-    public User loginUser(@RequestBody User user, final HttpServletResponse response) {
+    public User loginUser(@RequestBody User user, final HttpServletRequest request, final HttpServletResponse response) {
         User myUser = service.loginUser(user);
 
         if (myUser == null) {
@@ -121,8 +122,17 @@ public class MainController {
             return null;
         }
 
+        addUserCookies(response, myUser);
+
         changeRole(myUser);
         return myUser;
+    }
+
+    private void addUserCookies(HttpServletResponse response, User myUser) {
+        Cookie cookie = new Cookie("username", myUser.getUsername());
+        Cookie roleCookie = new Cookie("role", myUser.getRole().toString());
+        response.addCookie(cookie);
+        response.addCookie(roleCookie);
     }
 
     @GetMapping("/logOut")
@@ -172,7 +182,7 @@ public class MainController {
             }
         }
 
-        throw new RuntimeException("No cookie found!");
+        return null;
     }
 
     /**
