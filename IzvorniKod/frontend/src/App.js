@@ -13,27 +13,29 @@ class App extends React.Component {
   constructor(){
     super()
     this.state = {
-      //backendURL: "https://web-gym2.herokuapp.com/",
+      backendURL: "https://web-gym2.herokuapp.com/",
       //backendURL: "http://localhost:8080/",
-      backendURL: "https://f74a7152-35cc-4315-878e-7202dfe1b74c.mock.pstmn.io/",
+      //backendURL: "https://f74a7152-35cc-4315-878e-7202dfe1b74c.mock.pstmn.io/",
       loggedIn: false,
       username: '',
       name: "",
       surname: "",
-      coach: false,
-      admin: false,
-      gymOwner: false
+      role: "",
+      // coach: false,
+      // admin: false,
+      // gymOwner: false
     }
   }
 
-  handleLogin = (username, name, surname, client, coach, admin, gymOwner) => {
+  handleLogin = (username, name, surname, role) => {//client, coach, admin, gymOwner) => {
     this.setState({
       name:name,
       surname: surname,
-      client: client,
-      coach: coach,
-      admin:admin,
-      gymOwner: gymOwner,
+      role: role,
+      // client: client,
+      // coach: coach,
+      // admin:admin,
+      // gymOwner: gymOwner,
       username: username,
       loggedIn: true
     })
@@ -43,10 +45,11 @@ class App extends React.Component {
     this.setState({
       name:'',
       surname: '',
-      coach: false,
-      admin:false,
-      gymOwner: false,
-      client: false,
+      // coach: false,
+      // admin:false,
+      // gymOwner: false,
+      // client: false,
+      role: "",
       username: false,
       loggedIn: false
     })
