@@ -14,9 +14,10 @@ class AuthPage extends React.Component {
       name:"",
       surname: "",
       email: "",
-      gymOwner: false,
-      coach: false,
-      client: true,
+      // gymOwner: false,
+      // coach: false,
+      // client: true,
+      role: "CLIENT",
       selectedOption: "client"
 
     }
@@ -30,8 +31,8 @@ class AuthPage extends React.Component {
 
 
 
-  handleLogin = async (username, name, surname, client, coach, admin, gymOwner) => {
-      await this.props.handleLogin(username, name, surname, client, coach, admin, gymOwner)
+  handleLogin = async (username, name, surname, role) => {//client, coach, admin, gymOwner) => {
+      await this.props.handleLogin(username, name, surname, role) //client, coach, admin, gymOwner)
       this.props.history.push("/")
   }
 
@@ -49,7 +50,7 @@ class AuthPage extends React.Component {
         return Promise.reject()
       }
     }).then(res => {
-      this.handleLogin(this.state.usernameLogin, res.name, res.surname, res.coach, res.admin, res.gymOwner)
+      this.handleLogin(this.state.usernameLogin, res.name, res.surname, res.role) //res.coach, res.admin, res.gymOwner)
     }, function(){
       alert("Krivo korisnicko ime ili lozinka")
     })
@@ -61,10 +62,10 @@ class AuthPage extends React.Component {
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
       body: JSON.stringify({username:this.state.usernameRegistration, password:this.state.passwordRegistration, name:this.state.name, surname: this.state.surname,
-                                  email:this.state.email, client: this.state.client, coach: this.state.coach, gymOwner: this.state.gymOwner})
+                                  email:this.state.email, role: this.state.role}) //client: this.state.client, coach: this.state.coach, gymOwner: this.state.gymOwner})
     }).then(response => {
       if(response.status === 200){
-        this.handleLogin(this.state.usernameRegistration, this.state.name, this.state.surname, this.state.client, this.state.coach, false, this.state.gymOwner)
+        this.handleLogin(this.state.usernameRegistration, this.state.name, this.state.surname, this.state.role) //this.state.client, this.state.coach, false, this.state.gymOwner)
         return Promise.reject()
       } else{
         return response.json()
@@ -79,9 +80,10 @@ class AuthPage extends React.Component {
   handleRoleChange = changeEvent => {
     this.setState({
       selectedOption: changeEvent.target.value,
-      client: changeEvent.target.value === "client",
-      coach: changeEvent.target.value === "coach",
-      gymOwner: changeEvent.target.value === "gymOwner"
+      role: changeEvent.target.value.toUpperCase(),
+      // client: changeEvent.target.value === "client",
+      // coach: changeEvent.target.value === "coach",
+      // gymOwner: changeEvent.target.value === "gymOwner"
     });
   };
 
@@ -173,7 +175,7 @@ class AuthPage extends React.Component {
                 <label>Trener</label>
               </div>
               <div>
-                <input type='radio' value='gymOwner' checked={this.state.selectedOption === "gymOwner"} onChange={this.handleRoleChange}/>
+                <input type='radio' value='owner' checked={this.state.selectedOption === "owner"} onChange={this.handleRoleChange}/>
                 <label>Voditelj teretane</label>
               </div>
             </div>
