@@ -98,7 +98,7 @@ public class TestService {
     }
 
     public User logInAsCoach(){
-        Optional<User> user = userRepository.findByUsername("tLov");
+        Optional<User> user = userRepository.findById("tLov");
         if (user.isPresent()){
             return user.get();
         } else {

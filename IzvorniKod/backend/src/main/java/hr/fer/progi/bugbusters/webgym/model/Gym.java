@@ -4,15 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 
 @Data
 @Entity
 @NoArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "gyms")
 public class Gym {
     @Id
@@ -21,7 +19,7 @@ public class Gym {
     private String name;
     private String city;
 
-    public Gym(String name, String city){
+    public Gym(String name, String city) {
         this.name = name;
         this.city = city;
     }

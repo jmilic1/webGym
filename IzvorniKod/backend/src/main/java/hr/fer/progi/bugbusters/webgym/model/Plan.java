@@ -20,7 +20,7 @@ public class Plan {
     private Long id;
 
     @ManyToOne//(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="username", referencedColumnName = "username")
+    @JoinColumn(name="username")//, referencedColumnName = "username")
     private User user;
 
     private String description;

@@ -116,7 +116,6 @@ public class MainController {
     public User loginUser(@RequestBody User user, final HttpServletResponse response) {
         User myUser = service.loginUser(user);
 
-        System.out.println(myUser);
         if (myUser == null) {
             response.setStatus(400);
             return null;
@@ -169,7 +168,6 @@ public class MainController {
 
         for (Cookie cookie:cookies){
             if (cookie.getName().equals("username")){
-                System.out.println("FOUND COOKIE!" + cookie.getValue());
                 return service.getUserDietPlans(cookie.getValue());
             }
         }
