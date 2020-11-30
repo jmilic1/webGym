@@ -20,20 +20,22 @@ class App extends React.Component {
       username: '',
       name: "",
       surname: "",
-      coach: false,
-      admin: false,
-      gymOwner: false
+      role: "",
+      // coach: false,
+      // admin: false,
+      // gymOwner: false
     }
   }
 
-  handleLogin = (username, name, surname, client, coach, admin, gymOwner) => {
+  handleLogin = (username, name, surname, role) => {//client, coach, admin, gymOwner) => {
     this.setState({
       name:name,
       surname: surname,
-      client: client,
-      coach: coach,
-      admin:admin,
-      gymOwner: gymOwner,
+      role: role,
+      // client: client,
+      // coach: coach,
+      // admin:admin,
+      // gymOwner: gymOwner,
       username: username,
       loggedIn: true
     })
@@ -43,10 +45,11 @@ class App extends React.Component {
     this.setState({
       name:'',
       surname: '',
-      coach: false,
-      admin:false,
-      gymOwner: false,
-      client: false,
+      // coach: false,
+      // admin:false,
+      // gymOwner: false,
+      // client: false,
+      role: "",
       username: false,
       loggedIn: false
     })
