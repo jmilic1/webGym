@@ -30,6 +30,23 @@ class CoachPlans extends React.Component{
         }, function(){
             alert("Došlo je do pogreške")
         })
+
+        fetch(this.props.backendURL + "getWorkoutPlans", {
+            method: 'GET',
+            credentials: "include"
+        }).then(response => {
+            if(response.status === 200){
+                return response.json()
+            } else{
+                return Promise.reject()
+            }
+        }).then(plans => {
+            this.setState({
+                workoutPlans: plans
+            })
+        }, function(){
+            alert("Došlo je do pogreške")
+        })
     }
 
     setShowDietPlans = () => {
