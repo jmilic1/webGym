@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,17 +85,11 @@ public class MainController {
      * @return error message if register was unsuccessful
      */
     @PostMapping("/registration")
-    public String registerUser(@RequestBody User user, HttpServletResponse response) {
+    public String registerUser(@RequestBody User user, HttpServletResponse response, HttpSession session) {
         try {
             User myUser = service.signUpUser(user);
 
-            Cookie cookie = new Cookie("username", user.getUsername());
-            Cookie roleCookie = new Cookie("role", null);
-
-            roleCookie.setValue(user.getRole().toString());
-
-            response.addCookie(cookie);
-            response.addCookie(roleCookie);
+            //setSession(session, myUser);
             addUserCookies(response, myUser);
             response.setStatus(200);
 
@@ -114,7 +109,7 @@ public class MainController {
      * @return found user in database with given username
      */
     @PostMapping("/login")
-    public User loginUser(@RequestBody User user, final HttpServletRequest request, final HttpServletResponse response) {
+    public User loginUser(@RequestBody User user, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
         User myUser = service.loginUser(user);
 
         if (myUser == null) {
@@ -122,18 +117,13 @@ public class MainController {
             return null;
         }
 
+        //setSession(session, myUser);
         addUserCookies(response, myUser);
 
         changeRole(myUser);
         return myUser;
     }
 
-    private void addUserCookies(HttpServletResponse response, User myUser) {
-        Cookie cookie = new Cookie("username", myUser.getUsername());
-        Cookie roleCookie = new Cookie("role", myUser.getRole().toString());
-        response.addCookie(cookie);
-        response.addCookie(roleCookie);
-    }
 
     @GetMapping("/logOut")
     public void logoutUser(final HttpServletResponse response) {
@@ -146,43 +136,85 @@ public class MainController {
     /**
      * Logs the user out of the service
      *
-     * @param response response to remove cookies
+     * @param session session to be deleted
      */
     @GetMapping("/login")
-    public void doLogout(final HttpServletResponse response) {
-        deleteCookie(response, new Cookie("username", null));
-        deleteCookie(response, new Cookie("role", null));
+    public void doLogout(HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie:cookies){
+            if (cookie.getName().equals("username") || cookie.getName().equals("role")){
+                deleteCookie(response, cookie);
+            }
+        }
+        session.invalidate();
         changeRole(null);
     }
 
     @PostMapping("/addPlan")
-    public void addPlan(@RequestBody Plan plan, final HttpServletRequest request, final HttpServletResponse response){
-        if (plan.getUser() == null){
-            Cookie[] cookies = request.getCookies();
+    public void addPlan(@RequestBody Plan plan, HttpSession session, final HttpServletResponse response, HttpServletRequest request) {
+        if (plan.getUser() == null) {
 
-            for (Cookie cookie:cookies){
+            //String username = (String) session.getAttribute("username");
+            String username = null;
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie:cookies) {
                 if (cookie.getName().equals("username")){
-                    service.addPlan(plan, cookie.getValue());
+                    username = cookie.getValue();
                 }
             }
+            if (username != null) {
+                service.addPlan(plan, username);
+            } else {
+                response.setStatus(403);
+                return;
+            }
         } else {
-            service.addPlan(plan, null);
+            //service.addPlan(plan, null);
         }
 
         response.setStatus(200);
     }
 
     @GetMapping("/getDietPlans")
-    public List<Plan> getDietPlans(final HttpServletRequest request){
+    public List<Plan> getDietPlans(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         Cookie[] cookies = request.getCookies();
-
+        String username = null;
+        if (cookies == null){
+            System.out.println("Cookies are null");
+            return null;
+        }
         for (Cookie cookie:cookies){
-            if (cookie.getName().equals("username")){
-                return service.getUserDietPlans(cookie.getValue());
+            if ("username".equals(cookie.getName())){
+                username = cookie.getValue();
             }
         }
 
-        return null;
+        if (username == null) {
+            return null;
+        }
+
+        return service.getUserDietPlans(username);
+    }
+
+    @GetMapping("/getWorkoutPlans")
+    public List<Plan> getWorkoutPlans(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        Cookie[] cookies = request.getCookies();
+        String username = null;
+        if (cookies == null){
+            System.out.println("Cookies are null");
+            return null;
+        }
+        for (Cookie cookie:cookies){
+            if ("username".equals(cookie.getName())){
+                username = cookie.getValue();
+            }
+        }
+
+        if (username == null) {
+            return null;
+        }
+
+        return service.getUserWorkoutPlans(username);
     }
 
     /**
@@ -204,14 +236,17 @@ public class MainController {
         SecurityContextHolder.getContext().setAuthentication(newAuth);
     }
 
-    /**
-     * Deletes the given cookie from given response.
-     *
-     * @param response given response
-     * @param cookie   given cookie
-     */
     private void deleteCookie(final HttpServletResponse response, Cookie cookie) {
         cookie.setMaxAge(0);
         response.addCookie(cookie);
+    }
+
+    private void addUserCookies(HttpServletResponse response, User myUser) {
+        Cookie cookie = new Cookie("username", myUser.getUsername());
+        Cookie roleCookie = new Cookie("role", myUser.getRole().toString());
+        cookie.setMaxAge(60);
+        roleCookie.setMaxAge(60);
+        response.addCookie(cookie);
+        response.addCookie(roleCookie);
     }
 }

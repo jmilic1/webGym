@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Service with the name "userService" which only serves to create Gyms and return them in a list.
@@ -138,13 +139,21 @@ public class UserService implements UserDetailsService {
     }
 
     public List<Plan> getUserDietPlans(String username) {
+        return getSpecificPlans(username, plan -> !plan.getIsWorkout());
+    }
+
+    public List<Plan> getUserWorkoutPlans(String username) {
+        return getSpecificPlans(username, Plan::getIsWorkout);
+    }
+
+    private List<Plan> getSpecificPlans(String username, Predicate<Plan> predicate){
         Optional<User> optionalUser = userRepository.findById(username);
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             List<Plan> plans = user.getPlans();
 
-            plans.removeIf(Plan::getIsWorkout);
+            plans.removeIf(predicate);
 
             return plans;
         } else {
