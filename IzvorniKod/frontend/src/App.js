@@ -8,7 +8,7 @@ import GymList from './pages/gymList/gymList.component'
 import Logout from './components/logout/logout.component'
 import CoachPlans from "./pages/coachPlans/coachPlans.component";
 import Footer from "./components/footer/footer.component";
-
+import OwnerGyms from "./pages/ownerGyms/ownerGyms.component";
 class App extends React.Component {
 
   constructor(){
@@ -29,6 +29,7 @@ class App extends React.Component {
   }
 
   handleLogin = (username, name, surname, role) => {//client, coach, admin, gymOwner) => {
+    console.log("Uloga za props: " + role)
     this.setState({
       name:name,
       surname: surname,
@@ -67,6 +68,7 @@ class App extends React.Component {
               <Route exact path="/logout" render={(props) => <Logout {...props} handleLogout={this.handleLogout} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/gymList" render={(props) => <GymList {...props} backendURL = {this.state.backendURL} />} />
               <Route exact path="/myPlans" render={(props) => <CoachPlans {...props} backendURL = {this.state.backendURL}/>} />
+              <Route exact path="/myGyms" render={(props) => <OwnerGyms {...props} backendURL = {this.state.backendURL}/>} />
             </Switch>
           </div>
           <Footer/>

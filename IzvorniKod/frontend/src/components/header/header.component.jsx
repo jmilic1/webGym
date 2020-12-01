@@ -15,6 +15,9 @@ class Header extends React.Component {
                     {this.props.role === "COACH" &&
                     <Link to = '/myPlans'>Moji planovi</Link>
                     }
+                    {this.props.role === "OWNER" &&
+                    <Link to = '/myGyms'>Moje teretane</Link>
+                    }
                     <Link to = '/gymList'>Popis teretana</Link>
 
                     {this.props.loggedIn ?
