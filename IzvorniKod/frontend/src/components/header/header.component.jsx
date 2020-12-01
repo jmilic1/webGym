@@ -12,7 +12,7 @@ class Header extends React.Component {
                     <Logo className='logo'/>
                 </Link>
                 <div className = 'link-container'>
-                    {!this.props.coach &&
+                    {this.props.role === "COACH" &&
                     <Link to = '/myPlans'>Moji planovi</Link>
                     }
                     <Link to = '/gymList'>Popis teretana</Link>
