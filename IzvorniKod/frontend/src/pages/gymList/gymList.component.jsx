@@ -11,7 +11,7 @@ class GymList extends React.Component{
     }
 
     componentDidMount(){
-        fetch(this.props.backendURL, {
+        fetch(this.props.backendURL + 'gymList', {
             method: 'GET',
             credentials: "include"
         }).then(response => {
@@ -23,7 +23,7 @@ class GymList extends React.Component{
         })
     }
 
-    render(){
+    render() {
         return(
 
             <div className = 'gymList-container'>
