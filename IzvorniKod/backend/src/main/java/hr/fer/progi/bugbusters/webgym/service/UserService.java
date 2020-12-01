@@ -139,21 +139,21 @@ public class UserService implements UserDetailsService {
     }
 
     public List<Plan> getUserDietPlans(String username) {
-        return getSpecificPlans(username, plan -> !plan.getIsWorkout());
-    }
-
-    public List<Plan> getUserWorkoutPlans(String username) {
         return getSpecificPlans(username, Plan::getIsWorkout);
     }
 
-    private List<Plan> getSpecificPlans(String username, Predicate<Plan> predicate){
+    public List<Plan> getUserWorkoutPlans(String username) {
+        return getSpecificPlans(username, plan -> !plan.getIsWorkout());
+    }
+
+    private List<Plan> getSpecificPlans(String username, Predicate<Plan> remove){
         Optional<User> optionalUser = userRepository.findById(username);
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             List<Plan> plans = user.getPlans();
 
-            plans.removeIf(predicate);
+            plans.removeIf(remove);
 
             return plans;
         } else {
