@@ -16,7 +16,7 @@ class CoachPlans extends React.Component{
     componentDidMount() {
         fetch(this.props.backendURL + "getDietPlans", {
             method: 'GET',
-            //credentials: "include"
+            credentials: "include"
         }).then(response => {
             if(response.status === 200){
                 return response.json()
