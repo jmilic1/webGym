@@ -1,47 +1,40 @@
 package hr.fer.progi.bugbusters.webgym.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "username")
 public class User implements UserDetails {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String username;
 
     private String name;
 
     private String surname;
 
-    @Column(unique = true)
-    private String username;
-
     private String email;
 
     private String password;
 
-    private Boolean client;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    private Boolean coach;
-
-    private Boolean gymOwner;
-
-    public User(Boolean coach, Boolean owner, Boolean client){
-        this.coach = coach;
-        this.gymOwner = owner;
-    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Plan> plans;
 
     public User(String username, String email, String password, String name, String surname){
         this.username = username;
@@ -53,15 +46,8 @@ public class User implements UserDetails {
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
         final SimpleGrantedAuthority simpleGrantedAuthority;
-        if (coach){
-            simpleGrantedAuthority = new SimpleGrantedAuthority("coach");
-        } else {
-            if (gymOwner){
-                simpleGrantedAuthority = new SimpleGrantedAuthority("owner");
-            } else {
-                simpleGrantedAuthority = new SimpleGrantedAuthority("client");
-            }
-        }
+        simpleGrantedAuthority = new SimpleGrantedAuthority(getRole().toString());
+
         return Collections.singletonList(simpleGrantedAuthority);
     }
 

@@ -1,6 +1,7 @@
 package hr.fer.progi.bugbusters.webgym.api;
 
 import hr.fer.progi.bugbusters.webgym.model.Gym;
+import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.User;
 import hr.fer.progi.bugbusters.webgym.service.UserException;
 import hr.fer.progi.bugbusters.webgym.service.UserService;
@@ -16,9 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.security.Principal;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -85,24 +85,12 @@ public class MainController {
      * @return error message if register was unsuccessful
      */
     @PostMapping("/registration")
-    public String registerUser(@RequestBody User user, HttpServletResponse response) {
+    public String registerUser(@RequestBody User user, HttpServletResponse response, HttpSession session) {
         try {
             User myUser = service.signUpUser(user);
 
-            Cookie cookie = new Cookie("username", user.getUsername());
-            Cookie roleCookie = new Cookie("role", null);
-
-            if (myUser.getCoach()) {
-                roleCookie.setValue("coach");
-            } else {
-                if (myUser.getGymOwner()) {
-                    roleCookie.setValue("owner");
-                } else {
-                    roleCookie.setValue("user");
-                }
-            }
-            response.addCookie(cookie);
-            response.addCookie(roleCookie);
+            //setSession(session, myUser);
+            addUserCookies(response, myUser);
             response.setStatus(200);
 
             changeRole(myUser);
@@ -121,18 +109,21 @@ public class MainController {
      * @return found user in database with given username
      */
     @PostMapping("/login")
-    public User loginUser(@RequestBody User user, final HttpServletResponse response) {
+    public User loginUser(@RequestBody User user, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
         User myUser = service.loginUser(user);
 
-        System.out.println(myUser);
         if (myUser == null) {
             response.setStatus(400);
             return null;
         }
 
+        //setSession(session, myUser);
+        addUserCookies(response, myUser);
+
         changeRole(myUser);
         return myUser;
     }
+
 
     @GetMapping("/logOut")
     public void logoutUser(final HttpServletResponse response) {
@@ -145,13 +136,85 @@ public class MainController {
     /**
      * Logs the user out of the service
      *
-     * @param response response to remove cookies
+     * @param session session to be deleted
      */
     @GetMapping("/login")
-    public void redirectToLogout(final HttpServletResponse response) {
-        deleteCookie(response, new Cookie("username", null));
-        deleteCookie(response, new Cookie("role", null));
+    public void doLogout(HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie:cookies){
+            if (cookie.getName().equals("username") || cookie.getName().equals("role")){
+                deleteCookie(response, cookie);
+            }
+        }
+        session.invalidate();
         changeRole(null);
+    }
+
+    @PostMapping("/addPlan")
+    public void addPlan(@RequestBody Plan plan, HttpSession session, final HttpServletResponse response, HttpServletRequest request) {
+        if (plan.getUser() == null) {
+
+            //String username = (String) session.getAttribute("username");
+            String username = null;
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie:cookies) {
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+            if (username != null) {
+                service.addPlan(plan, username);
+            } else {
+                response.setStatus(403);
+                return;
+            }
+        } else {
+            //service.addPlan(plan, null);
+        }
+
+        response.setStatus(200);
+    }
+
+    @GetMapping("/getDietPlans")
+    public List<Plan> getDietPlans(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        Cookie[] cookies = request.getCookies();
+        String username = null;
+        if (cookies == null){
+            System.out.println("Cookies are null");
+            return null;
+        }
+        for (Cookie cookie:cookies){
+            if ("username".equals(cookie.getName())){
+                username = cookie.getValue();
+            }
+        }
+
+        if (username == null) {
+            return null;
+        }
+
+        return service.getUserDietPlans(username);
+    }
+
+    @GetMapping("/getWorkoutPlans")
+    public List<Plan> getWorkoutPlans(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        Cookie[] cookies = request.getCookies();
+        String username = null;
+        if (cookies == null){
+            System.out.println("Cookies are null");
+            return null;
+        }
+        for (Cookie cookie:cookies){
+            if ("username".equals(cookie.getName())){
+                username = cookie.getValue();
+            }
+        }
+
+        if (username == null) {
+            return null;
+        }
+
+        return service.getUserWorkoutPlans(username);
     }
 
     /**
@@ -163,33 +226,27 @@ public class MainController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         List<GrantedAuthority> updatedAuthorities = new ArrayList<>();
-
         if (user == null) {
             updatedAuthorities.add(new SimpleGrantedAuthority("unregistered"));
         } else {
-            if (user.getCoach()) {
-                updatedAuthorities.add(new SimpleGrantedAuthority("coach"));
-            } else {
-                if (user.getGymOwner()) {
-                    updatedAuthorities.add(new SimpleGrantedAuthority("owner"));
-                } else {
-                    updatedAuthorities.add(new SimpleGrantedAuthority("user"));
-                }
-            }
+            updatedAuthorities.add(new SimpleGrantedAuthority(user.getRole().toString()));
         }
 
         Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), updatedAuthorities);
         SecurityContextHolder.getContext().setAuthentication(newAuth);
     }
 
-    /**
-     * Deletes the given cookie from given response.
-     *
-     * @param response given response
-     * @param cookie   given cookie
-     */
     private void deleteCookie(final HttpServletResponse response, Cookie cookie) {
         cookie.setMaxAge(0);
         response.addCookie(cookie);
+    }
+
+    private void addUserCookies(HttpServletResponse response, User myUser) {
+        Cookie cookie = new Cookie("username", myUser.getUsername());
+        Cookie roleCookie = new Cookie("role", myUser.getRole().toString());
+        cookie.setMaxAge(60);
+        roleCookie.setMaxAge(60);
+        response.addCookie(cookie);
+        response.addCookie(roleCookie);
     }
 }
