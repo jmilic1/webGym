@@ -24,6 +24,31 @@ GET /login
     This logs the user out, the reason why this isn't mapped to /logout is because Spring Boot redirects the path "/logout" to "/login?logout"
 
 
+POST /addPlan
+    REQUEST: plan u json obliku{
+	    id:
+	    username: -> mozes zanemarit jer imamo cookie
+	    description:
+	    dateBegin:
+	    dateEnd:
+	    price:
+	    isWorkout:
+    }
+RESPONSE: STATUS 200
+
+GET /getDietPlans
+    REQUEST: nista
+RESPONSE: planovi prehrane u json obliku za trenutnog usera{
+	id:
+	username:
+	description:
+	dateBegin:
+	dateEnd:
+	price:
+	isWorkout
+}
+
+
 
 
 FOR TESTING PURPOSES:
