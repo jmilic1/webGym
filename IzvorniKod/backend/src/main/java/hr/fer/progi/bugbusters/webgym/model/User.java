@@ -21,20 +21,28 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     private String username;
-
     private String name;
-
     private String surname;
-
     private String email;
-
     private String password;
-
+    private String phoneNumber;
+    private String PayPalAccount;
+    private int height;
+    private int weight;
     @Enumerated(EnumType.STRING)
     private Role role;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Plan> plans;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Goal> goals;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<UserMembership> userMemberships;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<JobRequest> jobRequests;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<UserPlan> userPlans;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<UserGym> userGymList;
 
     public User(String username, String email, String password, String name, String surname){
         this.username = username;

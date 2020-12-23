@@ -2,14 +2,15 @@ package hr.fer.progi.bugbusters.webgym.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
-@NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "gyms")
 public class Gym {
@@ -17,10 +18,16 @@ public class Gym {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String city;
+    private String description;
+    private String email;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gym")
+    private List<GymLocation> gymLocations;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gym")
+    private List<Membership> memberships;
 
-    public Gym(String name, String city) {
+    public Gym(String name, String description, String email){
         this.name = name;
-        this.city = city;
+        this.description = description;
+        this.email = email;
     }
 }

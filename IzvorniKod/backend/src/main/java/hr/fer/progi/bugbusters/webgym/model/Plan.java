@@ -9,25 +9,25 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Data
 @Entity
 @NoArgsConstructor
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne//(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="username")//, referencedColumnName = "username")
+    @ManyToOne
+    @JoinColumn(name="username")
     private User user;
-
     private String description;
     private Date dateBegin;
     private Date dateEnd;
     private Double price;
     private Boolean isWorkout;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "plan")
+    private List<UserPlan> userplans;
 
     public Plan(User user, String description){
         this.user = user;
