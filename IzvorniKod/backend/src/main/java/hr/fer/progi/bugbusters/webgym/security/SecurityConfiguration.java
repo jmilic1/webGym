@@ -1,6 +1,6 @@
 package hr.fer.progi.bugbusters.webgym.security;
 
-import hr.fer.progi.bugbusters.webgym.service.UserService;
+import hr.fer.progi.bugbusters.webgym.service.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -8,18 +8,17 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final UserService userService;
+    private final UserManagementService userManagementService;
 
     @Autowired
-    public SecurityConfiguration(UserService userService){
-        this.userService = userService;
+    public SecurityConfiguration(UserManagementService userManagementService){
+        this.userManagementService = userManagementService;
     }
 
     @Bean
@@ -55,11 +54,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/testAuthorization/unregistered").permitAll();
 
         http.csrf().disable();
-        //http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(userService).passwordEncoder(encoder());
+        auth.userDetailsService(userManagementService).passwordEncoder(encoder());
     }
 }

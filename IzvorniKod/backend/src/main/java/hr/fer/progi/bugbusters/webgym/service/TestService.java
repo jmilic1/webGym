@@ -72,7 +72,6 @@ public class TestService {
 
         userRepository.saveAll(users);
 
-
         List<Plan> plans = new ArrayList<>();
         Plan plan = new Plan();
         plan.setDateBegin(new Date(System.currentTimeMillis()));
@@ -109,9 +108,8 @@ public class TestService {
 
     private void populateGyms() {
         List<Gym> gyms = new ArrayList<>();
-        gyms.add(new Gym("Gyms4You", "Zagreb"));
-        gyms.add(new Gym("Gyms4You", "Osijek"));
-        gyms.add(new Gym("AllAmericanGym", "Split"));
+        gyms.add(new Gym("Gyms4You", "Gyms but for you", "Gyms4You@Yahoo.com"));
+        gyms.add(new Gym("AllAmericanGym", "Very american", "AllAmerican@gmail.com"));
         gymRepository.saveAll(gyms);
     }
 }
