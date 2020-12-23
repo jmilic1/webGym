@@ -19,15 +19,18 @@ paths:
       tags:
         - registration
       description: Log in request from user
-      parameters:
-        - name: username
-          in: query
-          schema:
-            type: string
-        - name: password
-          in: query
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
       responses:
         '200':
           description: Successful log in
@@ -54,31 +57,26 @@ paths:
       tags:
         - registration
       description: Registration request from user
-      parameters:
-        - name: name
-          in: query
-          schema:
-            type: string
-        - name: surname
-          in: query
-          schema:
-            type: string
-        - name: email
-          in: query
-          schema:
-            type: string
-        - name: username
-          in: query
-          schema:
-            type: string
-        - name: password
-          in: query
-          schema:
-            type: string
-        - name: role
-          in: query
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                name:
+                  type: string
+                surname:
+                  type: string
+                email:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
       responses:
         '200':
           description: Successful registration
@@ -141,31 +139,26 @@ paths:
       tags:
         - registration
       description: Personal info update
-      parameters:
-        - name: name
-          in: query
-          schema:
-            type: string
-        - name: surname
-          in: query
-          schema:
-            type: string
-        - name: email
-          in: query
-          schema:
-            type: string
-        - name: username
-          in: query
-          schema:
-            type: string
-        - name: password
-          in: query
-          schema:
-            type: string
-        - name: role
-          in: query
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                name:
+                  type: string
+                surname:
+                  type: string
+                email:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
       responses:
         '200':
           description: Update succesful
@@ -185,19 +178,20 @@ paths:
       tags:
         - users
       description: User goals update
-      parameters:
-        - name: id
-          in: query
-          schema:
-            type: integer
-        - name: description
-          in: query
-          schema:
-            type: string
-        - name: percentage
-          in: query
-          schema:
-            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                id:
+                  type: integer
+                description:
+                  type: string
+                percentage:
+                  type: integer
       responses:
         '200':
           description: Update succesful
@@ -208,15 +202,18 @@ paths:
       tags:
         - users
       description: User goals update
-      parameters:
-        - name: description
-          in: query
-          schema:
-            type: string
-        - name: percentage
-          in: query
-          schema:
-            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                description:
+                  type: string
+                percentage:
+                  type: string
       responses:
         '200':
           description: Update succesful
@@ -227,32 +224,26 @@ paths:
       tags:
         - coach
       description: Coach plan update
-      parameters:
-        - name: username
-          description: Coach username
-          in: query
-          schema:
-            type: string
-        - name: description
-          in: query
-          schema:
-            type: string
-        - name: dateFrom
-          in: query
-          schema:
-            type: string
-        - name: dateTo
-          in: query
-          schema:
-            type: string
-        - name: price
-          in: query
-          schema:
-            type: number
-        - name: isTraining
-          in: query
-          schema:
-            type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                username:
+                  type: string
+                description:
+                  type: string
+                dateFrom:
+                  type: string
+                dateTo:
+                  type: string
+                price:
+                  type: number
+                isTraining:
+                  type: number
       responses:
         '200':
           description: Update succesful
@@ -263,21 +254,20 @@ paths:
       tags:
         - users
       description: Add user plan
-      parameters:
-        - name: id
-          description: id of plan
-          in: query
-          schema:
-            type: string
-        - name: currentTime
-          in: query
-          schema:
-            type: string
-        - name: username
-          description: username of user
-          in: query
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                id:
+                  type: integer
+                currentTime:
+                  type: string
+                username:
+                  type: string
       responses:
         '200':
           description: Update succesful
@@ -318,17 +308,18 @@ paths:
       tags:
         - coach
       description: 'Coach plan update, maybe add price change in future'
-      parameters:
-        - name: id
-          description: id of plan
-          in: query
-          schema:
-            type: integer
-        - name: description
-          description: description of a plan
-          in: query
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                id:
+                  type: integer
+                description:
+                  type: string
       responses:
         '200':
           description: Update succesful
@@ -339,21 +330,20 @@ paths:
       tags:
         - gyms
       description: Adding gym
-      parameters:
-        - name: name
-          in: query
-          schema:
-            type: string
-        - name: description
-          description: description of a gym
-          in: query
-          schema:
-            type: string
-        - name: email
-          description: description of a gym
-          in: query
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                name: 
+                  type: string
+                description:
+                  type: string
+                email:
+                  type: string
       responses:
         '200':
           description: Update succesful
@@ -437,36 +427,28 @@ paths:
       tags:
         - gyms
       description: Update gym info
-      parameters:
-        - name: id
-          description: id of gym
-          in: query
-          schema:
-            type: string
-        - name: country
-          in: query
-          schema:
-            type: string
-        - name: street
-          in: query
-          schema:
-            type: string
-        - name: city
-          in: query
-          schema:
-            type: string
-        - name: opensAt
-          in: query
-          schema:
-            type: string
-        - name: closesAt
-          in: query
-          schema:
-            type: string
-        - name: phoneNumber
-          in: query
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                id:
+                  type: integer
+                country:
+                  type: string
+                street:
+                  type: string
+                city:
+                  type: string
+                opensAt:
+                  type: string
+                closesAt: 
+                  type: string
+                phoneNumber:
+                  type: string
       responses:
         '200':
           description: Update succesful
@@ -569,12 +551,16 @@ paths:
       tags:
         - gyms
       description: Update gym info
-      parameters:
-        - name: id
-          description: id of a membership
-          in: query
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                id:
+                  type: string
       responses:
         '200':
           description: Succes
