@@ -16,4 +16,10 @@ public class UserDto {
     private String password;
 
     private Role role;
+
+    private Integer height;
+
+    private Integer weight;
+
+    private String PayPalAccount;
 }

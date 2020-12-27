@@ -27,8 +27,8 @@ public class User implements UserDetails {
     private String password;
     private String phoneNumber;
     private String PayPalAccount;
-    private int height;
-    private int weight;
+    private Integer height;
+    private Integer weight;
     @Enumerated(EnumType.STRING)
     private Role role;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
