@@ -179,7 +179,7 @@ paths:
           description: acc username
           in: query
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Update succesful
