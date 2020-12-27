@@ -40,6 +40,12 @@ paths:
                 title: User
                 type: object
                 properties:
+                  name:
+                    type: string
+                    description: Placeholder description
+                  surname:
+                    type: string
+                    description: Placeholder description
                   username:
                     type: string
                     description: Placeholder description
