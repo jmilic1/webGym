@@ -174,12 +174,6 @@ paths:
       tags:
         - registration
       description: User acc delete
-      parameters:
-        - name: username
-          description: acc username
-          in: query
-          schema:
-            type: string
       responses:
         '200':
           description: Update succesful
