@@ -10,7 +10,6 @@ import java.sql.Time;
 @Data
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@Table(name = "jobRequests")
 public class JobRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

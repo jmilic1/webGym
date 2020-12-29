@@ -10,8 +10,7 @@ import java.util.Date;
 @Data
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@Table(name = "userMemberships")
-public class UserMembership {
+public class MembershipUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

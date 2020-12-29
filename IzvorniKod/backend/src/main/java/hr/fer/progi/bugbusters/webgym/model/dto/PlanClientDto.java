@@ -5,9 +5,8 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class UserMembershipDto {
+public class PlanClientDto {
     private Long id;
     private String username;
-    private Date dateBegin;
-    private Date dateEnd;
+    private Date currentTime;
 }
