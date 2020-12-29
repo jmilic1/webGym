@@ -203,6 +203,29 @@ paths:
           description: Update succesful
         '404':
           description: Update failed
+  /getUserGoals:
+    get:
+      tags:
+        - users
+      description: User goals fetch
+      responses:
+        '200':
+          description: Update succesful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    description:
+                      type: string
+                    percentage:
+                      type: integer
+        '404':
+          description: Update failed
   /addUserGoal:
     post:
       tags:
@@ -286,27 +309,27 @@ paths:
       responses:
         '200':
           description: Get user plans
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    dateOfPurchase:
-                      type: string
-                    description:
-                      type: string
-                    coachUsername:
-                      type: string
-                    isTraining:
-                      type: boolean
-                    dateFrom:
-                      type: string
-                    dateTo:
-                      type: string
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  dateOfPurchase:
+                    type: string
+                  description:
+                    type: string
+                  coachUsername:
+                    type: string
+                  isTraining:
+                    type: boolean
+                  dateFrom:
+                    type: string
+                  dateTo:
+                    type: string
         '404':
           description: Fetch  failed
   /modifyCoachPlan:
