@@ -26,6 +26,10 @@ class Header extends React.Component {
                         <Link to = '/auth'>Prijava</Link>
 
                     }
+
+                    {this.props.loggedIn &&
+                        <Link to = '/myProfile'>Moj profil</Link>
+                    }
                 </div>
             </div>
         )
