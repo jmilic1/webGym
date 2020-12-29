@@ -11,7 +11,6 @@ import java.util.List;
 @Data
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@Table(name = "gymlocations")
 public class GymLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,5 +26,5 @@ public class GymLocation {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "gymLocation")
     private List<JobRequest> jobRequests;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "gymLocation")
-    private List<UserGym> userGymList;
+    private List<GymUser> gymUserList;
 }

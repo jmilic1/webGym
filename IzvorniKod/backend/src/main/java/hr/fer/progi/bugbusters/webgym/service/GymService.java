@@ -76,10 +76,10 @@ public class GymService {
         List<User> coaches = new ArrayList<>();
         //if (gymLocations != null) {
         for (GymLocation gymLocation : gymLocations) {
-            List<UserGym> userGymList = gymLocation.getUserGymList();
-            if (userGymList != null) {
-                for (UserGym userGym : userGymList) {
-                    User user = userGym.getUser();
+            List<GymUser> gymUserList = gymLocation.getGymUserList();
+            if (gymUserList != null) {
+                for (GymUser gymUser : gymUserList) {
+                    User user = gymUser.getUser();
                     if (user != null) {
                         coaches.add(user);
                     }

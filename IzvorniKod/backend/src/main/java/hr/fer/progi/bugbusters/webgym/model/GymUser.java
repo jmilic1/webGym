@@ -8,14 +8,13 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "userGyms")
 @NoArgsConstructor
-public class UserGym {
+public class GymUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private GymLocation gym;
+    private GymLocation gymLocation;
     @ManyToOne
     @JoinColumn(name="username")
     private User user;

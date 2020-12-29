@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class UserGymDto {
+public class GymUserDto {
     private Long id;
     private String username;
     private Date workDateBegin;

@@ -11,16 +11,15 @@ import java.util.List;
 @Data
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@Table(name = "memberships")
 public class Membership {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Gym gym;
     private double price;
     private String description;
     private PGInterval interval;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "membership")
-    private List<UserMembership> userMemberships;
+    private List<MembershipUser> membershipUserList;
 }

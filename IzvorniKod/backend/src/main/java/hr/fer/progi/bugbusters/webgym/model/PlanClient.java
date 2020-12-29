@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @Entity
 @NoArgsConstructor
-public class UserPlan {
+public class PlanClient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,6 +17,6 @@ public class UserPlan {
     private Plan plan;
     @ManyToOne
     @JoinColumn(name="username")
-    private User user;
+    private User client;
     private Date dateBought;
 }

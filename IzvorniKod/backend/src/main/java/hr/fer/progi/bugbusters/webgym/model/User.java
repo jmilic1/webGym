@@ -36,13 +36,13 @@ public class User implements UserDetails {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Goal> goals;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<UserMembership> userMemberships;
+    private List<MembershipUser> membershipUserList;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<JobRequest> jobRequests;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+    private List<PlanClient> clientPlans;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<UserPlan> userPlans;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<UserGym> userGymList;
+    private List<GymUser> GymUserList;
 
     public User(String username, String email, String password, String name, String surname){
         this.username = username;
