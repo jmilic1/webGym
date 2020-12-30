@@ -5,6 +5,7 @@ import CustomButton from "../../components/custom-buttom/custom-button.component
 import UserPlan from "../../components/userPlan/userPlan.component";
 import Transaction from "../../components/transaction/transaction.component";
 import UserGoal from "../../components/userGoal/userGoal.component";
+import BtnAdd from '../../assets/btn_add.svg'
 
 const PLANS = "plans"
 const TRANSACTIONS = 'transactions'
@@ -74,7 +75,7 @@ class UserProfile extends React.Component{
                 }
             ],
             view: PLANS,
-            addNewGoal: true,
+            addNewGoal: false,
             newGoalDescription: "",
             newGoalPercentage: 0
         }
@@ -187,9 +188,16 @@ class UserProfile extends React.Component{
         })
         this.setState({
             newGoalDescription: "",
-            newGoalPercentage: 0
+            newGoalPercentage: 0,
+            addNewGoal: false
         })
         this.refreshUserGoals()
+    }
+
+    handleChangeAddNewGoalFlag = () => {
+        this.setState({
+            addNewGoal: !this.state.addNewGoal
+        })
     }
 
     render() {
@@ -275,13 +283,25 @@ class UserProfile extends React.Component{
                             <p className='passive-view-btn' onClick={this.handleShowTransactionViewClick}>Transakcije</p>
                             <p className='active-view-btn'>Ciljevi</p>
                         </div>
-                        {this.state.addNewGoal &&
-                            <div>
-                                <input type='text' name='newGoalDescription' value={this.state.newGoalDescription} onChange={this.handleChange} placeholder='Opis'/>
-                                <input type='text' name='newGoalPercentage' value={this.state.newGoalPercentage} onChange={this.handleChange}/>
-                                <div>
+                        {this.state.addNewGoal ?
+                            <div className='new-userGoal-container'>
+                                <p>Dodavanje cilja</p>
+                                <div className='new-userGoal-description'>
+                                    <label>Opis</label>
+                                    <textarea  name='newGoalDescription' value={this.state.newGoalDescription} onChange={this.handleChange}/>
+                                </div>
+                                <div className='new-userGoal-percentage'>
+                                    <label>Postotak</label>
+                                    <input type='number' max= '100' min= '0' name='newGoalPercentage' value={this.state.newGoalPercentage} onChange={this.handleChange}/>
+                                </div>
+                                <div className='btn-cancel-and-submit-container'>
+                                    <CustomButton onClick = {this.handleChangeAddNewGoalFlag}>Otkaži</CustomButton>
                                     <CustomButton onClick = {this.handleBtnSaveNewGoalClick}>Spremi</CustomButton>
+                                </div>
                             </div>
+                            :
+                            <div className='btnAdd-container'>
+                                <img src = {BtnAdd} width='20px' alt='add btn' onClick={this.handleChangeAddNewGoalFlag}/>
                             </div>
                         }
                         {

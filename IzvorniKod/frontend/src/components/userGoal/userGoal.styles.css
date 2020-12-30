@@ -1,9 +1,77 @@
-.goals-container{
+.goal-container{
     font-size: 20px;
     background-color: white;
     margin: 30px 0px;
     width: 90%;
-    background-color: #f9f9f9;
     border-radius: 10px;
     padding: 15px;
+}
+
+.userGoal-update-container{
+    font-size: 20px;
+    margin: 30px 0px;
+    width: 90%;
+    height: 700px;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    background-color: white;
+}
+
+.multiline {
+    white-space: pre-wrap;
+    width: 90%;
+    overflow: scroll;
+}
+
+
+.userGoal-description-update{
+    display: grid;
+    grid-template-columns: 90px auto;
+    column-gap: 20px;
+}
+
+.userGoal-display-container textarea{
+    width: 900px;
+    min-height: 50px;
+    max-height: 100px;
+    border-radius: 5px;
+    font-size: 20px;
+    border: none;
+    padding: 15px;
+    background-color: white;
+    height: 200px;
+}
+
+.userGoal-update-container input{
+    border: black 2px solid;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.userGoal-description-update textarea{
+    width: 900px;
+    height: 500px;
+    border: white 1px solid;
+    border-radius: 5px;
+    font-size: 20px;
+    border: 2px solid black;
+    padding: 15px;
+}
+
+.userGoal-percentage-update{
+    display: grid;
+    grid-template-columns: 90px auto;
+    column-gap: 20px;
+}
+
+.userGoal-display-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }

@@ -7,5 +7,6 @@
     border-radius: 10px;
     display: grid;
     grid-template-columns: auto auto auto;
+    padding: 20px;
 }
 

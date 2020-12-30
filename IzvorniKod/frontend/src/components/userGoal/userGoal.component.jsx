@@ -19,7 +19,7 @@ class UserGoal extends React.Component {
     }
 
     handleStoreGoalChangesBtnClick = () => {
-        fetch(this.props.backendURL + "modifyUserGoal" , {
+        /*fetch(this.props.backendURL + "modifyUserGoal" , {
             method: 'POST',
             //credentials: 'include',
             body: JSON.stringify({id: this.props.id, description: this.state.description, percentage: this.state.percentage})
@@ -29,6 +29,10 @@ class UserGoal extends React.Component {
             } else{
                 alert("Došlo je do pogreške prilikom spremanja promjena")
             }
+        })*/
+
+        this.setState({
+            update: false
         })
     }
 
@@ -40,18 +44,25 @@ class UserGoal extends React.Component {
 
     render() {
         return (
-            <div className='goals-container'>
+            <div className='goal-container'>
                 { !this.state.update ?
-                    <div>
-                        <p>{this.props.description}</p>
-                        <p>{this.props.percentage}%</p>
+                    <div className='userGoal-display-container'>
+                        <textarea className='multiline'>{this.state.description}</textarea>
+                        <p>{this.state.percentage}%</p>
                         <CustomButton onClick = {this.handleUpdateChangeClick}>Izmjeni</CustomButton>
                     </div>
                     :
-                    <div>
-                        <input type='text' name='description' value={this.state.description} onChange={this.handleChange}/>
-                        <input type='text' name='percentage' value={this.state.percentage} onChange={this.handleChange}/>
-                        <div>
+                    <div className='userGoal-update-container'>
+                        <p>Izmjena cilja</p>
+                        <div className='userGoal-description-update'>
+                            <label>Opis</label>
+                            <textarea  name='description' value={this.state.description} onChange={this.handleChange}/>
+                        </div>
+                        <div className='userGoal-percentage-update'>
+                            <label>Postotak</label>
+                            <input type='number' max= '100' min= '0' name='percentage' value={this.state.percentage} onChange={this.handleChange}/>
+                        </div>
+                        <div className='btn-cancel-and-submit-container'>
                             <CustomButton onClick = {this.handleUpdateChangeClick}>Otkaži</CustomButton>
                             <CustomButton onClick = {this.handleStoreGoalChangesBtnClick}>Spremi</CustomButton>
                         </div>

@@ -34,6 +34,7 @@
     border: #072557 2.5px solid;
     padding: 10px;
     border-radius: 5px;
+    height: 600px;
 }
 
 
@@ -96,4 +97,66 @@
 
 .passive-view-btn:hover{
     cursor: pointer
+}
+
+.new-userGoal-container{
+    font-size: 20px;
+    margin: 30px 0px;
+    width: 90%;
+    height: 700px;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    justify-content: space-around;
+    background-color: white;
+}
+
+.new-userGoal-container input{
+    border: black 2px solid;
+    border-radius: 5px;
+    color: white;
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.new-userGoal-description{
+    display: grid;
+    grid-template-columns: 90px auto;
+    column-gap: 20px;
+}
+
+.new-userGoal-description textarea{
+    width: 900px;
+    height: 500px;
+    border: white 1px solid;
+    border-radius: 5px;
+    font-size: 20px;
+    border: 2px solid black;
+    padding: 15px;
+}
+
+.new-userGoal-percentage{
+    display: grid;
+    grid-template-columns: 90px auto;
+    column-gap: 20px;
+}
+
+.btnAdd-container{
+    width: 90%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.btnAdd-container img{
+    cursor: pointer;
+}
+
+.btn-cancel-and-submit-container{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 20px;
 }

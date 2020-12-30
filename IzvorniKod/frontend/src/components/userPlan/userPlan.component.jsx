@@ -18,17 +18,20 @@ class UserPlan extends React.Component {
     render() {
         return (
             <div className='userPlan-container'>
-                <div className='plan-metadata'>
-                    <p>Tip: {this.props.isTraining ? "Trening" : "Prehrana"}</p>
-                    <p>Opis: {this.props.description}</p>
-                    <p className = 'cursor-on-hover' onClick={this.handleExtendLinkClick}>{!this.state.extended ? "Proširi" : "Smanji"}</p>
+                <div className='plan-metadata' onClick={this.handleExtendLinkClick}>
+                    <p>{this.props.isTraining ? "Trening" : "Prehrana"}</p>
+                    <p>Trener: {this.props.coachUsername}</p>
+                    <p>{!this.state.extended ? "Proširi" : "Smanji"}</p>
                 </div>
                 {this.state.extended &&
-                <div>
-                    <p>Trener: {this.props.coachUsername}</p>
-                    <p>Datum kupnje: {this.props.dateOfPurchase}</p>
-                    <p>Datum početka: {this.props.dateFrom}</p>
-                    <p>Datum kraja: {this.props.dateTo}</p>
+                <div className='userplans-details-container'>
+                    <hr/>
+                    <textarea disabled>{this.props.description}</textarea>
+                    <div className='user-plan-details'>
+                        <p>Datum kupnje: {this.props.dateOfPurchase}</p>
+                        <p>Datum početka: {this.props.dateFrom}</p>
+                        <p>Datum kraja: {this.props.dateTo}</p>
+                    </div>
                 </div>
                 }
             </div>
