@@ -103,6 +103,19 @@ public class UserController {
         return service.getUserWorkoutPlans(username);
     }
 
+    @GetMapping("/getUserGoals")
+    public List<Goal> getUserGoals(HttpServletRequest request) {
+        String username = extractUsernameFromCookies(request);
+
+        System.out.println("Loginan username: " + username);
+
+        if (username == null) {
+            return null;
+        }
+
+        return service.getUserGoals(username);
+    }
+
     private String extractUsernameFromCookies(HttpServletRequest request){
         Cookie[] cookies = request.getCookies();
         if (cookies != null){

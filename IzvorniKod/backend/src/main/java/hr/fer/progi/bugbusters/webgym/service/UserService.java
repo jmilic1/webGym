@@ -62,6 +62,19 @@ public class UserService {
         return getSpecificPlans(username, plan -> !plan.getIsTraining());
     }
 
+    public List<Goal> getUserGoals(String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            List<Goal> goals = user.getGoals();
+
+            return goals;
+        } else {
+            throw new RuntimeException("Currently logged in user not found!");
+        }
+    }
+
     public void modifyGoal(Goal goal){
         goalRepository.save(goal);
     }

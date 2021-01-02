@@ -112,6 +112,15 @@ public class TestService {
         }
     }
 
+    public User logInAsUser(){
+        Optional<User> user = userRepository.findById("jElb");
+        if (user.isPresent()){
+            return user.get();
+        } else {
+            throw new RuntimeException("That username does not exist in database");
+        }
+    }
+
     private void populateGyms() {
         List<Gym> gyms = new ArrayList<>();
         gyms.add(new Gym("Gyms4You", "Gyms but for you", "Gyms4You@Yahoo.com"));
