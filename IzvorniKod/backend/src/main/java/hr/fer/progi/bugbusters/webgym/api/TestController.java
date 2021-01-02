@@ -109,6 +109,7 @@ public class TestController {
         User user = testService.logInAsUser();
         resp.addCookie(new Cookie("username", user.getUsername()));
         resp.addCookie(new Cookie("role", "CLIENT"));
+        resp.setStatus(200);
         return "Logged in!";
     }
 }

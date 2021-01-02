@@ -7,6 +7,11 @@ import hr.fer.progi.bugbusters.webgym.dao.UserRepository;
 import hr.fer.progi.bugbusters.webgym.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -115,10 +120,30 @@ public class TestService {
     public User logInAsUser(){
         Optional<User> user = userRepository.findById("jElb");
         if (user.isPresent()){
+            changeRole(user.get());
             return user.get();
         } else {
             throw new RuntimeException("That username does not exist in database");
         }
+    }
+
+    /**
+     * Changes the role of current user to the role of the given user.
+     *
+     * @param user given user
+     */
+    protected static void changeRole(User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        List<GrantedAuthority> updatedAuthorities = new ArrayList<>();
+        if (user == null) {
+            updatedAuthorities.add(new SimpleGrantedAuthority("unregistered"));
+        } else {
+            updatedAuthorities.add(new SimpleGrantedAuthority(user.getRole().toString()));
+        }
+
+        Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), updatedAuthorities);
+        SecurityContextHolder.getContext().setAuthentication(newAuth);
     }
 
     private void populateGyms() {
