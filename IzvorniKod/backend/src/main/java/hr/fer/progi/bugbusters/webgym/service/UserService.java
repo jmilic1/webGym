@@ -6,6 +6,7 @@ import hr.fer.progi.bugbusters.webgym.dao.UserRepository;
 import hr.fer.progi.bugbusters.webgym.model.Goal;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.User;
+import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -40,17 +41,13 @@ public class UserService {
     }
 
     public void addPlan(Plan plan, String username) {
-        if (username == null) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            plan.setUser(user);
             planRepository.save(plan);
         } else {
-            Optional<User> optionalUser = userRepository.findById(username);
-            if (optionalUser.isPresent()) {
-                User user = optionalUser.get();
-                plan.setUser(user);
-                planRepository.save(plan);
-            } else {
-                throw new RuntimeException("Username not found!");
-            }
+            throw new RuntimeException("Username not found!");
         }
     }
 

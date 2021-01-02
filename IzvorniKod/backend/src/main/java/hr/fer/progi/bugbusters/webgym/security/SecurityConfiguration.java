@@ -49,6 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/registration", "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/gymList", "/gymInfo", "/membership", "/logInAsUser", "/logInAsCoach").permitAll()
                 .antMatchers("/testAuthorization/coach").hasAuthority("COACH")
+                //.antMatchers(HttpMethod.POST, "/addPlan").hasAuthority("COACH")
                 .antMatchers(HttpMethod.GET, "/testAuthorization/user", "/getUserGoals").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST, "/addUserGoal").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST, "/addGym", "/gymInfo").hasAuthority("OWNER")
