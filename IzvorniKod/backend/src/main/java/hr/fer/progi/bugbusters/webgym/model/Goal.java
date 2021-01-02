@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @NoArgsConstructor
 public class Goal {
     @Id
