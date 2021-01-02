@@ -1,12 +1,10 @@
 package hr.fer.progi.bugbusters.webgym.service;
 
+import hr.fer.progi.bugbusters.webgym.dao.GoalRepository;
 import hr.fer.progi.bugbusters.webgym.dao.GymRepository;
 import hr.fer.progi.bugbusters.webgym.dao.PlanRepository;
 import hr.fer.progi.bugbusters.webgym.dao.UserRepository;
-import hr.fer.progi.bugbusters.webgym.model.Gym;
-import hr.fer.progi.bugbusters.webgym.model.Plan;
-import hr.fer.progi.bugbusters.webgym.model.Role;
-import hr.fer.progi.bugbusters.webgym.model.User;
+import hr.fer.progi.bugbusters.webgym.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,15 +19,17 @@ import java.util.Optional;
 public class TestService {
     private final GymRepository gymRepository;
     private final UserRepository userRepository;
+    private final GoalRepository goalRepository;
     private final PlanRepository planRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public TestService(@Qualifier("gymRep") GymRepository gymRepository, @Qualifier("userRep") UserRepository userRepository, @Qualifier("planRep") PlanRepository planRepository){
+    public TestService(@Qualifier("gymRep") GymRepository gymRepository, @Qualifier("userRep") UserRepository userRepository, @Qualifier("goalRep") GoalRepository goalRepository, @Qualifier("planRep") PlanRepository planRepository){
         this.gymRepository = gymRepository;
         this.userRepository = userRepository;
+        this.goalRepository = goalRepository;
         this.planRepository = planRepository;
     }
 
@@ -71,6 +71,12 @@ public class TestService {
         User jJel = user;
 
         userRepository.saveAll(users);
+
+        List<Goal> goals = new ArrayList<>();
+        Goal goal = new Goal(jelbertson, "Pretrci 20 kilometara", 10.0);
+        goals.add(goal);
+
+        goalRepository.saveAll(goals);
 
         List<Plan> plans = new ArrayList<>();
         Plan plan = new Plan();
