@@ -74,19 +74,19 @@ public class TestService {
 
         List<Plan> plans = new ArrayList<>();
         Plan plan = new Plan();
-        plan.setDateBegin(new Date(System.currentTimeMillis()));
-        plan.setDateEnd(new Date(System.currentTimeMillis()));
+        plan.setDateFrom(new Date(System.currentTimeMillis()));
+        plan.setDateTo(new Date(System.currentTimeMillis()));
         plan.setDescription("Workout plan");
-        plan.setIsWorkout(true);
+        plan.setIsTraining(true);
         plan.setPrice(25.30);
         plan.setUser(tLov);
         plans.add(plan);
 
         plan = new Plan();
-        plan.setDateBegin(new Date(System.currentTimeMillis()));
-        plan.setDateEnd(new Date(System.currentTimeMillis()));
+        plan.setDateFrom(new Date(System.currentTimeMillis()));
+        plan.setDateTo(new Date(System.currentTimeMillis()));
         plan.setDescription("Eating plan");
-        plan.setIsWorkout(false);
+        plan.setIsTraining(false);
         plan.setPrice(99.99);
         plan.setUser(tLov);
         plans.add(plan);

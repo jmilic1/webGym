@@ -55,11 +55,11 @@ public class UserService {
     }
 
     public List<Plan> getUserDietPlans(String username) {
-        return getSpecificPlans(username, Plan::getIsWorkout);
+        return getSpecificPlans(username, Plan::getIsTraining);
     }
 
     public List<Plan> getUserWorkoutPlans(String username) {
-        return getSpecificPlans(username, plan -> !plan.getIsWorkout());
+        return getSpecificPlans(username, plan -> !plan.getIsTraining());
     }
 
     public void modifyGoal(Goal goal){
