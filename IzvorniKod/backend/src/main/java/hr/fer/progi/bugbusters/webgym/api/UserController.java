@@ -38,6 +38,7 @@ public class UserController {
     @Autowired
     public UserController(@Qualifier("userService") UserService userService, ModelMapper modelMapper) {
         this.service = userService;
+        this.modelMapper = modelMapper;
     }
 
     /**
@@ -106,8 +107,6 @@ public class UserController {
     @GetMapping("/getUserGoals")
     public List<Goal> getUserGoals(HttpServletRequest request) {
         String username = extractUsernameFromCookies(request);
-
-        System.out.println("Loginan username: " + username);
 
         if (username == null) {
             return null;
