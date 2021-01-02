@@ -103,4 +103,13 @@ public class TestController {
         resp.addCookie(new Cookie("role", "COACH"));
         return "Logged in!";
     }
+
+    @GetMapping("/logInAsUser")
+    public String logInAsUser(final HttpServletResponse resp){
+        User user = testService.logInAsUser();
+        resp.addCookie(new Cookie("username", user.getUsername()));
+        resp.addCookie(new Cookie("role", "CLIENT"));
+        resp.setStatus(200);
+        return "Logged in!";
+    }
 }

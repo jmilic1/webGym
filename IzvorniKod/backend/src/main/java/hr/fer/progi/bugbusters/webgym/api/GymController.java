@@ -35,7 +35,6 @@ public class GymController {
      */
     @GetMapping("/gymList")
     public List<GymDto> getGyms() {
-
         return service.listGyms()
                 .stream()
                 .map(this::convertGymToDto)

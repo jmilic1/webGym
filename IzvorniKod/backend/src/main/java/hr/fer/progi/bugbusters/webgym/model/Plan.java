@@ -18,10 +18,10 @@ public class Plan {
     @JoinColumn(name="username")
     private User user;
     private String description;
-    private Date dateBegin;
-    private Date dateEnd;
+    private Date dateFrom;
+    private Date dateTo;
     private Double price;
-    private Boolean isWorkout;
+    private Boolean isTraining;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "plan")
     private List<PlanClient> clientPlans;
 

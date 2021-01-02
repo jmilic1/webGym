@@ -4,6 +4,7 @@ import hr.fer.progi.bugbusters.webgym.model.Goal;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.User;
 import hr.fer.progi.bugbusters.webgym.model.dto.GoalDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
 import hr.fer.progi.bugbusters.webgym.service.UserManagementService;
 import hr.fer.progi.bugbusters.webgym.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * User controller which reads url requests
@@ -38,6 +40,7 @@ public class UserController {
     @Autowired
     public UserController(@Qualifier("userService") UserService userService, ModelMapper modelMapper) {
         this.service = userService;
+        this.modelMapper = modelMapper;
     }
 
     /**
@@ -61,26 +64,6 @@ public class UserController {
         service.addGoal(modelMapper.map(goalDto, Goal.class), username);
     }
 
-    /*@PostMapping("/userPlans")
-    public void addPlan(@RequestBody Plan plan, final HttpServletResponse response, HttpServletRequest request) {
-        if (plan.getUser() == null) {
-            String username = extractUsernameFromCookies(request);
-            if (username != null) {
-                service.addPlan(plan, username);
-            } else {
-                response.setStatus(403);
-                return;
-            }
-        }
-        response.setStatus(200);
-    }
-
-    @GetMapping("/userPlans")
-    public List<> getPlans(final HttpServletRequest request){
-        String username = extractUsernameFromCookies(request);
-        service.getUserPlans(username);
-    }*/
-
     @GetMapping("/getDietPlans")
     public List<Plan> getDietPlans(HttpServletRequest request) {
         String username = extractUsernameFromCookies(request);
@@ -103,6 +86,33 @@ public class UserController {
         return service.getUserWorkoutPlans(username);
     }
 
+    @GetMapping("/getUserGoals")
+    public List<GoalDto> getUserGoals(HttpServletRequest request) {
+        String username = extractUsernameFromCookies(request);
+
+        if (username == null) {
+            return null;
+        }
+
+        return service.getUserGoals(username).stream()
+                .map(this::convertGoalToDto)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * COACH path. Adds a new Coach plan to database
+     * @param planDto
+     * @param response
+     * @param request
+     */
+    @PostMapping("/addPlan")
+    public void addPlan(@RequestBody PlanDto planDto, final HttpServletResponse response, HttpServletRequest request) {
+        String username = extractUsernameFromCookies(request);
+        if (username != null) {
+            service.addPlan(modelMapper.map(planDto, Plan.class), username);
+        }
+    }
+
     private String extractUsernameFromCookies(HttpServletRequest request){
         Cookie[] cookies = request.getCookies();
         if (cookies != null){
@@ -115,4 +125,7 @@ public class UserController {
         return null;
     }
 
+    private GoalDto convertGoalToDto(Goal goal) {
+        return modelMapper.map(goal, GoalDto.class);
+    }
 }
