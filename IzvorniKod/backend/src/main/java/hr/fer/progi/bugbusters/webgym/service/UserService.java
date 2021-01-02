@@ -69,6 +69,8 @@ public class UserService {
             User user = optionalUser.get();
             List<Goal> goals = user.getGoals();
 
+            System.out.println(goals);
+
             return goals;
         } else {
             throw new RuntimeException("Currently logged in user not found!");
