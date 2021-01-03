@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Coach controller which reads url requests
@@ -42,10 +42,33 @@ public class CoachController {
     }
 
     @PostMapping("/addPlan")
-    public void addPlan(@RequestBody PlanDto planDto, HttpServletRequest request) {
+    public void addPlan(@RequestBody PlanDto planDto, HttpServletRequest request, HttpServletResponse response) {
         String username = extractUsernameFromCookies(request);
 
-        service.addPlan(modelMapper.map(planDto, Plan.class), username);
+        try {
+            service.addPlan(modelMapper.map(planDto, Plan.class), username);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            response.setStatus(403);
+            return;
+        }
+
+        response.setStatus(200);
+    }
+
+    @PostMapping("/modifyCoachPlan")
+    public void modifyCoachPlan(@RequestBody PlanDto planDto, HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+
+        try {
+            service.modifyCoachPlan(planDto, username);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            response.setStatus(403);
+            return;
+        }
+
+        response.setStatus(200);
     }
 
     private String extractUsernameFromCookies(HttpServletRequest request){
