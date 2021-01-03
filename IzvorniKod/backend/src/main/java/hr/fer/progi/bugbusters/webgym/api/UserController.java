@@ -4,6 +4,7 @@ import hr.fer.progi.bugbusters.webgym.model.Goal;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.User;
 import hr.fer.progi.bugbusters.webgym.model.dto.GoalDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
 import hr.fer.progi.bugbusters.webgym.service.UserManagementService;
 import hr.fer.progi.bugbusters.webgym.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * User controller which reads url requests
@@ -62,26 +64,6 @@ public class UserController {
         service.addGoal(modelMapper.map(goalDto, Goal.class), username);
     }
 
-    /*@PostMapping("/userPlans")
-    public void addPlan(@RequestBody Plan plan, final HttpServletResponse response, HttpServletRequest request) {
-        if (plan.getUser() == null) {
-            String username = extractUsernameFromCookies(request);
-            if (username != null) {
-                service.addPlan(plan, username);
-            } else {
-                response.setStatus(403);
-                return;
-            }
-        }
-        response.setStatus(200);
-    }
-
-    @GetMapping("/userPlans")
-    public List<> getPlans(final HttpServletRequest request){
-        String username = extractUsernameFromCookies(request);
-        service.getUserPlans(username);
-    }*/
-
     @GetMapping("/getDietPlans")
     public List<Plan> getDietPlans(HttpServletRequest request) {
         String username = extractUsernameFromCookies(request);
@@ -105,14 +87,16 @@ public class UserController {
     }
 
     @GetMapping("/getUserGoals")
-    public List<Goal> getUserGoals(HttpServletRequest request) {
+    public List<GoalDto> getUserGoals(HttpServletRequest request) {
         String username = extractUsernameFromCookies(request);
 
         if (username == null) {
             return null;
         }
 
-        return service.getUserGoals(username);
+        return service.getUserGoals(username).stream()
+                .map(this::convertGoalToDto)
+                .collect(Collectors.toList());
     }
 
     private String extractUsernameFromCookies(HttpServletRequest request){
@@ -127,4 +111,7 @@ public class UserController {
         return null;
     }
 
+    private GoalDto convertGoalToDto(Goal goal) {
+        return modelMapper.map(goal, GoalDto.class);
+    }
 }
