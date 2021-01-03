@@ -6,6 +6,7 @@ import java.util.Date;
 @Data
 public class PlanDto {
     private Long id;
+    private String coachUsername;
     private String description;
     private Date dateFrom;
     private Date dateTo;
