@@ -8,8 +8,8 @@ public class PlanDto {
     private Long id;
     private String coachUsername;
     private String description;
-    private Date dateFrom;
-    private Date dateTo;
+    private String dateFrom;
+    private String dateTo;
     private Double price;
     private Boolean isTraining;
 
