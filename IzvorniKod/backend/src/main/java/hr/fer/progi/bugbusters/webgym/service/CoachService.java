@@ -65,4 +65,18 @@ public class CoachService {
         }
     }
 
+    public Plan getCoachPlan(Long id) {
+        if (id == null) return null;
+
+        Optional<Plan> plan = planRepository.findById(id);
+
+        if (plan.isPresent()) {
+            Plan myPlan = plan.get();
+
+            return myPlan;
+        }
+
+        return null;
+    }
+
 }

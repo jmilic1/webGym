@@ -7,10 +7,7 @@ import hr.fer.progi.bugbusters.webgym.service.CoachService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -69,6 +66,19 @@ public class CoachController {
         }
 
         response.setStatus(200);
+    }
+
+    @GetMapping("/coachPlan")
+    public PlanDto getCoachPlan(@RequestBody PlanDto planDto, HttpServletRequest request, HttpServletResponse response) {
+        Plan retPlan = service.getCoachPlan(planDto.getId());
+
+        if (retPlan == null) {
+            response.setStatus(404);
+            return null;
+        }
+
+        response.setStatus(200);
+        return modelMapper.map(retPlan, PlanDto.class);
     }
 
     private String extractUsernameFromCookies(HttpServletRequest request){
