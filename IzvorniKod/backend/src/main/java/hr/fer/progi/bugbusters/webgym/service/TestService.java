@@ -111,6 +111,7 @@ public class TestService {
     public User logInAsCoach(){
         Optional<User> user = userRepository.findById("tLov");
         if (user.isPresent()){
+            changeRole(user.get());
             return user.get();
         } else {
             throw new RuntimeException("That username does not exist in database");
