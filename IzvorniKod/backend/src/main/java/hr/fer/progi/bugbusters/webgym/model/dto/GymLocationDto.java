@@ -10,7 +10,7 @@ public class GymLocationDto {
     private String country;
     private String city;
     private String street;
-    private Time opensAt;
-    private Time closesAt;
+    private String opensAt;
+    private String closesAt;
     private String phoneNumber;
 }

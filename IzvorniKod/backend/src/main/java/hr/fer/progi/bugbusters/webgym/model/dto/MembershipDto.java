@@ -8,5 +8,5 @@ public class MembershipDto {
     private Long id;
     private double price;
     private String description;
-    private PGInterval interval;
+    private String interval;
 }

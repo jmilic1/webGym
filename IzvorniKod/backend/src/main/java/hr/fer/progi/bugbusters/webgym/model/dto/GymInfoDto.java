@@ -11,7 +11,7 @@ public class GymInfoDto{
     private String name;
     private String description;
     private String email;
-    List<GymLocationDto> gymLocationList;
-    List<UserDto> coachList;
-    List<MembershipDto> membershipList;
+    List<GymLocationDto> locations;
+    List<UserDto> coaches;
+    List<MembershipDto> memberships;
 }

@@ -92,9 +92,9 @@ public class GymService {
                 .collect(Collectors.toList());
 
         GymInfoDto gymInfoDto = modelMapper.map(gym, GymInfoDto.class);
-        gymInfoDto.setGymLocationList(gymLocationDtoList);
-        gymInfoDto.setMembershipList(membershipDtoList);
-        gymInfoDto.setCoachList(coachDtoList);
+        gymInfoDto.setLocations(gymLocationDtoList);
+        gymInfoDto.setMemberships(membershipDtoList);
+        gymInfoDto.setCoaches(coachDtoList);
 
         return gymInfoDto;
     }

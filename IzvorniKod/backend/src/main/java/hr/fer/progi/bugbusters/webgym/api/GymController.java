@@ -55,8 +55,8 @@ public class GymController {
     }
 
     @GetMapping("/gymInfo")
-    public GymInfoDto getGymLocation(@RequestBody GymInfoDto gymInfoDto){
-        return service.getGymInfo(gymInfoDto.getId());
+    public GymInfoDto getGymLocation(@RequestParam long id){
+        return service.getGymInfo(id);
     }
 
     @PostMapping("/gymInfo")
