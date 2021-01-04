@@ -284,24 +284,26 @@
             Razredi prikazani na slici 4.4 predstavljaju DTO (data transfer object) razred. U području programiranja DTO je objekt koji prenosi podatke između procesa. Motivacija za njegovu upotrebu je ta da se komunikacija između procesa obično vrši pribjegavanjem udaljenim sučeljima (npr. Web uslugama), gdje je svaki poziv skupa operacija. Rješenje za smanjenje poziva je enkapsulacija  podataka u vrijednosni objekt koji se može prenositi preko mreže, odnosno korištenje DTO-a.
 		\end{figure}
 		
-		\begin{figure}
+		\begin{figure}[H]
 			\includegraphics[height= 13cm,width=1.2\textwidth]{dijagrami/ControllerClass.jpg}
-			\begin{center}
-			    Slika 4.3: Dijagram razreda - dio Controllers
-			\end{center}
+			\centering
+			\caption{Dijagram razreda - dio Controllers}
+			\label{fig:promjene}
 		\end{figure}
-		\begin{figure}
+		\begin{figure}[H]
 			\includegraphics[height= 13cm,width=1.2\textwidth]{dijagrami/DTOClass.png}
-			\begin{center}
-			    Slika 4.4: Dijagram razreda - dio Data transfer objects
-			\end{center}
+			\centering
+			\caption{Dijagram razreda - dio Data transfer objects}
+			\label{fig:promjene}
 		\end{figure}
 		\begin{figure}
 		    Model razredi preslikavaju strukturu baze podataka u aplikaciji. Implementirane metode direktno komuniciraju s bazom podataka te vraćaju tražene podatke. Razred Korisnik predstavlja uniju svih različitih entiteta koji se mogu registrirati u aplikaciji. Razred klijent predstavlja registriranog korisnika te on može koristiti sve rezervirane funkcionalnosti. Razred Administrator predstavlja administratora koji može koristiti više manje sve metode i ima najveće ovlasti te u suštini on upravlja cijelom aplikacijom. Razred Trener predstavlja trenera koji može raditi u nekoj od ponuđenih teretana te koristiti teretanu kao platformu za prodavanje svojih planova treninga i prehrane. Razred Voditelj predstavlja voditelja teretane, voditelj koristi svoje ovlasti kako bi osigurao pravilnu povezanost teretane , trenera i klijenata. Razred Zamolba predstavlja trenerov upit odnosno zamolbu za rad u određenoj teretani. Razred Ciljevi predstavlja određeni cilj pojedinog klijenta. Razred PlanTreningaIPrehrane predstavlja trenerov proizvod koji se nalazi u teretani u kojoj trener radi te ga mogu kupiti trenerovi klijenti.
 		\end{figure}
-		\begin{figure}
+		\begin{figure}[H]
 			\includegraphics[height= 20cm,width=1.2\textwidth]{dijagrami/modelsClass.jpg}
-			\textbf{Slika 4.5: Dijagram razreda - dio Models}
+			\centering
+			\caption{Dijagram razreda - dio Models}
+			\label{fig:promjene}
 		\end{figure}
 	
 		\eject
@@ -313,7 +315,14 @@
 			
 			\textbf{\textit{dio 2. revizije}}\\
 			
-			\textit{Potrebno je priložiti dijagram stanja i opisati ga. Dovoljan je jedan dijagram stanja koji prikazuje \textbf{značajan dio funkcionalnosti} sustava. Na primjer, stanja korisničkog sučelja i tijek korištenja neke ključne funkcionalnosti jesu značajan dio sustava, a registracija i prijava nisu. }
+			Dijagram stanja prikazuje stanje te sve prijelaze u ostala stanja uzrokovana događajima. Na slici 4.6 prikazan je dijagram stanja za registriranog korisnika. Kao što vidimo na dijagramu registriranog i prijavljenog korisnika na početnoj stranici čeka mogućnost pregleda svih teretana kao i pregled osobnih podataka. Ako korisnik izvrši akciju odlaska na stranicu pregleda osobnih podataka, ondje ima mogućnost izmijeniti svoje osobne podatke ili izbrisati račun na kojem je trenutno prijavljen. Ako korisnik pak odabere pregled teretana korisniku se prikazuju sve teretane. Korisnik tada ima mogućnost odabrati jednu od ponuđenih teretana nakon čega mu se prikaže popis trenera te teretane kao i radno vrijeme same teretane. Korisnik na odabranoj teretani također može odabrati i jednu od ponuđenih članarina koje se prikažu pritiskom na "pregled članarina" te se potom korisnika pritiskom na "plati" preusmjerava na plaćanje. Ako se korisnik ipak pri odabranoj teretani odlući odabrati jednog od trenera pritiskom na "pregled trenera" korisniku se dohvaćaju trenerovi programi koje može odabrati. Pritiskom na "plati" na odabranom programu korisnika se usmjerava na plaćanje samog odabranog programa.
+		\begin{figure}[H]
+			\hspace*{-1.5cm}
+			\includegraphics[scale=0.13]{dijagrami/dijagram_stanja.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			\centering
+			\caption{Dijagram stanja}
+			\label{fig:promjene}
+		\end{figure}
 			
 			
 			\eject 
@@ -321,12 +330,27 @@
 		\section{Dijagram aktivnosti}
 			
 			\textbf{\textit{dio 2. revizije}}\\
-			
-			 \textit{Potrebno je priložiti dijagram aktivnosti s pripadajućim opisom. Dijagram aktivnosti treba prikazivati značajan dio sustava.}
+            Dijagram aktivnosti pomaže nam u opisivanju toka upravljanja ili toka to jest puta podataka. U modeliranju dijagrama aktivnosti tok upravljanja funkcionira tako da se svaki novi korak poduzima tek nakon završenog prethodnog te je cilj što jednostavnije tok tih koraka prikazati. Na slici 4.7 prikazan je proces promjene podataka korisnika. Korisnik se prijavljuje u sustav, prikazuje mu se opcija pregleda osobnih podataka koju i odabire. Odabire opciju promjene osobnih podataka, unosi nove podatke o sebi te ih sprema. Spremljeni podaci šalju se od korisnika do web aplikacije, te ih web aplikacija šalje u bazu podataka gdje se spremaju. Ako je korisnik u početku unio krive osobne podatke za prijavu, korisnika se vraća na početnu stranicu.
+			 
+		\begin{figure}[H]
+			\hspace*{-1.5cm}
+			\includegraphics[scale=0.25]{dijagrami/dijagram_aktivnosti.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			\centering
+			\caption{Dijagram aktivnosti}
+			\label{fig:promjene}
+		\end{figure}
 			
 			\eject
 		\section{Dijagram komponenti}
 		
 			\textbf{\textit{dio 2. revizije}}\\
 		
-			 \textit{Potrebno je priložiti dijagram komponenti s pripadajućim opisom. Dijagram komponenti treba prikazivati strukturu cijele aplikacije.}
+            Sljedeći dijagram prikazan na slici 4.8 jest dijagram komponenti koji prikazuje međuovisnost i organizaciju komponenti. 
+            
+        \begin{figure}[H]
+			\hspace*{-1.5cm}
+			\includegraphics[scale=0.67]{dijagrami/dijagram_komponenti.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			\centering
+			\caption{Dijagram komponenti}
+			\label{fig:promjene}
+		\end{figure}
