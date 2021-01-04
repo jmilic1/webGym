@@ -40,17 +40,6 @@ public class UserService {
         return users;
     }
 
-    public void addPlan(Plan plan, String username) {
-        Optional<User> optionalUser = userRepository.findById(username);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            plan.setUser(user);
-            planRepository.save(plan);
-        } else {
-            throw new RuntimeException("Username not found!");
-        }
-    }
-
     public List<Plan> getUserDietPlans(String username) {
         return getSpecificPlans(username, Plan::getIsTraining);
     }

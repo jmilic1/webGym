@@ -99,20 +99,6 @@ public class UserController {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * COACH path. Adds a new Coach plan to database
-     * @param planDto
-     * @param response
-     * @param request
-     */
-    @PostMapping("/addPlan")
-    public void addPlan(@RequestBody PlanDto planDto, final HttpServletResponse response, HttpServletRequest request) {
-        String username = extractUsernameFromCookies(request);
-        if (username != null) {
-            service.addPlan(modelMapper.map(planDto, Plan.class), username);
-        }
-    }
-
     private String extractUsernameFromCookies(HttpServletRequest request){
         Cookie[] cookies = request.getCookies();
         if (cookies != null){
