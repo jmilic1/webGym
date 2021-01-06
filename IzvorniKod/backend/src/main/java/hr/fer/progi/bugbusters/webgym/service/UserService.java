@@ -3,6 +3,7 @@ package hr.fer.progi.bugbusters.webgym.service;
 import hr.fer.progi.bugbusters.webgym.dao.GoalRepository;
 import hr.fer.progi.bugbusters.webgym.dao.PlanRepository;
 import hr.fer.progi.bugbusters.webgym.dao.UserRepository;
+import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.Goal;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.User;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service("userService")
 public class UserService {
@@ -73,6 +75,17 @@ public class UserService {
             goal.setUser(myUser);
             goalRepository.save(goal);
         }
+    }
+
+    public List<PlanDto> getAllUserPlans(String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            return user.getPlans().stream().map(Mappers::mapPlanToPlanDto).collect(Collectors.toList());
+        }
+
+        return null;
     }
 
     private List<Plan> getSpecificPlans(String username, Predicate<Plan> remove){
