@@ -65,6 +65,17 @@ public class TestService {
         User tLov = user;
 
         user = new User();
+        user.setName("Mirko");
+        user.setSurname("Mirkic");
+        user.setUsername("mirko");
+        user.setEmail("mirko@gmail.com");
+        encryptedPassword = passwordEncoder.encode("456");
+        user.setPassword(encryptedPassword);
+        user.setRole(Role.COACH);
+        users.add(user);
+        User mirko = user;
+
+        user = new User();
         user.setName("Josip");
         user.setSurname("Jelacic");
         user.setUsername("jJel");
@@ -74,6 +85,17 @@ public class TestService {
         user.setRole(Role.OWNER);
         users.add(user);
         User jJel = user;
+
+        user = new User();
+        user.setName("Sef");
+        user.setSurname("Sefic");
+        user.setUsername("sef");
+        user.setEmail("sef@fer.hr");
+        encryptedPassword = passwordEncoder.encode("123");
+        user.setPassword(encryptedPassword);
+        user.setRole(Role.ADMIN);
+        users.add(user);
+        User sef = user;
 
         userRepository.saveAll(users);
 
@@ -106,11 +128,29 @@ public class TestService {
         tLov.setPlans(plans);
         userRepository.save(tLov);
 
+        // mirko
+        plan = new Plan();
+        plan.setDateFrom(new Date(System.currentTimeMillis()));
+        plan.setDateTo(new Date(System.currentTimeMillis()));
+        plan.setDescription("Mirkov plan");
+        plan.setIsTraining(false);
+        plan.setPrice(99.99);
+        plan.setUser(mirko);
+        plans.add(plan);
+        planRepository.save(plan);
+
+
+        plans = new ArrayList<>();
+        plans.add(plan);
+        mirko.setPlans(plans);
+        userRepository.save(mirko);
+
     }
 
     public User logInAsCoach(){
         Optional<User> user = userRepository.findById("tLov");
         if (user.isPresent()){
+            changeRole(user.get());
             return user.get();
         } else {
             throw new RuntimeException("That username does not exist in database");
@@ -119,6 +159,16 @@ public class TestService {
 
     public User logInAsUser(){
         Optional<User> user = userRepository.findById("jElb");
+        if (user.isPresent()){
+            changeRole(user.get());
+            return user.get();
+        } else {
+            throw new RuntimeException("That username does not exist in database");
+        }
+    }
+
+    public User logInAsAdmin() {
+        Optional<User> user = userRepository.findById("sef");
         if (user.isPresent()){
             changeRole(user.get());
             return user.get();
