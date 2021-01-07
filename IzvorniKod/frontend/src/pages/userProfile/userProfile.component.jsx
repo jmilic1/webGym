@@ -77,43 +77,58 @@ class UserProfile extends React.Component{
             view: PLANS,
             addNewGoal: false,
             newGoalDescription: "",
-            newGoalPercentage: 0
+            newGoalPercentage: 12
         }
     }
 
     componentDidMount() {
+        var errorHappened = false
+
         fetch(this.props.backendURL + "userPlans" , {
             method: 'GET'
             //credentials: 'include'
         }).then(response => {
-            return response.json()
+            if(response.status === 200) return response.json()
+            else return Promise.reject()
         }).then(plans => {
             this.setState({
                 userPlans: plans
             })
+        }, function (){
+            errorHappened = true
         })
 
         fetch(this.props.backendURL + "myTransactions" , {
             method: 'GET'
             //credentials: 'include'
         }).then(response => {
-            return response.json()
+            if(response.status === 200) return response.json()
+            else return Promise.reject()
         }).then(transactions => {
             this.setState({
                 transactions: transactions
             })
+        }, function (){
+            errorHappened = true
         })
 
         fetch(this.props.backendURL + "getUserGoals" , {
             method: 'GET'
             //credentials: 'include'
         }).then(response => {
-            return response.json()
+            if(response.status === 200) return response.json()
+            else return Promise.reject()
         }).then(goals => {
             this.setState({
                 userGoals: goals
             })
+        }, function (){
+            if(errorHappened){
+                alert("Došlo je do pogreške")
+            }
         })
+
+
     }
 
     refreshUserGoals = () => {
@@ -180,18 +195,39 @@ class UserProfile extends React.Component{
         })
     }
 
-    handleBtnSaveNewGoalClick= () => {
-        fetch(this.props.backendURL + "addUserGoal" , {
-            method: 'POST',
-            credentials: 'include',
-            body: JSON.stringify({description: this.state.newGoalDescription, percentage: this.state.newGoalPercentage})
-        })
+    handleUserGoalPercentageChange = (e) =>{
+        var number =  parseInt(e.target.value, 10)
+
+        if((number >= 0 && number <= 100) || isNaN(number)){
+            this.setState({
+                newGoalPercentage: number
+            })
+        }
+    }
+    handleUserGoalDescriptionChange = (e) =>{
         this.setState({
-            newGoalDescription: "",
-            newGoalPercentage: 0,
-            addNewGoal: false
+            newGoalDescription: e.target.value
         })
-        this.refreshUserGoals()
+    }
+
+    handleBtnSaveNewGoalClick= () => {
+
+        if(!isNaN(this.state.newGoalPercentage)){
+            fetch(this.props.backendURL + "addUserGoal" , {
+                method: 'POST',
+                credentials: 'include',
+                body: JSON.stringify({description: this.state.newGoalDescription, percentage: this.state.newGoalPercentage})
+            })
+            this.setState({
+                newGoalDescription: "",
+                newGoalPercentage: 0,
+                addNewGoal: false
+            })
+            this.refreshUserGoals()
+        } else{
+            alert("Postotak ne može ostati prazan")
+        }
+
     }
 
     handleChangeAddNewGoalFlag = () => {
@@ -288,11 +324,11 @@ class UserProfile extends React.Component{
                                 <p>Dodavanje cilja</p>
                                 <div className='new-userGoal-description'>
                                     <label>Opis</label>
-                                    <textarea  name='newGoalDescription' value={this.state.newGoalDescription} onChange={this.handleChange}/>
+                                    <textarea  name='newGoalDescription' value={this.state.newGoalDescription} onChange={this.handleUserGoalDescriptionChange}/>
                                 </div>
                                 <div className='new-userGoal-percentage'>
                                     <label>Postotak</label>
-                                    <input type='number' max= '100' min= '0' name='newGoalPercentage' value={this.state.newGoalPercentage} onChange={this.handleChange}/>
+                                    <input style={{color: "black"}} type='number'  name='newGoalPercentage' value={this.state.newGoalPercentage} onChange={this.handleUserGoalPercentageChange}/>
                                 </div>
                                 <div className='btn-cancel-and-submit-container'>
                                     <CustomButton onClick = {this.handleChangeAddNewGoalFlag}>Otkaži</CustomButton>

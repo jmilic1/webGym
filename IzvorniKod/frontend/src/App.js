@@ -16,8 +16,8 @@ class App extends React.Component {
   constructor(){
     super()
     this.state = {
-      //backendURL: "https://web-gym2.herokuapp.com/",
-      backendURL: "http://localhost:8080/",
+      backendURL: "https://web-gym2.herokuapp.com/",
+      //backendURL: "http://localhost:8080/",
       //backendURL: "https://4fdc7b46-b005-4be7-88ca-cf5a60c80023.mock.pstmn.io/",
       loggedIn: false,
       username: '',

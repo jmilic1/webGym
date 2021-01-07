@@ -20,6 +20,10 @@ class Header extends React.Component {
                     }
                     <Link to = '/gymList'>Popis teretana</Link>
 
+                    {this.props.loggedIn &&
+                    <Link to = '/myProfile'>Moj profil</Link>
+                    }
+
                     {this.props.loggedIn ?
                         <Link to = '/logOut'>Odjava</Link>
                         :
@@ -27,9 +31,6 @@ class Header extends React.Component {
 
                     }
 
-                    {this.props.loggedIn &&
-                        <Link to = '/myProfile'>Moj profil</Link>
-                    }
                 </div>
             </div>
         )
