@@ -19,7 +19,7 @@ public class Membership {
     private Gym gym;
     private double price;
     private String description;
-    private PGInterval interval;
+    private String interval;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "membership")
     private List<MembershipUser> membershipUserList;
 }
