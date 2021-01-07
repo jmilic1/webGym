@@ -155,25 +155,29 @@ public class UserController {
     }
 
     @GetMapping("/getDietPlans")
-    public List<Plan> getDietPlans(HttpServletRequest request) {
+    public List<PlanDto> getDietPlans(HttpServletRequest request) {
         String username = extractUsernameFromCookies(request);
 
         if (username == null) {
             return null;
         }
 
-        return userService.getUserDietPlans(username);
+        return userService.getUserDietPlans(username).stream()
+                .map(this::convertPlanToDto)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/getWorkoutPlans")
-    public List<Plan> getWorkoutPlans(HttpServletRequest request) {
+    public List<PlanDto> getWorkoutPlans(HttpServletRequest request) {
         String username = extractUsernameFromCookies(request);
 
         if (username == null) {
             return null;
         }
 
-        return userService.getUserWorkoutPlans(username);
+        return userService.getUserWorkoutPlans(username).stream()
+                .map(this::convertPlanToDto)
+                .collect(Collectors.toList());
     }
 
     private String extractUsernameFromCookies(HttpServletRequest request){
@@ -202,5 +206,10 @@ public class UserController {
 
     private GoalDto convertGoalToDto(Goal goal) {
         return modelMapper.map(goal, GoalDto.class);
+    }
+    private PlanDto convertPlanToDto(Plan plan){
+        PlanDto dto = modelMapper.map(plan, PlanDto.class);
+        dto.setCoachUsername(plan.getUser().getUsername());
+        return dto;
     }
 }
