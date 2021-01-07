@@ -35,9 +35,12 @@
     padding: 10px;
     border-radius: 5px;
     height: 600px;
-    width: 400px;
+    width: 350px;
 }
 
+.userInfo-container input[type="text"]{
+    width: 340px;
+}
 
 .user-info-form{
     display: flex;
@@ -60,6 +63,7 @@
     color: black;
     margin-top: 5px;
     margin-bottom: 30px;
+    width: 340px;
 }
 .user-info-form label{
     color: grey;
@@ -77,6 +81,7 @@
     align-items: center;
     color: black;
     border-radius: 10px;
+    width: 1200px;
 }
 
 .view-btns-container{

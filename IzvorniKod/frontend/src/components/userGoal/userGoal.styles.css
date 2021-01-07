@@ -2,9 +2,13 @@
     font-size: 20px;
     background-color: white;
     margin: 30px 0px;
-    width: 90%;
     border-radius: 10px;
     padding: 15px;
+    width: 90%;
+}
+
+goal-container input[type="textarea"]{
+    width: 930px;
 }
 
 .userGoal-update-container{
