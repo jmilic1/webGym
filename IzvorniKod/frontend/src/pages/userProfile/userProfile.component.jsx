@@ -15,65 +15,15 @@ class UserProfile extends React.Component{
     constructor() {
         super();
         this.state = {
-            username: 'Edo',
-            name: "Eduard",
-            surname: "Duras",
-            role: "COACH",
+            username: '',
+            name: "",
+            surname: "",
+            role: "",
             password: "",
             modifyUserInfo: false,
-            userPlans: [
-                {
-                    "id": 26269684,
-                    "dateOfPurchase": "sed pariatur dolore",
-                    "description": "tempor aliqua",
-                    "coachUsername": "et est aliq",
-                    "isTraining": false,
-                    "dateFrom": "anim",
-                    "dateTo": "tempor mollit"
-                },
-                {
-                    "id": -88755413,
-                    "dateOfPurchase": "minim irure consequat ut",
-                    "description": "consectetur",
-                    "coachUsername": "do incididunt anim",
-                    "isTraining": true,
-                    "dateFrom": "in laboris labore",
-                    "dateTo": "esse sed"
-                }
-            ],
-            transactions: [
-                {
-                    "senderUsername": "consequat",
-                    "receiverUsername": "laboris Lorem mollit sed",
-                    "amount": -94658092.45234537,
-                    "dateWhen": "et ",
-                    "id": 60493413,
-                    "transactionType": "dolore Lorem"
-                },
-                {
-                    "senderUsername": "do sed",
-                    "receiverUsername": "in Excepteur mollit",
-                    "amount": 18182142.898341924,
-                    "dateWhen": "et dolore officia consequat Lorem",
-                    "id": -59211155,
-                    "transactionType": "laboris cupidatat do labore"
-                }
-            ],
-            userGoals: [
-                {
-                    "id": 0,
-                    "description": "trbusnjaci",
-                    "percentage": 60
-                },{
-                    "id": 2,
-                    "description": "noge",
-                    "percentage": 50
-                },{
-                    "id": 3,
-                    "description": "ruke",
-                    "percentage": 70
-                }
-            ],
+            userPlans: [],
+            transactions: [],
+            userGoals: [],
             view: PLANS,
             addNewGoal: false,
             newGoalDescription: "",
