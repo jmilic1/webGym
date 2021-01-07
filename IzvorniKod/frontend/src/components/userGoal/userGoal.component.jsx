@@ -40,7 +40,7 @@ class UserGoal extends React.Component {
         if(!isNaN(this.state.newPercentage)){
             fetch(this.props.backendURL + "modifyUserGoal" , {
                 method: 'POST',
-                //credentials: 'include',
+                credentials: 'include',
                 body: JSON.stringify({id: this.props.id, description: this.state.description, percentage: this.state.newPercentage})
             }).then(response => {
                 if(response.status === 200){

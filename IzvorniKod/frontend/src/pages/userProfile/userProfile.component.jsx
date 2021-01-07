@@ -35,8 +35,8 @@ class UserProfile extends React.Component{
         var errorHappened = false
 
         fetch(this.props.backendURL + "userPlans" , {
-            method: 'GET'
-            //credentials: 'include'
+            method: 'GET',
+            credentials: 'include'
         }).then(response => {
             if(response.status === 200) return response.json()
             else return Promise.reject()
@@ -49,8 +49,8 @@ class UserProfile extends React.Component{
         })
 
         fetch(this.props.backendURL + "myTransactions" , {
-            method: 'GET'
-            //credentials: 'include'
+            method: 'GET',
+            credentials: 'include'
         }).then(response => {
             if(response.status === 200) return response.json()
             else return Promise.reject()
@@ -63,8 +63,8 @@ class UserProfile extends React.Component{
         })
 
         fetch(this.props.backendURL + "getUserGoals" , {
-            method: 'GET'
-            //credentials: 'include'
+            method: 'GET',
+            credentials: 'include'
         }).then(response => {
             if(response.status === 200) return response.json()
             else return Promise.reject()
