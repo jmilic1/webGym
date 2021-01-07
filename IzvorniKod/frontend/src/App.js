@@ -1,3 +1,4 @@
+
 import React from 'react';
 import './App.css';
 import { Switch, Route} from 'react-router-dom';
@@ -10,22 +11,19 @@ import CoachPlans from "./pages/coachPlans/coachPlans.component";
 import Footer from "./components/footer/footer.component";
 import OwnerGyms from "./pages/ownerGyms/ownerGyms.component";
 import UserList from './pages/userList/userList.component'
+import GymInfo from './pages/gymInfo/gymInfo.component'
 class App extends React.Component {
 
   constructor(){
     super()
     this.state = {
       backendURL: "https://web-gym2.herokuapp.com/",
-      //backendURL: "http://localhost:8080/",
       //backendURL: "https://f74a7152-35cc-4315-878e-7202dfe1b74c.mock.pstmn.io/",
       loggedIn: false,
-      username: '',
+      username: "",
       name: "",
       surname: "",
       role: "",
-      // coach: false,
-      // admin: false,
-      // gymOwner: false
     }
   }
 
@@ -35,10 +33,6 @@ class App extends React.Component {
       name:name,
       surname: surname,
       role: role,
-      // client: client,
-      // coach: coach,
-      // admin:admin,
-      // gymOwner: gymOwner,
       username: username,
       loggedIn: true
     })
@@ -48,10 +42,6 @@ class App extends React.Component {
     this.setState({
       name:'',
       surname: '',
-      // coach: false,
-      // admin:false,
-      // gymOwner: false,
-      // client: false,
       role: "",
       username: false,
       loggedIn: false
@@ -61,7 +51,7 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-          <Header  loggedIn = {this.state.loggedIn} role = {this.state.role}/>
+          <Header loggedIn = {this.state.loggedIn} role = {this.state.role}/>
           <div className = 'page-container'>
             <Switch>
               <Route exact path="/" component={Homepage} />
@@ -71,6 +61,7 @@ class App extends React.Component {
               <Route exact path="/userList" render={(props) => <UserList {...props} backendURL = {this.state.backendURL} />} />
               <Route exact path="/myPlans" render={(props) => <CoachPlans {...props} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/myGyms" render={(props) => <OwnerGyms {...props} backendURL = {this.state.backendURL}/>} />
+              <Route exact path="/gymInfo/:id" render={(props) => <GymInfo {...props} backendURL = {this.state.backendURL}/>}/>
             </Switch>
           </div>
           <Footer/>
