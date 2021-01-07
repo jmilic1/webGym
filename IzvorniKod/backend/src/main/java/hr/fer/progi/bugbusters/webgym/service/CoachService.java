@@ -1,28 +1,40 @@
 package hr.fer.progi.bugbusters.webgym.service;
 
 import hr.fer.progi.bugbusters.webgym.dao.GoalRepository;
+import hr.fer.progi.bugbusters.webgym.dao.PlanClientRepository;
 import hr.fer.progi.bugbusters.webgym.dao.PlanRepository;
 import hr.fer.progi.bugbusters.webgym.dao.UserRepository;
-import hr.fer.progi.bugbusters.webgym.model.Plan;
-import hr.fer.progi.bugbusters.webgym.model.Role;
-import hr.fer.progi.bugbusters.webgym.model.User;
+import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
+import hr.fer.progi.bugbusters.webgym.model.*;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.TransactionDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service("coachService")
 public class CoachService {
 
     UserRepository userRepository;
     PlanRepository planRepository;
+    PlanClientRepository planClientRepository;
+    ModelMapper modelMapper;
 
     @Autowired
-    public CoachService(@Qualifier("userRep") UserRepository userRepository, @Qualifier("planRep") PlanRepository planRepository) {
+    public CoachService(@Qualifier("userRep") UserRepository userRepository,
+                        @Qualifier("planRep") PlanRepository planRepository,
+                        @Qualifier("planClientRep") PlanClientRepository planClientRepository,
+                        ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.planRepository = planRepository;
+        this.planClientRepository = planClientRepository;
+        this.modelMapper = modelMapper;
     }
 
     public void addPlan(Plan plan, String username) throws RuntimeException {
@@ -63,6 +75,15 @@ public class CoachService {
             myPlan.setDescription(planDto.getDescription());
             planRepository.save(myPlan);
         }
+    }
+
+    public List<PlanDto> getAllCoachPlans(String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+
+        if (!optionalUser.isPresent()) return null;
+        User user = optionalUser.get();
+
+        return planRepository.findByUser(user).stream().map(plan -> Mappers.mapPlanToPlanDto(plan)).collect(Collectors.toList());
     }
 
     public Plan getCoachPlan(Long id) {

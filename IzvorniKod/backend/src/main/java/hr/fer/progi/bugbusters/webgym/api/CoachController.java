@@ -1,5 +1,6 @@
 package hr.fer.progi.bugbusters.webgym.api;
 
+import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.Goal;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
@@ -78,7 +79,7 @@ public class CoachController {
         }
 
         response.setStatus(200);
-        return modelMapper.map(retPlan, PlanDto.class);
+        return Mappers.mapPlanToPlanDto(retPlan);
     }
 
     private String extractUsernameFromCookies(HttpServletRequest request){

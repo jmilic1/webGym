@@ -112,4 +112,13 @@ public class TestController {
         resp.setStatus(200);
         return "Logged in!";
     }
+
+    @GetMapping("/logInAsAdmin")
+    public String logInAsAdmin(final HttpServletResponse resp){
+        User user = testService.logInAsAdmin();
+        resp.addCookie(new Cookie("username", user.getUsername()));
+        resp.addCookie(new Cookie("role", "ADMIN"));
+        resp.setStatus(200);
+        return "Logged in!";
+    }
 }
