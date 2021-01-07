@@ -5,12 +5,10 @@ import hr.fer.progi.bugbusters.webgym.dao.PlanClientRepository;
 import hr.fer.progi.bugbusters.webgym.dao.PlanRepository;
 import hr.fer.progi.bugbusters.webgym.dao.UserRepository;
 import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
-import hr.fer.progi.bugbusters.webgym.model.Goal;
-import hr.fer.progi.bugbusters.webgym.model.Plan;
-import hr.fer.progi.bugbusters.webgym.model.PlanClient;
-import hr.fer.progi.bugbusters.webgym.model.User;
+import hr.fer.progi.bugbusters.webgym.model.*;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanClientDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.TransactionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -141,5 +139,32 @@ public class UserService {
         } else {
             throw new RuntimeException("Currently logged in user not found!");
         }
+    }
+
+    // ZA SADA IMPLEMENTIRANO SAMO ZA PLANOVE -> TREBA DODATI I ZA MEMBERSHIPOVE
+    public List<TransactionDto> getMyTransactions(String username, String role) {
+        List<TransactionDto> transactions = new ArrayList<>();
+
+        List<PlanClient> planClients = planClientRepository.findAll();
+
+        for (PlanClient planClient: planClients) {
+            Plan plan = planClient.getPlan();
+            User user = planClient.getClient();
+
+            if (role.equals("COACH") && !plan.getUser().getUsername().equals(username)) continue;
+            if (role.equals("CLIENT") && !user.getUsername().equals(username)) continue;
+
+            TransactionDto transactionDto = new TransactionDto();
+            transactionDto.setSenderUsername(user.getUsername());
+            transactionDto.setReceiverUsername(plan.getUser().getUsername());
+            transactionDto.setAmount(plan.getPrice());
+            transactionDto.setDateWhen(planClient.getDateBought());
+            transactionDto.setId(plan.getId());
+            transactionDto.setTransactionType(TransactionType.PLAN);
+
+            transactions.add(transactionDto);
+        }
+
+        return transactions;
     }
 }

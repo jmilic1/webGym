@@ -148,12 +148,9 @@ public class UserController {
             return null;
         }
 
-        List<TransactionDto> transactionDtoList = new ArrayList<>();
-
-        if (role.equals("ADMIN")) {
-            List<PlanDto> planDtoList = adminService.getAllPlans();
-        }
-
+        List<TransactionDto> transactionDtoList = userService.getMyTransactions(username, role);
+        if (transactionDtoList == null) response.setStatus(404);
+        else response.setStatus(200);
         return transactionDtoList;
     }
 

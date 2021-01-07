@@ -13,4 +13,28 @@ public class TransactionDto {
     private Date dateWhen;
     private Long id;
     private TransactionType transactionType;
+
+    public void setSenderUsername(String senderUsername) {
+        this.senderUsername = senderUsername;
+    }
+
+    public void setReceiverUsername(String receiverUsername) {
+        this.receiverUsername = receiverUsername;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public void setDateWhen(Date dateWhen) {
+        this.dateWhen = dateWhen;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTransactionType(TransactionType transactionType) {
+        this.transactionType = transactionType;
+    }
 }
