@@ -26,12 +26,17 @@ class Header extends React.Component {
                         <Link to='/userList'>Popis korisnika</Link>
                     }
 
+                    {this.props.loggedIn &&
+                    <Link to = '/myProfile'>Moj profil</Link>
+                    }
+
                     {this.props.loggedIn ?
                         <Link to = '/logOut'>Odjava</Link>
                         :
                         <Link to = '/auth'>Prijava</Link>
 
                     }
+
                 </div>
             </div>
         )

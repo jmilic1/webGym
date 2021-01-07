@@ -9,6 +9,7 @@ import Logout from './components/logout/logout.component'
 import CoachPlans from "./pages/coachPlans/coachPlans.component";
 import Footer from "./components/footer/footer.component";
 import OwnerGyms from "./pages/ownerGyms/ownerGyms.component";
+import UserProfile from "./pages/userProfile/userProfile.component";
 import UserList from './pages/userList/userList.component'
 class App extends React.Component {
 
@@ -17,7 +18,7 @@ class App extends React.Component {
     this.state = {
       backendURL: "https://web-gym2.herokuapp.com/",
       //backendURL: "http://localhost:8080/",
-      //backendURL: "https://f74a7152-35cc-4315-878e-7202dfe1b74c.mock.pstmn.io/",
+      //backendURL: "https://4fdc7b46-b005-4be7-88ca-cf5a60c80023.mock.pstmn.io/",
       loggedIn: false,
       username: '',
       name: "",
@@ -71,6 +72,9 @@ class App extends React.Component {
               <Route exact path="/userList" render={(props) => <UserList {...props} backendURL = {this.state.backendURL} />} />
               <Route exact path="/myPlans" render={(props) => <CoachPlans {...props} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/myGyms" render={(props) => <OwnerGyms {...props} backendURL = {this.state.backendURL}/>} />
+              <Route exact path="/myProfile" render={(props) => <UserProfile {...props}
+                    username = {this.state.username} name = {this.state.name} surname = {this.state.surname} role = {this.state.role}
+                    backendURL = {this.state.backendURL} />} />
             </Switch>
           </div>
           <Footer/>

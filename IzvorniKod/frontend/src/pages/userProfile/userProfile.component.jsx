@@ -1,0 +1,354 @@
+import React from 'react'
+import './userProfile.styles.css'
+import userProfileIcon from '../../assets/userProfileIcon.svg'
+import CustomButton from "../../components/custom-buttom/custom-button.component";
+import UserPlan from "../../components/userPlan/userPlan.component";
+import Transaction from "../../components/transaction/transaction.component";
+import UserGoal from "../../components/userGoal/userGoal.component";
+import BtnAdd from '../../assets/btn_add.svg'
+
+const PLANS = "plans"
+const TRANSACTIONS = 'transactions'
+const GOALS = "goals"
+
+class UserProfile extends React.Component{
+    constructor() {
+        super();
+        this.state = {
+            username: 'Edo',
+            name: "Eduard",
+            surname: "Duras",
+            role: "COACH",
+            password: "",
+            modifyUserInfo: false,
+            userPlans: [
+                {
+                    "id": 26269684,
+                    "dateOfPurchase": "sed pariatur dolore",
+                    "description": "tempor aliqua",
+                    "coachUsername": "et est aliq",
+                    "isTraining": false,
+                    "dateFrom": "anim",
+                    "dateTo": "tempor mollit"
+                },
+                {
+                    "id": -88755413,
+                    "dateOfPurchase": "minim irure consequat ut",
+                    "description": "consectetur",
+                    "coachUsername": "do incididunt anim",
+                    "isTraining": true,
+                    "dateFrom": "in laboris labore",
+                    "dateTo": "esse sed"
+                }
+            ],
+            transactions: [
+                {
+                    "senderUsername": "consequat",
+                    "receiverUsername": "laboris Lorem mollit sed",
+                    "amount": -94658092.45234537,
+                    "dateWhen": "et ",
+                    "id": 60493413,
+                    "transactionType": "dolore Lorem"
+                },
+                {
+                    "senderUsername": "do sed",
+                    "receiverUsername": "in Excepteur mollit",
+                    "amount": 18182142.898341924,
+                    "dateWhen": "et dolore officia consequat Lorem",
+                    "id": -59211155,
+                    "transactionType": "laboris cupidatat do labore"
+                }
+            ],
+            userGoals: [
+                {
+                    "id": 0,
+                    "description": "trbusnjaci",
+                    "percentage": 60
+                },{
+                    "id": 2,
+                    "description": "noge",
+                    "percentage": 50
+                },{
+                    "id": 3,
+                    "description": "ruke",
+                    "percentage": 70
+                }
+            ],
+            view: PLANS,
+            addNewGoal: false,
+            newGoalDescription: "",
+            newGoalPercentage: 12
+        }
+    }
+
+    componentDidMount() {
+        var errorHappened = false
+
+        fetch(this.props.backendURL + "userPlans" , {
+            method: 'GET'
+            //credentials: 'include'
+        }).then(response => {
+            if(response.status === 200) return response.json()
+            else return Promise.reject()
+        }).then(plans => {
+            this.setState({
+                userPlans: plans
+            })
+        }, function (){
+            errorHappened = true
+        })
+
+        fetch(this.props.backendURL + "myTransactions" , {
+            method: 'GET'
+            //credentials: 'include'
+        }).then(response => {
+            if(response.status === 200) return response.json()
+            else return Promise.reject()
+        }).then(transactions => {
+            this.setState({
+                transactions: transactions
+            })
+        }, function (){
+            errorHappened = true
+        })
+
+        fetch(this.props.backendURL + "getUserGoals" , {
+            method: 'GET'
+            //credentials: 'include'
+        }).then(response => {
+            if(response.status === 200) return response.json()
+            else return Promise.reject()
+        }).then(goals => {
+            this.setState({
+                userGoals: goals
+            })
+        }, function (){
+            if(errorHappened){
+                alert("Došlo je do pogreške")
+            }
+        })
+
+
+    }
+
+    refreshUserGoals = () => {
+        fetch(this.props.backendURL + "getUserGoals" , {
+            method: 'GET'
+            //credentials: 'include'
+        }).then(response => {
+            return response.json()
+        }).then(goals => {
+            this.setState({
+                userGoals: goals
+            })
+        })
+    }
+
+    handleChange = event => {
+        const { value, name } = event.target;
+
+        this.setState({ [name]: value });
+    };
+
+    handleChangeProfileInfoClick = () => {
+        this.setState({
+            modifyUserInfo: !this.state.modifyUserInfo
+        })
+    }
+
+    handleDeleteUserProfileBtnClick = () => {
+        if(window.confirm("Želite li obrisati profil?") === true){
+            fetch(this.props.backendURL + "modifyUser" , {
+                method: 'DELETE',
+                credentials: 'include'
+            })
+        }
+    }
+
+    handleChangeUserInfoSubmit = () => {
+        fetch(this.props.backendURL + "modifyUser" , {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify({name: this.state.name, surname: this.state.surname,
+                                        username: this.state.username, email: this.state.email, role: this.state.role,
+                                        password: this.state.password === "" ? null : this.state.password})
+        })
+
+        this.setState({
+            modifyUserInfo: false
+        })
+    }
+
+    handleShowPlanViewClick = () => {
+        this.setState({
+            view: PLANS
+        })
+    }
+    handleShowTransactionViewClick = () => {
+        this.setState({
+            view: TRANSACTIONS
+        })
+    }
+    handleShowGoalsViewClick = () => {
+        this.setState({
+            view: GOALS
+        })
+    }
+
+    handleUserGoalPercentageChange = (e) =>{
+        var number =  parseInt(e.target.value, 10)
+
+        if((number >= 0 && number <= 100) || isNaN(number)){
+            this.setState({
+                newGoalPercentage: number
+            })
+        }
+    }
+    handleUserGoalDescriptionChange = (e) =>{
+        this.setState({
+            newGoalDescription: e.target.value
+        })
+    }
+
+    handleBtnSaveNewGoalClick= () => {
+
+        if(!isNaN(this.state.newGoalPercentage)){
+            fetch(this.props.backendURL + "addUserGoal" , {
+                method: 'POST',
+                credentials: 'include',
+                body: JSON.stringify({description: this.state.newGoalDescription, percentage: this.state.newGoalPercentage})
+            })
+            this.setState({
+                newGoalDescription: "",
+                newGoalPercentage: 0,
+                addNewGoal: false
+            })
+            this.refreshUserGoals()
+        } else{
+            alert("Postotak ne može ostati prazan")
+        }
+
+    }
+
+    handleChangeAddNewGoalFlag = () => {
+        this.setState({
+            addNewGoal: !this.state.addNewGoal
+        })
+    }
+
+    render() {
+        return (
+            <div className='userProfile-page'>
+                <div className='userInfo-container'>
+                    <img src = {userProfileIcon} width='200px' alt='profile icon'/>
+                    <div>
+                        <div className='user-info-form'>
+                            <div className='userInfo-formInput'>
+                                <label htmlFor='name'>Ime</label>
+                                <input type='text' value={this.state.name} name='name' disabled={!this.state.modifyUserInfo}
+                                    onChange={this.handleChange}/>
+                            </div>
+                            <div className='userInfo-formInput'>
+                                <label htmlFor='surname'>Prezime</label>
+                                <input type='text' value={this.state.surname} name='surname' disabled={!this.state.modifyUserInfo}
+                                       onChange={this.handleChange}/>
+                            </div>
+                            <div className='userInfo-formInput'>
+                                <label htmlFor='username'>Korisničko ime</label>
+                                <input type='text' value={this.state.username} name='username' disabled={!this.state.modifyUserInfo}
+                                       onChange={this.handleChange}/>
+                            </div>
+                            {this.state.modifyUserInfo &&
+                                <div className='userInfo-formInput'>
+                                    <label htmlFor='password'>Lozinka (Ako ostavite prazno nećete ju promjeniti)</label>
+                                    <input type='password' placeholder="Lozinka..." name='password' hidden={!this.state.modifyUserInfo}
+                                           onChange={this.handleChange}/>
+                                </div>
+                            }
+                        </div>
+
+
+                        {!this.state.modifyUserInfo ?
+                            <div className='modifyUser-buttons-container'>
+                                <p onClick={this.handleChangeProfileInfoClick}>Uredi profil</p>
+                                <button className='delete-button' onClick={this.handleDeleteUserProfileBtnClick}>Izbriši profil</button>
+                            </div>
+                            :
+                            <div className='modifyUser-buttons-container'>
+                                <CustomButton onClick = {this.handleChangeProfileInfoClick}> Otkaži </CustomButton>
+                                <CustomButton onClick = {this.handleChangeUserInfoSubmit}> Potvrdi </CustomButton>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                {this.state.view === PLANS &&
+                    <div className='userPlans-and-transactions-container'>
+                        <div className='view-btns-container'>
+                            <p className='active-view-btn'>Planovi</p>
+                            <p className='passive-view-btn' onClick={this.handleShowTransactionViewClick}>Transakcije</p>
+                            <p className='passive-view-btn' onClick={this.handleShowGoalsViewClick}>Ciljevi</p>
+                        </div>
+                        {
+                            this.state.userPlans.map(plan =>
+                                <UserPlan key = {plan.id} id={plan.id} dateOfPurchase={plan.dateOfPurchase} description={plan.description}
+                                          coachUsername={plan.coachUsername} isTraining={plan.isTraining}
+                                          dateFrom={plan.dateFrom}
+                                          dateTo={plan.dateTo}/>)
+                        }
+                    </div>
+                }
+                {this.state.view === TRANSACTIONS &&
+                    <div className='userPlans-and-transactions-container'>
+                        <div className='view-btns-container'>
+                            <p className='passive-view-btn' onClick={this.handleShowPlanViewClick}>Planovi</p>
+                            <p className='active-view-btn'>Transakcije</p>
+                            <p className='passive-view-btn' onClick={this.handleShowGoalsViewClick}>Ciljevi</p>
+                        </div>
+                        {
+                            this.state.transactions.map(t =>
+                                <Transaction key = {t.id} amount={t.amount} dateWhen={t.dateWhen} receiverUsername={t.receiverUsername}
+                                            senderUsername={t.senderUsername} transactionType={t.transactionType}/>)
+                        }
+                    </div>
+                }
+                {this.state.view === GOALS &&
+                    <div className='userPlans-and-transactions-container'>
+                        <div className='view-btns-container'>
+                            <p className='passive-view-btn' onClick={this.handleShowPlanViewClick}>Planovi</p>
+                            <p className='passive-view-btn' onClick={this.handleShowTransactionViewClick}>Transakcije</p>
+                            <p className='active-view-btn'>Ciljevi</p>
+                        </div>
+                        {this.state.addNewGoal ?
+                            <div className='new-userGoal-container'>
+                                <p>Dodavanje cilja</p>
+                                <div className='new-userGoal-description'>
+                                    <label>Opis</label>
+                                    <textarea  name='newGoalDescription' value={this.state.newGoalDescription} onChange={this.handleUserGoalDescriptionChange}/>
+                                </div>
+                                <div className='new-userGoal-percentage'>
+                                    <label>Postotak</label>
+                                    <input style={{color: "black"}} type='number'  name='newGoalPercentage' value={this.state.newGoalPercentage} onChange={this.handleUserGoalPercentageChange}/>
+                                </div>
+                                <div className='btn-cancel-and-submit-container'>
+                                    <CustomButton onClick = {this.handleChangeAddNewGoalFlag}>Otkaži</CustomButton>
+                                    <CustomButton onClick = {this.handleBtnSaveNewGoalClick}>Spremi</CustomButton>
+                                </div>
+                            </div>
+                            :
+                            <div className='btnAdd-container'>
+                                <img src = {BtnAdd} width='20px' alt='add btn' onClick={this.handleChangeAddNewGoalFlag}/>
+                            </div>
+                        }
+                        {
+                        this.state.userGoals.map(goal =>
+                            <UserGoal id = {goal.id} key = {goal.id} description={goal.description} percentage={goal.percentage} update = {false}/>)
+                        }
+                    </div>
+                }
+            </div>
+        );
+    }
+}
+
+export default UserProfile
