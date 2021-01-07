@@ -1,6 +1,8 @@
 package hr.fer.progi.bugbusters.webgym.mappers;
 
 import hr.fer.progi.bugbusters.webgym.model.Plan;
+import hr.fer.progi.bugbusters.webgym.model.PlanClient;
+import hr.fer.progi.bugbusters.webgym.model.dto.PlanClientDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
 
 public class Mappers {

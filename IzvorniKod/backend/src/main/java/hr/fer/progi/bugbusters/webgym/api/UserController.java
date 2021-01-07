@@ -4,7 +4,9 @@ import hr.fer.progi.bugbusters.webgym.model.Goal;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.User;
 import hr.fer.progi.bugbusters.webgym.model.dto.GoalDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.PlanClientDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.TransactionDto;
 import hr.fer.progi.bugbusters.webgym.service.AdminService;
 import hr.fer.progi.bugbusters.webgym.service.CoachService;
 import hr.fer.progi.bugbusters.webgym.service.UserManagementService;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -88,18 +91,24 @@ public class UserController {
         userService.addGoal(modelMapper.map(goalDto, Goal.class), username);
     }
 
-    // tu idu /userPlans
+    @PostMapping("/userPlans")
+    public void userBuysPlan(@RequestBody PlanClientDto planClientDto, HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+
+        if (userService.addPlanClientConnection(username, planClientDto)) response.setStatus(200);
+        else response.setStatus(404);
+    }
 
     @GetMapping("/userPlans")
     public List<PlanDto> getUserPlans(HttpServletRequest request, HttpServletResponse response) {
         String username = extractUsernameFromCookies(request);
+        String role = extractRoleFromCookies(request);
 
-        if (username == null) {
+        if (username == null || role == null) {
             response.setStatus(404);
             return null;
         }
 
-        String role = extractRoleFromCookies(request);
         // role == COACH
         if (role.equals("COACH")) {
             List<PlanDto> coachPlans = coachService.getAllCoachPlans(username);
@@ -117,20 +126,35 @@ public class UserController {
 
         // role == CLIENT
         if (role.equals("CLIENT")) {
-            // OVO NE RADI -> TREBA SAMO OTKOMENTIRATI KADA SE SKUCA KUPNJA PLANA
-            /*
             List<PlanDto> userPlans = userService.getAllUserPlans(username);
+            if (userPlans == null) System.out.println("Null");
             if (userPlans == null) response.setStatus(404);
             else response.setStatus(200);
             return userPlans;
-            */
-            List<PlanDto> allPlans = adminService.getAllPlans();
-            response.setStatus(200);
-            return allPlans;
         }
 
         response.setStatus(404);
         return null;
+    }
+
+    // ZA SADA IMPLEMENTIRANO SAMO ZA PLANOVE -> TREBA DODATI I ZA MEMBERSHIPOVE
+    @GetMapping("/myTransactions")
+    public List<TransactionDto> getMyTransactions(HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        String role = extractRoleFromCookies(request);
+
+        if (username == null || role == null) {
+            response.setStatus(404);
+            return null;
+        }
+
+        List<TransactionDto> transactionDtoList = new ArrayList<>();
+
+        if (role.equals("ADMIN")) {
+            List<PlanDto> planDtoList = adminService.getAllPlans();
+        }
+
+        return transactionDtoList;
     }
 
     @GetMapping("/getDietPlans")

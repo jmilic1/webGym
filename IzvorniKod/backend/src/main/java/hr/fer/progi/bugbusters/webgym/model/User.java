@@ -9,10 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Data
 @Entity
@@ -60,6 +57,16 @@ public class User implements UserDetails {
         return Collections.singletonList(simpleGrantedAuthority);
     }
 
+    public void addPlanClient(PlanClient planClient) {
+        if (clientPlans == null) clientPlans = new ArrayList<>();
+        clientPlans.add(planClient);
+    }
+
+    public void addGoal(Goal goal) {
+        if (goals == null) goals = new ArrayList<>();
+        goals.add(goal);
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return false;
@@ -85,20 +92,11 @@ public class User implements UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(username, user.username) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(surname, user.surname) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(phoneNumber, user.phoneNumber) &&
-                Objects.equals(PayPalAccount, user.PayPalAccount) &&
-                Objects.equals(height, user.height) &&
-                Objects.equals(weight, user.weight) &&
-                role == user.role;
+        return Objects.equals(username, user.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, name, surname, email, password, phoneNumber, PayPalAccount, height, weight, role);
+        return Objects.hash(username);
     }
 }

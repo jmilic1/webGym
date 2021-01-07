@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,5 +30,10 @@ public class Plan {
     public Plan(User user, String description){
         this.user = user;
         this.description = description;
+    }
+
+    public void addPlanClient(PlanClient planClient) {
+        if (clientPlans == null) clientPlans = new ArrayList<>();
+        clientPlans.add(planClient);
     }
 }
