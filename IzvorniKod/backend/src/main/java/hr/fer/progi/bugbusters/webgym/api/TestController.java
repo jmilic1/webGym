@@ -3,7 +3,7 @@ package hr.fer.progi.bugbusters.webgym.api;
 import hr.fer.progi.bugbusters.webgym.model.Role;
 import hr.fer.progi.bugbusters.webgym.model.User;
 import hr.fer.progi.bugbusters.webgym.service.TestService;
-import hr.fer.progi.bugbusters.webgym.service.UserService;
+import hr.fer.progi.bugbusters.webgym.service.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class TestController {
-    private UserService service;
+    private UserManagementService service;
     private TestService testService;
 
     private Boolean called = false;
@@ -22,11 +22,11 @@ public class TestController {
     /**
      * Constructs MainController and wires it with the service.
      *
-     * @param userService Service which returns the Gym instances
+     * @param userManagementService Service which returns the Gym instances
      */
     @Autowired
-    public TestController(@Qualifier("userService") UserService userService, @Qualifier("testService") TestService testService) {
-        this.service = userService;
+    public TestController(@Qualifier("userManagementService") UserManagementService userManagementService, @Qualifier("testService") TestService testService) {
+        this.service = userManagementService;
         this.testService = testService;
     }
 
@@ -59,7 +59,7 @@ public class TestController {
     public String switchToUser(HttpServletResponse response){
         User user = new User();
         user.setRole(Role.CLIENT);
-        MainController.changeRole(user);
+        UserManagementController.changeRole(user);
         return "Switched to user!";
     }
 
@@ -67,7 +67,7 @@ public class TestController {
     public String switchToCoach(HttpServletResponse response){
         User user = new User();
         user.setRole(Role.COACH);
-        MainController.changeRole(user);
+        UserManagementController.changeRole(user);
         return "Switched to coach!";
     }
 
@@ -75,13 +75,13 @@ public class TestController {
     public String switchToOwner(HttpServletResponse response){
         User user = new User();
         user.setRole(Role.OWNER);
-        MainController.changeRole(user);
+        UserManagementController.changeRole(user);
         return "Switched to owner!";
     }
 
     @GetMapping("/switchToUnregistered")
     public String switchToUnregistered(HttpServletResponse response){
-        MainController.changeRole(null);
+        UserManagementController.changeRole(null);
         return "Switched to owner!";
     }
 
@@ -101,6 +101,24 @@ public class TestController {
         User user = testService.logInAsCoach();
         resp.addCookie(new Cookie("username", user.getUsername()));
         resp.addCookie(new Cookie("role", "COACH"));
+        return "Logged in!";
+    }
+
+    @GetMapping("/logInAsUser")
+    public String logInAsUser(final HttpServletResponse resp){
+        User user = testService.logInAsUser();
+        resp.addCookie(new Cookie("username", user.getUsername()));
+        resp.addCookie(new Cookie("role", "CLIENT"));
+        resp.setStatus(200);
+        return "Logged in!";
+    }
+
+    @GetMapping("/logInAsAdmin")
+    public String logInAsAdmin(final HttpServletResponse resp){
+        User user = testService.logInAsAdmin();
+        resp.addCookie(new Cookie("username", user.getUsername()));
+        resp.addCookie(new Cookie("role", "ADMIN"));
+        resp.setStatus(200);
         return "Logged in!";
     }
 }

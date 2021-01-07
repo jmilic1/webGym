@@ -15,8 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * but instead only serves as a demo for connecting with a frontend service,
  * listing all of the gyms in remote database,
  * and providing basic register/login/logout functionality.
- *
- * @author jmilic
  */
 @SpringBootApplication
 public class WebgymApplication {

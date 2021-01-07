@@ -1,63 +1,41 @@
 package hr.fer.progi.bugbusters.webgym.service;
 
-import hr.fer.progi.bugbusters.webgym.dao.GymRepository;
+import hr.fer.progi.bugbusters.webgym.dao.GoalRepository;
+import hr.fer.progi.bugbusters.webgym.dao.PlanClientRepository;
 import hr.fer.progi.bugbusters.webgym.dao.PlanRepository;
 import hr.fer.progi.bugbusters.webgym.dao.UserRepository;
-import hr.fer.progi.bugbusters.webgym.model.Gym;
-import hr.fer.progi.bugbusters.webgym.model.Plan;
-import hr.fer.progi.bugbusters.webgym.model.User;
+import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
+import hr.fer.progi.bugbusters.webgym.model.*;
+import hr.fer.progi.bugbusters.webgym.model.dto.PlanClientDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.TransactionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
-/**
- * Service with the name "userService" which only serves to create Gyms and return them in a list.
- *
- * @author jmilic
- */
 @Service("userService")
-public class UserService implements UserDetailsService {
+public class UserService {
 
-    private EmailSenderService emailSenderService;
-
-    private final GymRepository gymRepository;
-    private final UserRepository userRepository;
-    private final PlanRepository planRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    UserRepository userRepository;
+    PlanRepository planRepository;
+    GoalRepository goalRepository;
+    PlanClientRepository planClientRepository;
 
     @Autowired
-    public UserService(@Qualifier("gymRep") GymRepository gymRepository, @Qualifier("userRep") UserRepository userRepository, @Qualifier("planRep") PlanRepository planRepository, @Qualifier("emailService") EmailSenderService emailSenderService) {
-        this.gymRepository = gymRepository;
+    public UserService(@Qualifier("userRep") UserRepository userRepository,
+                       @Qualifier("planRep") PlanRepository planRepository,
+                       @Qualifier("goalRep") GoalRepository goalRepository,
+                       @Qualifier("planClientRep") PlanClientRepository planClientRepository){
         this.userRepository = userRepository;
         this.planRepository = planRepository;
-        this.emailSenderService = emailSenderService;
-    }
-
-    public List<Gym> databaseGyms() {
-        Iterable<Gym> it = gymRepository.findAll();
-        List<Gym> gyms = new ArrayList<>();
-
-        for (Gym gym : it) {
-            gyms.add(gym);
-        }
-        return gyms;
-    }
-
-    public boolean addGym(Gym gym) {
-        gymRepository.save(gym);
-        return true;
+        this.goalRepository = goalRepository;
+        this.planClientRepository = planClientRepository;
     }
 
     public List<User> listUsers() {
@@ -70,80 +48,82 @@ public class UserService implements UserDetailsService {
         return users;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        final Optional<User> optionalUser = userRepository.findById(username);
-
-        if (optionalUser.isPresent()) {
-            return optionalUser.get();
-        } else {
-            throw new UsernameNotFoundException("User with name " + username + " could not be found!");
-        }
-    }
-
-    public User signUpUser(User user) throws UserException {
-        validateUser(user);
-        final String encryptedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encryptedPassword);
-
-        userRepository.save(user);
-        //sendConfirmationMail(user.getEmail());
-        return user;
-    }
-
-    private void validateUser(User user) throws UserException {
-        if (user.getEmail().contains(" ") || user.getPassword().contains(" ") || user.getUsername().contains(" ")) {
-            throw new UserException("A field contained an illegal character!");
-        }
-
-        try {
-            loadUserByUsername(user.getUsername());
-        } catch (UsernameNotFoundException exc) {
-            return;
-        }
-
-        throw new UserException("Username already taken!");
-    }
-
-    public void sendConfirmationMail(String userMail) {
-        final SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(userMail);
-        mailMessage.setSubject("Account registration!");
-        mailMessage.setText("Thank you for registering to WebGym (copyright all rights reserved)! Your account was created!");
-        emailSenderService.sendEmail(mailMessage);
-    }
-
-    public User loginUser(User user) {
-        Optional<User> myUser = userRepository.findById(user.getUsername());
-        if (myUser.isPresent()) {
-            if (passwordEncoder.matches(user.getPassword(), myUser.get().getPassword())) {
-                return myUser.get();
-            }
-        }
-        return null;
-    }
-
-    public void addPlan(Plan plan, String username) {
-        if (username == null) {
-            planRepository.save(plan);
-        } else {
-            Optional<User> optionalUser = userRepository.findById(username);
-            if (optionalUser.isPresent()) {
-                User user = optionalUser.get();
-                plan.setUser(user);
-                planRepository.save(plan);
-            } else {
-                throw new RuntimeException("Username not found!");
-            }
-        }
-    }
-
     public List<Plan> getUserDietPlans(String username) {
-        return getSpecificPlans(username, Plan::getIsWorkout);
+        return getSpecificPlans(username, Plan::getIsTraining);
     }
 
     public List<Plan> getUserWorkoutPlans(String username) {
-        return getSpecificPlans(username, plan -> !plan.getIsWorkout());
+        return getSpecificPlans(username, plan -> !plan.getIsTraining());
+    }
+
+    public List<Goal> getUserGoals(String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            List<Goal> goals = user.getGoals();
+
+            return goals;
+        } else {
+            throw new RuntimeException("Currently logged in user not found!");
+        }
+    }
+
+    public void modifyGoal(Goal goal){
+        goalRepository.save(goal);
+    }
+
+    public void addGoal(Goal goal, String username){
+        Optional<User> user = userRepository.findById(username);
+
+        if (user.isPresent()){
+            User myUser = user.get();
+            goal.setUser(myUser);
+            goalRepository.save(goal);
+        }
+    }
+
+    public List<PlanDto> getAllUserPlans(String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            List<PlanClient> planClients = user.getClientPlans();
+
+            List<Plan> plans = new ArrayList<>();
+            for (PlanClient planClient: planClients) {
+                Optional<Plan> optionalPlan = planRepository.findById(planClient.getId());
+                if (optionalPlan.isPresent()) plans.add(optionalPlan.get());
+            }
+
+            return plans.stream().map(Mappers::mapPlanToPlanDto).collect(Collectors.toList());
+        }
+
+        return null;
+    }
+
+    public boolean addPlanClientConnection(String username, PlanClientDto planClientDto) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) return false;
+        User user = optionalUser.get();
+
+        Optional<Plan> optionalPlan = planRepository.findById(planClientDto.getId());
+        if (optionalPlan.isEmpty()) return false;
+        Plan plan = optionalPlan.get();
+
+        PlanClient planClient = new PlanClient();
+        planClient.setClient(user);
+        planClient.setPlan(plan);
+        planClient.setDateBought(planClientDto.getCurrentTime());
+
+        user.addPlanClient(planClient);
+        plan.addPlanClient(planClient);
+
+        userRepository.save(user);
+        planRepository.save(plan);
+        planClientRepository.save(planClient);
+
+        return true;
     }
 
     private List<Plan> getSpecificPlans(String username, Predicate<Plan> remove){
@@ -159,5 +139,32 @@ public class UserService implements UserDetailsService {
         } else {
             throw new RuntimeException("Currently logged in user not found!");
         }
+    }
+
+    // ZA SADA IMPLEMENTIRANO SAMO ZA PLANOVE -> TREBA DODATI I ZA MEMBERSHIPOVE
+    public List<TransactionDto> getMyTransactions(String username, String role) {
+        List<TransactionDto> transactions = new ArrayList<>();
+
+        List<PlanClient> planClients = planClientRepository.findAll();
+
+        for (PlanClient planClient: planClients) {
+            Plan plan = planClient.getPlan();
+            User user = planClient.getClient();
+
+            if (role.equals("COACH") && !plan.getUser().getUsername().equals(username)) continue;
+            if (role.equals("CLIENT") && !user.getUsername().equals(username)) continue;
+
+            TransactionDto transactionDto = new TransactionDto();
+            transactionDto.setSenderUsername(user.getUsername());
+            transactionDto.setReceiverUsername(plan.getUser().getUsername());
+            transactionDto.setAmount(plan.getPrice());
+            transactionDto.setDateWhen(planClient.getDateBought());
+            transactionDto.setId(plan.getId());
+            transactionDto.setTransactionType(TransactionType.PLAN);
+
+            transactions.add(transactionDto);
+        }
+
+        return transactions;
     }
 }

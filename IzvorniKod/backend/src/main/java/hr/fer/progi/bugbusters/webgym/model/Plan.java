@@ -1,36 +1,39 @@
 package hr.fer.progi.bugbusters.webgym.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Data
 @Entity
 @NoArgsConstructor
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne//(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="username")//, referencedColumnName = "username")
+    @ManyToOne
+    @JoinColumn(name="username")
     private User user;
-
     private String description;
-    private Date dateBegin;
-    private Date dateEnd;
+    private Date dateFrom;
+    private Date dateTo;
     private Double price;
-    private Boolean isWorkout;
+    private Boolean isTraining;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "plan")
+    private List<PlanClient> clientPlans;
 
     public Plan(User user, String description){
         this.user = user;
         this.description = description;
+    }
+
+    public void addPlanClient(PlanClient planClient) {
+        if (clientPlans == null) clientPlans = new ArrayList<>();
+        clientPlans.add(planClient);
     }
 }
