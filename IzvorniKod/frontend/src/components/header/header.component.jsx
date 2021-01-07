@@ -17,12 +17,12 @@ class Header extends React.Component {
                     }
 
                     {this.props.role === "OWNER" &&
-                    <Link to = '/myGyms'>Moje teretane</Link>
+                    <Link to = '/myGyms'>Moje teretane </Link>
                     }
 
-                    <Link to='/gymList'>Popis teretana</Link>
-                    
-                    {this.props.role === "OWNER" &&
+                    <Link to='/gymList'>Popis teretana </Link>
+
+                    {this.props.role === "ADMIN" &&
                         <Link to='/userList'>Popis korisnika</Link>
                     }
 
