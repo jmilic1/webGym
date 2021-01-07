@@ -1,5 +1,7 @@
 import React from "react";
 import GymDetailsComponent from "../../components/gymDetails/gymDetails.component";
+import './gymInfo.styles.scss'
+import MembershipListComponent from "../../components/membershipList/membershipList.component";
 
 class GymInfo extends React.Component {
     constructor(props) {
@@ -39,10 +41,51 @@ class GymInfo extends React.Component {
 
     render() {
         return (
-            <div>
-                {this.state.gym &&
-                    <GymDetailsComponent name={this.state.gym.name} description={this.state.gym.description} email={this.state.gym.email}></GymDetailsComponent>
-                }
+            <div className = 'gym-page-container'>
+                <div className='gym-container'>
+                    <div className='gym-details'>
+                        {this.state.gym &&
+                            <GymDetailsComponent
+                                name={this.state.gym.name}
+                                description={this.state.gym.description}
+                                email={this.state.gym.email}
+                                role={this.props.role}/>
+                        }
+                    </div>
+                    <div className='gym-info1'>
+                        <h3 id='header'>Članarine</h3>
+                        <div className='locations-container'>
+                            { this.state.gym?.memberships.length == 0 ?
+                                <h5>Ne postoje članarine za odabranu teretanu!</h5>
+                                :
+                                this.state.gym &&
+                                    <MembershipListComponent
+                                         memberships={this.state.gym?.memberships}/>
+
+                            }
+                        </div>
+                    </div>
+                    <div className='gym-info2'>
+                        <h3 id='header'>Lokacije</h3>
+                        <div className='locations-container'>
+                        { this.state.gym?.locations.length == 0 ?
+                            <h5>Ne postoje lokacije za odabranu teretanu!</h5>
+                            :
+                            <p>njjjj ima lokacija</p>
+                        }
+                        </div>
+                    </div>
+                    <div className='gym-info3'>
+                        <h3 id='header'>Treneri</h3>
+                        <div className='locations-container'>
+                            { this.state.gym?.locations.length == 0 ?
+                                <h5>Ne postoje treneri za odabranu teretanu!</h5>
+                                :
+                                <p>njjjj ima lokacija</p>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

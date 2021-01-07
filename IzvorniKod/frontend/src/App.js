@@ -27,8 +27,7 @@ class App extends React.Component {
     }
   }
 
-  handleLogin = (username, name, surname, role) => {//client, coach, admin, gymOwner) => {
-    console.log("Uloga za props: " + role)
+  handleLogin = (username, name, surname, role) => {
     this.setState({
       name:name,
       surname: surname,
@@ -61,7 +60,7 @@ class App extends React.Component {
               <Route exact path="/userList" render={(props) => <UserList {...props} backendURL = {this.state.backendURL} />} />
               <Route exact path="/myPlans" render={(props) => <CoachPlans {...props} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/myGyms" render={(props) => <OwnerGyms {...props} backendURL = {this.state.backendURL}/>} />
-              <Route exact path="/gymInfo/:id" render={(props) => <GymInfo {...props} backendURL = {this.state.backendURL}/>}/>
+              <Route exact path="/gymInfo/:id" render={(props) => <GymInfo {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
             </Switch>
           </div>
           <Footer/>

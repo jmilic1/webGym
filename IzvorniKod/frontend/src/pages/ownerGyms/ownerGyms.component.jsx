@@ -8,7 +8,7 @@ class OwnerGyms extends React.Component {
         super();
         this.state = {
             gymName: '',
-            gymEmail: ''
+            gymEmail: '',
         }
     }
 
