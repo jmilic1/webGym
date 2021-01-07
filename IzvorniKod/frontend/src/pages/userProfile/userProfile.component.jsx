@@ -12,13 +12,13 @@ const TRANSACTIONS = 'transactions'
 const GOALS = "goals"
 
 class UserProfile extends React.Component{
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
-            username: '',
-            name: "",
-            surname: "",
-            role: "",
+            username: props.username,
+            name: props.name,
+            surname: props.surname,
+            role: props.role,
             password: "",
             modifyUserInfo: false,
             userPlans: [],
