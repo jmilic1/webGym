@@ -13,7 +13,7 @@
 	
 		\section{Ispitivanje programskog rješenja}
 			
-			\textbf{\textit{dio 2. revizije}}\\
+			\textbf{}\\
 			
 			 \textit{U ovom poglavlju je potrebno opisati provedbu ispitivanja implementiranih funkcionalnosti na razini komponenti i na razini cijelog sustava s prikazom odabranih ispitnih slučajeva. Studenti trebaju ispitati temeljnu funkcionalnost i rubne uvjete.}
 	
@@ -23,18 +23,144 @@
 			
 			
 			
+			
 			\subsection{Ispitivanje sustava}
 			
-			 \textit{Potrebno je provesti i opisati ispitivanje sustava koristeći radni okvir Selenium\footnote{\url{https://www.seleniumhq.org/}}. Razraditi \textbf{minimalno 4 ispitna slučaja} u kojima će se ispitati redovni slučajevi, rubni uvjeti te poziv funkcionalnosti koja nije implementirana/izaziva pogrešku kako bi se vidjelo na koji način sustav reagira kada nešto nije u potpunosti ostvareno. Ispitni slučaj se treba sastojati od ulaza (npr. korisničko ime i lozinka), očekivanog izlaza ili rezultata, koraka ispitivanja i dobivenog izlaza ili rezultata.\\ }
+			 \textit{Potrebno je provesti i opisati ispitivanje sustava koristeći radni okvir . Razraditi \textbf{minimalno 4 ispitna slučaja} u kojima će se ispitati redovni slučajevi, rubni uvjeti te poziv funkcionalnosti koja nije implementirana/izaziva pogrešku kako bi se vidjelo na koji način sustav reagira kada nešto nije u potpunosti ostvareno. Ispitni slučaj se treba sastojati od ulaza (npr. korisničko ime i lozinka), očekivanog izlaza ili rezultata, koraka ispitivanja i dobivenog izlaza ili rezultata.\\ }
 			 
-			 \textit{Izradu ispitnih slučajeva pomoću radnog okvira Selenium moguće je provesti pomoću jednog od sljedeća dva alata:}
-			 \begin{itemize}
-			 	\item \textit{dodatak za preglednik \textbf{Selenium IDE} - snimanje korisnikovih akcija radi automatskog ponavljanja ispita	}
-			 	\item \textit{\textbf{Selenium WebDriver} - podrška za pisanje ispita u jezicima Java, C\#, PHP koristeći posebno programsko sučelje.}
-			 \end{itemize}
-		 	\textit{Detalji o korištenju alata Selenium bit će prikazani na posebnom predavanju tijekom semestra.}
-			
+		
+		 	 Za ispitivanje funkcionalnosti sustava koristili smo Selenium IDE. Testirali smo
+		 	 sve obrazce uporabe te smo prolazili kroz aplikaciju i gledali općenito ponašanje
+		 	 u nadi da pronađemo neko neočekivano hazardno ponašanje u svrhu otklonuća problema.
+		 	 Neke od testiranih obrazaca uporabe smo prikazali u nastavku. ( UC1, UC2, UC3, UC4).
+		 	 
+		 	 
+	
+	            \noindent \underbar{\textbf{1. Ispitni slučaj (UC1 : Pregled teretana)}}
+                \begin{packed_item}
+						\item  \textbf{Ulaz : } 
+						\item[] \begin{packed_enum}
+	
+							\item korisnik je pritisnuo na "popis teretana"
+
+						\end{packed_enum}
+						\item  \textbf{Očekivani rezultat: } 
+						\item[] \begin{packed_enum}
+	
+							\item korisnik je dobio prikaz svih teretana
+
+						\end{packed_enum}
+						
+						\item  \textbf{rezultat : }
+						\item[] \begin{packed_enum}
+	
+							\item rezultat je jednak očekivanom rezultatu.
+
+						\end{packed_enum}
+
+				\end{packed_item}
+				
+				\begin{figure}[H]
+        			\hspace*{-1.5cm}
+        			\includegraphics[scale=0.5]{dijagrami/UC1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+        			\centering
+        			\label{fig:promjene}
+	        	\end{figure}
+				
+				\noindent \underbar{\textbf{2. Ispitni slučaj (UC2 : Registracija korisnika)}}
+                \begin{packed_item}
+						\item  \textbf{Ulaz : } 
+						\item[] \begin{packed_enum}
+	
+							\item korisnik je pritisnuo na "prijava"
+							\item korisnik je ispunio obrazac "registracija"
+							\item korisnik je pritisnuo "registriraj"
+
+						\end{packed_enum}
+						\item  \textbf{Očekivani rezultat: } 
+						\item[] \begin{packed_enum}
+	
+							\item korisnik se uspješno registrirao i spremio u bazu podataka
+
+						\end{packed_enum}
+						
+						\item  \textbf{rezultat : }
+						\item[] \begin{packed_enum}
+	
+							\item rezultat je jednak očekivanom rezultatu.
+
+						\end{packed_enum}
+
+				\end{packed_item}
+				
+				\begin{figure}[H]
+        			\hspace*{-1.5cm}
+        			\includegraphics[scale=0.5]{dijagrami/UC2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+        			\centering
+        			\label{fig:promjene}
+	        	\end{figure}
+				
+				\noindent \underbar{\textbf{3. Ispitni slučaj (UC3 : Prijava u sustav)}}
+                \begin{packed_item}
+						\item  \textbf{Ulaz : } 
+						\item[] \begin{packed_enum}
+	
+							\item korisnik je pritisnuo na "prijava"
+							\item korisnik je ispunio obrazac "prijava"
+							\item korisnik je pritisnuo "prijava"
+
+						\end{packed_enum}
+						\item  \textbf{Očekivani rezultat: } 
+						\item[] \begin{packed_enum}
+	
+							\item korisnik se uspješno prijavio u sustav
+
+						\end{packed_enum}
+						
+						\item  \textbf{rezultat : }
+						\item[] \begin{packed_enum}
+	
+							\item rezultat je jednak očekivanom rezultatu.
+
+						\end{packed_enum}
+
+				\end{packed_item}
+				
+				\begin{figure}[H]
+        			\hspace*{-1.5cm}
+        			\includegraphics[scale=0.5]{dijagrami/UC3.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+        			\centering
+        			\label{fig:promjene}
+	        	\end{figure}
+				
+				\noindent \underbar{\textbf{4. Ispitni slučaj (UC4 : Pregled osobnih podataka)}}
+                \begin{packed_item}
+						\item  \textbf{Ulaz : } 
+						\item[] \begin{packed_enum}
+	
+							\item korisnik je pritisnuo na "Osobni podatci"
+
+						\end{packed_enum}
+						\item  \textbf{Očekivani rezultat: } 
+						\item[] \begin{packed_enum}
+	
+							\item korisnik je dobio prikaz svojih osobnih podataka
+
+						\end{packed_enum}
+						
+						\item  \textbf{rezultat : }
+						\item[] \begin{packed_enum}
+	
+							\item rezultat je jednak očekivanom rezultatu.
+
+						\end{packed_enum}
+
+				\end{packed_item}
+		 
 			\eject 
+			
+			
+			
 		
 		
 		\section{Dijagram razmještaja}
@@ -46,13 +172,160 @@
 			\eject 
 		
 		\section{Upute za puštanje u pogon}
-		
-			\textbf{\textit{dio 2. revizije}}\\
-		
-			 \textit{U ovom poglavlju potrebno je dati upute za puštanje u pogon (engl. deployment) ostvarene aplikacije. Na primjer, za web aplikacije, opisati postupak kojim se od izvornog kôda dolazi do potpuno postavljene baze podataka i poslužitelja koji odgovara na upite korisnika. Za mobilnu aplikaciju, postupak kojim se aplikacija izgradi, te postavi na neku od trgovina. Za stolnu (engl. desktop) aplikaciju, postupak kojim se aplikacija instalira na računalo. Ukoliko mobilne i stolne aplikacije komuniciraju s poslužiteljem i/ili bazom podataka, opisati i postupak njihovog postavljanja. Pri izradi uputa preporučuje se \textbf{naglasiti korake instalacije uporabom natuknica} te koristiti što je više moguće \textbf{slike ekrana} (engl. screenshots) kako bi upute bile jasne i jednostavne za slijediti.}
+
+		    \begin{packed_item}
+						\item  \textbf{1. Stvaranje backend heroku servera} 
+						\item[] \begin{packed_enum}
+	
+							\item Stvaranje account-a na https://dashboard.heroku.com/
+							
+							\item Instalacija Heroku CLI : https://devcenter.heroku.com/articles/heroku-cli
+							
+							\item Otvaranje command prompt-a
+							
+							\item Upiši "heroku create "NAME-OF-APP" (webGym) ili samo "heroku create"
+							
+							    - U slučaju da se ne navede ime aplikacije , i dalje će se stvoriti server ali s random imenom koji je kasnije moguće preimenovati u željeno ime.
+							
+							\item Stvoren je server.
+							    
+							    \begin{figure}[H]
+                        			\hspace*{-1.5cm}
+                        			\includegraphics[scale=0.5]{dijagrami/cmd.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+                        			\centering
+                        			\label{fig:promjene}
+                        		\end{figure}
+
+						\end{packed_enum}
+						\item  \textbf{2. Konfiguracija baze podataka} 
+						\item[] \begin{packed_enum}
+	
+							\item Odlazak na stranicu  https://dashboard.heroku.com/
+							
+							\item Klik na stvoreni server. (novoime)
+							
+							\item Klik na resources
+							
+							\item Pronaći pod add-ons  Heroku POSTGRES
+							
+							    - Odabrati Hobby dev - FREE
+							  
+							
+							\item Stisnuti na SUBMIT FORM.
+							
+							\item Stvorena je baza podataka
+							    
+							    \begin{figure}[H]
+                        			\hspace*{-1.5cm}
+                        			\includegraphics[scale=0.3]{dijagrami/baza.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+                        			\centering
+                        			\label{fig:promjene}
+                        		\end{figure}
+
+						\end{packed_enum}
+						
+						
+						\item  \textbf{3. Spajanje backend server na stvorenu bazu u heroku}
+						\item[] \begin{packed_enum}
+	
+							\item Odlazak na stranicu  https://dashboard.heroku.com/
+							
+							\item Klik na stvoreni server. (novoime)
+							
+							\item Klik na resources
+							
+							\item Klik na Heroku POSTGRES
+							
+							\item Klik na settings
+							
+							\item Klik na view credentials
+							
+							\item Otvori backend kod (java)
+							
+							\item Odi u src/main/resources/application.properties
+							
+							\item Podesi :
+							    
+							       - Potrebno je podesiti backend tako da se povezuje sa bazom koju smo u prethodnom koraku stvorili na heroku.
+							       
+							       - U tom naumu ćemo morati podesiti spring.datasource.url , spring.datasource.username te spring.datasource.password na način da ćemo pročitati vrijednosti koje nam je dao heroku credentials i nadodati ih na spomenute vrijednosti.
+							       
+							       - Zadnja napomena je dodavanje "jdbc:" na početak URI-a koje nam je generirao heroku.
+						
+							    \begin{figure}[H]
+                        			\hspace*{-1.5cm}
+                        			\includegraphics[scale=0.5]{slike/java.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+                        			\centering
+                        			\label{fig:promjene}
+                        		\end{figure}
+
+						\end{packed_enum}
+						
+						\item  \textbf{4. deploy backend-a}
+						\item[] \begin{packed_enum}
+	
+							\item Otvoriti backend project.
+							
+							\item Otvoriti pom.xml te dodati ovaj plugin.
 			
-			
-			 \textit{Dovršenu aplikaciju potrebno je pokrenuti na javno dostupnom poslužitelju. Studentima se preporuča korištenje neke od sljedećih besplatnih usluga: \href{https://aws.amazon.com/}{Amazon AWS}, \href{https://azure.microsoft.com/en-us/}{Microsoft Azure} ili \href{https://www.heroku.com/}{Heroku}. Mobilne aplikacije trebaju biti objavljene na F-Droid, Google Play ili Amazon App trgovini.}
-			
-			
+							    \begin{figure}[H]
+                        			\hspace*{-1.5cm}
+                        			\includegraphics[scale=0.5]{slike/plugin.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+                        			\centering
+                        			\label{fig:promjene}
+                        		\end{figure}
+                        		
+                        		- Napomena : u našem slučaju prateći sve ove korake bi treabli napisati
+                        		pod appName "novoime", dok nam je za projekt ime aplikacije ,kao što možemo vidjeti na slici "web-gym2".
+							
+							\item Otvoriti cmd te se pozicionirati u root backend projekta
+							
+							\item Napisati "mvn clean heroku:deploy"
+						
+
+						\end{packed_enum}
+						
+				\item  \textbf{5. Stvaranje frontend servera te deploy frontend-a}
+				\item[] \begin{packed_enum}
+	
+							\item Odlazak na stranicu  https://dashboard.heroku.com/
+							
+							\item Otvoriti cmd te upisati "heroku create NAME-OF-FRONTEND-APP --buildpack https://github.com/mars/create-react-app-buildpack.git"
+
+							\item Napraviti prazan folder , unutar foldera u cmd-u napisati "git init"
+							
+							\item U cmd-u napisati "heroku git:remote -a NAME-OF-FRONTEND-APP"
+							
+							\item Prekopirati root frontend projekta u stvoreni folder
+							
+							\item Dodati static.json datoteku u root frontend projekta
+							    
+							    \begin{figure}[H]
+                        			\hspace*{-1.5cm}
+                        			\includegraphics[scale=0.5]{slike/json.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+                        			\centering
+                        			\label{fig:promjene}
+                        		\end{figure}
+							
+							\item prije deploya frontenda , ući u src/App.js te promjeniti backendURL i 
+							postaviti ga na server backenda.
+							
+							    \begin{figure}[H]
+                        			\hspace*{-1.5cm}
+                        			\includegraphics[scale=0.7]{slike/front.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+                        			\centering
+                        			\label{fig:promjene}
+                        		\end{figure}
+							
+							\item U cmd- napisati "git add ."
+							
+							\item U cmd- napisati "git add -m "initial commit""
+							
+							\item U cmd- napisati "git push heroku master"
+	
+
+						\end{packed_enum}
+
+				\end{packed_item}
+				
 			\eject 
