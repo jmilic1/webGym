@@ -124,14 +124,25 @@ class CoachPlans extends React.Component{
                 description: this.state.newPlanDescription, dateFrom: this.state.newPlanDateFrom,
                 dateTo: this.state.newPlanDateTo, price: this.state.newPlanPrice, isTraining: !this.state.showDietPlans
             })
+        }).then(response => {
+            if (response.status === 200) {
+                return response.json()
+            } else {
+                return Promise.reject()
+            }
+        }).then(function () {
+            this.setState({
+                newPlanDescription: "",
+                newPlanDateFrom: "",
+                newPlanDateTo: "",
+                newPlanPrice: "",
+                addNewPlan: false
+            })
+
+        }, function () {
+            alert("Došlo je do pogreške")
         })
-        this.setState({
-            newPlanDescription: "",
-            newPlanDateFrom: "",
-            newPlanDateTo: "",
-            newPlanPrice: "",
-            addNewPlan: false
-        })
+
         {this.state.showDietPlans ?
             this.refreshDietPlans()
             :
@@ -181,15 +192,10 @@ class CoachPlans extends React.Component{
                         </div>
 
                         <div className="item4">
-                            <label>Price(kn): </label>
+                            <label>Cijena(kn): </label>
                             <input type='number' min='0' name='newPlanPrice' value={this.state.newPlanPrice} onChange={this.handleChange} />
                         </div>
-
-                        <div className="item3">
-                            <label>Do: </label>
-                            <input type="date" onChange={(event) => this.setState({ newPlanDateTo: event.target.value })}/>
-                        </div>
-
+                        
                         <div className="item5">
                                 <p>
                                     <button className="btn" onClick={this.handleChangeAddNewPlanFlag}>Otkaži</button>

@@ -31,10 +31,20 @@ class CoachPlan extends React.Component{
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({id: this.state.id, description: this.state.description})
-        })
+        }).then(response => {
+            if (response.status === 200) {
+                return response.json()
+            } else {
+                return Promise.reject()
+            }
+        }).then(function () {
 
-        this.setState({
+            this.setState({
             modifyPlan: false
+            })
+
+        }, function () {
+            alert("Došlo je do pogreške")
         })
     }
 
@@ -43,11 +53,11 @@ class CoachPlan extends React.Component{
             <div className='grid-container'>
             
                 <div className='item2'>
-                    <p>From: {this.state.dateFrom}</p>
+                    <p>Od: {this.state.dateFrom}</p>
                 </div>
 
                 <div className="item3">
-                    <p>To: {this.state.dateTo}</p>
+                    <p>Do: {this.state.dateTo}</p>
                 </div>   
 
                 <div className="itempom">
@@ -55,7 +65,7 @@ class CoachPlan extends React.Component{
                 </div>
 
                 <div className="item4">
-                    <p>Price: {this.state.price} kn</p>
+                    <p>Cijena: {this.state.price} kn</p>
                 </div>
 
                 {!this.state.modifyPlan ?
@@ -75,11 +85,11 @@ class CoachPlan extends React.Component{
                 
                 {!this.state.modifyPlan ?
                             <div className="item1">
-                                 <p>Description: <br></br> {this.state.description}</p>
+                                 <p>Opis: <br></br> {this.state.description}</p>
                             </div>
                             :
                         	<div className="item1">
-                                <p>Description: <br></br>
+                                <p>Opis: <br></br>
                                     <div className="plan-description-update">
                                         <textarea className="textarea" name='description' value={this.state.description} onChange={this.handleChange} required/>
                                     </div>                 
