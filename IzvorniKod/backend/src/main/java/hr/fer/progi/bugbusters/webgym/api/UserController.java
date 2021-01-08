@@ -3,10 +3,7 @@ package hr.fer.progi.bugbusters.webgym.api;
 import hr.fer.progi.bugbusters.webgym.model.Goal;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.User;
-import hr.fer.progi.bugbusters.webgym.model.dto.GoalDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.PlanClientDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.TransactionDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.*;
 import hr.fer.progi.bugbusters.webgym.service.AdminService;
 import hr.fer.progi.bugbusters.webgym.service.CoachService;
 import hr.fer.progi.bugbusters.webgym.service.UserManagementService;
@@ -63,7 +60,7 @@ public class UserController {
      * @return users
      */
     @GetMapping("/userList")
-    public List<User> getUsers() {
+    public List<UserDto> getUsers() {
         return userService.listUsers();
     }
 

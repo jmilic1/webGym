@@ -9,6 +9,7 @@ import hr.fer.progi.bugbusters.webgym.model.*;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanClientDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.TransactionDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -38,12 +39,24 @@ public class UserService {
         this.planClientRepository = planClientRepository;
     }
 
-    public List<User> listUsers() {
+    public List<UserDto> listUsers() {
         Iterable<User> it = userRepository.findAll();
-        List<User> users = new ArrayList<>();
+        List<UserDto> users = new ArrayList<>();
 
         for (User user : it) {
-            users.add(user);
+            // sredi kasnije mapping
+            UserDto userDto = new UserDto();
+
+            userDto.setName(user.getName());
+            userDto.setSurname(user.getSurname());
+            userDto.setUsername(user.getUsername());
+            userDto.setRole(user.getRole());
+            userDto.setEmail(user.getEmail());
+            userDto.setWeight(user.getWeight());
+            userDto.setHeight(user.getHeight());
+            userDto.setPayPalAccount(user.getPayPalAccount());
+
+            users.add(userDto);
         }
         return users;
     }
