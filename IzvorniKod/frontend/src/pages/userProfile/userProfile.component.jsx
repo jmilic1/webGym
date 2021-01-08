@@ -24,7 +24,7 @@ class UserProfile extends React.Component{
             userPlans: [],
             transactions: [],
             userGoals: [],
-            view: PLANS,
+            view: props.role === "OWNER" ? TRANSACTIONS : PLANS,
             addNewGoal: false,
             newGoalDescription: "",
             newGoalPercentage: 12
@@ -34,19 +34,21 @@ class UserProfile extends React.Component{
     componentDidMount() {
         var errorHappened = false
 
-        fetch(this.props.backendURL + "userPlans" , {
-            method: 'GET',
-            credentials: 'include'
-        }).then(response => {
-            if(response.status === 200) return response.json()
-            else return Promise.reject()
-        }).then(plans => {
-            this.setState({
-                userPlans: plans
+        if(this.props.role === "COACH" || this.props.role === "CLIENT"){
+            fetch(this.props.backendURL + "userPlans" , {
+                method: 'GET',
+                credentials: 'include'
+            }).then(response => {
+                if(response.status === 200) return response.json()
+                else return Promise.reject()
+            }).then(plans => {
+                this.setState({
+                    userPlans: plans
+                })
+            }, function (){
+                errorHappened = true
             })
-        }, function (){
-            errorHappened = true
-        })
+        }
 
         fetch(this.props.backendURL + "myTransactions" , {
             method: 'GET',
@@ -62,23 +64,23 @@ class UserProfile extends React.Component{
             errorHappened = true
         })
 
-        fetch(this.props.backendURL + "getUserGoals" , {
-            method: 'GET',
-            credentials: 'include'
-        }).then(response => {
-            if(response.status === 200) return response.json()
-            else return Promise.reject()
-        }).then(goals => {
-            this.setState({
-                userGoals: goals
+        if(this.props.role === "CLIENT"){
+            fetch(this.props.backendURL + "getUserGoals" , {
+                method: 'GET',
+                credentials: 'include'
+            }).then(response => {
+                if(response.status === 200) return response.json()
+                else return Promise.reject()
+            }).then(goals => {
+                this.setState({
+                    userGoals: goals
+                })
+            }, function (){
+                if(errorHappened){
+                    alert("Došlo je do pogreške")
+                }
             })
-        }, function (){
-            if(errorHappened){
-                alert("Došlo je do pogreške")
-            }
-        })
-
-
+        }
     }
 
     refreshUserGoals = () => {
@@ -237,12 +239,15 @@ class UserProfile extends React.Component{
                     </div>
                 </div>
 
-                {this.state.view === PLANS &&
+                {(this.state.view === PLANS && (this.props.role === "CLIENT" || this.props.role === "COACH")) &&
                     <div className='userPlans-and-transactions-container'>
                         <div className='view-btns-container'>
                             <p className='active-view-btn'>Planovi</p>
                             <p className='passive-view-btn' onClick={this.handleShowTransactionViewClick}>Transakcije</p>
-                            <p className='passive-view-btn' onClick={this.handleShowGoalsViewClick}>Ciljevi</p>
+                            {this.props.role === 'CLIENT' &&
+                                <p className='passive-view-btn' onClick={this.handleShowGoalsViewClick}>Ciljevi</p>
+                            }
+
                         </div>
                         {
                             this.state.userPlans.map(plan =>
@@ -256,9 +261,13 @@ class UserProfile extends React.Component{
                 {this.state.view === TRANSACTIONS &&
                     <div className='userPlans-and-transactions-container'>
                         <div className='view-btns-container'>
+                            {(this.props.role === 'CLIENT' || this.props.role === 'COACH')&&
                             <p className='passive-view-btn' onClick={this.handleShowPlanViewClick}>Planovi</p>
+                            }
                             <p className='active-view-btn'>Transakcije</p>
-                            <p className='passive-view-btn' onClick={this.handleShowGoalsViewClick}>Ciljevi</p>
+                            {this.props.role === 'CLIENT' &&
+                                <p className='passive-view-btn' onClick={this.handleShowGoalsViewClick}>Ciljevi</p>
+                            }
                         </div>
                         {
                             this.state.transactions.map(t =>
@@ -267,7 +276,7 @@ class UserProfile extends React.Component{
                         }
                     </div>
                 }
-                {this.state.view === GOALS &&
+                {(this.state.view === GOALS && this.props.role === "CLIENT") &&
                     <div className='userPlans-and-transactions-container'>
                         <div className='view-btns-container'>
                             <p className='passive-view-btn' onClick={this.handleShowPlanViewClick}>Planovi</p>
