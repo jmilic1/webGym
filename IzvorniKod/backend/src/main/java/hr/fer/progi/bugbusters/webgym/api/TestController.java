@@ -113,6 +113,15 @@ public class TestController {
         return "Logged in!";
     }
 
+    @GetMapping("/logInAsOwner")
+    public String logInAsOwner(final HttpServletResponse resp){
+        User user = testService.logInAsOwner();
+        resp.addCookie(new Cookie("username", user.getUsername()));
+        resp.addCookie(new Cookie("role", "ADMIN"));
+        resp.setStatus(200);
+        return "Logged in!";
+    }
+
     @GetMapping("/logInAsAdmin")
     public String logInAsAdmin(final HttpServletResponse resp){
         User user = testService.logInAsAdmin();

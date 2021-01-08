@@ -60,8 +60,8 @@ public class GymService {
         gymUser.setUser(user);
         gymUser.setWorkDateBegin(Date.from(Instant.now()));
 
-        gymUserRepository.save(gymUser);
         gymRepository.save(gym);
+        gymUserRepository.save(gymUser);
         return true;
     }
 

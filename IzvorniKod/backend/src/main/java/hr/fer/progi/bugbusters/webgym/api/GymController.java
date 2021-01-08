@@ -82,6 +82,11 @@ public class GymController {
         return gymDtoList;
     }
 
+    @DeleteMapping("/myGyms")
+    public void deleteMyGym(@RequestBody GymDto gymDto, HttpServletRequest request, HttpServletResponse response) {
+        // ovo treba brisati i sve membershipove i sve ostalo sto se naslanja na taj zapis u bazi
+    }
+
     @GetMapping("/gymInfo")
     public GymInfoDto getGymLocation(@RequestParam long id){
         return service.getGymInfo(id);
