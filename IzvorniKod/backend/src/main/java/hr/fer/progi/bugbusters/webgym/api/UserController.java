@@ -3,10 +3,7 @@ package hr.fer.progi.bugbusters.webgym.api;
 import hr.fer.progi.bugbusters.webgym.model.Goal;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.User;
-import hr.fer.progi.bugbusters.webgym.model.dto.GoalDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.PlanClientDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.TransactionDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.*;
 import hr.fer.progi.bugbusters.webgym.service.AdminService;
 import hr.fer.progi.bugbusters.webgym.service.CoachService;
 import hr.fer.progi.bugbusters.webgym.service.UserManagementService;
@@ -63,8 +60,11 @@ public class UserController {
      * @return users
      */
     @GetMapping("/userList")
-    public List<User> getUsers() {
-        return userService.listUsers();
+    public List<UserDto> getUsers() {
+        return userService.listUsers()
+                .stream()
+                .map(this::convertUserToDto)
+                .collect(Collectors.toList());
     }
 
     @PostMapping("/modifyUserGoal")
@@ -211,5 +211,8 @@ public class UserController {
         PlanDto dto = modelMapper.map(plan, PlanDto.class);
         dto.setCoachUsername(plan.getUser().getUsername());
         return dto;
+    }
+    private UserDto convertUserToDto(User user) {
+        return modelMapper.map(user, UserDto.class);
     }
 }
