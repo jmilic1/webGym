@@ -22,7 +22,7 @@ class Header extends React.Component {
 
                     <Link to='/gymList'>Popis teretana </Link>
 
-                    {this.props.role === "ADMIN" &&
+                    {this.props.role === "OWNER" &&
                         <Link to='/userList'>Popis korisnika</Link>
                     }
 

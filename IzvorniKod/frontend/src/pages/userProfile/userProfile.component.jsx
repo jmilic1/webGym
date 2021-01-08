@@ -83,8 +83,8 @@ class UserProfile extends React.Component{
 
     refreshUserGoals = () => {
         fetch(this.props.backendURL + "getUserGoals" , {
-            method: 'GET'
-            //credentials: 'include'
+            method: 'GET',
+            credentials: 'include'
         }).then(response => {
             return response.json()
         }).then(goals => {
@@ -111,6 +111,10 @@ class UserProfile extends React.Component{
             fetch(this.props.backendURL + "modifyUser" , {
                 method: 'DELETE',
                 credentials: 'include'
+            }).then(response => {
+                if(response.status === 200){
+                    this.props.history.push("/auth")
+                }
             })
         }
     }
@@ -119,6 +123,7 @@ class UserProfile extends React.Component{
         fetch(this.props.backendURL + "modifyUser" , {
             method: 'POST',
             credentials: 'include',
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({name: this.state.name, surname: this.state.surname,
                                         username: this.state.username, email: this.state.email, role: this.state.role,
                                         password: this.state.password === "" ? null : this.state.password})
