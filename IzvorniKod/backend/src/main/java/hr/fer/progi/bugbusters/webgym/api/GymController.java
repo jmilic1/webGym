@@ -84,7 +84,18 @@ public class GymController {
 
     @DeleteMapping("/myGyms")
     public void deleteMyGym(@RequestBody GymDto gymDto, HttpServletRequest request, HttpServletResponse response) {
-        // ovo treba brisati i sve membershipove i sve ostalo sto se naslanja na taj zapis u bazi
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            response.setStatus(403);
+            return;
+        }
+
+        try {
+            service.deleteMyGym(gymDto.getId(), username);
+            response.setStatus(200);
+        } catch (IllegalArgumentException e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+        }
     }
 
     @GetMapping("/gymInfo")

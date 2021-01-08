@@ -6,6 +6,7 @@ import hr.fer.progi.bugbusters.webgym.model.dto.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -22,6 +23,8 @@ public class GymService {
     private final GymLocationRepository gymLocationRepository;
     private final GymUserRepository gymUserRepository;
     private final MembershipRepository membershipRepository;
+    private final MembershipUserRepository membershipUserRepository;
+    private final JobRequestRepository jobRequestRepository;
     ModelMapper modelMapper;
 
     @Autowired
@@ -30,12 +33,16 @@ public class GymService {
                       @Qualifier("gymLocationRep") GymLocationRepository gymLocationRepository,
                       @Qualifier("gymUserRep") GymUserRepository gymUserRepository,
                       @Qualifier("membershipRep") MembershipRepository membershipRepository,
+                      @Qualifier("membershipUserRep") MembershipUserRepository membershipUserRepository,
+                      @Qualifier("jobRequestRep") JobRequestRepository jobRequestRepository,
                       ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.gymRepository = gymRepository;
         this.gymLocationRepository = gymLocationRepository;
         this.gymUserRepository = gymUserRepository;
         this.membershipRepository = membershipRepository;
+        this.membershipUserRepository = membershipUserRepository;
+        this.jobRequestRepository = jobRequestRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -147,5 +154,44 @@ public class GymService {
         }
 
         return gymDtoList;
+    }
+
+    public void deleteMyGym(long id, String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
+
+        Optional<Gym> optionalGym = gymRepository.findById(id);
+        if (optionalGym.isEmpty()) throw new IllegalArgumentException("404");
+        Gym gym = optionalGym.get();
+
+        boolean ownsGym = false;
+        for (GymUser gymUser: gymUserRepository.findByGym(gym)) {
+            if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
+        }
+        if (!ownsGym) throw new IllegalArgumentException("403");
+
+        List<GymUser> gymUserList = gym.getGymUsers();
+        List<GymLocation> gymLocationList = gym.getGymLocations();
+        List<Membership> membershipList = gym.getMemberships();
+        List<JobRequest> jobRequestList = gym.getJobRequests();
+
+        deleteFromRepo(gymUserList, gymUserRepository);
+        deleteFromRepo(gymLocationList, gymLocationRepository);
+        for (Membership membership: membershipList) {
+            List<MembershipUser> membershipUserList = membership.getMembershipUserList();
+            deleteFromRepo(membershipUserList, membershipUserRepository);
+            membershipRepository.delete(membership);
+        }
+        deleteFromRepo(jobRequestList, jobRequestRepository);
+
+        gymRepository.delete(gym);
+    }
+
+    private static <T, S extends JpaRepository<T, Long>> void deleteFromRepo(List<T> deleteList, S repo) {
+        for (T element: deleteList) {
+            repo.delete(element);
+        }
     }
 }
