@@ -61,7 +61,10 @@ public class UserController {
      */
     @GetMapping("/userList")
     public List<UserDto> getUsers() {
-        return userService.listUsers();
+        return userService.listUsers()
+                .stream()
+                .map(this::convertUserToDto)
+                .collect(Collectors.toList());
     }
 
     @PostMapping("/modifyUserGoal")
@@ -208,5 +211,8 @@ public class UserController {
         PlanDto dto = modelMapper.map(plan, PlanDto.class);
         dto.setCoachUsername(plan.getUser().getUsername());
         return dto;
+    }
+    private UserDto convertUserToDto(User user) {
+        return modelMapper.map(user, UserDto.class);
     }
 }

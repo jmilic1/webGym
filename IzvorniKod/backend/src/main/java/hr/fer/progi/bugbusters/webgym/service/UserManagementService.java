@@ -71,7 +71,7 @@ public class UserManagementService implements UserDetailsService {
     public void modifyUser(User modifiedUser){
         User foundUser = userRepository.getOne(modifiedUser.getUsername());
         if (modifiedUser.getPassword() != null){
-            foundUser.setPassword(modifiedUser.getPassword());
+            foundUser.setPassword(passwordEncoder.encode(modifiedUser.getPassword()));
         }
         if (modifiedUser.getEmail() == null){
             foundUser.setEmail(modifiedUser.getEmail());

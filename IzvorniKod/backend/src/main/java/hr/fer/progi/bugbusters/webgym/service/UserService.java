@@ -39,9 +39,9 @@ public class UserService {
         this.planClientRepository = planClientRepository;
     }
 
-    public List<UserDto> listUsers() {
-        Iterable<User> it = userRepository.findAll();
-        List<UserDto> users = new ArrayList<>();
+    public List<User> listUsers() {
+        return userRepository.findAll();
+       /* List<UserDto> users = new ArrayList<>();
 
         for (User user : it) {
             // sredi kasnije mapping
@@ -58,7 +58,7 @@ public class UserService {
 
             users.add(userDto);
         }
-        return users;
+        return users;*/
     }
 
     public List<Plan> getUserDietPlans(String username) {
