@@ -17,13 +17,17 @@ class Header extends React.Component {
                     }
 
                     {this.props.role === "OWNER" &&
-                    <Link to = '/myGyms'>Moje teretane</Link>
+                    <Link to = '/myGyms'>Moje teretane </Link>
                     }
 
-                    <Link to='/gymList'>Popis teretana</Link>
-                    
-                    {this.props.role === "OWNER" &&
+                    <Link to='/gymList'>Popis teretana </Link>
+
+                    {this.props.role === "ADMIN" &&
                         <Link to='/userList'>Popis korisnika</Link>
+                    }
+
+                    {this.props.loggedIn &&
+                    <Link to = '/myProfile'>Moj profil</Link>
                     }
 
                     {this.props.loggedIn ?
@@ -32,6 +36,7 @@ class Header extends React.Component {
                         <Link to = '/auth'>Prijava</Link>
 
                     }
+
                 </div>
             </div>
         )

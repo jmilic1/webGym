@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './App.css';
 import { Switch, Route} from 'react-router-dom';
@@ -10,6 +9,7 @@ import Logout from './components/logout/logout.component'
 import CoachPlans from "./pages/coachPlans/coachPlans.component";
 import Footer from "./components/footer/footer.component";
 import OwnerGyms from "./pages/ownerGyms/ownerGyms.component";
+import UserProfile from "./pages/userProfile/userProfile.component";
 import UserList from './pages/userList/userList.component'
 import GymInfo from './pages/gymInfo/gymInfo.component'
 import MembershipInfo from "./pages/membershipPage/membershipInfo.component";
@@ -19,7 +19,8 @@ class App extends React.Component {
     super()
     this.state = {
       backendURL: "https://web-gym2.herokuapp.com/",
-      //backendURL: "https://f74a7152-35cc-4315-878e-7202dfe1b74c.mock.pstmn.io/",
+      //backendURL: "http://localhost:8080/",
+      //backendURL: "https://4fdc7b46-b005-4be7-88ca-cf5a60c80023.mock.pstmn.io/",
       loggedIn: false,
       username: "",
       name: "",
@@ -63,6 +64,9 @@ class App extends React.Component {
               <Route exact path="/myGyms" render={(props) => <OwnerGyms {...props} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/gymInfo/:id" render={(props) => <GymInfo {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
               <Route exact path="/membership/:id" render={(props) => <MembershipInfo {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
+              <Route exact path="/myProfile" render={(props) => <UserProfile {...props}
+                    username = {this.state.username} name = {this.state.name} surname = {this.state.surname} role = {this.state.role}
+                    backendURL = {this.state.backendURL} />} />
             </Switch>
           </div>
           <Footer/>
