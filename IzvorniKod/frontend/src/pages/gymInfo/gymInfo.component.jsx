@@ -2,6 +2,8 @@ import React from "react";
 import GymDetailsComponent from "../../components/gymDetails/gymDetails.component";
 import './gymInfo.styles.scss'
 import MembershipListComponent from "../../components/membershipList/membershipList.component";
+import LocationListComponent from "../../components/locationList/locationList.component";
+import CoachListComponent from "../../components/coachList/coachList.component";
 
 class GymInfo extends React.Component {
     constructor(props) {
@@ -72,23 +74,23 @@ class GymInfo extends React.Component {
                         { this.state.gym?.locations.length === 0 ?
                             <h5>Ne postoje lokacije za odabranu teretanu!</h5>
                             :
-                            <p></p>
-                            // this.state.gym &&
-                            // <LocationListComponent
-                            //     memberships={this.state.gym?.locations}/>
+                            // <p></p>
+                            this.state.gym &&
+                            <LocationListComponent
+                                memberships={this.state.gym?.locations}/>
                         }
                         </div>
                     </div>
                     <div className='gym-info3'>
                         <h3 id='header'>Treneri</h3>
                         <div className='locations-container'>
-                            { this.state.gym?.locations.length === 0 ?
+                            { this.state.gym?.coaches.length === 0 ?
                                 <h5>Ne postoje treneri za odabranu teretanu!</h5>
                                 :
-                                <p></p>
-                                // this.state.gym &&
-                                // <CoachListComponent
-                                //     memberships={this.state.gym?.coaches}/>
+                                // <p></p>
+                                this.state.gym &&
+                                <CoachListComponent
+                                    memberships={this.state.gym?.coaches}/>
                             }
                         </div>
                     </div>

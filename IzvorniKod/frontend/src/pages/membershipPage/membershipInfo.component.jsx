@@ -10,16 +10,16 @@ class MembershipInfo extends React.Component {
     }
 
     async componentDidMount() {
-        const url = this.props.backendURL + "membership";
+        const url = this.props.backendURL + "membership?";
 
 
         const params = {id: this.props.match.params.id};
+        const searchParams = new URLSearchParams(params);
 
-        await fetch(url, {
+        await fetch(url + searchParams.toString(), {
             method: "GET",
             headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({id: params.id})
+            credentials: 'include'
         }).then(res => {
             if (!res.ok) {
                 throw new Error("HTTP Error! " + res.status)

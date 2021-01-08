@@ -1,5 +1,6 @@
 import React from "react";
-
+import './locationList.styles.scss'
+import LocationMetadataContainer from "../location-metadata-container/location-metadata-container.component";
 class LocationListComponent extends React.Component {
     constructor(){
         super()
@@ -7,18 +8,26 @@ class LocationListComponent extends React.Component {
 
     render() {
         return(
-            <div></div>
-            // <div className = 'gymList-container'>
-            //     <div className = 'gymList-header-container'>
-            //         <h3>Opis</h3>
-            //         <h3>Cijena</h3>
-            //         <h3>Trajanje</h3>
-            //         <h3>Detaljnije</h3>
-            //     </div>
-            //     {this.props.memberships.map(membership =>
-            //         <LocationMetadataContainer id = {membership.id} price = {membership.price} description = {membership.description} interval = {membership.interval} key = {membership.id}/>
-            //     )}
-            // </div>
+            <div className = 'location-container'>
+                <div className = 'location-header-container'>
+                    <h3>Država</h3>
+                    <h3>Grad</h3>
+                    <h3>Ulica</h3>
+                    <h3>Od</h3>
+                    <h3>Do</h3>
+                    <h3>Broj</h3>
+                </div>
+                {this.props.locations.map(location =>
+                    <LocationMetadataContainer
+                        country = {location.country}
+                        street = {location.street}
+                        city = {location.city}
+                        opensAt = {location.opensAt}
+                        closesAt = {location.closesAt}
+                        phoneNumber = {location.phoneNumber}
+                        key = {location.id}/>
+                )}
+            </div>
         )
     }
 }
