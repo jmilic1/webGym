@@ -36,6 +36,7 @@ class GymInfo extends React.Component {
         ).catch(e => {
             alert("Došlo je do pogreške: " + e.message)
         })
+        console.log(this.state.gym)
     }
 
 
@@ -55,7 +56,7 @@ class GymInfo extends React.Component {
                     <div className='gym-info1'>
                         <h3 id='header'>Članarine</h3>
                         <div className='locations-container'>
-                            { this.state.gym?.memberships.length == 0 ?
+                            { this.state.gym?.memberships.length === 0 ?
                                 <h5>Ne postoje članarine za odabranu teretanu!</h5>
                                 :
                                 this.state.gym &&
@@ -68,20 +69,26 @@ class GymInfo extends React.Component {
                     <div className='gym-info2'>
                         <h3 id='header'>Lokacije</h3>
                         <div className='locations-container'>
-                        { this.state.gym?.locations.length == 0 ?
+                        { this.state.gym?.locations.length === 0 ?
                             <h5>Ne postoje lokacije za odabranu teretanu!</h5>
                             :
-                            <p>njjjj ima lokacija</p>
+                            <p></p>
+                            // this.state.gym &&
+                            // <LocationListComponent
+                            //     memberships={this.state.gym?.locations}/>
                         }
                         </div>
                     </div>
                     <div className='gym-info3'>
                         <h3 id='header'>Treneri</h3>
                         <div className='locations-container'>
-                            { this.state.gym?.locations.length == 0 ?
+                            { this.state.gym?.locations.length === 0 ?
                                 <h5>Ne postoje treneri za odabranu teretanu!</h5>
                                 :
-                                <p>njjjj ima lokacija</p>
+                                <p></p>
+                                // this.state.gym &&
+                                // <CoachListComponent
+                                //     memberships={this.state.gym?.coaches}/>
                             }
                         </div>
                     </div>
