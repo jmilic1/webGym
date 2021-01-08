@@ -10,8 +10,10 @@ class CoachPlan extends React.Component{
             dateFrom: plan.dateFrom,
             dateTo: plan.dateTo,
             price: plan.price,
+            backendUrl: plan.backendURL,
             modifyPlan: false
         }
+        console.log(plan.backendUrl)
     }
 
     handleChange = event => {
@@ -27,24 +29,21 @@ class CoachPlan extends React.Component{
     }
 
     handleChangePlanSubmit = () => {
-        fetch(this.props.backendURL + "modifyCoachPlan" , {
+        fetch(this.props.backendUrl + "modifyCoachPlan" , {
             method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
             body: JSON.stringify({id: this.state.id, description: this.state.description})
         }).then(response => {
-            if (response.status === 200) {
-                return response.json()
+            if (response.ok) {
+                this.setState({
+                    modifyPlan: false
+                })
             } else {
-                return Promise.reject()
+                throw new Error("HTTP Error! " + response.status)
             }
-        }).then(function () {
-
-            this.setState({
-            modifyPlan: false
-            })
-
-        }, function () {
-            alert("Došlo je do pogreške")
+        }).catch(e => {
+            alert("Došlo je do pogreške: " + e.message)
         })
     }
 
@@ -58,10 +57,6 @@ class CoachPlan extends React.Component{
 
                 <div className="item3">
                     <p>Do: {this.state.dateTo}</p>
-                </div>   
-
-                <div className="itempom">
-                    <p></p>
                 </div>
 
                 <div className="item4">
@@ -77,7 +72,7 @@ class CoachPlan extends React.Component{
                             :
                         	<div className="item5">
                                 <p>
-                                    <button class="btn" onClick={this.handleChangePlanClick}>Otkaži</button>
+                                    <button className="btn" onClick={this.handleChangePlanClick}>Otkaži</button>
                                     <button onClick = {this.handleChangePlanSubmit}> Spremi</button>
                                 </p>
                             </div>
@@ -85,11 +80,11 @@ class CoachPlan extends React.Component{
                 
                 {!this.state.modifyPlan ?
                             <div className="item1">
-                                 <p>Opis: <br></br> {this.state.description}</p>
+                                 <p>Opis: <br/> {this.state.description}</p>
                             </div>
                             :
                         	<div className="item1">
-                                <p>Opis: <br></br>
+                                <p>Opis: <br/>
                                     <div className="plan-description-update">
                                         <textarea className="textarea" name='description' value={this.state.description} onChange={this.handleChange} required/>
                                     </div>                 

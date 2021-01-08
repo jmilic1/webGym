@@ -117,37 +117,31 @@ class CoachPlans extends React.Component{
     }
 
     handleBtnSaveNewPlanClick= () => {
+        const body ={
+            description: this.state.newPlanDescription, dateFrom: this.state.newPlanDateFrom,
+            dateTo: this.state.newPlanDateTo, price: this.state.newPlanPrice, isTraining: !this.state.showDietPlans
+            }
         fetch(this.props.backendURL + "addPlan" , {
             method: 'POST',
             credentials: 'include',
-            body: JSON.stringify({
-                description: this.state.newPlanDescription, dateFrom: this.state.newPlanDateFrom,
-                dateTo: this.state.newPlanDateTo, price: this.state.newPlanPrice, isTraining: !this.state.showDietPlans
-            })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
         }).then(response => {
-            if (response.status === 200) {
-                return response.json()
+            if (response.ok) {
+                this.setState({
+                    dietPlan: this.state.dietPlans.push(body),
+                    newPlanDescription: "",
+                    newPlanDateFrom: "",
+                    newPlanDateTo: "",
+                    newPlanPrice: "",
+                    addNewPlan: false
+                })
             } else {
-                return Promise.reject()
+                throw new Error("HTTP Error! " + response.status)
             }
-        }).then(function () {
-            this.setState({
-                newPlanDescription: "",
-                newPlanDateFrom: "",
-                newPlanDateTo: "",
-                newPlanPrice: "",
-                addNewPlan: false
-            })
+        }).catch(e => alert("Došlo je do pogreške: " + e.message))
 
-        }, function () {
-            alert("Došlo je do pogreške")
-        })
-
-        {this.state.showDietPlans ?
-            this.refreshDietPlans()
-            :
-            this.refreshWorkoutPlans()
-        }
+        // this.state.showDietPlans ? this.refreshDietPlans() : this.refreshWorkoutPlans()
     }
 
     render(){
@@ -212,13 +206,13 @@ class CoachPlans extends React.Component{
                 {this.state.showDietPlans ?
                     (<div className='coachPlans-dietPlans'>
                     {this.state.dietPlans.map(plan =>
-                        <CoachPlan key = {plan.id} id = {plan.id} description={plan.description} dateFrom={plan.dateFrom} dateTo={plan.dateTo} price={plan.price}/>
+                        <CoachPlan key = {plan.id} id = {plan.id} description={plan.description} dateFrom={plan.dateFrom} dateTo={plan.dateTo} price={plan.price} backendUrl = {this.props.backendURL}/>
                     )}    
                     </div>)
                     :
                     (<div className='coachPlans-dietPlans'>
                     {this.state.workoutPlans.map(plan =>
-                        <CoachPlan key = {plan.id} id = {plan.id} description={plan.description} dateFrom={plan.dateFrom} dateTo={plan.dateTo} price={plan.price}/>
+                        <CoachPlan key = {plan.id} id = {plan.id} description={plan.description} dateFrom={plan.dateFrom} dateTo={plan.dateTo} price={plan.price} backendUrl = {this.props.backendURL}/>
                     )}
                     </div>)
                 }
