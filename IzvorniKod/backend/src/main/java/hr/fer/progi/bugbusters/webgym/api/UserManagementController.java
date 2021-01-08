@@ -132,9 +132,14 @@ public class UserManagementController {
     }
 
     @PostMapping("/modifyUser")
-    public void modifyUser(@RequestBody UserDto userDto) {
-        User user = convertToEntity(userDto);
-        service.modifyUser(user);
+    public void modifyUser(@RequestBody UserDto userDto, HttpServletResponse response, HttpServletRequest request) {
+        try {
+            User user = convertToEntity(userDto);
+            String username = extractUsernameFromCookies(request);
+            service.modifyUser(user, username);
+        } catch (UserException ex) {
+            response.setStatus(403);
+        }
     }
 
     /**
@@ -176,5 +181,17 @@ public class UserManagementController {
 
     private UserDto convertToDto(User user) {
         return modelMapper.map(user, UserDto.class);
+    }
+
+    private String extractUsernameFromCookies(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null){
+            for (Cookie cookie:cookies){
+                if ("username".equals(cookie.getName())){
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
     }
 }

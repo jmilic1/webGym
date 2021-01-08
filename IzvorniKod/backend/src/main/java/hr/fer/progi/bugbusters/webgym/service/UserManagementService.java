@@ -68,33 +68,36 @@ public class UserManagementService implements UserDetailsService {
         return null;
     }
 
-    public void modifyUser(User modifiedUser){
-        User foundUser = userRepository.getOne(modifiedUser.getUsername());
+    public void modifyUser(User modifiedUser, String username){
+        Optional<User> foundOPUser = userRepository.findById(username);
+        if (foundOPUser.isEmpty()){
+            throw new UserException();
+        }
+        User foundUser = foundOPUser.get();
         if (modifiedUser.getPassword() != null){
             foundUser.setPassword(passwordEncoder.encode(modifiedUser.getPassword()));
         }
-        if (modifiedUser.getEmail() == null){
+        if (modifiedUser.getEmail() != null){
             foundUser.setEmail(modifiedUser.getEmail());
         }
-        if (modifiedUser.getHeight() == null){
+        if (modifiedUser.getHeight() != null){
             foundUser.setHeight(modifiedUser.getHeight());
         }
-        if (modifiedUser.getWeight() == null){
+        if (modifiedUser.getWeight() != null){
             foundUser.setWeight(modifiedUser.getWeight());
         }
-        if (modifiedUser.getName() == null){
+        if (modifiedUser.getName() != null){
             foundUser.setName(modifiedUser.getName());
         }
-        if (modifiedUser.getSurname() == null){
+        if (modifiedUser.getSurname() != null){
             foundUser.setSurname(modifiedUser.getSurname());
         }
-        if (modifiedUser.getPayPalAccount() == null){
+        if (modifiedUser.getPayPalAccount() != null){
             foundUser.setPayPalAccount(modifiedUser.getPayPalAccount());
         }
-        if (modifiedUser.getPhoneNumber() == null){
+        if (modifiedUser.getPhoneNumber() != null){
             foundUser.setPhoneNumber(modifiedUser.getPhoneNumber());
         }
-
 
         userRepository.save(foundUser);
     }
