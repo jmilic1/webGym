@@ -1,12 +1,12 @@
-.gymList-container {
+.location-container {
   margin: 0 auto;
   width: 80%;
   max-width: 1200px;
 }
 
-.gymList-header-container{
+.location-header-container{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   border-bottom: 0.2em solid black;
   h3{
     display: flex;

@@ -11,6 +11,8 @@ import Footer from "./components/footer/footer.component";
 import OwnerGyms from "./pages/ownerGyms/ownerGyms.component";
 import UserProfile from "./pages/userProfile/userProfile.component";
 import UserList from './pages/userList/userList.component'
+import GymInfo from './pages/gymInfo/gymInfo.component'
+import MembershipInfo from "./pages/membershipPage/membershipInfo.component";
 class App extends React.Component {
 
   constructor(){
@@ -20,26 +22,18 @@ class App extends React.Component {
       //backendURL: "http://localhost:8080/",
       //backendURL: "https://4fdc7b46-b005-4be7-88ca-cf5a60c80023.mock.pstmn.io/",
       loggedIn: false,
-      username: '',
+      username: "",
       name: "",
       surname: "",
       role: "",
-      // coach: false,
-      // admin: false,
-      // gymOwner: false
     }
   }
 
-  handleLogin = (username, name, surname, role) => {//client, coach, admin, gymOwner) => {
-    console.log("Uloga za props: " + role)
+  handleLogin = (username, name, surname, role) => {
     this.setState({
       name:name,
       surname: surname,
       role: role,
-      // client: client,
-      // coach: coach,
-      // admin:admin,
-      // gymOwner: gymOwner,
       username: username,
       loggedIn: true
     })
@@ -49,10 +43,6 @@ class App extends React.Component {
     this.setState({
       name:'',
       surname: '',
-      // coach: false,
-      // admin:false,
-      // gymOwner: false,
-      // client: false,
       role: "",
       username: false,
       loggedIn: false
@@ -62,7 +52,7 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-          <Header  loggedIn = {this.state.loggedIn} role = {this.state.role}/>
+          <Header loggedIn = {this.state.loggedIn} role = {this.state.role}/>
           <div className = 'page-container'>
             <Switch>
               <Route exact path="/" component={Homepage} />
@@ -72,6 +62,8 @@ class App extends React.Component {
               <Route exact path="/userList" render={(props) => <UserList {...props} backendURL = {this.state.backendURL} />} />
               <Route exact path="/myPlans" render={(props) => <CoachPlans {...props} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/myGyms" render={(props) => <OwnerGyms {...props} backendURL = {this.state.backendURL}/>} />
+              <Route exact path="/gymInfo/:id" render={(props) => <GymInfo {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
+              <Route exact path="/membership/:id" render={(props) => <MembershipInfo {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
               <Route exact path="/myProfile" render={(props) => <UserProfile {...props}
                     username = {this.state.username} name = {this.state.name} surname = {this.state.surname} role = {this.state.role}
                     backendURL = {this.state.backendURL} />} />

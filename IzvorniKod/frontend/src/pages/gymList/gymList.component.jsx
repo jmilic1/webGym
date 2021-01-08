@@ -29,11 +29,12 @@ class GymList extends React.Component{
             <div className = 'gymList-container'>
                 <div className = 'gymList-header-container'>
                     <h3>Ime teretane</h3>
-                    <h3>Grad</h3>
+                    <h3>Opis</h3>
+                    <h3>E-mail</h3>
                     <h3>Informacije</h3>
                 </div>
                 {this.state.gymList.map(gym =>
-                    <GymMetaDataContainer name = {gym.name} city = {gym.city} key = {gym.id}/>
+                    <GymMetaDataContainer id = {gym.id} name = {gym.name} description = {gym.description} email = {gym.email} key = {gym.id}/>
                 )}
             </div>
         )

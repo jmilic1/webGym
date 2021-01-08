@@ -1,0 +1,19 @@
+.membership-page-container {
+  width: 80%;
+  margin-bottom: 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.membership-container {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-flow: column;
+  border: #072557 2.5px solid;
+  padding: 10px;
+  border-radius: 5px;
+  height: auto;
+  width: 400px;
+}
