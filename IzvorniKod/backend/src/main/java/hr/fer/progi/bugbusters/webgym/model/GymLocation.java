@@ -23,8 +23,4 @@ public class GymLocation {
     private Time opensAt;
     private Time closesAt;
     private String phoneNumber;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gymLocation")
-    private List<JobRequest> jobRequests;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gymLocation")
-    private List<GymUser> gymUserList;
 }

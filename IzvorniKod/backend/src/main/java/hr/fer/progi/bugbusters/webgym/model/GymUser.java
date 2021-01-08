@@ -14,7 +14,7 @@ public class GymUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private GymLocation gymLocation;
+    private Gym gym;
     @ManyToOne
     @JoinColumn(name="username")
     private User user;

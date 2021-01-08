@@ -18,7 +18,7 @@ public class JobRequest {
     @JoinColumn(name="username")
     private User user;
     @ManyToOne
-    private GymLocation gymLocation;
+    private Gym gym;
     private String description;
     private Boolean approved;
 }

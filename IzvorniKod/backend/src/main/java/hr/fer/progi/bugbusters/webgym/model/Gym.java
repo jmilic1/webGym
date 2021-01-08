@@ -24,6 +24,11 @@ public class Gym {
     private List<GymLocation> gymLocations;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "gym")
     private List<Membership> memberships;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gym")
+    private List<GymUser> gymUsers;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gym")
+    private List<JobRequest> jobRequests;
+
 
     public Gym(String name, String description, String email){
         this.name = name;

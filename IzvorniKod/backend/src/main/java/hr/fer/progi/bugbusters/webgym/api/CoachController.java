@@ -3,6 +3,7 @@ package hr.fer.progi.bugbusters.webgym.api;
 import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.Goal;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
+import hr.fer.progi.bugbusters.webgym.model.dto.GymDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
 import hr.fer.progi.bugbusters.webgym.service.CoachService;
 import org.modelmapper.ModelMapper;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Coach controller which reads url requests

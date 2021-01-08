@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,10 +51,35 @@ public class GymController {
      * @return response message
      */
     @PostMapping("/addGym")
-    public String insertGym(@RequestBody GymDto gymDto) {
+    public String insertGym(@RequestBody GymDto gymDto, HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            response.setStatus(403);
+            return "Denied!";
+        }
+
         Gym gym = convertGymToEntity(gymDto);
-        service.addGym(gym);
+        if (!service.addGym(username, gym)) {
+            response.setStatus(403);
+            return "Denied!";
+        }
+        response.setStatus(200);
         return "Added gym!";
+    }
+
+    @GetMapping("/myGyms")
+    public List<GymDto> getMyGyms(HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            response.setStatus(403);
+            return null;
+        }
+
+        List<GymDto> gymDtoList = service.getMyGyms(username);
+        if (gymDtoList == null) response.setStatus(403);
+        else response.setStatus(200);
+
+        return gymDtoList;
     }
 
     @GetMapping("/gymInfo")
@@ -64,14 +92,6 @@ public class GymController {
         GymLocation gymLocation = modelMapper.map(gymLocationDto, GymLocation.class);
         service.createGymLocation(gymLocation);
     }
-
-    /*
-    @GetMapping("/membership")
-    public MembershipDto getMembership(@RequestBody MembershipDto membershipDto){
-        Membership membership = service.getMembership(membershipDto.getId());
-        return modelMapper.map(membership, MembershipDto.class);
-    }
-    */
 
     @GetMapping("/membership")
     public MembershipDto getMembership(@RequestParam long id){
@@ -104,5 +124,17 @@ public class GymController {
         GymLocationDto gymLocationDto = modelMapper.map(gymLocation, GymLocationDto.class);
         gymLocationDto.setId(gymLocation.getGym().getId());
         return gymLocationDto;
+    }
+
+    private String extractUsernameFromCookies(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null){
+            for (Cookie cookie:cookies){
+                if ("username".equals(cookie.getName())){
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
     }
 }
