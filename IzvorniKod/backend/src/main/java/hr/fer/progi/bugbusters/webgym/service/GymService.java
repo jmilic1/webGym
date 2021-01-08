@@ -189,6 +189,26 @@ public class GymService {
         gymRepository.delete(gym);
     }
 
+    public void deleteGymLocation(long id, String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
+
+        Optional<GymLocation> optionalGymLocation = gymLocationRepository.findById(id);
+        if (optionalGymLocation.isEmpty()) throw new IllegalArgumentException("404");
+        GymLocation gymLocation = optionalGymLocation.get();
+
+        Gym gym = gymLocation.getGym();
+        boolean ownsGym = false;
+        for (GymUser gymUser: gym.getGymUsers()) {
+            if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
+        }
+        if (!ownsGym) throw new IllegalArgumentException("403");
+
+        gymLocationRepository.delete(gymLocation);
+    }
+
     private static <T, S extends JpaRepository<T, Long>> void deleteFromRepo(List<T> deleteList, S repo) {
         for (T element: deleteList) {
             repo.delete(element);

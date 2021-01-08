@@ -98,6 +98,22 @@ public class GymController {
         }
     }
 
+    @DeleteMapping("/gymLocation")
+    public void deleteGymLocation(@RequestBody GymLocationDto gymLocationDto, HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            response.setStatus(403);
+            return;
+        }
+
+        try {
+            service.deleteGymLocation(gymLocationDto.getId(), username);
+            response.setStatus(200);
+        } catch (IllegalArgumentException e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+        }
+    }
+
     @GetMapping("/gymInfo")
     public GymInfoDto getGymLocation(@RequestParam long id){
         return service.getGymInfo(id);
