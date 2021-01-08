@@ -65,8 +65,19 @@ public class GymController {
         service.createGymLocation(gymLocation);
     }
 
+    /*
     @GetMapping("/membership")
     public MembershipDto getMembership(@RequestBody MembershipDto membershipDto){
+        Membership membership = service.getMembership(membershipDto.getId());
+        return modelMapper.map(membership, MembershipDto.class);
+    }
+    */
+
+    @GetMapping("/membership")
+    public MembershipDto getMembership(@RequestParam long id){
+        MembershipDto membershipDto = new MembershipDto();
+        membershipDto.setId(id);
+
         Membership membership = service.getMembership(membershipDto.getId());
         return modelMapper.map(membership, MembershipDto.class);
     }
