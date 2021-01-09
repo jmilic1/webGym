@@ -19,4 +19,11 @@ public class GymUser {
     @JoinColumn(name="username")
     private User user;
     private Date workDateBegin;
+
+    @Override
+    public String toString() {
+        return "GymUser{" +
+                "id=" + id +
+                '}';
+    }
 }

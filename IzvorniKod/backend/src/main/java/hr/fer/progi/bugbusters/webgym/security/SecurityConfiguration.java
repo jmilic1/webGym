@@ -49,11 +49,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/registration", "/login", "/userPlans").permitAll()
                 .antMatchers(HttpMethod.GET, "/gymList", "/gymInfo", "/membership", "/logInAsUser", "/logInAsCoach", "/coachPlan", "/userPlans", "/myTransactions").permitAll()
                 .antMatchers(HttpMethod.GET, "/testAuthorization/coach").hasAuthority("COACH")
-                .antMatchers(HttpMethod.POST, "/testAuthorization/coach", "/addPlan", "/modifyCoachPlan").hasAuthority("COACH")
+                .antMatchers(HttpMethod.POST, "/testAuthorization/coach", "/addPlan", "/modifyCoachPlan", "/myGyms").hasAuthority("COACH")
                 .antMatchers(HttpMethod.GET, "/testAuthorization/user", "/getUserGoals").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST, "/addUserGoal").hasAuthority("CLIENT")
-                .antMatchers(HttpMethod.POST, "/addGym", "/gymInfo").hasAuthority("OWNER")
+                .antMatchers(HttpMethod.POST, "/addGym", "/gymInfo", "/myGyms").hasAuthority("OWNER")
                 .antMatchers("/testAuthorization/owner", "/userList").hasAuthority("OWNER")
+                .antMatchers(HttpMethod.DELETE, "/userList").hasAuthority("OWNER")
                 .antMatchers("/testAuthorization/unregistered").permitAll();
 
         http.csrf().disable();

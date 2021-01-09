@@ -87,6 +87,17 @@ public class TestService {
         User jJel = user;
 
         user = new User();
+        user.setName("Mirko");
+        user.setSurname("Voditelj");
+        user.setUsername("voditelj");
+        user.setEmail("vodi@fer.hr");
+        encryptedPassword = passwordEncoder.encode("123");
+        user.setPassword(encryptedPassword);
+        user.setRole(Role.OWNER);
+        users.add(user);
+        User voditelj = user;
+
+        user = new User();
         user.setName("Sef");
         user.setSurname("Sefic");
         user.setUsername("sef");
@@ -159,6 +170,16 @@ public class TestService {
 
     public User logInAsUser(){
         Optional<User> user = userRepository.findById("jElb");
+        if (user.isPresent()){
+            changeRole(user.get());
+            return user.get();
+        } else {
+            throw new RuntimeException("That username does not exist in database");
+        }
+    }
+
+    public User logInAsOwner(){
+        Optional<User> user = userRepository.findById("voditelj");
         if (user.isPresent()){
             changeRole(user.get());
             return user.get();

@@ -1,7 +1,7 @@
 package hr.fer.progi.bugbusters.webgym.mappers;
 
-import hr.fer.progi.bugbusters.webgym.model.Plan;
-import hr.fer.progi.bugbusters.webgym.model.PlanClient;
+import hr.fer.progi.bugbusters.webgym.model.*;
+import hr.fer.progi.bugbusters.webgym.model.dto.JobRequestDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanClientDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
 
@@ -19,6 +19,16 @@ public class Mappers {
         planDto.setIsTraining(plan.getIsTraining());
 
         return planDto;
+    }
+
+    public static JobRequest mapDtoToJobRequest(JobRequestDto jobRequestDto, User user, Gym gym) {
+        JobRequest jobRequest = new JobRequest();
+        jobRequest.setDescription(jobRequestDto.getDescription());
+        jobRequest.setState(JobRequestState.IN_REVIEW);
+        jobRequest.setUser(user);
+        jobRequest.setGym(gym);
+
+        return jobRequest;
     }
 
 }

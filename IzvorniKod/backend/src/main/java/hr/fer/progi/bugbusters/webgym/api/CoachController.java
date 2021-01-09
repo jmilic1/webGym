@@ -2,8 +2,10 @@ package hr.fer.progi.bugbusters.webgym.api;
 
 import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.Goal;
+import hr.fer.progi.bugbusters.webgym.model.JobRequest;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.dto.GymDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.JobRequestDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
 import hr.fer.progi.bugbusters.webgym.service.CoachService;
 import org.modelmapper.ModelMapper;
@@ -59,6 +61,10 @@ public class CoachController {
     @PostMapping("/modifyCoachPlan")
     public void modifyCoachPlan(@RequestBody PlanDto planDto, HttpServletRequest request, HttpServletResponse response) {
         String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            response.setStatus(403);
+            return;
+        }
 
         try {
             service.modifyCoachPlan(planDto, username);
@@ -82,6 +88,22 @@ public class CoachController {
 
         response.setStatus(200);
         return Mappers.mapPlanToPlanDto(retPlan);
+    }
+
+    @PostMapping("/jobRequest")
+    public void postJobRequest(@RequestBody JobRequestDto jobRequestDto, HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            response.setStatus(403);
+            return;
+        }
+
+        try {
+            service.addJobRequest(username, jobRequestDto);
+            response.setStatus(200);
+        } catch (IllegalArgumentException e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+        }
     }
 
     private String extractUsernameFromCookies(HttpServletRequest request){
