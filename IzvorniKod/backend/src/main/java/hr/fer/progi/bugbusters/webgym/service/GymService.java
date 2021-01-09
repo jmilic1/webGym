@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -207,6 +208,38 @@ public class GymService {
         if (!ownsGym) throw new IllegalArgumentException("403");
 
         gymLocationRepository.delete(gymLocation);
+    }
+
+    public void updateGymLocation(GymLocationDto gymLocationDto, String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
+
+        Optional<GymLocation> optionalGymLocation = gymLocationRepository.findById(gymLocationDto.getId());
+        if (optionalGymLocation.isEmpty()) throw new IllegalArgumentException("404");
+        GymLocation gymLocation = optionalGymLocation.get();
+
+        Gym gym = gymLocation.getGym();
+        boolean ownsGym = false;
+        for (GymUser gymUser: gym.getGymUsers()) {
+            if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
+        }
+        if (!ownsGym) throw new IllegalArgumentException("403");
+
+        gymLocation = mapToGymLocation(gymLocation, gymLocationDto);
+        gymLocationRepository.save(gymLocation);
+    }
+
+    private static GymLocation mapToGymLocation(GymLocation gymLocation, GymLocationDto gymLocationDto) {
+        if (gymLocationDto.getCity() != null) gymLocation.setCity(gymLocationDto.getCity());
+        if (gymLocationDto.getClosesAt() != null) gymLocation.setClosesAt(Time.valueOf(gymLocationDto.getClosesAt()));
+        if (gymLocationDto.getCountry() != null) gymLocation.setCountry(gymLocationDto.getCountry());
+        if (gymLocationDto.getOpensAt() != null) gymLocation.setOpensAt(Time.valueOf(gymLocationDto.getOpensAt()));
+        if (gymLocationDto.getPhoneNumber() != null) gymLocation.setPhoneNumber(gymLocationDto.getPhoneNumber());
+        if (gymLocationDto.getStreet() != null) gymLocation.setStreet(gymLocationDto.getStreet());
+
+        return gymLocation;
     }
 
     private static <T, S extends JpaRepository<T, Long>> void deleteFromRepo(List<T> deleteList, S repo) {
