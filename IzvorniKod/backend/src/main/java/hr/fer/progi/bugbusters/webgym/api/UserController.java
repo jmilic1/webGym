@@ -1,6 +1,7 @@
 package hr.fer.progi.bugbusters.webgym.api;
 
 import hr.fer.progi.bugbusters.webgym.model.Goal;
+import hr.fer.progi.bugbusters.webgym.model.Membership;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.User;
 import hr.fer.progi.bugbusters.webgym.model.dto.*;
@@ -170,7 +171,6 @@ public class UserController {
     @GetMapping("/getWorkoutPlans")
     public List<PlanDto> getWorkoutPlans(HttpServletRequest request) {
         String username = extractUsernameFromCookies(request);
-
         if (username == null) {
             return null;
         }
@@ -178,6 +178,73 @@ public class UserController {
         return userService.getUserWorkoutPlans(username).stream()
                 .map(this::convertPlanToDto)
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping("/buyMembership")
+    public void buyMembership(@RequestBody MembershipDto membershipDto, HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            return;
+        }
+
+        try {
+            userService.buyMembership(username, membershipDto.getId());
+            response.setStatus(200);
+        } catch (Exception e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+        }
+    }
+
+    @PostMapping("/buyPlan")
+    public  void buyPlan(@RequestBody PlanDto planDto, HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            response.setStatus(403);
+            return;
+        }
+
+        try {
+            userService.buyPlan(username, planDto.getId());
+            response.setStatus(200);
+        } catch (Exception e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+        }
+    }
+
+    @GetMapping("/user")
+    public UserDto getUser(@RequestParam String username, HttpServletRequest request, HttpServletResponse response) {
+        String logedUsername = extractUsernameFromCookies(request);
+        if (logedUsername == null) {
+            response.setStatus(403);
+            return null;
+        }
+
+        try {
+            UserDto userDto = userService.getUser(username, logedUsername);
+            response.setStatus(200);
+            return userDto;
+        } catch (Exception e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+            return null;
+        }
+    }
+
+    @GetMapping("/myClients")
+    public List<UserDto> getMyClients(HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            response.setStatus(403);
+            return null;
+        }
+
+        try {
+            List<UserDto> userDtoList = userService.getMyClients(username);
+            response.setStatus(200);
+            return userDtoList;
+        } catch (Exception e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+            return null;
+        }
     }
 
     private String extractUsernameFromCookies(HttpServletRequest request){

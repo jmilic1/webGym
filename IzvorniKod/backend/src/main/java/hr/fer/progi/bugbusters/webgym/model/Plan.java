@@ -31,9 +31,4 @@ public class Plan {
         this.user = user;
         this.description = description;
     }
-
-    public void addPlanClient(PlanClient planClient) {
-        if (clientPlans == null) clientPlans = new ArrayList<>();
-        clientPlans.add(planClient);
-    }
 }
