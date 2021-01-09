@@ -1,6 +1,7 @@
 package hr.fer.progi.bugbusters.webgym.api;
 
 import hr.fer.progi.bugbusters.webgym.model.Goal;
+import hr.fer.progi.bugbusters.webgym.model.Membership;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
 import hr.fer.progi.bugbusters.webgym.model.User;
 import hr.fer.progi.bugbusters.webgym.model.dto.*;
@@ -177,6 +178,21 @@ public class UserController {
         return userService.getUserWorkoutPlans(username).stream()
                 .map(this::convertPlanToDto)
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping("/buyMembership")
+    public void buyMembership(@RequestBody MembershipDto membershipDto, HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            return;
+        }
+
+        try {
+            userService.buyMembership(username, membershipDto.getId());
+            response.setStatus(200);
+        } catch (Exception e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+        }
     }
 
     @PostMapping("/buyPlan")

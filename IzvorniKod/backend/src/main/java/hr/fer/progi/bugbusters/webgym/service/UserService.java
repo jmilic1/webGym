@@ -1,9 +1,6 @@
 package hr.fer.progi.bugbusters.webgym.service;
 
-import hr.fer.progi.bugbusters.webgym.dao.GoalRepository;
-import hr.fer.progi.bugbusters.webgym.dao.PlanClientRepository;
-import hr.fer.progi.bugbusters.webgym.dao.PlanRepository;
-import hr.fer.progi.bugbusters.webgym.dao.UserRepository;
+import hr.fer.progi.bugbusters.webgym.dao.*;
 import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.*;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanClientDto;
@@ -28,18 +25,24 @@ public class UserService {
 
     UserRepository userRepository;
     PlanRepository planRepository;
+    MembershipRepository membershipRepository;
     GoalRepository goalRepository;
     PlanClientRepository planClientRepository;
+    MembershipUserRepository membershipUserRepository;
 
     @Autowired
     public UserService(@Qualifier("userRep") UserRepository userRepository,
                        @Qualifier("planRep") PlanRepository planRepository,
+                       @Qualifier("membershipRep") MembershipRepository membershipRepository,
                        @Qualifier("goalRep") GoalRepository goalRepository,
-                       @Qualifier("planClientRep") PlanClientRepository planClientRepository){
+                       @Qualifier("planClientRep") PlanClientRepository planClientRepository,
+                       @Qualifier("membershipUserRep") MembershipUserRepository membershipUserRepository){
         this.userRepository = userRepository;
         this.planRepository = planRepository;
+        this.membershipRepository = membershipRepository;
         this.goalRepository = goalRepository;
         this.planClientRepository = planClientRepository;
+        this.membershipUserRepository = membershipUserRepository;
     }
 
     public List<User> listUsers() {
@@ -83,6 +86,25 @@ public class UserService {
         } else {
             throw new RuntimeException("Currently logged in user not found!");
         }
+    }
+
+    public void buyMembership(String username, Long membershipId) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("404");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.CLIENT) throw new IllegalArgumentException("403");
+
+        Optional<Membership> optionalMembership = membershipRepository.findById(membershipId);
+        if (optionalMembership.isEmpty()) throw new IllegalArgumentException("404");
+        Membership membership = optionalMembership.get();
+
+        MembershipUser membershipUser = new MembershipUser();
+        membershipUser.setDateBegin(java.util.Date.from(Instant.now()));
+        membershipUser.setDateEnd(java.util.Date.from(Instant.now())); // TU CE TREBAT DODAT INTERVAL
+        membershipUser.setMembership(membership);
+        membershipUser.setUser(user);
+
+        membershipUserRepository.save(membershipUser);
     }
 
     public void buyPlan(String username, Long planId) {
