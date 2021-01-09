@@ -4,6 +4,7 @@ import hr.fer.progi.bugbusters.webgym.dao.*;
 import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.*;
 import hr.fer.progi.bugbusters.webgym.model.dto.GymDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.JobRequestDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.TransactionDto;
 import org.modelmapper.ModelMapper;
@@ -21,20 +22,26 @@ public class CoachService {
 
     UserRepository userRepository;
     PlanRepository planRepository;
+    GymRepository gymRepository;
     PlanClientRepository planClientRepository;
     GymUserRepository gymUserRepository;
+    JobRequestRepository jobRequestRepository;
     ModelMapper modelMapper;
 
     @Autowired
     public CoachService(@Qualifier("userRep") UserRepository userRepository,
                         @Qualifier("planRep") PlanRepository planRepository,
+                        @Qualifier("gymRep") GymRepository gymRepository,
                         @Qualifier("planClientRep") PlanClientRepository planClientRepository,
                         @Qualifier("gymUserRep") GymUserRepository gymUserRepository,
+                        @Qualifier("jobRequestRep") JobRequestRepository jobRequestRepository,
                         ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.planRepository = planRepository;
+        this.gymRepository = gymRepository;
         this.planClientRepository = planClientRepository;
         this.gymUserRepository = gymUserRepository;
+        this.jobRequestRepository = jobRequestRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -99,6 +106,20 @@ public class CoachService {
         }
 
         return null;
+    }
+
+    public void addJobRequest(String username, JobRequestDto jobRequestDto) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.COACH) throw new IllegalArgumentException("404");
+
+        Optional<Gym> optionalGym = gymRepository.findById(jobRequestDto.getGymId());
+        if (optionalGym.isEmpty()) throw new IllegalArgumentException("404");
+        Gym gym = optionalGym.get();
+
+        JobRequest jobRequest = Mappers.mapDtoToJobRequest(jobRequestDto, user, gym);
+        jobRequestRepository.save(jobRequest);
     }
 
 }

@@ -20,5 +20,5 @@ public class JobRequest {
     @ManyToOne
     private Gym gym;
     private String description;
-    private Boolean approved;
+    private JobRequestState state;
 }
