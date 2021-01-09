@@ -7,6 +7,7 @@ import hr.fer.progi.bugbusters.webgym.model.dto.PlanClientDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.TransactionDto;
 import hr.fer.progi.bugbusters.webgym.model.dto.UserDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class UserService {
     GoalRepository goalRepository;
     PlanClientRepository planClientRepository;
     MembershipUserRepository membershipUserRepository;
+    ModelMapper modelMapper;
 
     @Autowired
     public UserService(@Qualifier("userRep") UserRepository userRepository,
@@ -36,13 +38,15 @@ public class UserService {
                        @Qualifier("membershipRep") MembershipRepository membershipRepository,
                        @Qualifier("goalRep") GoalRepository goalRepository,
                        @Qualifier("planClientRep") PlanClientRepository planClientRepository,
-                       @Qualifier("membershipUserRep") MembershipUserRepository membershipUserRepository){
+                       @Qualifier("membershipUserRep") MembershipUserRepository membershipUserRepository,
+                       ModelMapper modelMapper){
         this.userRepository = userRepository;
         this.planRepository = planRepository;
         this.membershipRepository = membershipRepository;
         this.goalRepository = goalRepository;
         this.planClientRepository = planClientRepository;
         this.membershipUserRepository = membershipUserRepository;
+        this.modelMapper = modelMapper;
     }
 
     public List<User> listUsers() {
@@ -125,6 +129,31 @@ public class UserService {
         planClientRepository.save(planClient);
     }
 
+    public UserDto getUser(String username, String logedUsername) {
+        Optional<User> optionalLogedUser = userRepository.findById(logedUsername);
+        if (optionalLogedUser.isEmpty()) throw new IllegalArgumentException("403");
+        User logedUser = optionalLogedUser.get();
+        if (logedUser.getRole() != Role.COACH && logedUser.getRole() != Role.ADMIN) throw new IllegalArgumentException("403");
+
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("404");
+        User user = optionalUser.get();
+        if (user.isEnabled()) throw new IllegalArgumentException("404");
+
+        if (logedUser.getRole() == Role.ADMIN) return modelMapper.map(user, UserDto.class);
+        // For coach check if user has bought his workout plan
+        for (Plan plan: logedUser.getPlans()) {
+            if (!plan.getIsTraining()) continue;
+            for (PlanClient planClient: planClientRepository.findByPlan(plan)) {
+                if (planClient.getClient().getUsername().equals(username)) {
+                    return modelMapper.map(user, UserDto.class);
+                }
+            }
+        }
+
+        throw new IllegalArgumentException("403");
+    }
+
     public void modifyGoal(Goal goal){
         goalRepository.save(goal);
     }
@@ -172,13 +201,7 @@ public class UserService {
         planClient.setPlan(plan);
         planClient.setDateBought(planClientDto.getCurrentTime());
 
-        user.addPlanClient(planClient);
-        plan.addPlanClient(planClient);
-
-        userRepository.save(user);
-        planRepository.save(plan);
         planClientRepository.save(planClient);
-
         return true;
     }
 

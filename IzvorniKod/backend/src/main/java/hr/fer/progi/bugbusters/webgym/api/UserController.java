@@ -199,6 +199,7 @@ public class UserController {
     public  void buyPlan(@RequestBody PlanDto planDto, HttpServletRequest request, HttpServletResponse response) {
         String username = extractUsernameFromCookies(request);
         if (username == null) {
+            response.setStatus(403);
             return;
         }
 
@@ -207,6 +208,24 @@ public class UserController {
             response.setStatus(200);
         } catch (Exception e) {
             response.setStatus(Integer.parseInt(e.getMessage()));
+        }
+    }
+
+    @GetMapping("/user")
+    public UserDto getUser(@RequestParam String username, HttpServletRequest request, HttpServletResponse response) {
+        String logedUsername = extractUsernameFromCookies(request);
+        if (logedUsername == null) {
+            response.setStatus(403);
+            return null;
+        }
+
+        try {
+            UserDto userDto = userService.getUser(username, logedUsername);
+            response.setStatus(200);
+            return userDto;
+        } catch (Exception e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+            return null;
         }
     }
 
