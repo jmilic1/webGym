@@ -1,6 +1,7 @@
 package hr.fer.progi.bugbusters.webgym.service;
 
 import hr.fer.progi.bugbusters.webgym.dao.*;
+import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.*;
 import hr.fer.progi.bugbusters.webgym.model.dto.*;
 import org.modelmapper.ModelMapper;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -229,6 +231,82 @@ public class GymService {
 
         gymLocation = mapToGymLocation(gymLocation, gymLocationDto);
         gymLocationRepository.save(gymLocation);
+    }
+
+    public List<JobRequestDto> getAllJobRequests(String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
+
+        List<JobRequestDto> jobRequestDtoList = new ArrayList<>();
+
+        List<GymUser> gymUserList = user.getGymUserList();
+        for (GymUser gymUser: gymUserList) {
+            List<JobRequest> jobRequestList = gymUser.getGym().getJobRequests();
+            for (JobRequest jobRequest: jobRequestList) {
+                if (jobRequest.getState() != JobRequestState.IN_REVIEW) continue;
+                jobRequestDtoList.add(Mappers.mapJobRequestToDto(jobRequest, gymUser.getGym(), modelMapper.map(jobRequest.getUser(), CoachDto.class)));
+            }
+        }
+
+        return jobRequestDtoList;
+    }
+
+    public void responseForJobRequest(JobResponseDto jobResponseDto, String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
+
+        Optional<JobRequest> optionalJobRequest = jobRequestRepository.findById(jobResponseDto.getReqId());
+        if (optionalJobRequest.isEmpty()) throw new IllegalArgumentException("404");
+        JobRequest jobRequest = optionalJobRequest.get();
+
+        boolean ownsGym = false;
+        for (GymUser gymUser: jobRequest.getGym().getGymUsers()) {
+            if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
+        }
+        if (!ownsGym) throw new IllegalArgumentException("403");
+
+        if (jobResponseDto.getResponse()) jobRequest.setState(JobRequestState.APPROVED);
+        else jobRequest.setState(JobRequestState.DENIED);
+
+        jobRequestRepository.save(jobRequest);
+
+        GymUser gymUser = new GymUser();
+        gymUser.setGym(jobRequest.getGym());
+        gymUser.setUser(jobRequest.getUser());
+        gymUser.setWorkDateBegin(Date.valueOf(LocalDate.now()));
+        gymUserRepository.save(gymUser);
+    }
+
+    public void addGymOwner(AddGymOwnerDto addGymOwnerDto, String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
+
+        Optional<User> optionalNewOwner = userRepository.findById(addGymOwnerDto.getUsername());
+        if (optionalNewOwner.isEmpty()) throw new IllegalArgumentException("404");
+        User newOwner = optionalNewOwner.get();
+
+        Optional<Gym> optionalGym = gymRepository.findById(addGymOwnerDto.getGymId());
+        if (optionalGym.isEmpty()) throw new IllegalArgumentException("404");
+        Gym gym = optionalGym.get();
+
+        boolean ownsGym = false;
+        for (GymUser gymUser: gym.getGymUsers()) {
+            if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
+        }
+        if (!ownsGym) throw new IllegalArgumentException("403");
+
+        GymUser gymUser = new GymUser();
+        gymUser.setWorkDateBegin(java.util.Date.from(Instant.now()));
+        gymUser.setUser(newOwner);
+        gymUser.setGym(gym);
+
+        gymUserRepository.save(gymUser);
     }
 
     private static GymLocation mapToGymLocation(GymLocation gymLocation, GymLocationDto gymLocationDto) {

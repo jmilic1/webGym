@@ -5,8 +5,10 @@ import lombok.Data;
 
 @Data
 public class JobRequestDto {
-    private Long gymId;
-    private String username;
+    private Long id;
     private String description;
+    private CoachDto coach;
+    private Long gymId;
+    private String gymName;
     private JobRequestState state;
 }

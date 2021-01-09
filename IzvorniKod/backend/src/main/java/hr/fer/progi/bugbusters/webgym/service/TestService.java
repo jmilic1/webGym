@@ -98,6 +98,17 @@ public class TestService {
         User voditelj = user;
 
         user = new User();
+        user.setName("Slavko");
+        user.setSurname("Zelic");
+        user.setUsername("voditelj2");
+        user.setEmail("vodi2@fer.hr");
+        encryptedPassword = passwordEncoder.encode("123");
+        user.setPassword(encryptedPassword);
+        user.setRole(Role.OWNER);
+        users.add(user);
+        User voditelj2 = user;
+
+        user = new User();
         user.setName("Sef");
         user.setSurname("Sefic");
         user.setUsername("sef");
