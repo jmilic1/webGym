@@ -170,7 +170,6 @@ public class UserController {
     @GetMapping("/getWorkoutPlans")
     public List<PlanDto> getWorkoutPlans(HttpServletRequest request) {
         String username = extractUsernameFromCookies(request);
-
         if (username == null) {
             return null;
         }
@@ -178,6 +177,21 @@ public class UserController {
         return userService.getUserWorkoutPlans(username).stream()
                 .map(this::convertPlanToDto)
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping("/buyPlan")
+    public  void buyPlan(@RequestBody PlanDto planDto, HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            return;
+        }
+
+        try {
+            userService.buyPlan(username, planDto.getId());
+            response.setStatus(200);
+        } catch (Exception e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+        }
     }
 
     private String extractUsernameFromCookies(HttpServletRequest request){

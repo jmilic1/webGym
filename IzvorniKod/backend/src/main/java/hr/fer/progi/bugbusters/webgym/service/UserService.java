@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import javax.xml.crypto.Data;
+import java.sql.Date;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -80,6 +83,24 @@ public class UserService {
         } else {
             throw new RuntimeException("Currently logged in user not found!");
         }
+    }
+
+    public void buyPlan(String username, Long planId) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("404");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.CLIENT) throw new IllegalArgumentException("403");
+
+        Optional<Plan> optionalPlan = planRepository.findById(planId);
+        if (optionalPlan.isEmpty()) throw new IllegalArgumentException("404");
+        Plan plan = optionalPlan.get();
+
+        PlanClient planClient = new PlanClient();
+        planClient.setDateBought(Date.from(Instant.now()));
+        planClient.setPlan(plan);
+        planClient.setClient(user);
+
+        planClientRepository.save(planClient);
     }
 
     public void modifyGoal(Goal goal){
