@@ -141,9 +141,8 @@ public class UserService {
         if (user.isEnabled()) throw new IllegalArgumentException("404");
 
         if (logedUser.getRole() == Role.ADMIN) return modelMapper.map(user, UserDto.class);
-        // For coach check if user has bought his workout plan
+        // For coach check if user has bought his plan
         for (Plan plan: logedUser.getPlans()) {
-            if (!plan.getIsTraining()) continue;
             for (PlanClient planClient: planClientRepository.findByPlan(plan)) {
                 if (planClient.getClient().getUsername().equals(username)) {
                     return modelMapper.map(user, UserDto.class);
