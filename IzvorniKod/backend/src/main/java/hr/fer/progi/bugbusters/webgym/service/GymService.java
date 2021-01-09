@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -272,6 +273,12 @@ public class GymService {
         else jobRequest.setState(JobRequestState.DENIED);
 
         jobRequestRepository.save(jobRequest);
+
+        GymUser gymUser = new GymUser();
+        gymUser.setGym(jobRequest.getGym());
+        gymUser.setUser(jobRequest.getUser());
+        gymUser.setWorkDateBegin(Date.valueOf(LocalDate.now()));
+        gymUserRepository.save(gymUser);
     }
 
     public void addGymOwner(AddGymOwnerDto addGymOwnerDto, String username) {

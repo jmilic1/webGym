@@ -4,9 +4,7 @@ import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.Goal;
 import hr.fer.progi.bugbusters.webgym.model.JobRequest;
 import hr.fer.progi.bugbusters.webgym.model.Plan;
-import hr.fer.progi.bugbusters.webgym.model.dto.GymDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.JobRequestDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.*;
 import hr.fer.progi.bugbusters.webgym.service.CoachService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,6 +102,19 @@ public class CoachController {
         } catch (IllegalArgumentException e) {
             response.setStatus(Integer.parseInt(e.getMessage()));
         }
+    }
+
+    @GetMapping("/coach")
+    public CoachResponseDto getCoach(@RequestParam String username, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            CoachResponseDto coachResponseDto = service.getCoach(username);
+            response.setStatus(200);
+            return coachResponseDto;
+        } catch (IllegalArgumentException e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+        }
+
+        return null;
     }
 
     private String extractUsernameFromCookies(HttpServletRequest request){

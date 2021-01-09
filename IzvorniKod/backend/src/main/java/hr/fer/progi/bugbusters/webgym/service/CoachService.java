@@ -3,10 +3,7 @@ package hr.fer.progi.bugbusters.webgym.service;
 import hr.fer.progi.bugbusters.webgym.dao.*;
 import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.*;
-import hr.fer.progi.bugbusters.webgym.model.dto.GymDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.JobRequestDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.TransactionDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -120,6 +117,24 @@ public class CoachService {
 
         JobRequest jobRequest = Mappers.mapDtoToJobRequest(jobRequestDto, user, gym);
         jobRequestRepository.save(jobRequest);
+    }
+
+    public CoachResponseDto getCoach(String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("404");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.COACH) throw new IllegalArgumentException("404");
+
+        CoachResponseDto coachResponseDto = new CoachResponseDto();
+        coachResponseDto.setUser(modelMapper.map(user, UserDto.class));
+        coachResponseDto.setPlans(user.getPlans().stream().map(plan -> modelMapper.map(plan, PlanDto.class)).collect(Collectors.toList()));
+        List<GymDto> gymDtoList = new ArrayList<>();
+        for (GymUser gymUser: user.getGymUserList()) {
+            gymDtoList.add(modelMapper.map(gymUser.getGym(), GymDto.class));
+        }
+        coachResponseDto.setGyms(gymDtoList);
+
+        return coachResponseDto;
     }
 
 }
