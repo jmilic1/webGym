@@ -15,9 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.xml.crypto.Data;
 import java.sql.Date;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -151,6 +149,28 @@ public class UserService {
         }
 
         throw new IllegalArgumentException("403");
+    }
+
+    public List<UserDto> getMyClients(String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.COACH) throw new IllegalArgumentException("403");
+
+        Set<String> clientSet = new HashSet<>();
+        for (Plan plan: user.getPlans()) {
+            for (PlanClient planClient: planClientRepository.findByPlan(plan)) {
+                clientSet.add(planClient.getClient().getUsername());
+            }
+        }
+
+        List<UserDto> userDtoList = new ArrayList<>();
+        for (String clientUsername: clientSet) {
+            Optional<User> optionalClient = userRepository.findById(clientUsername);
+            if (optionalClient.isPresent()) userDtoList.add(modelMapper.map(optionalClient.get(), UserDto.class));
+        }
+
+        return userDtoList;
     }
 
     public void modifyGoal(Goal goal){

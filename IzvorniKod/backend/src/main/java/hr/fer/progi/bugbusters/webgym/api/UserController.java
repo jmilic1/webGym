@@ -229,6 +229,24 @@ public class UserController {
         }
     }
 
+    @GetMapping("/myClients")
+    public List<UserDto> getMyClients(HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            response.setStatus(403);
+            return null;
+        }
+
+        try {
+            List<UserDto> userDtoList = userService.getMyClients(username);
+            response.setStatus(200);
+            return userDtoList;
+        } catch (Exception e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+            return null;
+        }
+    }
+
     private String extractUsernameFromCookies(HttpServletRequest request){
         Cookie[] cookies = request.getCookies();
         if (cookies != null){
