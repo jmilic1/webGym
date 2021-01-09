@@ -252,6 +252,28 @@ public class GymService {
         return jobRequestDtoList;
     }
 
+    public void responseForJobRequest(JobResponseDto jobResponseDto, String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
+
+        Optional<JobRequest> optionalJobRequest = jobRequestRepository.findById(jobResponseDto.getReqId());
+        if (optionalJobRequest.isEmpty()) throw new IllegalArgumentException("404");
+        JobRequest jobRequest = optionalJobRequest.get();
+
+        boolean ownsGym = false;
+        for (GymUser gymUser: jobRequest.getGym().getGymUsers()) {
+            if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
+        }
+        if (!ownsGym) return;
+
+        if (jobResponseDto.getResponse()) jobRequest.setState(JobRequestState.APPROVED);
+        else jobRequest.setState(JobRequestState.DENIED);
+
+        jobRequestRepository.save(jobRequest);
+    }
+
     private static GymLocation mapToGymLocation(GymLocation gymLocation, GymLocationDto gymLocationDto) {
         if (gymLocationDto.getCity() != null) gymLocation.setCity(gymLocationDto.getCity());
         if (gymLocationDto.getClosesAt() != null) gymLocation.setClosesAt(Time.valueOf(gymLocationDto.getClosesAt()));
