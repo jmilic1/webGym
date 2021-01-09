@@ -266,12 +266,40 @@ public class GymService {
         for (GymUser gymUser: jobRequest.getGym().getGymUsers()) {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
-        if (!ownsGym) return;
+        if (!ownsGym) throw new IllegalArgumentException("403");
 
         if (jobResponseDto.getResponse()) jobRequest.setState(JobRequestState.APPROVED);
         else jobRequest.setState(JobRequestState.DENIED);
 
         jobRequestRepository.save(jobRequest);
+    }
+
+    public void addGymOwner(AddGymOwnerDto addGymOwnerDto, String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
+
+        Optional<User> optionalNewOwner = userRepository.findById(addGymOwnerDto.getUsername());
+        if (optionalNewOwner.isEmpty()) throw new IllegalArgumentException("404");
+        User newOwner = optionalNewOwner.get();
+
+        Optional<Gym> optionalGym = gymRepository.findById(addGymOwnerDto.getGymId());
+        if (optionalGym.isEmpty()) throw new IllegalArgumentException("404");
+        Gym gym = optionalGym.get();
+
+        boolean ownsGym = false;
+        for (GymUser gymUser: gym.getGymUsers()) {
+            if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
+        }
+        if (!ownsGym) throw new IllegalArgumentException("403");
+
+        GymUser gymUser = new GymUser();
+        gymUser.setWorkDateBegin(java.util.Date.from(Instant.now()));
+        gymUser.setUser(newOwner);
+        gymUser.setGym(gym);
+
+        gymUserRepository.save(gymUser);
     }
 
     private static GymLocation mapToGymLocation(GymLocation gymLocation, GymLocationDto gymLocationDto) {

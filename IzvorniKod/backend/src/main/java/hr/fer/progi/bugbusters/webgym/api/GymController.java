@@ -164,6 +164,22 @@ public class GymController {
         }
     }
 
+    @PostMapping("/addGymOwner")
+    public void addGymOwner(@RequestBody AddGymOwnerDto addGymOwnerDto, HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            response.setStatus(403);
+            return;
+        }
+
+        try {
+            service.addGymOwner(addGymOwnerDto, username);
+            response.setStatus(200);
+        } catch (IllegalArgumentException e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+        }
+    }
+
     @GetMapping("/gymInfo")
     public GymInfoDto getGymLocation(@RequestParam long id){
         return service.getGymInfo(id);
