@@ -2,11 +2,9 @@ package hr.fer.progi.bugbusters.webgym.api;
 
 import hr.fer.progi.bugbusters.webgym.model.Gym;
 import hr.fer.progi.bugbusters.webgym.model.GymLocation;
+import hr.fer.progi.bugbusters.webgym.model.JobRequest;
 import hr.fer.progi.bugbusters.webgym.model.Membership;
-import hr.fer.progi.bugbusters.webgym.model.dto.GymDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.GymInfoDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.GymLocationDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.MembershipDto;
+import hr.fer.progi.bugbusters.webgym.model.dto.*;
 import hr.fer.progi.bugbusters.webgym.service.GymService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,6 +125,25 @@ public class GymController {
             response.setStatus(200);
         } catch (IllegalArgumentException e) {
             response.setStatus(Integer.parseInt(e.getMessage()));
+        }
+    }
+
+    @GetMapping("/allJobRequests")
+    public List<JobRequestDto> getAllJobRequests(HttpServletRequest request, HttpServletResponse response) {
+        String username = extractUsernameFromCookies(request);
+        if (username == null) {
+            response.setStatus(403);
+            return null;
+        }
+
+        try {
+            List<JobRequestDto> jobRequestDtoList = service.getAllJobRequests(username);
+            response.setStatus(200);
+            return jobRequestDtoList;
+
+        } catch (IllegalArgumentException e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+            return null;
         }
     }
 

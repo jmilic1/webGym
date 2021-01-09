@@ -1,6 +1,7 @@
 package hr.fer.progi.bugbusters.webgym.service;
 
 import hr.fer.progi.bugbusters.webgym.dao.*;
+import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.*;
 import hr.fer.progi.bugbusters.webgym.model.dto.*;
 import org.modelmapper.ModelMapper;
@@ -229,6 +230,26 @@ public class GymService {
 
         gymLocation = mapToGymLocation(gymLocation, gymLocationDto);
         gymLocationRepository.save(gymLocation);
+    }
+
+    public List<JobRequestDto> getAllJobRequests(String username) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+        User user = optionalUser.get();
+        if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
+
+        List<JobRequestDto> jobRequestDtoList = new ArrayList<>();
+
+        List<GymUser> gymUserList = user.getGymUserList();
+        for (GymUser gymUser: gymUserList) {
+            List<JobRequest> jobRequestList = gymUser.getGym().getJobRequests();
+            for (JobRequest jobRequest: jobRequestList) {
+                if (jobRequest.getState() != JobRequestState.IN_REVIEW) continue;
+                jobRequestDtoList.add(Mappers.mapJobRequestToDto(jobRequest, gymUser.getGym(), modelMapper.map(jobRequest.getUser(), CoachDto.class)));
+            }
+        }
+
+        return jobRequestDtoList;
     }
 
     private static GymLocation mapToGymLocation(GymLocation gymLocation, GymLocationDto gymLocationDto) {
