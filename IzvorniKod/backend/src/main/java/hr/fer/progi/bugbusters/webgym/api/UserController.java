@@ -69,8 +69,12 @@ public class UserController {
     }
 
     @PostMapping("/modifyUserGoal")
-    public void modifyGoal(@RequestBody GoalDto goalDto) {
-        userService.modifyGoal(modelMapper.map(goalDto, Goal.class));
+    public void modifyGoal(@RequestBody GoalDto goalDto, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            userService.modifyGoal(modelMapper.map(goalDto, Goal.class), extractUsernameFromCookies(request));
+        } catch (IllegalArgumentException e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+        }
     }
 
     @GetMapping("/getUserGoals")

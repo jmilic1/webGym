@@ -173,7 +173,11 @@ public class UserService {
         return userDtoList;
     }
 
-    public void modifyGoal(Goal goal){
+    public void modifyGoal(Goal goal, String username){
+        Optional<User> userOptional = userRepository.findById(username);
+        if (userOptional.isEmpty())
+            throw new IllegalArgumentException("403");
+        goal.setUser(userOptional.get());
         goalRepository.save(goal);
     }
 
