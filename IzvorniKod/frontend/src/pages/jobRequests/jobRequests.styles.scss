@@ -1,0 +1,24 @@
+.jobRequests-page-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.jobRequests-header-container {
+    display: flex;
+    width: 1000px;
+    border-bottom: 0.2em solid black;
+    flex-flow: column;
+    align-items: center;
+}
+
+.font {
+    font-size: 22px;
+}
+
+.allRequests {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+}

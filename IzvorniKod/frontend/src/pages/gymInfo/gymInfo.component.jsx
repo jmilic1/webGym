@@ -4,14 +4,21 @@ import './gymInfo.styles.scss'
 import MembershipListComponent from "../../components/membershipList/membershipList.component";
 import LocationListComponent from "../../components/locationList/locationList.component";
 import CoachListComponent from "../../components/coachList/coachList.component";
+import CustomButton from "../../components/custom-buttom/custom-button.component";
 
 class GymInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             gym: null,
-            coaches: [],
-            locations: []
+            addLocation: false,
+            newCountry: "",
+            newCity: "",
+            newStreet: "",
+            newOpensAt: "",
+            newClosesAt: "",
+            newPhoneNumber: "",
+            addJobRequest: false
         }
     }
 
@@ -43,6 +50,76 @@ class GymInfo extends React.Component {
         console.log(this.state.gym)
     }
 
+    handleChangeAddLocationFlag = () => {
+        this.setState({
+            addLocation: !this.state.addLocation
+        })
+    }
+
+    handleJobRequestFlag = () => {
+        this.setState({
+            addJobRequest: !this.state.addJobRequest
+        })
+    }
+
+    handleChange = event => {
+        const { value, name } = event.target;
+
+        this.setState({ [name]: value });
+    };
+
+    handleNewLocationSubmit = () => {
+        const body = {
+            id: this.state.gym.id, country: this.state.newCountry, city: this.state.newCity,
+            street: this.state.newStreet, opensAt: this.state.newOpensAt, closesAt: this.state.newClosesAt,
+            phoneNumber: this.state.newPhoneNumber
+        }
+        fetch(this.props.backendURL + "gymInfo", {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        }).then(response => {
+            if (response.ok) {
+
+                const newArray = this.state.gym.locations
+                newArray.push(body)
+                this.setState({
+                    locations: newArray,
+                    newCountry: "",
+                    newCity: "",
+                    newStreet: "",
+                    newOpensAt: "",
+                    newClosesAt: "",
+                    newPhoneNumber: "",
+                    addLocation: false
+                })
+            } else {
+                throw new Error("HTTP Error! " + response.status)
+            }
+        }).catch(e => alert("Došlo je do pogreške: " + e.message))
+
+    }
+
+    handleJobRequestSubmit = () => {
+        fetch(this.props.backendURL + "jobRequest" , {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({gymId: this.state.gym.id, description: this.state.newJobDescription})
+        }).then(response => {
+            if (response.ok) {
+                this.setState({
+                    newJobDescription: "",
+                    addJobRequest: false
+                })
+            } else {
+                throw new Error("HTTP Error! " + response.status)
+            }
+        }).catch(e => {
+            alert("Došlo je do pogreške: " + e.message)
+        })
+    }
 
     render() {
         return (
@@ -51,12 +128,20 @@ class GymInfo extends React.Component {
                     <div className='gym-details'>
                         {this.state.gym &&
                             <GymDetailsComponent
-                                name={this.state.gym.name}
-                                description={this.state.gym.description}
-                                email={this.state.gym.email}
-                                role={this.props.role}/>
+                            id={this.state.gym.id}
+                            name={this.state.gym.name}
+                            description={this.state.gym.description}
+                            email={this.state.gym.email}
+                            role={this.props.role}
+                            backendUrl={this.props.backendURL}/>
                         }
-                    </div>
+                        {this.props.role === "COACH" ? 
+                            <CustomButton onClick = {this.handleJobRequestFlag}> Zamolba za posao </CustomButton>
+                            :
+                            <div/>
+                        }
+                    </div> 
+                    
                     <div className='gym-info1'>
                         <h3 id='header'>Članarine</h3>
                         <div className='locations-container'>
@@ -70,6 +155,7 @@ class GymInfo extends React.Component {
                             }
                         </div>
                     </div>
+
                     <div className='gym-info2'>
                         <h3 id='header'>Lokacije</h3>
                         <div className='locations-container'>
@@ -81,7 +167,60 @@ class GymInfo extends React.Component {
                             <LocationListComponent
                                 memberships={this.state.gym?.locations}/>
                         }
+                            
+                        <div className='align'>
+                            {this.props.role === "OWNER" ?
+                                this.state.addLocation ?
+                                    <CustomButton onClick={this.handleChangeAddLocationFlag}> Otkaži </CustomButton>
+                                       :
+                                    <CustomButton onClick={this.handleChangeAddLocationFlag}> Dodaj lokaciju </CustomButton>
+                                :
+                                <div/>    
+                            }
+
+                            {this.state.addLocation ?
+                                <div className='grid-container'>
+                                    <div className='item1'>
+                                        <label>Država: </label>
+                                        <input type="text" name='newCountry' value={this.state.newCountry} onChange={this.handleChange} required/>
+                                    </div>   
+                                    
+                                    <div className='item2'>
+                                        <label>Grad: </label>
+                                        <input type="text" name='newCity' value={this.state.newCity} onChange={this.handleChange} required/>
+                                    </div>
+
+                                    <div className='item3'>
+                                        <label>Ulica: </label>
+                                        <input type="text" name='newStreet' value={this.state.newStreet} onChange={this.handleChange} required/>
+                                    </div>
+
+                                    <div className='item4'>
+                                        <label>Broj telefona: </label>
+                                        <input type="text" name='newPhoneNumber' value={this.state.newPhoneNumber} onChange={this.handleChange} minLength="9" maxLength="9" required/>
+                                    </div>    
+                                    
+                                    <div className='item5'>
+                                        <label>Od: </label>   
+                                        <input type="time" name='newOpensAt' value={this.state.newOpensAt} onChange={this.handleChange} required/>
+                                    </div> 
+                                        
+                                    <div className='item6'>
+                                        <label>Do: </label>
+                                        <input type="time" name='newClosesAt' value={this.state.newClosesAt} onChange={this.handleChange} required/>
+                                    </div> 
+
+                                    <div className='item7'>
+                                        <br/>    
+                                            <button onClick={this.handleNewLocationSubmit}>Dodaj</button>
+                                    </div>    
+
+                                </div>     
+                                :
+                                <div/>    
+                            }   
                         </div>
+                    </div>
                     </div>
                     <div className='gym-info3'>
                         <h3 id='header'>Treneri</h3>
@@ -96,6 +235,21 @@ class GymInfo extends React.Component {
                             }
                         </div>
                     </div>
+                {this.state.addJobRequest ?
+                            <div className='grid-container'>
+                                <div className='item1'>
+                                    <label>Opis:</label> <br/>
+                                    <textarea className="textarea" name='newJobDescription' value={this.state.newJobDescription} onChange={this.handleChange} required/>
+                                </div>
+                                <div className='item3'>
+                                    <button onClick={this.handleJobRequestSubmit}>Pošalji</button>
+                                    <button onClick={this.handleJobRequestFlag}>Otkaži</button>
+                                </div>
+                                
+                            </div>
+                            :
+                            <div/>
+                }
                 </div>
             </div>
         );

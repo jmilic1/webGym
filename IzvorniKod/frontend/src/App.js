@@ -13,9 +13,10 @@ import UserProfile from "./pages/userProfile/userProfile.component";
 import UserList from './pages/userList/userList.component'
 import GymInfo from './pages/gymInfo/gymInfo.component'
 import MembershipInfo from "./pages/membershipPage/membershipInfo.component";
+import JobRequests from "./pages/jobRequests/jobRequests.component";
+import PaymentPage from './pages/paymentPage/paymentPage.component';
 import CoachInfoPage from "./pages/coachPage/coachPage.component";
 import CoachClients from "./pages/coachClients/coachClients.component";
-import AdminTransaction from "./components/adminTransaction/adminTransaction.component";
 import AdminTransactions from "./pages/adminTransactions/adminTransactions.component";
 
 class App extends React.Component {
@@ -77,7 +78,9 @@ class App extends React.Component {
               <Route exact path="/logout" render={(props) => <Logout {...props} handleLogout={this.handleLogout} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/gymList" render={(props) => <GymList {...props} backendURL={this.state.backendURL} />} />
               <Route exact path="/userList" render={(props) => <UserList {...props} backendURL = {this.state.backendURL} />} />
-              <Route exact path="/myPlans" render={(props) => <CoachPlans {...props} backendURL = {this.state.backendURL}/>} />
+              <Route exact path="/myPlans" render={(props) => <CoachPlans {...props} backendURL={this.state.backendURL} />} />
+              <Route exact path="/jobRequests" render={(props) => <JobRequests {...props} backendURL={this.state.backendURL} />} />
+              <Route exact path="/paymentPage" render={(props) => <PaymentPage {...props} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/myGyms" render={(props) => <OwnerGyms {...props} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/gymInfo/:id" render={(props) => <GymInfo {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
               <Route exact path="/membership/:id" render={(props) => <MembershipInfo {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
