@@ -46,12 +46,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/registration", "/login", "/userPlans").permitAll()
-                .antMatchers(HttpMethod.GET, "/logInAsUser", "/logInAsCoach", "/userPlans", "/myTransactions").permitAll()
-                .antMatchers(HttpMethod.GET, "/getUserGoals").hasAuthority("CLIENT")
-                .antMatchers(HttpMethod.POST, "/addUserGoal").hasAuthority("CLIENT")
-                .antMatchers("/userList").hasAuthority("OWNER")
-                .antMatchers(HttpMethod.DELETE, "/userList").hasAuthority("OWNER");
+                .antMatchers(HttpMethod.POST, "/registration", "/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/logInAsUser", "/logInAsCoach").permitAll();
 
         http.csrf().disable();
     }

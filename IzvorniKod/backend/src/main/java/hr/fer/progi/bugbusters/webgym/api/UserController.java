@@ -1,28 +1,16 @@
 package hr.fer.progi.bugbusters.webgym.api;
 
-import hr.fer.progi.bugbusters.webgym.model.Goal;
-import hr.fer.progi.bugbusters.webgym.model.Membership;
-import hr.fer.progi.bugbusters.webgym.model.Plan;
-import hr.fer.progi.bugbusters.webgym.model.User;
 import hr.fer.progi.bugbusters.webgym.model.dto.*;
 import hr.fer.progi.bugbusters.webgym.service.AdminService;
 import hr.fer.progi.bugbusters.webgym.service.CoachService;
-import hr.fer.progi.bugbusters.webgym.service.UserManagementService;
 import hr.fer.progi.bugbusters.webgym.service.UserService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * User controller which reads url requests
@@ -37,7 +25,6 @@ public class UserController {
     private UserService userService;
     private CoachService coachService;
     private AdminService adminService;
-    private ModelMapper modelMapper;
 
     /**
      * Constructs UserController and wires it with the service.
@@ -47,12 +34,10 @@ public class UserController {
     @Autowired
     public UserController(@Qualifier("userService") UserService userService,
                           @Qualifier("coachService") CoachService coachService,
-                          @Qualifier("adminService") AdminService adminService,
-                          ModelMapper modelMapper) {
+                          @Qualifier("adminService") AdminService adminService) {
         this.userService = userService;
         this.coachService = coachService;
         this.adminService = adminService;
-        this.modelMapper = modelMapper;
     }
 
     /**
@@ -61,63 +46,98 @@ public class UserController {
      * @return users
      */
     @GetMapping("/userList")
-    public List<UserDto> getUsers() {
-        return userService.listUsers()
-                .stream()
-                .map(this::convertUserToDto)
-                .collect(Collectors.toList());
+    public List<UserDto> getUsers(HttpServletRequest request, HttpServletResponse response) {
+        String role = ControllerHelper.extractRoleFromCookies(request);
+        if (role == null || !role.equals("ADMIN")) {
+            response.setStatus(403);
+            return null;
+        }
+
+        return userService.listUsers();
     }
 
     @PostMapping("/modifyUserGoal")
-    public void modifyGoal(@RequestBody GoalDto goalDto, HttpServletRequest request, HttpServletResponse response) {
+    public void modifyGoal(@RequestBody GoalDto goalDto, HttpServletRequest request,
+                           HttpServletResponse response) {
+        String username = ControllerHelper.extractUsernameFromCookies(request);
+        String role = ControllerHelper.extractRoleFromCookies(request);
+        if (role == null || !role.equals("CLIENT")) {
+            response.setStatus(403);
+            return;
+        }
+
         try {
-            userService.modifyGoal(modelMapper.map(goalDto, Goal.class), extractUsernameFromCookies(request));
+            userService.modifyGoal(goalDto, username);
         } catch (IllegalArgumentException e) {
             response.setStatus(Integer.parseInt(e.getMessage()));
         }
     }
 
     @GetMapping("/getUserGoals")
-    public List<GoalDto> getUserGoals(HttpServletRequest request) {
-        String username = extractUsernameFromCookies(request);
+    public List<GoalDto> getUserGoals(HttpServletRequest request, HttpServletResponse response) {
+        String username = ControllerHelper.extractUsernameFromCookies(request);
+        String role = ControllerHelper.extractRoleFromCookies(request);
 
-        if (username == null) {
+        if (role == null || !role.equals("CLIENT")) {
+            response.setStatus(403);
             return null;
         }
 
-        return userService.getUserGoals(username).stream()
-                .map(this::convertGoalToDto)
-                .collect(Collectors.toList());
+        try {
+            return userService.getUserGoals(username);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            response.setStatus(403);
+            return null;
+        }
     }
 
     @PostMapping("/addUserGoal")
-    public void addGoal(@RequestBody GoalDto goalDto, HttpServletRequest request){
-        String username = extractUsernameFromCookies(request);
-        userService.addGoal(modelMapper.map(goalDto, Goal.class), username);
+    public void addGoal(@RequestBody GoalDto goalDto, HttpServletRequest request,
+                        HttpServletResponse response) {
+        String username = ControllerHelper.extractUsernameFromCookies(request);
+        String role = ControllerHelper.extractRoleFromCookies(request);
+        if (role == null || !role.equals("CLIENT")) {
+            response.setStatus(403);
+            return;
+        }
+
+        try {
+            userService.addGoal(goalDto, username);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            response.setStatus(403);
+        }
     }
 
     @PostMapping("/userPlans")
-    public void userBuysPlan(@RequestBody PlanClientDto planClientDto, HttpServletRequest request, HttpServletResponse response) {
-        String username = extractUsernameFromCookies(request);
+    public void userBuysPlan(@RequestBody PlanClientDto planClientDto,
+                             HttpServletRequest request, HttpServletResponse response) {
+        String username = ControllerHelper.extractUsernameFromCookies(request);
+        String role = ControllerHelper.extractRoleFromCookies(request);
+        if (role == null || !role.equals("CLIENT")) {
+            response.setStatus(403);
+            return;
+        }
 
         if (userService.addPlanClientConnection(username, planClientDto)) response.setStatus(200);
-        else response.setStatus(404);
+        else response.setStatus(400);
     }
 
     @GetMapping("/userPlans")
     public List<PlanDto> getUserPlans(HttpServletRequest request, HttpServletResponse response) {
-        String username = extractUsernameFromCookies(request);
-        String role = extractRoleFromCookies(request);
+        String username = ControllerHelper.extractUsernameFromCookies(request);
+        String role = ControllerHelper.extractRoleFromCookies(request);
 
         if (username == null || role == null) {
-            response.setStatus(404);
+            response.setStatus(403);
             return null;
         }
 
         // role == COACH
         if (role.equals("COACH")) {
             List<PlanDto> coachPlans = coachService.getAllCoachPlans(username);
-            if (coachPlans == null) response.setStatus(404);
+            if (coachPlans == null) response.setStatus(403);
             else response.setStatus(200);
             return coachPlans;
         }
@@ -133,61 +153,76 @@ public class UserController {
         if (role.equals("CLIENT")) {
             List<PlanDto> userPlans = userService.getAllUserPlans(username);
             if (userPlans == null) System.out.println("Null");
-            if (userPlans == null) response.setStatus(404);
+            if (userPlans == null) response.setStatus(403);
             else response.setStatus(200);
             return userPlans;
         }
 
-        response.setStatus(404);
+        response.setStatus(403);
         return null;
     }
 
-    // ZA SADA IMPLEMENTIRANO SAMO ZA PLANOVE -> TREBA DODATI I ZA MEMBERSHIPOVE
     @GetMapping("/myTransactions")
     public List<TransactionDto> getMyTransactions(HttpServletRequest request, HttpServletResponse response) {
-        String username = extractUsernameFromCookies(request);
-        String role = extractRoleFromCookies(request);
+        String username = ControllerHelper.extractUsernameFromCookies(request);
+        String role = ControllerHelper.extractRoleFromCookies(request);
 
         if (username == null || role == null) {
-            response.setStatus(404);
+            response.setStatus(403);
             return null;
         }
 
         List<TransactionDto> transactionDtoList = userService.getMyTransactions(username, role);
-        if (transactionDtoList == null) response.setStatus(404);
+        if (transactionDtoList == null) response.setStatus(400);
         else response.setStatus(200);
         return transactionDtoList;
     }
 
     @GetMapping("/getDietPlans")
-    public List<PlanDto> getDietPlans(HttpServletRequest request) {
-        String username = extractUsernameFromCookies(request);
+    public List<PlanDto> getDietPlans(HttpServletRequest request, HttpServletResponse response) {
+        String username = ControllerHelper.extractUsernameFromCookies(request);
+        String role = ControllerHelper.extractRoleFromCookies(request);
 
-        if (username == null) {
+        if (role == null || !role.equals("COACH")) {
+            response.setStatus(403);
             return null;
         }
 
-        return userService.getUserDietPlans(username).stream()
-                .map(this::convertPlanToDto)
-                .collect(Collectors.toList());
+        try {
+            return userService.getUserDietPlans(username);
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
+            response.setStatus(403);
+            return null;
+        }
     }
 
     @GetMapping("/getWorkoutPlans")
-    public List<PlanDto> getWorkoutPlans(HttpServletRequest request) {
-        String username = extractUsernameFromCookies(request);
-        if (username == null) {
+    public List<PlanDto> getWorkoutPlans(HttpServletRequest request, HttpServletResponse response) {
+        String username = ControllerHelper.extractUsernameFromCookies(request);
+        String role = ControllerHelper.extractRoleFromCookies(request);
+
+        if (role == null || !role.equals("COACH")) {
+            response.setStatus(403);
             return null;
         }
 
-        return userService.getUserWorkoutPlans(username).stream()
-                .map(this::convertPlanToDto)
-                .collect(Collectors.toList());
+        try {
+            return userService.getUserWorkoutPlans(username);
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
+            response.setStatus(403);
+            return null;
+        }
     }
 
     @PostMapping("/buyMembership")
     public void buyMembership(@RequestBody MembershipDto membershipDto, HttpServletRequest request, HttpServletResponse response) {
-        String username = extractUsernameFromCookies(request);
-        if (username == null) {
+        String username = ControllerHelper.extractUsernameFromCookies(request);
+        String role = ControllerHelper.extractRoleFromCookies(request);
+
+        if (role == null || !role.equals("CLIENT")) {
+            response.setStatus(403);
             return;
         }
 
@@ -200,9 +235,11 @@ public class UserController {
     }
 
     @PostMapping("/buyPlan")
-    public  void buyPlan(@RequestBody PlanDto planDto, HttpServletRequest request, HttpServletResponse response) {
-        String username = extractUsernameFromCookies(request);
-        if (username == null) {
+    public void buyPlan(@RequestBody PlanDto planDto, HttpServletRequest request, HttpServletResponse response) {
+        String username = ControllerHelper.extractUsernameFromCookies(request);
+        String role = ControllerHelper.extractRoleFromCookies(request);
+
+        if (role == null || !role.equals("CLIENT")) {
             response.setStatus(403);
             return;
         }
@@ -217,8 +254,10 @@ public class UserController {
 
     @GetMapping("/user")
     public UserDto getUser(@RequestParam String username, HttpServletRequest request, HttpServletResponse response) {
-        String logedUsername = extractUsernameFromCookies(request);
-        if (logedUsername == null) {
+        String logedUsername = ControllerHelper.extractUsernameFromCookies(request);
+        String role = ControllerHelper.extractRoleFromCookies(request);
+
+        if (role == null || (!role.equals("ADMIN") && !role.equals("COACH"))) {
             response.setStatus(403);
             return null;
         }
@@ -235,8 +274,10 @@ public class UserController {
 
     @GetMapping("/myClients")
     public List<UserDto> getMyClients(HttpServletRequest request, HttpServletResponse response) {
-        String username = extractUsernameFromCookies(request);
-        if (username == null) {
+        String username = ControllerHelper.extractUsernameFromCookies(request);
+        String role = ControllerHelper.extractRoleFromCookies(request);
+
+        if (role == null || !role.equals("CLIENT")) {
             response.setStatus(403);
             return null;
         }
@@ -249,41 +290,5 @@ public class UserController {
             response.setStatus(Integer.parseInt(e.getMessage()));
             return null;
         }
-    }
-
-    private String extractUsernameFromCookies(HttpServletRequest request){
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null){
-            for (Cookie cookie:cookies){
-                if ("username".equals(cookie.getName())){
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
-    }
-
-    private String extractRoleFromCookies(HttpServletRequest request){
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null){
-            for (Cookie cookie:cookies){
-                if ("role".equals(cookie.getName())){
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
-    }
-
-    private GoalDto convertGoalToDto(Goal goal) {
-        return modelMapper.map(goal, GoalDto.class);
-    }
-    private PlanDto convertPlanToDto(Plan plan){
-        PlanDto dto = modelMapper.map(plan, PlanDto.class);
-        dto.setCoachUsername(plan.getUser().getUsername());
-        return dto;
-    }
-    private UserDto convertUserToDto(User user) {
-        return modelMapper.map(user, UserDto.class);
     }
 }

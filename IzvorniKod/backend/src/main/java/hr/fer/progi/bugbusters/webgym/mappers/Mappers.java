@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,12 +21,21 @@ public class Mappers {
     }
 
     public static User mapDtoToUser(UserDto userDto) { return modelMapper.map(userDto, User.class); }
-    public static UserDto mapUserToDto(User user) {
-        return modelMapper.map(user, UserDto.class);
-    }
+    public static UserDto mapUserToDto(User user) { return modelMapper.map(user, UserDto.class); }
 
-    public static Goal mapDtoToGoal(GoalDto goalDto) { return modelMapper.map(goalDto, Goal.class); }
+    public static Goal mapDtoToGoal(GoalDto goalDto, User user) {
+        Goal goal = modelMapper.map(goalDto, Goal.class);
+        goal.setUser(user);
+        return goal;
+    }
     public static GoalDto mapGoalToDto(Goal goal) { return modelMapper.map(goal, GoalDto.class); }
+    public static Goal mapToGoal(Goal goal, GoalDto dto, User user) {
+        if (dto.getDescription() != null) goal.setDescription(dto.getDescription());
+        if (dto.getPercentCompleted() != null) goal.setPercentCompleted(dto.getPercentCompleted());
+        if (user != null) goal.setUser(user);
+
+        return goal;
+    }
 
     public static Gym mapDtoToGym(GymDto gymDto) { return modelMapper.map(gymDto, Gym.class); }
     public static GymDto mapGymToDto(Gym gym) { return modelMapper.map(gym, GymDto.class); }
@@ -41,6 +51,20 @@ public class Mappers {
 
     public static Membership mapDtoToMembership(MembershipDto dto){ return modelMapper.map(dto, Membership.class); }
     public static MembershipDto mapMembershipToDto(Membership membership) { return modelMapper.map(membership, MembershipDto.class); }
+
+    public static MembershipUser mapDtoToMembershipUser(Membership membership, User user) {
+        MembershipUser membershipUser = new MembershipUser();
+        String interval = membership.getInterval();
+
+        if (interval != null){
+            membershipUser.setDateBegin(new Date());
+            membershipUser.setDateEnd(new Date(membershipUser.getDateBegin().getTime() + Integer.parseInt(interval)));
+        }
+
+        membershipUser.setMembership(membership);
+        membershipUser.setUser(user);
+        return membershipUser;
+    }
 
     public static Plan mapDtoToPlan(PlanDto planDto, User user){
         Plan plan = modelMapper.map(planDto, Plan.class);
@@ -88,6 +112,35 @@ public class Mappers {
         coachResponseDto.setGyms(gymDtoList);
 
         return coachResponseDto;
+    }
+
+    public static TransactionDto mapToTransactionDtoFromPlanClient(String name, Plan plan,
+                                                     PlanClient planClient,
+                                                     TransactionType transactionType){
+        TransactionDto transactionDto = new TransactionDto();
+        transactionDto.setSenderUsername(name);
+        transactionDto.setReceiverUsername(plan.getUser().getUsername());
+        transactionDto.setAmount(plan.getPrice());
+        transactionDto.setDateWhen(planClient.getDateBought());
+        transactionDto.setId(plan.getId());
+        transactionDto.setTransactionType(transactionType);
+
+        return transactionDto;
+    }
+
+    public static TransactionDto mapToTransactionDtoFromMembership(String name,
+                                                                   Membership membership,
+                                                                   MembershipUser membershipUser,
+                                                                   TransactionType transactionType){
+        TransactionDto transactionDto = new TransactionDto();
+        transactionDto.setSenderUsername(name);
+        transactionDto.setReceiverUsername(membership.getGym().getName());
+        transactionDto.setAmount(membership.getPrice());
+        transactionDto.setDateWhen(membershipUser.getDateBegin());
+        transactionDto.setId(membership.getId());
+        transactionDto.setTransactionType(transactionType);
+
+        return transactionDto;
     }
 
 }

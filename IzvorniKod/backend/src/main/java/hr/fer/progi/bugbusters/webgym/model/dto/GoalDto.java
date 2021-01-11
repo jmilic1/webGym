@@ -6,5 +6,5 @@ import lombok.Data;
 public class GoalDto {
     private Long id;
     private String description;
-    private double percentCompleted;
+    private Double percentCompleted;
 }
