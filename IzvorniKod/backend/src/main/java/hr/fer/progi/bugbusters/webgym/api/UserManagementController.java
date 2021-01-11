@@ -1,25 +1,16 @@
 package hr.fer.progi.bugbusters.webgym.api;
 
+import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.User;
 import hr.fer.progi.bugbusters.webgym.model.dto.UserDto;
 import hr.fer.progi.bugbusters.webgym.service.UserException;
 import hr.fer.progi.bugbusters.webgym.service.UserManagementService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * User controller which reads url requests
@@ -32,7 +23,6 @@ public class UserManagementController {
      * User service delegate
      */
     private UserManagementService service;
-    private ModelMapper modelMapper;
 
     /**
      * Constructs UserController and wires it with the service.
@@ -40,8 +30,7 @@ public class UserManagementController {
      * @param userManagementService Service which does user business logic
      */
     @Autowired
-    public UserManagementController(@Qualifier("userManagementService") UserManagementService userManagementService, ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
+    public UserManagementController(@Qualifier("userManagementService") UserManagementService userManagementService) {
         this.service = userManagementService;
     }
 
@@ -54,14 +43,12 @@ public class UserManagementController {
      */
     @PostMapping("/registration")
     public String registerUser(@RequestBody UserDto userDto, HttpServletResponse response) {
-        User user = convertToEntity(userDto);
         try {
-            User myUser = service.signUpUser(user);
+            User myUser = service.signUpUser(userDto);
 
-            addUserCookies(response, myUser);
+            ControllerHelper.addUserCookies(response, myUser);
             response.setStatus(200);
 
-            changeRole(myUser);
             return "OK";
         } catch (UserException ex) {
             response.setStatus(400);
@@ -78,32 +65,21 @@ public class UserManagementController {
      */
     @PostMapping("/login")
     public UserDto loginUser(@RequestBody UserDto userDto, HttpServletResponse response) {
-        User user = convertToEntity(userDto);
-        User myUser = service.loginUser(user);
+        User myUser = service.loginUser(userDto);
 
         if (myUser == null) {
             response.setStatus(400);
             return null;
         }
 
-        addUserCookies(response, myUser);
-        changeRole(myUser);
-        return convertToDto(myUser);
+        ControllerHelper.addUserCookies(response, myUser);
+        return Mappers.mapUserToDto(myUser);
     }
 
     @DeleteMapping("/modifyUser")
-    public void logoutUser(HttpSession session, HttpServletResponse response, HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("username") || cookie.getName().equals("role")) {
-                if (cookie.getName().equals("username")) {
-                    service.deleteUser(cookie.getValue());
-                }
-                deleteCookie(response, cookie);
-            }
-        }
-        session.invalidate();
-        changeRole(null);
+    public void logoutUser(HttpServletResponse response, HttpServletRequest request) {
+        String username = ControllerHelper.deleteUser(request, response);
+        service.deleteUser(username);
     }
 
     /*
@@ -114,84 +90,18 @@ public class UserManagementController {
         changeRole(null);
     }*/
 
-    /**
-     * Logs the user out of the service
-     *
-     * @param session session to be deleted
-     */
     @GetMapping("/login")
-    public void doLogout(HttpSession session, HttpServletResponse response, HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("username") || cookie.getName().equals("role")) {
-                deleteCookie(response, cookie);
-            }
-        }
-        session.invalidate();
-        changeRole(null);
+    public void doLogout(HttpServletResponse response, HttpServletRequest request) {
+        ControllerHelper.logOutUser(request, response);
     }
 
     @PostMapping("/modifyUser")
     public void modifyUser(@RequestBody UserDto userDto, HttpServletResponse response, HttpServletRequest request) {
         try {
-            User user = convertToEntity(userDto);
-            String username = extractUsernameFromCookies(request);
-            service.modifyUser(user, username);
+            String username = ControllerHelper.extractUsernameFromCookies(request);
+            service.modifyUser(userDto, username);
         } catch (UserException ex) {
             response.setStatus(403);
         }
-    }
-
-    /**
-     * Changes the role of current user to the role of the given user.
-     *
-     * @param user given user
-     */
-    protected static void changeRole(User user) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        List<GrantedAuthority> updatedAuthorities = new ArrayList<>();
-        if (user == null) {
-            updatedAuthorities.add(new SimpleGrantedAuthority("unregistered"));
-        } else {
-            updatedAuthorities.add(new SimpleGrantedAuthority(user.getRole().toString()));
-        }
-
-        Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), updatedAuthorities);
-        SecurityContextHolder.getContext().setAuthentication(newAuth);
-    }
-
-    private void deleteCookie(final HttpServletResponse response, Cookie cookie) {
-        cookie.setMaxAge(0);
-        response.addCookie(cookie);
-    }
-
-    private void addUserCookies(HttpServletResponse response, User myUser) {
-        Cookie cookie = new Cookie("username", myUser.getUsername());
-        Cookie roleCookie = new Cookie("role", myUser.getRole().toString());
-        /*cookie.setMaxAge(600);
-        roleCookie.setMaxAge(600);*/
-        response.addCookie(cookie);
-        response.addCookie(roleCookie);
-    }
-
-    private User convertToEntity(UserDto userDto) {
-        return modelMapper.map(userDto, User.class);
-    }
-
-    private UserDto convertToDto(User user) {
-        return modelMapper.map(user, UserDto.class);
-    }
-
-    private String extractUsernameFromCookies(HttpServletRequest request){
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null){
-            for (Cookie cookie:cookies){
-                if ("username".equals(cookie.getName())){
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
     }
 }

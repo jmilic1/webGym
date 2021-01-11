@@ -14,9 +14,33 @@ public class ControllerHelper {
         response.addCookie(roleCookie);
     }
 
+    static void logOutUser(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("username") || cookie.getName().equals("role")) {
+                deleteCookie(response, cookie);
+            }
+        }
+    }
+
     static void deleteCookie(HttpServletResponse response, Cookie cookie) {
         cookie.setMaxAge(0);
         response.addCookie(cookie);
+    }
+
+    static String deleteUser(HttpServletRequest request, HttpServletResponse response){
+        String username = null;
+
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("username") || cookie.getName().equals("role")) {
+                if (cookie.getName().equals("username")) {
+                    username = cookie.getValue();
+                }
+                deleteCookie(response, cookie);
+            }
+        }
+        return username;
     }
 
     static String extractRoleFromCookies(HttpServletRequest request) {

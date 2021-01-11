@@ -3,8 +3,9 @@ package hr.fer.progi.bugbusters.webgym.service;
 import hr.fer.progi.bugbusters.webgym.dao.GymRepository;
 import hr.fer.progi.bugbusters.webgym.dao.PlanRepository;
 import hr.fer.progi.bugbusters.webgym.dao.UserRepository;
-import hr.fer.progi.bugbusters.webgym.model.Plan;
+import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.User;
+import hr.fer.progi.bugbusters.webgym.model.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,10 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 /**
  * Service with the name "userService" which only serves to create Gyms and return them in a list.
@@ -49,7 +47,8 @@ public class UserManagementService implements UserDetailsService {
         }
     }
 
-    public User signUpUser(User user) throws UserException {
+    public User signUpUser(UserDto dto) throws UserException {
+        User user = Mappers.mapDtoToUser(dto);
         validateUser(user);
         final String encryptedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
@@ -58,22 +57,24 @@ public class UserManagementService implements UserDetailsService {
         return user;
     }
 
-    public User loginUser(User user) {
-        Optional<User> myUser = userRepository.findById(user.getUsername());
+    public User loginUser(UserDto dto) {
+        Optional<User> myUser = userRepository.findById(dto.getUsername());
         if (myUser.isPresent()) {
-            if (passwordEncoder.matches(user.getPassword(), myUser.get().getPassword())) {
+            if (passwordEncoder.matches(dto.getPassword(), myUser.get().getPassword())) {
                 return myUser.get();
             }
         }
         return null;
     }
 
-    public void modifyUser(User modifiedUser, String username){
+    public void modifyUser(UserDto dto, String username){
         Optional<User> foundOPUser = userRepository.findById(username);
         if (foundOPUser.isEmpty()){
             throw new UserException();
         }
         User foundUser = foundOPUser.get();
+
+        User modifiedUser = Mappers.mapDtoToUser(dto);
         if (modifiedUser.getPassword() != null){
             foundUser.setPassword(passwordEncoder.encode(modifiedUser.getPassword()));
         }
