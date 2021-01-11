@@ -71,4 +71,23 @@ public class Mappers {
         return jobRequestDto;
     }
 
+    public static CoachResponseDto mapCoachToResponseDto(User coach){
+        CoachResponseDto coachResponseDto = new CoachResponseDto();
+
+        coachResponseDto.setUser(Mappers.mapUserToDto(coach));
+
+        coachResponseDto.setPlans(coach.
+                getPlans().stream()
+                .map(Mappers::mapPlanToDto)
+                .collect(Collectors.toList()));
+
+        List<GymDto> gymDtoList = new ArrayList<>();
+        for (GymUser gymUser: coach.getGymUserList()) {
+            gymDtoList.add(mapGymToDto(gymUser.getGym()));
+        }
+        coachResponseDto.setGyms(gymDtoList);
+
+        return coachResponseDto;
+    }
+
 }

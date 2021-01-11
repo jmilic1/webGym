@@ -121,20 +121,12 @@ public class CoachService {
 
     public CoachResponseDto getCoach(String username) {
         Optional<User> optionalUser = userRepository.findById(username);
-        if (optionalUser.isEmpty()) throw new IllegalArgumentException("404");
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+
         User user = optionalUser.get();
-        if (user.getRole() != Role.COACH) throw new IllegalArgumentException("404");
+        if (user.getRole() != Role.COACH) throw new IllegalArgumentException("403");
 
-        CoachResponseDto coachResponseDto = new CoachResponseDto();
-        coachResponseDto.setUser(modelMapper.map(user, UserDto.class));
-        coachResponseDto.setPlans(user.getPlans().stream().map(plan -> modelMapper.map(plan, PlanDto.class)).collect(Collectors.toList()));
-        List<GymDto> gymDtoList = new ArrayList<>();
-        for (GymUser gymUser: user.getGymUserList()) {
-            gymDtoList.add(modelMapper.map(gymUser.getGym(), GymDto.class));
-        }
-        coachResponseDto.setGyms(gymDtoList);
-
-        return coachResponseDto;
+        return Mappers.mapCoachToResponseDto(user);
     }
 
 }
