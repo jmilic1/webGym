@@ -10,7 +10,7 @@ class GymInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            gym: null,
+            gym: {},
             addLocation: false,
             newCountry: "",
             newCity: "",
@@ -18,7 +18,10 @@ class GymInfo extends React.Component {
             newOpensAt: "",
             newClosesAt: "",
             newPhoneNumber: "",
-            addJobRequest: false
+            addJobRequest: false,
+            locations:[],
+            coaches:[],
+            memberships:[],
         }
     }
 
@@ -41,7 +44,10 @@ class GymInfo extends React.Component {
             }
         }).then(gym => {
                 this.setState({
-                    gym: gym
+                    gym: gym,
+                    locations:gym.locations,
+                    coaches:gym.coaches,
+                    memberships:gym.memberships,
                 })
             }
         ).catch(e => {
@@ -145,12 +151,12 @@ class GymInfo extends React.Component {
                     <div className='gym-info1'>
                         <h3 id='header'>Članarine</h3>
                         <div className='locations-container'>
-                            { this.state.gym?.memberships.length === 0 ?
+                            { this.state.memberships.length === 0 ?
                                 <h5>Ne postoje članarine za odabranu teretanu!</h5>
                                 :
                                 this.state.gym &&
                                     <MembershipListComponent
-                                         memberships={this.state.gym?.memberships}/>
+                                         memberships={this.state.memberships}/>
 
                             }
                         </div>
@@ -159,13 +165,13 @@ class GymInfo extends React.Component {
                     <div className='gym-info2'>
                         <h3 id='header'>Lokacije</h3>
                         <div className='locations-container'>
-                        { this.state.gym?.locations.length === 0 ?
+                        { this.state.locations.length === 0 ?
                             <h5>Ne postoje lokacije za odabranu teretanu!</h5>
                             :
                             // <p></p>
                             this.state.gym &&
                             <LocationListComponent
-                                memberships={this.state.gym?.locations}/>
+                                locations={this.state.locations}/>
                         }
                             
                         <div className='align'>
@@ -225,13 +231,13 @@ class GymInfo extends React.Component {
                     <div className='gym-info3'>
                         <h3 id='header'>Treneri</h3>
                         <div className='locations-container'>
-                            { this.state.gym?.coaches.length === 0 ?
+                            { this.state.coaches.length === 0 ?
                                 <h5>Ne postoje treneri za odabranu teretanu!</h5>
                                 :
                                 // <p></p>
                                 this.state.gym &&
                                 <CoachListComponent
-                                    memberships={this.state.gym?.coaches}/>
+                                    coaches={this.state.coaches}/>
                             }
                         </div>
                     </div>

@@ -7,7 +7,7 @@ class JobRequests extends React.Component {
     constructor() {
         super();
         this.state = {
-            requests: [],
+            requests: []
         }
     }
     

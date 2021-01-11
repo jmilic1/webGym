@@ -1,6 +1,7 @@
 import React from 'react'
 import './coachPlanForCoachPage.styles.css'
 import CustomButton from "../custom-buttom/custom-button.component";
+import {Link} from 'react-router-dom'
 
 class CoachPlanForCoachPage extends React.Component {
     constructor() {
@@ -16,14 +17,14 @@ class CoachPlanForCoachPage extends React.Component {
         })
     }
 
-    buyPlan = () => {
+    /*buyPlan = () => {
         const trening = this.props.isTraining ? "treninga" : "prehrane"
         if(window.confirm("Želite li kupiti plan " + trening + " od " + this.props.coachUsername + "?") === true){
             console.log("Kupljeno")
         } else{
             console.log("Nije kupljeno")
         }
-    }
+    }*/
 
     render() {
         return (
@@ -40,7 +41,13 @@ class CoachPlanForCoachPage extends React.Component {
                     <div className='user-plan-details'>
                         <p>Datum početka: {this.props.dateFrom}</p>
                         <p>Datum kraja: {this.props.dateTo}</p>
-                        <CustomButton onClick={this.buyPlan}>Kupi</CustomButton>
+                        <Link to={{
+                            pathname: '/paymentPage',
+                            aboutProps: {
+                                id: this.props.id,
+                                isPlan: true
+                            }
+                        }} ><CustomButton>Kupi</CustomButton></Link>
                     </div>
                 </div>
                 }
