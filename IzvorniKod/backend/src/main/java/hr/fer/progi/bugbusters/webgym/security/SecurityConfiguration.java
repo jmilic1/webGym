@@ -14,42 +14,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final UserManagementService userManagementService;
-
-    @Autowired
-    public SecurityConfiguration(UserManagementService userManagementService){
-        this.userManagementService = userManagementService;
-    }
-
     @Bean
     public PasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("coach")
-                .password("asd")
-                .roles("COACH")
-                .and().withUser("client")
-                .password("sad")
-                .roles("CLIENT")
-                .and().withUser("owner")
-                .password("3124")
-                .roles("OWNER")
-                .and().withUser("unregistered")
-                .password("noPass")
-                .roles("unregistered");
-    }
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable();
-    }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(userManagementService).passwordEncoder(encoder());
     }
 }
