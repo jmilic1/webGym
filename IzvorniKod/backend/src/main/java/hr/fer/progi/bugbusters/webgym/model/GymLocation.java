@@ -6,7 +6,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.List;
 
 @Data
 @Entity

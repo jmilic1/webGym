@@ -62,12 +62,12 @@ public class GymService {
                 .collect(Collectors.toList());
     }
 
-    public void addGym(String username, GymDto dto) {
+    public boolean addGym(String username, GymDto dto) {
         Optional<User> optionalUser = userRepository.findById(username);
-        if (optionalUser.isEmpty()) throw new RuntimeException("Logged in user not found!");
+        if (optionalUser.isEmpty()) return false;
 
         User user = optionalUser.get();
-        if (user.getRole() != Role.OWNER) throw new RuntimeException("Gym can be added only by owner!");
+        if (user.getRole() != Role.OWNER) return false;
 
         Gym gym = Mappers.mapDtoToGym(dto);
 
@@ -78,6 +78,7 @@ public class GymService {
 
         gymRepository.save(gym);
         gymUserRepository.save(gymUser);
+        return true;
     }
 
     public GymLocation getGymLocation(Long id) {
@@ -146,7 +147,7 @@ public class GymService {
         }
         if (!ownsGym) throw new IllegalArgumentException("403");
 
-        GymLocation location = Mappers.mapDtoToLocation(dto);
+        GymLocation location = Mappers.mapDtoToLocation(dto, gym);
         gymLocationRepository.save(location);
     }
 
