@@ -39,6 +39,9 @@ public class Mappers {
         return gymLocationDto;
     }
 
+    public static Membership mapDtoToMembership(MembershipDto dto){ return modelMapper.map(dto, Membership.class); }
+    public static MembershipDto mapMembershipToDto(Membership membership) { return modelMapper.map(membership, MembershipDto.class); }
+
     public static Plan mapDtoToPlan(PlanDto planDto, User user){
         Plan plan = modelMapper.map(planDto, Plan.class);
         plan.setUser(user);
@@ -50,25 +53,22 @@ public class Mappers {
         return dto;
     }
 
-    public static JobRequest mapDtoToJobRequest(JobRequestDto jobRequestDto, User user, Gym gym) {
-        JobRequest jobRequest = new JobRequest();
-        jobRequest.setDescription(jobRequestDto.getDescription());
-        jobRequest.setState(JobRequestState.IN_REVIEW);
+    public static JobRequest mapDtoToJobRequest(JobRequestDto dto, User user, Gym gym){
+        JobRequest jobRequest = modelMapper.map(dto, JobRequest.class);
         jobRequest.setUser(user);
         jobRequest.setGym(gym);
         return jobRequest;
     }
+    public static JobRequestDto mapJobRequestToDto(JobRequest jobRequest) {
+        CoachDto coachDto = modelMapper.map(jobRequest.getUser(), CoachDto.class);
+        Gym gym = jobRequest.getGym();
+        JobRequestDto dto = modelMapper.map(jobRequest, JobRequestDto.class);
 
-    public static JobRequestDto mapJobRequestToDto(JobRequest jobRequest, Gym gym, CoachDto coachDto) {
-        JobRequestDto jobRequestDto = new JobRequestDto();
-        jobRequestDto.setId(jobRequest.getId());
-        jobRequestDto.setCoach(coachDto);
-        jobRequestDto.setDescription(jobRequest.getDescription());
-        jobRequestDto.setGymId(gym.getId());
-        jobRequestDto.setGymName(gym.getName());
-        jobRequestDto.setState(jobRequest.getState());
+        dto.setCoach(coachDto);
+        dto.setGymId(gym.getId());
+        dto.setGymName(gym.getName());
 
-        return jobRequestDto;
+        return dto;
     }
 
     public static CoachResponseDto mapCoachToResponseDto(User coach){
