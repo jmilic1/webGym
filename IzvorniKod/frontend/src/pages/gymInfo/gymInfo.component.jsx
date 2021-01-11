@@ -9,7 +9,9 @@ class GymInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            gym: null
+            gym: null,
+            coaches: [],
+            locations: []
         }
     }
 
