@@ -17,6 +17,10 @@ class Header extends React.Component {
                     }
 
                     {this.props.role === "OWNER" &&
+                    <Link to = '/jobRequests'>Zahtjevi za posao</Link>
+                    }
+
+                    {this.props.role === "OWNER" &&
                     <Link to = '/myGyms'>Moje teretane </Link>
                     }
 
