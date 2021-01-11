@@ -58,7 +58,6 @@ public class CoachService {
         }
     }
 
-    //mijenja samo description
     public void modifyCoachPlan(PlanDto planDto, String username) {
         if (username == null) throw new RuntimeException("User is not logged in!");
         if (planDto.getId() == null) throw new IllegalArgumentException("Plan ID was not given!");
