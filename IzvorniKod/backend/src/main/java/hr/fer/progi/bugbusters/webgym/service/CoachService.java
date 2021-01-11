@@ -42,7 +42,7 @@ public class CoachService {
         this.modelMapper = modelMapper;
     }
 
-    public void addPlan(Plan plan, String username) throws RuntimeException {
+    public void addPlan(PlanDto planDto, String username) throws RuntimeException {
         if (username == null) throw new RuntimeException("User is not logged in!");
 
         Optional<User> user = userRepository.findById(username);
@@ -54,14 +54,17 @@ public class CoachService {
                 throw new RuntimeException("Plan can be added only by coach!");
             }
 
-            plan.setUser(myUser);
+            Plan plan = Mappers.mapDtoToPlan(planDto, myUser);
             planRepository.save(plan);
+        } else {
+            throw new RuntimeException("Logged in user was not found!");
         }
     }
 
+    //mijenja samo description
     public void modifyCoachPlan(PlanDto planDto, String username) {
         if (username == null) throw new RuntimeException("User is not logged in!");
-        if (planDto.getId() == null) throw new RuntimeException("Plan ID was not given!");
+        if (planDto.getId() == null) throw new IllegalArgumentException("Plan ID was not given!");
 
         Optional<User> user = userRepository.findById(username);
         Optional<Plan> plan = planRepository.findById(planDto.getId());
@@ -79,6 +82,8 @@ public class CoachService {
 
             myPlan.setDescription(planDto.getDescription());
             planRepository.save(myPlan);
+        } else {
+            throw new RuntimeException("Logged in user or plan with id " + planDto.getId() + " was not found!");
         }
     }
 
@@ -91,28 +96,24 @@ public class CoachService {
         return planRepository.findByUser(user).stream().map(plan -> Mappers.mapPlanToPlanDto(plan)).collect(Collectors.toList());
     }
 
-    public Plan getCoachPlan(Long id) {
-        if (id == null) return null;
+    public PlanDto getCoachPlan(Long id) {
+        if (id == null) throw new RuntimeException("Given Plan id id null!");
 
         Optional<Plan> plan = planRepository.findById(id);
+        if (plan.isEmpty()) throw new RuntimeException("No Plan was found with id " + id + "!");
 
-        if (plan.isPresent()) {
-            Plan myPlan = plan.get();
-
-            return myPlan;
-        }
-
-        return null;
+        return Mappers.mapPlanToDto(plan.get());
     }
 
     public void addJobRequest(String username, JobRequestDto jobRequestDto) {
         Optional<User> optionalUser = userRepository.findById(username);
         if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+
         User user = optionalUser.get();
-        if (user.getRole() != Role.COACH) throw new IllegalArgumentException("404");
+        if (user.getRole() != Role.COACH) throw new IllegalArgumentException("403");
 
         Optional<Gym> optionalGym = gymRepository.findById(jobRequestDto.getGymId());
-        if (optionalGym.isEmpty()) throw new IllegalArgumentException("404");
+        if (optionalGym.isEmpty()) throw new IllegalArgumentException("403");
         Gym gym = optionalGym.get();
 
         JobRequest jobRequest = Mappers.mapDtoToJobRequest(jobRequestDto, user, gym);
