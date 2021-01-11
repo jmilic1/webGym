@@ -56,10 +56,8 @@ public class GymController {
         } catch (RuntimeException ex) {
             System.out.println(ex.getMessage());
             response.setStatus(403);
-            return "Denied!";
         }
-        response.setStatus(200);
-        return "Added gym!";
+
     }
 
     @GetMapping("/myGyms")

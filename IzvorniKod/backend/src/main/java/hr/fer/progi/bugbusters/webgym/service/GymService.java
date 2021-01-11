@@ -79,11 +79,8 @@ public class GymService {
 
     public GymLocation getGymLocation(Long id) {
         Optional<GymLocation> opGymLoc = gymLocationRepository.findById(id);
-        if (opGymLoc.isPresent()) {
-            return opGymLoc.get();
-        }
+        return opGymLoc.orElse(null);
 
-        return null;
     }
 
     public GymInfoDto getGymInfo(Long id) {
