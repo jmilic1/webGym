@@ -48,13 +48,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/registration", "/login", "/userPlans").permitAll()
                 .antMatchers(HttpMethod.GET, "/logInAsUser", "/logInAsCoach", "/userPlans", "/myTransactions").permitAll()
-                .antMatchers(HttpMethod.GET, "/testAuthorization/coach").hasAuthority("COACH")
-                .antMatchers(HttpMethod.POST, "/testAuthorization/coach").hasAuthority("COACH")
-                .antMatchers(HttpMethod.GET, "/testAuthorization/user", "/getUserGoals").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.GET, "/getUserGoals").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST, "/addUserGoal").hasAuthority("CLIENT")
-                .antMatchers("/testAuthorization/owner", "/userList").hasAuthority("OWNER")
-                .antMatchers(HttpMethod.DELETE, "/userList").hasAuthority("OWNER")
-                .antMatchers("/testAuthorization/unregistered").permitAll();
+                .antMatchers("/userList").hasAuthority("OWNER")
+                .antMatchers(HttpMethod.DELETE, "/userList").hasAuthority("OWNER");
 
         http.csrf().disable();
     }
