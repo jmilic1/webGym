@@ -297,13 +297,14 @@ public class GymService {
         }
         if (!ownsGym) throw new IllegalArgumentException("403");
 
-        if (jobResponseDto.getResponse()) jobRequest.setState(JobRequestState.APPROVED);
+        if (jobResponseDto.getResponse()){
+            jobRequest.setState(JobRequestState.APPROVED);
+            GymUser gymUser = createGymUser(jobRequest);
+            gymUserRepository.save(gymUser);
+        }
         else jobRequest.setState(JobRequestState.DENIED);
 
         jobRequestRepository.save(jobRequest);
-
-        GymUser gymUser = createGymUser(jobRequest);
-        gymUserRepository.save(gymUser);
     }
 
     public void addGymOwner(AddGymOwnerDto addGymOwnerDto, String username) {
