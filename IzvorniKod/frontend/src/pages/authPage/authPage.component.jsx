@@ -14,9 +14,6 @@ class AuthPage extends React.Component {
       name:"",
       surname: "",
       email: "",
-      // gymOwner: false,
-      // coach: false,
-      // client: true,
       role: "CLIENT",
       selectedOption: "client"
 
@@ -31,8 +28,8 @@ class AuthPage extends React.Component {
 
 
 
-  handleLogin = async (username, name, surname, role) => {//client, coach, admin, gymOwner) => {
-      await this.props.handleLogin(username, name, surname, role) //client, coach, admin, gymOwner)
+  handleLogin = async (username, name, surname, role, email, payPalAccount, height, weight) => {
+      await this.props.handleLogin(username, name, surname, role, email, payPalAccount, height, weight)
       this.props.history.push("/")
   }
 
@@ -50,7 +47,8 @@ class AuthPage extends React.Component {
         return Promise.reject()
       }
     }).then(res => {
-      this.handleLogin(this.state.usernameLogin, res.name, res.surname, res.role) //res.coach, res.admin, res.gymOwner)
+      console.log(res)
+      this.handleLogin(this.state.usernameLogin, res.name, res.surname, res.role, res.email, res.payPalAccount, res.height, res.weight) //res.coach, res.admin, res.gymOwner)
     }, function(){
       alert("Krivo korisnicko ime ili lozinka")
     })

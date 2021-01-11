@@ -13,6 +13,9 @@ class Header extends React.Component {
                 </Link>
                 <div className = 'link-container'>
                     {this.props.role === "COACH" &&
+                    <Link to = '/myClients'>Moji klijenti</Link>
+                    }
+                    {this.props.role === "COACH" &&
                     <Link to = '/myPlans'>Moji planovi</Link>
                     }
 
@@ -22,6 +25,10 @@ class Header extends React.Component {
 
                     {this.props.role === "OWNER" &&
                     <Link to = '/myGyms'>Moje teretane </Link>
+                    }
+
+                    {this.props.role === "ADMIN" &&
+                    <Link to = '/allTransactions'>Sve transakcije</Link>
                     }
 
                     <Link to='/gymList'>Popis teretana </Link>
