@@ -344,12 +344,16 @@
 		\section{Dijagram komponenti}
 		
 			\textbf{}\\
-		
-            Sljedeći dijagram prikazan na slici 4.8 jest dijagram komponenti koji prikazuje međuovisnost i organizaciju komponenti. 
-            
+			Sljedeći dijagram prikazan na slici 4.8 jest dijagram komponenti koji prikazuje međuovisnost i organizaciju komponenti. Sustavu se pristupa preko nekoliko sučelja
+            sa različitim ulogama. Prvo sučelje naziva se "Dohvati HTML, JS i CSS datoteke" kao
+            što i samo ime sučelja govori, ono služi za dohvaćanje datoteka potrebnih frontendu kako bi korisniku prikazao potrebno. Router komponenta služi kako bi frontend znao
+            kakav će prikaz biti, u ovom slučaju ovisno o ulozi korisnika u sustavu koju backend dohvaća iz baze. U frontend dijelu nalaze se JavaScript datoteke logički raspoređene
+            te nazvane po ulogama u sustavu. Sve navedene JavaScript datoteke ovise o React 
+            biblioteci. Sučelje "Dohvati JSON", kao što nam i samo ime sučelja govori, služi za dohvat JSON-a. Rest API poslužuje Backend-rest komponentu dok JPA služi za dohvat podataka pomoću SQL upita.To se ostvaruje pomoću sučelja za dohvat podataka iz baze.  Pristigli podaci iz baze se u DTO (Data transfer object) oblikuju u objekte definirane u modelima u bakcend komponenti sustava. React pomoću svih navedenih sučelja kontinuirano komunicira sa backendom te tako prikazuje potrebno korisniku.
+
         \begin{figure}[H]
 			\hspace*{-1.5cm}
-			\includegraphics[scale=0.67]{dijagrami/dijagram_komponenti.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			\includegraphics[scale=0.53]{slike/dokumentacija_dijagrami_dijagram_komponenti.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 			\centering
 			\caption{Dijagram komponenti}
 			\label{fig:promjene}
