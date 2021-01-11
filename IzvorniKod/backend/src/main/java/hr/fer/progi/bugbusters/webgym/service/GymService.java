@@ -49,14 +49,17 @@ public class GymService {
         this.modelMapper = modelMapper;
     }
 
-    public List<Gym> listGyms() {
+    public List<GymDto> listGyms() {
         Iterable<Gym> it = gymRepository.findAll();
         List<Gym> gyms = new ArrayList<>();
 
         for (Gym gym : it) {
             gyms.add(gym);
         }
-        return gyms;
+        return gyms
+                .stream()
+                .map(Mappers::mapGymToDto)
+                .collect(Collectors.toList());
     }
 
     public void addGym(String username, GymDto dto) {
