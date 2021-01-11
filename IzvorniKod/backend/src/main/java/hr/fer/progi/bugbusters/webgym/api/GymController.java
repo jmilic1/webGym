@@ -1,6 +1,5 @@
 package hr.fer.progi.bugbusters.webgym.api;
 
-import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.dto.*;
 import hr.fer.progi.bugbusters.webgym.service.GymService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600, allowCredentials = "true")
 @RestController
@@ -29,10 +27,7 @@ public class GymController {
      */
     @GetMapping("/gymList")
     public List<GymDto> getGyms() {
-        return service.listGyms()
-                .stream()
-                .map(Mappers::mapGymToDto)
-                .collect(Collectors.toList());
+        return service.listGyms();
     }
 
     /**
