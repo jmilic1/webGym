@@ -25,7 +25,20 @@
 }
 
 .gym-details {
-  grid-row: 1 / 4;
+  display: flex;
+  flex-flow: column;
+  justify-items: flex-start;
+  align-content: center;
+  row-gap: 20px;
+}
+
+.gym-details button{
+  width: 300px;
+}
+
+.item3 button{
+  width: 90px;
+
 }
 
 .locations-container {
@@ -197,4 +210,86 @@
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 20px;
+}
+
+.modifyUser-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.modifyUser-buttons-container p:hover {
+  cursor: pointer;
+}
+
+.modifyUser-buttons-container button:hover {
+  cursor: pointer;
+}
+
+.modifyUser-buttons-container p {
+  font-size: 20px;
+}
+
+.align {
+  text-align: end;
+  padding-right: 15px;
+}
+
+.align1 {
+  text-align: center;
+}
+
+.grid-container-edo {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  width: 350px;
+  border-radius: 5px;
+  margin: 15px 0px;
+  background-color: white;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  column-width: 400px/6;
+}
+
+.item1 {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.item2 {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.item3 {
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.item4 {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.item5 {
+  grid-row: 3;
+  grid-column: 1;
+}
+
+.item6 {
+  grid-row: 3;
+  grid-column: 2;
+}
+
+.item7 {
+  grid-row: 4;
+  grid-column: 2;
+}
+
+.textarea {
+  resize: none;
+  overflow: auto;
+  width: 300px;
+  height: 250px;
 }

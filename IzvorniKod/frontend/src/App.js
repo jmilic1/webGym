@@ -13,6 +13,12 @@ import UserProfile from "./pages/userProfile/userProfile.component";
 import UserList from './pages/userList/userList.component'
 import GymInfo from './pages/gymInfo/gymInfo.component'
 import MembershipInfo from "./pages/membershipPage/membershipInfo.component";
+import JobRequests from "./pages/jobRequests/jobRequests.component";
+import PaymentPage from './pages/paymentPage/paymentPage.component';
+import CoachInfoPage from "./pages/coachPage/coachPage.component";
+import CoachClients from "./pages/coachClients/coachClients.component";
+import AdminTransactions from "./pages/adminTransactions/adminTransactions.component";
+
 class App extends React.Component {
 
   constructor(){
@@ -20,22 +26,30 @@ class App extends React.Component {
     this.state = {
       backendURL: "https://web-gym2.herokuapp.com/",
       //backendURL: "http://localhost:8080/",
-      //backendURL: "https://4fdc7b46-b005-4be7-88ca-cf5a60c80023.mock.pstmn.io/",
+      //backendURL: "https://e5b225ce-baf1-4c30-b8cb-414347908709.mock.pstmn.io/",
       loggedIn: false,
       username: "",
       name: "",
       surname: "",
       role: "",
+      email: "",  
+      payPalAccount: "",
+      height: 0,
+      weight: 0
     }
   }
 
-  handleLogin = (username, name, surname, role) => {
+  handleLogin = (username, name, surname, role, email, height, weight, payPalAccount) => {
     this.setState({
       name:name,
       surname: surname,
       role: role,
       username: username,
-      loggedIn: true
+      loggedIn: true,
+      email: email,
+      payPalAccount: payPalAccount,
+      height: height,
+      weight: weight
     })
   }
 
@@ -45,7 +59,11 @@ class App extends React.Component {
       surname: '',
       role: "",
       username: false,
-      loggedIn: false
+      loggedIn: false,
+      email: "",
+      payPalAccount: "",
+      height: "",
+      weight: ""
     })
   }
 
@@ -60,13 +78,19 @@ class App extends React.Component {
               <Route exact path="/logout" render={(props) => <Logout {...props} handleLogout={this.handleLogout} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/gymList" render={(props) => <GymList {...props} backendURL={this.state.backendURL} />} />
               <Route exact path="/userList" render={(props) => <UserList {...props} backendURL = {this.state.backendURL} />} />
-              <Route exact path="/myPlans" render={(props) => <CoachPlans {...props} backendURL = {this.state.backendURL}/>} />
+              <Route exact path="/myPlans" render={(props) => <CoachPlans {...props} backendURL={this.state.backendURL} />} />
+              <Route exact path="/jobRequests" render={(props) => <JobRequests {...props} backendURL={this.state.backendURL} />} />
+              <Route exact path="/paymentPage" render={(props) => <PaymentPage {...props} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/myGyms" render={(props) => <OwnerGyms {...props} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/gymInfo/:id" render={(props) => <GymInfo {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
               <Route exact path="/membership/:id" render={(props) => <MembershipInfo {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
               <Route exact path="/myProfile" render={(props) => <UserProfile {...props}
-                    username = {this.state.username} name = {this.state.name} surname = {this.state.surname} role = {this.state.role}
-                    backendURL = {this.state.backendURL} role={this.state.role}/>} />
+                username = {this.state.username} name = {this.state.name} surname = {this.state.surname} role = {this.state.role}
+                backendURL = {this.state.backendURL}/>} />
+              <Route exact path="/coachPage/:username" render={(props) => <CoachInfoPage {...props} backendURL = {this.state.backendURL} role = {this.state.role}
+                loggedIn={this.state.loggedIn}/>}/>
+              <Route exact path="/myClients" render={(props) => <CoachClients {...props} backendURL = {this.state.backendURL}/>} />
+              <Route exact path="/allTransactions" render={(props) => <AdminTransactions {...props} backendURL = {this.state.backendURL}/>} />
             </Switch>
           </div>
           <Footer/>

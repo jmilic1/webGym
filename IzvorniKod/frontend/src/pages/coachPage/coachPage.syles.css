@@ -1,0 +1,168 @@
+.userProfile-page{
+    display: grid;
+    grid-template-columns: 20vw 60vw;
+    column-gap: 100px;
+}
+
+.delete-button{
+    background-color: rgba(207,23,3,0.81);
+    border-radius: 5px;
+    height: 40px;
+    font-size: 20px;
+}
+
+.modifyUser-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.modifyUser-buttons-container p:hover {
+    cursor: pointer;
+}
+.modifyUser-buttons-container button:hover {
+    cursor: pointer;
+}
+.modifyUser-buttons-container p {
+    font-size: 20px;
+}
+
+.userInfo-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-flow: column;
+    border: #072557 2.5px solid;
+    padding: 10px;
+    border-radius: 5px;
+    height: 600px;
+    width: 350px;
+}
+
+.userInfo-container input[type="text"]{
+    width: 340px;
+}
+
+.user-info-form{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    height: 250px;
+}
+
+.user-info-form input[type = text]{
+    border: none;
+    height: 40px;
+    font-size:  25px;
+    background-color: white;
+    color: black;
+}
+.user-info-form input[type = password]{
+    height: 40px;
+    font-size:  20px;
+    background-color: white;
+    color: black;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    width: 340px;
+}
+.user-info-form label{
+    color: grey;
+    position: relative;
+}
+.userInfo-formInput{
+    display: flex;
+    flex-flow: column;
+}
+
+.userPlans-and-transactions-container{
+    background-color: #072557;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    color: black;
+    border-radius: 10px;
+    width: 1200px;
+}
+
+.view-btns-container{
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+    color: white;
+    font-size: 20px;
+}
+
+.active-view-btn{
+    background-color: #072557;
+    border-bottom: chocolate solid 1px;
+}
+
+.active-view-btn:hover{
+    cursor: pointer
+}
+
+.passive-view-btn:hover{
+    cursor: pointer
+}
+
+.new-userGoal-container{
+    font-size: 20px;
+    margin: 30px 0px;
+    width: 90%;
+    height: 700px;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    justify-content: space-around;
+    background-color: white;
+}
+
+.new-userGoal-container input{
+    border: black 2px solid;
+    border-radius: 5px;
+    color: white;
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.new-userGoal-description{
+    display: grid;
+    grid-template-columns: 90px auto;
+    column-gap: 20px;
+}
+
+.new-userGoal-description textarea{
+    width: 900px;
+    height: 500px;
+    border: white 1px solid;
+    border-radius: 5px;
+    font-size: 20px;
+    border: 2px solid black;
+    padding: 15px;
+}
+
+.new-userGoal-percentage{
+    display: grid;
+    grid-template-columns: 90px auto;
+    column-gap: 20px;
+}
+
+.btnAdd-container{
+    width: 90%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.btnAdd-container img{
+    cursor: pointer;
+}
+
+.btn-cancel-and-submit-container{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 20px;
+}
