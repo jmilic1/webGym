@@ -77,7 +77,7 @@ class GymInfo extends React.Component {
                             // <p></p>
                             this.state.gym &&
                             <LocationListComponent
-                                memberships={this.state.gym?.locations}/>
+                                locations={this.state.gym?.locations}/>
                         }
                         </div>
                     </div>
@@ -90,7 +90,7 @@ class GymInfo extends React.Component {
                                 // <p></p>
                                 this.state.gym &&
                                 <CoachListComponent
-                                    memberships={this.state.gym?.coaches}/>
+                                    coaches={this.state.gym?.coaches}/>
                             }
                         </div>
                     </div>
