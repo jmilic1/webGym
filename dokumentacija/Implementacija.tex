@@ -279,8 +279,6 @@
 			
 		\section{Dijagram razmještaja}
 		
-		 \textit{Potrebno je umetnuti \textbf{specifikacijski} dijagram razmještaja i opisati ga. Moguće je umjesto specifikacijskog dijagrama razmještaja umetnuti dijagram razmještaja instanci, pod uvjetom da taj dijagram bolje opisuje neki važniji dio sustava.}
-		
 		Dijagram razmještaja prikazuje generalnu topologiju sustava koji se koristi kako bi resursi bili optimalno raspoređeni. Predstavlja statički pogled na razmještaj sklopovskih i programskih komponenata. Na poslužiteljskom računalu se nalaze web poslužitelj, poslužitelj baze podataka i poslužitelj za frontend. Klijenti koriste web preglednik kako bi pristupili web aplikaciji. U bazi podataka sadržane su sve potrebne informacije i datoteke koje korisnik može zahtijevati. Sustav je baziran na arhitekturi ”klijent – poslužitelj”. Komunikacija između poslužiteljskog računala i klijentskog računala se omogućuje HTTP protokolom. 
 		
 		
@@ -307,7 +305,7 @@
 							
 							\item Otvaranje command prompt-a
 							
-							\item Upiši "heroku create "NAME-OF-APP" (webGym) ili samo "heroku create"
+							\item Unos "heroku create "NAME-OF-APP" (webGym) ili samo "heroku create"
 							
 							    - U slučaju da se ne navede ime aplikacije , i dalje će se stvoriti server ali s random imenom koji je kasnije moguće preimenovati u željeno ime.
 							
@@ -349,12 +347,12 @@
 						\end{packed_enum}
 						
 						
-						\item  \textbf{3. Spajanje backend server na stvorenu bazu u heroku}
+						\item  \textbf{3. Spajanje backend servera na stvorenu bazu u Heroku}
 						\item[] \begin{packed_enum}
 	
 							\item Odlazak na stranicu  https://dashboard.heroku.com/
 							
-							\item Klik na stvoreni server. (novoime)
+							\item Klik na stvoreni server: "novoime" (za potrebu ovih uputa koristit ćemo "novoime" kao ime)
 							
 							\item Klik na resources
 							
@@ -364,15 +362,15 @@
 							
 							\item Klik na view credentials
 							
-							\item Otvori backend kod (java)
+							\item Otvoriti backend kod (Java)
 							
-							\item Odi u src/main/resources/application.properties
+							\item Odlazak u src/main/resources/application.properties
 							
-							\item Podesi :
+							\item Konfiguracija :
 							    
-							       - Potrebno je podesiti backend tako da se povezuje sa bazom koju smo u prethodnom koraku stvorili na heroku.
+							       - Potrebno je podesiti backend tako da se povezuje sa bazom koju smo u prethodnom koraku stvorili na Heroku.
 							       
-							       - U tom naumu ćemo morati podesiti spring.datasource.url , spring.datasource.username te spring.datasource.password na način da ćemo pročitati vrijednosti koje nam je dao heroku credentials i nadodati ih na spomenute vrijednosti.
+							       - U tom naumu ćemo morati podesiti spring.datasource.url , spring.datasource.username te spring.datasource.password na način da ćemo pročitati vrijednosti koje nam je dao Heroku credentials i nadodati ih na spomenute vrijednosti.
 							       
 							       - Zadnja napomena je dodavanje "jdbc:" na početak URI-a koje nam je generirao heroku.
 						
@@ -390,7 +388,7 @@
 	
 							\item Otvoriti backend project.
 							
-							\item Otvoriti pom.xml te dodati ovaj plugin.
+							\item Otvoriti pom.xml te dodati potrebni plugin:
 			
 							    \begin{figure}[H]
                         			\hspace*{-1.5cm}
@@ -399,8 +397,8 @@
                         			\label{fig:promjene}
                         		\end{figure}
                         		
-                        		- Napomena : u našem slučaju prateći sve ove korake bi treabli napisati
-                        		pod appName "novoime", dok nam je za projekt ime aplikacije ,kao što možemo vidjeti na slici "web-gym2".
+                        		- Napomena : prateći ranije opisane korake za appName trebali bi napisati
+                        		"novoime", a u našem slučaju to je "web-gym2".
 							
 							\item Otvoriti cmd te se pozicionirati u root backend projekta
 							
@@ -431,8 +429,8 @@
                         			\label{fig:promjene}
                         		\end{figure}
 							
-							\item prije deploya frontenda , ući u src/App.js te promjeniti backendURL i 
-							postaviti ga na server backenda.
+							\item prije deploya frontenda , ući u src/App.js te promjeniti backend URL i 
+							postaviti ga na URL servera backenda.
 							
 							    \begin{figure}[H]
                         			\hspace*{-1.5cm}
@@ -441,11 +439,11 @@
                         			\label{fig:promjene}
                         		\end{figure}
 							
-							\item U cmd- napisati "git add ."
+							\item U cmd upisati "git add ."
 							
-							\item U cmd- napisati "git add -m "initial commit""
+							\item U cmd upisati "git add -m "initial commit""
 							
-							\item U cmd- napisati "git push heroku master"
+							\item U cmd upisati "git push heroku master"
 	
 
 						\end{packed_enum}
