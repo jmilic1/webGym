@@ -21,9 +21,91 @@
 			\subsection{Ispitivanje komponenti}
 			\textit{Potrebno je provesti ispitivanje jedinica (engl. unit testing) nad razredima koji implementiraju temeljne funkcionalnosti. Razraditi \textbf{minimalno 6 ispitnih slučajeva} u kojima će se ispitati redovni slučajevi, rubni uvjeti te izazivanje pogreške (engl. exception throwing). Poželjno je stvoriti i ispitni slučaj koji koristi funkcionalnosti koje nisu implementirane. Potrebno je priložiti izvorni kôd svih ispitnih slučajeva te prikaz rezultata izvođenja ispita u razvojnom okruženju (prolaz/pad ispita). }
 			
+			Za ispitivanje razrednih funkcija koje implementiraju temeljne funkcionalnosti koristili smo MockMvc. MockMvc je razred definiran u javi pomoću kojeg možemo kontrolerima poslati lažne HTTP zahtjeve i testirati njihovo  ponašanje bez pokretanja kontrolera unutar poslužitelja.U nastavku će biti prikazani neke od metoda koje smo testirali i odlučili prikazati.
 			
+			 \noindent \underbar{\textbf{1. Dohvati sve teretane}}
+			 
+             Ovdje smo testirali pokušaj dohvaćanja teretana odlaskom na /getGyms.
+
+			\begin{figure}[H]
+    			\hspace*{-1.5cm}
+    			\includegraphics[scale=0.5]{slike/getGyms.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+    			\centering
+    			\label{fig:promjene}
+    	    \end{figure}
+	
+
+			\noindent \underbar{\textbf{2. Dodaj novu teretanu}}
 			
+            Ovdje smo testirali pokušaj dodavanja nove teretane odlaskom na /addGym  dok smo ulogirani kao role owner.
+
+			\begin{figure}[H]
+    			\hspace*{-1.5cm}
+    			\includegraphics[scale=0.5]{slike/addNewGym.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+    			\centering
+    			\label{fig:promjene}
+    	    \end{figure}
+	
+
+			\noindent \underbar{\textbf{3. Dohvati trenerovu teretanu}}
 			
+			Ovdje smo testirali pokušaj dohvaćanja teretane u kojoj radi određeni trener odlaskom na /myGyms sa trenutnim ulogiranim trenerom.
+
+			\begin{figure}[H]
+    			\hspace*{-1.5cm}
+    			\includegraphics[scale=0.5]{slike/getCoachGym.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+    			\centering
+    			\label{fig:promjene}
+    	    \end{figure}
+	
+				
+			\noindent \underbar{\textbf{4. Dohvati informacije o teretani}}
+			
+			Ovdje smo testirali pokušaj dohvaćanja informacija o određeneoj teretani odlaskom na /gymInfo sa pripadnim parametrom id koji se šalje preko URL-a.
+             
+			\begin{figure}[H]
+    			\hspace*{-1.5cm}
+    			\includegraphics[scale=0.5]{slike/getGyms.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+    			\centering
+    			\label{fig:promjene}
+    	    \end{figure}
+	
+
+			\noindent \underbar{\textbf{5. Pronađi trenera}}
+			
+			Ovdje smo testirali pokušaj dohvaćanja trenera odlaskom na /coach sa pripadnim parametrom username koji se šalje preko URL-a.
+
+			\begin{figure}[H]
+    			\hspace*{-1.5cm}
+    			\includegraphics[scale=0.5]{slike/findCoachBy.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+    			\centering
+    			\label{fig:promjene}
+    	    \end{figure}
+	
+
+				
+			\noindent \underbar{\textbf{6. Pronađi trenera (error) }}
+			
+			 Ovdje smo testirali pokušaj dohvaćanja trenera odlaskom na /coach bez parametra username kako bi dobili response 4xx koji javlja da je došlo do pogreške.
+			\begin{figure}[H]
+    			\hspace*{-1.5cm}
+    			\includegraphics[scale=0.5]{slike/findCoachByError.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+    			\centering
+    			\label{fig:promjene}
+    	    \end{figure}
+	
+
+				
+			\noindent \underbar{\textbf{Prikaz prolaza svih ispita}}
+
+			\begin{figure}[H]
+    			\hspace*{-1.5cm}
+    			\includegraphics[scale=0.5]{slike/rezultati.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+    			\centering
+    			\label{fig:promjene}
+    	    \end{figure}
+	
+
 			\subsection{Ispitivanje sustava}
 			
 			 \textit{Potrebno je provesti i opisati ispitivanje sustava koristeći radni okvir . Razraditi \textbf{minimalno 4 ispitna slučaja} u kojima će se ispitati redovni slučajevi, rubni uvjeti te poziv funkcionalnosti koja nije implementirana/izaziva pogrešku kako bi se vidjelo na koji način sustav reagira kada nešto nije u potpunosti ostvareno. Ispitni slučaj se treba sastojati od ulaza (npr. korisničko ime i lozinka), očekivanog izlaza ili rezultata, koraka ispitivanja i dobivenog izlaza ili rezultata.\\ }
@@ -32,7 +114,7 @@
 		 	 Za ispitivanje funkcionalnosti sustava koristili smo Selenium IDE. Testirali smo
 		 	 sve obrazce uporabe te smo prolazili kroz aplikaciju i gledali općenito ponašanje
 		 	 u nadi da pronađemo neko neočekivano hazardno ponašanje u svrhu otklonuća problema.
-		 	 Neke od testiranih obrazaca uporabe smo prikazali u nastavku. ( UC1, UC2, UC3, UC4).
+		 	 Neke od testiranih obrazaca uporabe smo prikazali u nastavku. ( UC1, UC2, UC3, UC7).
 		 	 
 		 	 
 	
@@ -133,18 +215,20 @@
         			\label{fig:promjene}
 	        	\end{figure}
 				
-				\noindent \underbar{\textbf{4. Ispitni slučaj (UC4 : Pregled osobnih podataka)}}
+				\noindent \underbar{\textbf{4. Ispitni slučaj (UC7 : Pregled specifične teretane)}}
                 \begin{packed_item}
 						\item  \textbf{Ulaz : } 
 						\item[] \begin{packed_enum}
 	
-							\item korisnik je pritisnuo na "Osobni podatci"
+							\item korisnik je pritisnuo na "Popis teretana"
+							
+							\item korisnik je pritisnuo na gumb informacije
 
 						\end{packed_enum}
 						\item  \textbf{Očekivani rezultat: } 
 						\item[] \begin{packed_enum}
 	
-							\item korisnik je dobio prikaz svojih osobnih podataka
+							\item korisnik je dobio informacije o odabranoj teretani
 
 						\end{packed_enum}
 						
@@ -156,6 +240,44 @@
 						\end{packed_enum}
 
 				\end{packed_item}
+					\begin{figure}[H]
+        			\hspace*{-1.5cm}
+        			\includegraphics[scale=0.5]{slike/teretana.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+        			\centering
+        			\label{fig:promjene}
+	        	\end{figure}
+	        	
+	        \noindent \underbar{\textbf{5. Ispitni slučaj (UC20 : Pregled trenereove ponude)}}
+                \begin{packed_item}
+						\item  \textbf{Ulaz : } 
+						\item[] \begin{packed_enum}
+	
+							\item trener je pritisnuo na "Moji planovi"
+
+						\end{packed_enum}
+						\item  \textbf{Očekivani rezultat: } 
+						\item[] \begin{packed_enum}
+	
+							\item trener je dobio prikaz svih svojih planova treninga
+
+						\end{packed_enum}
+						
+						\item  \textbf{rezultat : }
+						\item[] \begin{packed_enum}
+	
+							\item došlo je do pogreške te se nisu učitali trenerovi planovi.
+                                                
+                            - Test je napravljen prije implementiranja mogućnosti trenera da pregleda svoje planove treninga i prehrane , do greške je došlo zbog problema u pamćenju cookie-a koje smo naknadno riješili.
+                        
+						\end{packed_enum}
+
+				\end{packed_item}
+					\begin{figure}[H]
+        			\hspace*{-1.5cm}
+        			\includegraphics[scale=0.5]{slike/error.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+        			\centering
+        			\label{fig:promjene}
+	        	\end{figure}
 		 
 			\eject 
 			
