@@ -46,7 +46,7 @@ public class CoachService {
 
         Optional<User> user = userRepository.findById(username);
 
-        if (user.isPresent()){
+        if (user.isPresent()) {
             User myUser = user.get();
 
             if (myUser.getRole() != Role.COACH) {
@@ -67,7 +67,7 @@ public class CoachService {
         Optional<User> user = userRepository.findById(username);
         Optional<Plan> plan = planRepository.findById(planDto.getId());
 
-        if (user.isPresent() && plan.isPresent()){
+        if (user.isPresent() && plan.isPresent()) {
             User myUser = user.get();
             Plan myPlan = plan.get();
 
@@ -116,8 +116,20 @@ public class CoachService {
         if (optionalGym.isEmpty()) throw new IllegalArgumentException("403");
         Gym gym = optionalGym.get();
 
-        JobRequest jobRequest = Mappers.mapDtoToJobRequest(jobRequestDto, user, gym);
-        jobRequestRepository.save(jobRequest);
+        List<GymUser> gymUserList = gymUserRepository.findAll();
+        boolean found = false;
+        for (GymUser gymUser : gymUserList) {
+            if (gymUser.getGym().getId().equals(gym.getId())
+                    && gymUser.getUser().getUsername().equals(username)) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            JobRequest jobRequest = Mappers.mapDtoToJobRequest(jobRequestDto, user, gym);
+            jobRequestRepository.save(jobRequest);
+        }
     }
 
     public CoachResponseDto getCoach(String username) {

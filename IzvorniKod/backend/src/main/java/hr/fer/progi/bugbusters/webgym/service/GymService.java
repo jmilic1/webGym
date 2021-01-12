@@ -299,6 +299,9 @@ public class GymService {
         if (!ownsGym) throw new IllegalArgumentException("403");
 
         if (jobResponseDto.getResponse()){
+            if (jobRequest.getState().equals(JobRequestState.APPROVED)){
+                return;
+            }
             jobRequest.setState(JobRequestState.APPROVED);
             GymUser gymUser = createGymUser(jobRequest);
             gymUserRepository.save(gymUser);
