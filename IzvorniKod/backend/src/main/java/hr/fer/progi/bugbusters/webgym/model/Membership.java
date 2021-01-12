@@ -22,4 +22,10 @@ public class Membership {
     private String interval;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "membership")
     private List<MembershipUser> membershipUserList;
+
+    @Override
+    public String toString(){
+        return "id: " + id + ", gym.id: " + gym.getId() + ", price: " + price + ", description: " + description
+                + ", interval: " + interval;
+    }
 }

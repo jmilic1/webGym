@@ -25,4 +25,9 @@ public class Goal {
          this.description = description;
          this.percentCompleted = percentCompleted;
      }
+
+     @Override
+     public String toString(){
+         return "id: " + id + ", User.username: " + user.getUsername() + ", description: " + description + ", percentCompleted: " + percentCompleted;
+     }
 }

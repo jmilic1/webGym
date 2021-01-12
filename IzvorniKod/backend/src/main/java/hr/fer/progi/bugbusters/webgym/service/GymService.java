@@ -147,6 +147,15 @@ public class GymService {
         }
         if (!ownsGym) throw new IllegalArgumentException("403");
 
+        List<GymLocation> gymLocationList = gymLocationRepository.findAll();
+        for (GymLocation location : gymLocationList) {
+            if (location.getCity().equals(dto.getCity())
+                    && location.getCountry().equals(dto.getCountry())
+                    && location.getStreet().equals(dto.getStreet())) return;
+        }
+        Optional<GymLocation> gymLocation = gymLocationRepository.findById(dto.getId());
+        if (gymLocation.isPresent()) return;
+
         GymLocation location = Mappers.mapDtoToLocation(dto, gym);
         gymLocationRepository.save(location);
     }
@@ -159,6 +168,9 @@ public class GymService {
     }
 
     public void createMembership(MembershipDto dto) {
+        Optional<Membership> membershipOptional = membershipRepository.findById(dto.getId());
+        if (membershipOptional.isPresent()) return;
+
         Membership membership = Mappers.mapDtoToMembership(dto);
         membershipRepository.save(membership);
     }
@@ -298,15 +310,14 @@ public class GymService {
         }
         if (!ownsGym) throw new IllegalArgumentException("403");
 
-        if (jobResponseDto.getResponse()){
-            if (jobRequest.getState().equals(JobRequestState.APPROVED)){
+        if (jobResponseDto.getResponse()) {
+            if (jobRequest.getState().equals(JobRequestState.APPROVED)) {
                 return;
             }
             jobRequest.setState(JobRequestState.APPROVED);
             GymUser gymUser = createGymUser(jobRequest);
             gymUserRepository.save(gymUser);
-        }
-        else jobRequest.setState(JobRequestState.DENIED);
+        } else jobRequest.setState(JobRequestState.DENIED);
 
         jobRequestRepository.save(jobRequest);
     }
@@ -331,6 +342,12 @@ public class GymService {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
         if (!ownsGym) throw new IllegalArgumentException("403");
+
+        List<GymUser> gymUserList = gymUserRepository.findAll();
+        for (GymUser gymUser : gymUserList) {
+            if (gymUser.getUser().getUsername().equals(newOwner.getUsername())
+                    && gymUser.getGym().getId().equals(gym.getId())) throw new IllegalArgumentException("403");
+        }
 
         GymUser gymUser = new GymUser();
         gymUser.setWorkDateBegin(java.util.Date.from(Instant.now()));

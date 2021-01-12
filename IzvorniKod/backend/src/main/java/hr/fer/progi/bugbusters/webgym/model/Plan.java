@@ -31,4 +31,9 @@ public class Plan {
         this.user = user;
         this.description = description;
     }
+
+    @Override
+    public String toString(){
+        return "id: " + id + ", user.username: " + user.getUsername() + ", description: " + description;
+    }
 }

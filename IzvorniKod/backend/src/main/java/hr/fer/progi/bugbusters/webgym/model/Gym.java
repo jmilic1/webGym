@@ -29,10 +29,14 @@ public class Gym {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "gym")
     private List<JobRequest> jobRequests;
 
-
     public Gym(String name, String description, String email){
         this.name = name;
         this.description = description;
         this.email = email;
+    }
+
+    @Override
+    public String toString(){
+        return "id: " + id + ", description: " + description + "name: " + name + ", email: " + email;
     }
 }
