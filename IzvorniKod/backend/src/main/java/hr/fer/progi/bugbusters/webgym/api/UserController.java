@@ -48,7 +48,7 @@ public class UserController {
     @GetMapping("/userList")
     public List<UserDto> getUsers(HttpServletRequest request, HttpServletResponse response) {
         String role = ControllerHelper.extractRoleFromCookies(request);
-        if (role == null || !role.equals("ADMIN")) {
+        if (role == null || (!role.equals("ADMIN") && !role.equals("OWNER"))) {
             response.setStatus(403);
             return null;
         }
