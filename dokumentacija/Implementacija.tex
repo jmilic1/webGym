@@ -2,32 +2,22 @@
 		
 		
 		\section{Korištene tehnologije i alati}
-		
-			\textbf{\textit{dio 2. revizije}}
 			
-			 \textit{Detaljno navesti sve tehnologije i alate koji su primijenjeni pri izradi dokumentacije i aplikacije. Ukratko ih opisati, te navesti njihovo značenje i mjesto primjene. Za svaki navedeni alat i tehnologiju je potrebno \textbf{navesti internet poveznicu} gdje se mogu preuzeti ili više saznati o njima}.
-			
-			
-			\textit{}Za svakodnevnu komunikaciju je korištena aplikacija \underline{WhatsApp}\footnote[1]{https://www.whatsapp.com/} dok smo za sastanke i videopozive koristili platformu \underline{MS Teams}\footnote[2]{https://www.microsoft.com/en-ww/microsoft-365/microsoft-teams/group-chat-software}. Za izradu UML dijagrama i svih tablica je korištena web aplikacija \underline{Creatly}\footnote[3]{https://www.creately.com/}. Dokumentacija je pisana pomoću online Latex editora \underline{Overleaf}\footnote[4]{https://www.overleaf.com/}. Kao sustav za upravljanje izvornim kodom korišten je \underline{Git}\footnote[5]{https://git-scm.com/} dok se udaljeni repozitorij projekta nalazi na web platformi \underline{GitLab}\footnote[6]{https://gitlab.com/}.
+			\textit{}Za svakodnevnu komunikaciju korištena je aplikacija \underline{WhatsApp}\footnote[1]{https://www.whatsapp.com/} dok smo za sastanke i videopozive koristili platformu \underline{MS Teams}\footnote[2]{https://www.microsoft.com/en-ww/microsoft-365/microsoft-teams/group-chat-software}. Za izradu UML dijagrama i svih tablica korištena je web aplikacija \underline{Creatly}\footnote[3]{https://www.creately.com/}. Dokumentacija je pisana pomoću online Latex editora \underline{Overleaf}\footnote[4]{https://www.overleaf.com/}. Kao sustav za upravljanje izvornim kodom korišten je \underline{Git}\footnote[5]{https://git-scm.com/} dok se udaljeni repozitorij projekta nalazi na web platformi \underline{GitLab}\footnote[6]{https://gitlab.com/}.
 			
 			\textit{}Kao razvojno okruženje za backend je korišten \underline{IntelliJ}\footnote[7]{https://www.jetbrains.com/idea/} - integrirano razvojno okruženje (IDE) napisano u Javi za razvoj računalnog softvera. Razvio ga je JetBrains (prije poznat kao IntelliJ) i dostupan je pod licencom Apache 2. Može se koristit na svim operacijskim sustavima, koristi se za razvoj web-stranica i web-aplikacija. Frontend je napisan u \underline{Visual Studio Code}\footnote[8]{https://code.visualstudio.com/} - source-code editor koji je razvijen od tvrtke Microsoft. Zaštićen je pod MIT licencom. VSC podržava programiranje u raznim jezicima kao što su Java, JavaScript, Go, Node.js and C++. Velika prednost je što se mogu instalirati proširenja koja mogu pružiti podršku za nove jezike, teme ili debuggere. Također podržava rad sa JSON, CSS i HTML tipovima podataka što omogućuje razvoj web-stranica i web-aplikacija.
 			
-			\textit{}Aplikacija je napisana koristeći radni okvir \underline{Spring Framework}\footnote[9]{https://spring.io/} i jezik \underline{Java}\footnote[10]{https://www.java.com/en/} za izradu backenda dok je za frontend korišten \underline{React}\footnote[11]{https://reactjs.org/} i jezik \underline{JavaScript}\footnote[12]{https://developer.mozilla.org/en-US/docs/Web/JavaScript}. Spring Framework je otvorenog koda i sadrži gotove funkcionalnosti koji se mogu koristiti u svakoj Java aplikaciji, ali postoje i proširenja za izradu same aplikacije. React je JavaScript biblioteka koja se koristi za razvoj korisničkih sučelja i UI komponenti. Održavan je  od strane Facebooka i zajednici programera i kompanija. Može se koristiti kao baza za jednostavne stranice ili aplikacije, ali za složeniju upotrebu je potrebno koristiti dodatne biblioteke kao što su Redux i React Router, jer se React zapravo samo bavi prikazom podataka u DOM-u.
+			\textit{}Aplikacija je napisana koristeći radni okvir \underline{Spring Framework}\footnote[9]{https://spring.io/} i jezik \underline{Java}\footnote[10]{https://www.java.com/en/} za izradu backenda dok je za frontend korišten \underline{React}\footnote[11]{https://reactjs.org/} i jezik \underline{JavaScript}\footnote[12]{https://developer.mozilla.org/en-US/docs/Web/JavaScript}. Spring Framework je otvorenog koda i sadrži gotove funkcionalnosti koji se mogu koristiti u svakoj Java aplikaciji, ali postoje i proširenja za izradu same aplikacije. React je JavaScript biblioteka koja se koristi za razvoj korisničkih sučelja i UI komponenti. Održavan je  od strane Facebooka i zajednice programera i kompanija. Može se koristiti kao baza za jednostavne stranice ili aplikacije, ali za složeniju upotrebu je potrebno koristiti dodatne biblioteke kao što su Redux i React Router, jer se React zapravo samo bavi prikazom podataka u DOM-u (Document Object Model).
 			
-			\textit{}Baza podataka se nalazi na poslužitelju u oblaku \underline{Heroku}\footnote[13]{https://www.heroku.com/}.
+			\textit{}Baza podataka nalazi se na poslužitelju u oblaku \underline{Heroku}\footnote[13]{https://www.heroku.com/}, a za relacijsku bazu 
+			podataka korišten je \underline{PostgreSQL}\footnote[14]{https://www.postgresql.org/}.
 			
 			\eject 
 		
 	
-		\section{Ispitivanje programskog rješenja}
-			
-			\textbf{}\\
-			
-			 \textit{U ovom poglavlju je potrebno opisati provedbu ispitivanja implementiranih funkcionalnosti na razini komponenti i na razini cijelog sustava s prikazom odabranih ispitnih slučajeva. Studenti trebaju ispitati temeljnu funkcionalnost i rubne uvjete.}
-	
+		\section{Ispitivanje programskog rješenja}	
 			
 			\subsection{Ispitivanje komponenti}
-			\textit{Potrebno je provesti ispitivanje jedinica (engl. unit testing) nad razredima koji implementiraju temeljne funkcionalnosti. Razraditi \textbf{minimalno 6 ispitnih slučajeva} u kojima će se ispitati redovni slučajevi, rubni uvjeti te izazivanje pogreške (engl. exception throwing). Poželjno je stvoriti i ispitni slučaj koji koristi funkcionalnosti koje nisu implementirane. Potrebno je priložiti izvorni kôd svih ispitnih slučajeva te prikaz rezultata izvođenja ispita u razvojnom okruženju (prolaz/pad ispita). }
 			
 			Za ispitivanje razrednih funkcija koje implementiraju temeljne funkcionalnosti koristili smo MockMvc. MockMvc je razred definiran u javi pomoću kojeg možemo kontrolerima poslati lažne HTTP zahtjeve i testirati njihovo  ponašanje bez pokretanja kontrolera unutar poslužitelja.U nastavku će biti prikazani neke od metoda koje smo testirali i odlučili prikazati.
 			
