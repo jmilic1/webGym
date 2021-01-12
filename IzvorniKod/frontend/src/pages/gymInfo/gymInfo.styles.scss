@@ -240,8 +240,10 @@
 }
 
 .grid-container-edo {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  height: 400px;
   border: 1px solid rgba(0, 0, 0, 0.21);
   width: 350px;
   border-radius: 5px;
@@ -249,7 +251,6 @@
   background-color: white;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  column-width: 400px/6;
 }
 
 .item1 {
@@ -292,4 +293,13 @@
   overflow: auto;
   width: 300px;
   height: 250px;
+}
+
+.jobRequest-buttons{
+  display: flex;
+  justify-content: space-around;
+}
+
+.jobRequest-buttons button{
+  width: 90px;
 }

@@ -148,11 +148,11 @@ class GymInfo extends React.Component {
                         }
                         {this.state.addJobRequest ?
                             <div className='grid-container-edo'>
-                                <div className='item1'>
+                                <div>
                                     <label>Opis:</label> <br/>
                                     <textarea className="textarea" name='newJobDescription' value={this.state.newJobDescription} onChange={this.handleChange} required/>
                                 </div>
-                                <div className='item3'>
+                                <div className='jobRequest-buttons'>
                                     <button onClick={this.handleJobRequestSubmit}>Pošalji</button>
                                     <button onClick={this.handleJobRequestFlag}>Otkaži</button>
                                 </div>
