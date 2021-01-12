@@ -330,7 +330,7 @@
 		\section{Dijagram aktivnosti}
 			
 			\textbf{}\\
-            Dijagram aktivnosti pomaže nam u opisivanju toka upravljanja odnosno puta podataka. U modeliranju dijagrama aktivnosti tok upravljanja funkcionira tako da se svaki novi korak izvršsava nakon završenog prethodnog te je cilj što prikazati tok tih koraka što jednostavnije. Na slici 4.7 prikazan je proces promjene podataka korisnika. Korisnik se prijavljuje u sustav, prikazuje mu se opcija pregleda osobnih podataka koju i odabire. Odabire opciju promjene osobnih podataka, unosi nove podatke o sebi te ih sprema. Spremljeni podaci šalju se od korisnika do web aplikacije, te ih web aplikacija šalje u bazu podataka gdje se spremaju. Ako je korisnik u početku unio krive osobne podatke za prijavu, korisnika se vraća na početnu stranicu.
+            Dijagram aktivnosti pomaže nam u opisivanju toka upravljanja odnosno puta podataka. U modeliranju dijagrama aktivnosti tok upravljanja funkcionira tako da se svaki novi korak izvršava nakon završenog prethodnog te je cilj  prikazati tok tih koraka što jednostavnije. Na slici 4.7 prikazan je proces promjene podataka korisnika. Korisnik se prijavljuje u sustav, prikazuje mu se opcija pregleda osobnih podataka koju i odabire. Odabire opciju promjene osobnih podataka, unosi nove podatke o sebi te ih sprema. Spremljeni podaci šalju se od korisnika do web aplikacije, te ih web aplikacija šalje u bazu podataka gdje se spremaju. Ako je korisnik u početku unio krive osobne podatke za prijavu, korisnika se vraća na početnu stranicu.
 			 
 		\begin{figure}[H]
 			\hspace*{-1.5cm}
@@ -349,7 +349,7 @@
             što i samo ime sučelja govori, ono služi za dohvaćanje datoteka potrebnih frontendu kako bi korisniku prikazao potrebno. Router komponenta služi kako bi frontend znao
             kakav će prikaz biti, u ovom slučaju ovisno o ulozi korisnika u sustavu koju backend dohvaća iz baze. U frontend dijelu nalaze se JavaScript datoteke logički raspoređene
             te nazvane po ulogama u sustavu. Sve navedene JavaScript datoteke ovise o React 
-            biblioteci. Sučelje "Dohvati JSON", kao što nam i samo ime sučelja govori, služi za dohvat JSON-a. Rest API poslužuje Backend-rest komponentu dok JPA služi za dohvat podataka pomoću SQL upita.To se ostvaruje pomoću sučelja za dohvat podataka iz baze.  Pristigli podaci iz baze se u DTO (Data transfer object) oblikuju u objekte definirane u modelima u bakcend komponenti sustava. React pomoću svih navedenih sučelja kontinuirano komunicira sa backendom te tako prikazuje potrebno korisniku.
+            biblioteci. Sučelje "Dohvati JSON", kao što nam i samo ime sučelja govori, služi za dohvat JSON-a. Rest API poslužuje Backend-REST komponentu dok JPA služi za dohvat podataka pomoću SQL upita.To se ostvaruje pomoću sučelja za dohvat podataka iz baze.  Pristigli podaci iz baze se oblikuju u DTO (Data transfer object) definirane u modelima u bakcend komponenti sustava. React pomoću svih navedenih sučelja kontinuirano komunicira sa backendom te tako prikazuje potrebno korisniku.
 
         \begin{figure}[H]
 			\hspace*{-1.5cm}
