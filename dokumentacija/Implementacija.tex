@@ -105,9 +105,6 @@
 	
 
 			\subsection{Ispitivanje sustava}
-			
-			 \textit{Potrebno je provesti i opisati ispitivanje sustava koristeći radni okvir . Razraditi \textbf{minimalno 4 ispitna slučaja} u kojima će se ispitati redovni slučajevi, rubni uvjeti te poziv funkcionalnosti koja nije implementirana/izaziva pogrešku kako bi se vidjelo na koji način sustav reagira kada nešto nije u potpunosti ostvareno. Ispitni slučaj se treba sastojati od ulaza (npr. korisničko ime i lozinka), očekivanog izlaza ili rezultata, koraka ispitivanja i dobivenog izlaza ili rezultata.\\ }
-			 
 		
 		 	 Za ispitivanje funkcionalnosti sustava koristili smo Selenium IDE. Testirali smo
 		 	 sve obrazce uporabe te smo prolazili kroz aplikaciju i gledali općenito ponašanje
@@ -245,7 +242,7 @@
         			\label{fig:promjene}
 	        	\end{figure}
 	        	
-	        \noindent \underbar{\textbf{5. Ispitni slučaj (UC20 : Pregled trenereove ponude)}}
+	        \noindent \underbar{\textbf{5. Ispitni slučaj (UC20 : Pregled trenerove ponude)}}
                 \begin{packed_item}
 						\item  \textbf{Ulaz : } 
 						\item[] \begin{packed_enum}
@@ -265,7 +262,7 @@
 	
 							\item došlo je do pogreške te se nisu učitali trenerovi planovi.
                                                 
-                            - Test je napravljen prije implementiranja mogućnosti trenera da pregleda svoje planove treninga i prehrane , do greške je došlo zbog problema u pamćenju cookie-a koje smo naknadno riješili.
+                            - Do pogreške je došlo zbog problema u pamćenju cookie-a koje smo naknadno riješili, a problem je bio u tome što su se uloge korisnika pamtile na krivi način te korisnik od strane sustava nije bio prepoznat kao trener.
                         
 						\end{packed_enum}
 
