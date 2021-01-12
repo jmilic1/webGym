@@ -66,7 +66,7 @@ class App extends React.Component {
               <Route exact path="/membership/:id" render={(props) => <MembershipInfo {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
               <Route exact path="/myProfile" render={(props) => <UserProfile {...props}
                     username = {this.state.username} name = {this.state.name} surname = {this.state.surname} role = {this.state.role}
-                    backendURL = {this.state.backendURL} />} />
+                    backendURL = {this.state.backendURL} role={this.state.role}/>} />
             </Switch>
           </div>
           <Footer/>
