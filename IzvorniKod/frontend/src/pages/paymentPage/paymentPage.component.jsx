@@ -8,7 +8,20 @@ class PaymentPage extends React.Component {
         this.state = {
             id: props.location.aboutProps.id,
             isPlan: props.location.aboutProps.isPlan,   
-            showCard: false
+            showCard: false,
+            payPalEmail:"",
+            payPalPassword: "",
+            cardName:"",
+            cardSurname: "",
+            cardEmail: "",
+            cardStreet: "",
+            cardCity: "",
+            cardPostalCode: "",
+            cardCountry: "",
+            cardNumber: "",
+            cardExpireDateDay: "",
+            cardExpireDateMonth: "",
+            cardCCV: ""
         }
     }
     
@@ -46,6 +59,14 @@ class PaymentPage extends React.Component {
         })
     }
 
+    handlePayWithPayPal = () => {
+        if(this.state.payPalEmail !== "" && this.state.payPalPassword !== ""){
+            this.state.isPlan ? this.handlePaymentPlanSubmit() : this.handlePaymentMembershipSubmit()
+        } else {
+            alert("Morate unijeti email i lozinku PayPal računa")
+        }
+    }
+
     setshowCard = () => {
         this.setState({
             showCard: true
@@ -56,6 +77,53 @@ class PaymentPage extends React.Component {
         this.setState({
             showCard: false
         })
+    }
+
+    handleChange = event => {
+        const { value, name } = event.target;
+
+        this.setState({ [name]: value });
+    };
+
+    CheckCardDetails = () => {
+        if(this.state.cardName === ""){
+            alert("Polje za unos imena ne smije ostati prazno")
+            return false
+        } else if(this.state.cardSurname === ""){
+            alert("Polje za unos prezimena ne smije ostati prazno")
+            return false
+        }else if(this.state.cardStreet === ""){
+            alert("Polje za unos ulice ne smije ostati prazno")
+            return false
+        }else if(this.state.cardCity === ""){
+            alert("Polje za unos grada ne smije ostati prazno")
+            return false
+        }else if(this.state.cardPostalCode === ""){
+            alert("Polje za unos poštanskog broja ne smije ostati prazno")
+            return false
+        }else if(this.state.cardCountry === ""){
+            alert("Polje za unos države ne smije ostati prazno")
+            return false
+        }else if(this.state.cardNumber === ""){
+            alert("Polje za unos broja kartice ne smije ostati prazno")
+            return false
+        }else if(this.state.cardExpireDateDay === ""){
+            alert("Polje za unos datuma isteka kartice ne smije ostati prazno")
+            return false
+        }else if(this.state.cardExpireDateMonth === ""){
+            alert("Polje za unos datuma isteka kartice ne smije ostati prazno")
+            return false
+        }else if(this.state.cardCCV === ""){
+            alert("Polje za unos CCV-a kartice ne smije ostati prazno")
+            return false
+        }
+        return true
+    }
+
+    payWithCard = () => {
+        if(this.CheckCardDetails()){
+            this.state.isPlan ? this.handlePaymentPlanSubmit() : this.handlePaymentMembershipSubmit()
+        }
     }
     
     render() {
@@ -82,78 +150,75 @@ class PaymentPage extends React.Component {
                 </div>
 
                 {this.state.showCard ?
-                    <div className='grid-container'>
-                        <div className="item1">
+                    <div className='grid-container-payment'>
+                        <div className='card-detail'>
                             <label>Ime: </label>
-                            <input type="text" />
+                            <input type="text" onChange={this.handleChange} name="cardName"/>
                         </div>
 
-                        <div className="item2"> 
+                        <div className='card-detail'>
                             <label>Prezime: </label>
-                            <input type="text" />
+                            <input type="text" onChange={this.handleChange} name="cardSurname"/>
                         </div>
 
-                        <div className="item3">
+                        <div className='card-detail'>
                             <label>Email: </label>
-                            <input type="text" />
+                            <input type="text" onChange={this.handleChange} name="cardEmail"/>
                         </div>
 
-                        <div className="item4">
+                        <div className='card-detail'>
                             <label>Ulica i kućni broj: </label>
-                            <input type="text" />
+                            <input type="text" onChange={this.handleChange} name="cardStreet"/>
                         </div>
 
-                        <div className="item5">
+                        <div className='card-detail'>
                             <label>Grad: </label>
-                            <input type="text" />
+                            <input type="text" onChange={this.handleChange} name="cardCity"/>
                         </div>
 
-                        <div className="item6">
+                        <div className='card-detail'>
                             <label>Poštanski broj: </label>
-                            <input type="text" />
+                            <input type="text" onChange={this.handleChange} name="cardPostalCode"/>
                         </div>
 
-                        <div className="item7">
+                        <div className='card-detail'>
                             <label>Zemlja: </label>
-                            <input type="text" />
+                            <input type="text" onChange={this.handleChange} name="cardCountry"/>
                         </div>
 
-                        <div className="item8">
+                        <div className='card-detail'>
                             <label>Broj kartice: </label>
-                            <input type="text" placeholder="XXXX XXXX XXXX XXXX" required minlength="16" maxlength="16"/>
+                            <input type="text" placeholder="XXXX XXXX XXXX XXXX" required minlength="16" maxlength="16" name="cardNumber" onChange={this.handleChange}/>
                         </div>
 
-                        <div className="item9">
+                        <div className='item9'>
                             <label>Datum isteka kartice: </label>
-                            <input type="text" name="month" placeholder="MM" maxlength="2" size="2" />
+                            <input type="text" name="month" placeholder="MM" maxlength="2" size="2" onChange={this.handleChange} name="cardExpireDateDay"/>
                             <span>/</span>
-                            <input type="text" name="year" placeholder="YY" maxlength="2" size="2" />
+                            <input type="text" name="year" placeholder="YY" maxlength="2" size="2" onChange={this.handleChange} name="cardExpireDateMonth"/>
                         </div>
 
-                        <div className="item10">
+                        <div className='card-detail'>
                             <label>CVV kod: </label>
-                            <input type="text" placeholder="XXX" required minlength="3" maxlength="3"/>
+                            <input type="text" placeholder="XXX" required minlength="3" maxlength="3" onChange={this.handleChange} name="cardCCV"/>
                         </div>
 
-                        <div className="item11">
-                            <button onClick={this.state.isPlan ? this.handlePaymentPlanSubmit : this.handlePaymentMembershipSubmit}>Plati</button>
+                        <div>
+                            <button onClick={this.payWithCard}>Plati</button>
                         </div>
                     </div>    
                     :
-                    <div className='grid-container'>
-                        <div className="item1">
+                    <div className='grid-container-payment'>
+                        <div className='card-detail'>
                             <label>Email: </label>
-                            <input type="text"/>
+                            <input type='text' name="payPalEmail" onChange={this.handleChange} value={this.state.payPalEmail}/>
                         </div>
-                        <div className="item2">
+                        <div className='card-detail'>
                             <label>Šifra: </label>
-                            <input type="password" required/>
+                            <input type='password' name ="payPalPassword" onChange={this.handleChange} value={this.state.payPalPassword} required/>
                         </div>
-                        <div className="item3">
-                            <p/>
-                        </div>
-                        <div className="item6">
-                            <button onClick={this.state.isPlan ? this.handlePaymentPlanSubmit : this.handlePaymentMembershipSubmit}>Ulogiraj se i plati</button>
+                        <div>
+                            <button onClick={this.handlePayWithPayPal}>Ulogiraj se i plati</button>
                         </div>
                     </div> 
                 }

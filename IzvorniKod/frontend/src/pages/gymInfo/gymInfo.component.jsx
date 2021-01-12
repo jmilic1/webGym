@@ -142,107 +142,12 @@ class GymInfo extends React.Component {
                             backendUrl={this.props.backendURL}/>
                         }
                         {this.props.role === "COACH" ? 
-                            <CustomButton onClick = {this.handleJobRequestFlag}> Zamolba za posao </CustomButton>
+                            <CustomButton  onClick = {this.handleJobRequestFlag}> Zamolba za posao </CustomButton>
                             :
                             <div/>
                         }
-                    </div> 
-                    
-                    <div className='gym-info1'>
-                        <h3 id='header'>Članarine</h3>
-                        <div className='locations-container'>
-                            { this.state.memberships.length === 0 ?
-                                <h5>Ne postoje članarine za odabranu teretanu!</h5>
-                                :
-                                this.state.gym &&
-                                    <MembershipListComponent
-                                         memberships={this.state.memberships}/>
-
-                            }
-                        </div>
-                    </div>
-
-                    <div className='gym-info2'>
-                        <h3 id='header'>Lokacije</h3>
-                        <div className='locations-container'>
-                        { this.state.locations.length === 0 ?
-                            <h5>Ne postoje lokacije za odabranu teretanu!</h5>
-                            :
-                            // <p></p>
-                            this.state.gym &&
-                            <LocationListComponent
-                                locations={this.state.locations}/>
-                        }
-                            
-                        <div className='align'>
-                            {this.props.role === "OWNER" ?
-                                this.state.addLocation ?
-                                    <CustomButton onClick={this.handleChangeAddLocationFlag}> Otkaži </CustomButton>
-                                       :
-                                    <CustomButton onClick={this.handleChangeAddLocationFlag}> Dodaj lokaciju </CustomButton>
-                                :
-                                <div/>    
-                            }
-
-                            {this.state.addLocation ?
-                                <div className='grid-container'>
-                                    <div className='item1'>
-                                        <label>Država: </label>
-                                        <input type="text" name='newCountry' value={this.state.newCountry} onChange={this.handleChange} required/>
-                                    </div>   
-                                    
-                                    <div className='item2'>
-                                        <label>Grad: </label>
-                                        <input type="text" name='newCity' value={this.state.newCity} onChange={this.handleChange} required/>
-                                    </div>
-
-                                    <div className='item3'>
-                                        <label>Ulica: </label>
-                                        <input type="text" name='newStreet' value={this.state.newStreet} onChange={this.handleChange} required/>
-                                    </div>
-
-                                    <div className='item4'>
-                                        <label>Broj telefona: </label>
-                                        <input type="text" name='newPhoneNumber' value={this.state.newPhoneNumber} onChange={this.handleChange} minLength="9" maxLength="9" required/>
-                                    </div>    
-                                    
-                                    <div className='item5'>
-                                        <label>Od: </label>   
-                                        <input type="time" name='newOpensAt' value={this.state.newOpensAt} onChange={this.handleChange} required/>
-                                    </div> 
-                                        
-                                    <div className='item6'>
-                                        <label>Do: </label>
-                                        <input type="time" name='newClosesAt' value={this.state.newClosesAt} onChange={this.handleChange} required/>
-                                    </div> 
-
-                                    <div className='item7'>
-                                        <br/>    
-                                            <button onClick={this.handleNewLocationSubmit}>Dodaj</button>
-                                    </div>    
-
-                                </div>     
-                                :
-                                <div/>    
-                            }   
-                        </div>
-                    </div>
-                    </div>
-                    <div className='gym-info3'>
-                        <h3 id='header'>Treneri</h3>
-                        <div className='locations-container'>
-                            { this.state.coaches.length === 0 ?
-                                <h5>Ne postoje treneri za odabranu teretanu!</h5>
-                                :
-                                // <p></p>
-                                this.state.gym &&
-                                <CoachListComponent
-                                    coaches={this.state.coaches}/>
-                            }
-                        </div>
-                    </div>
-                {this.state.addJobRequest ?
-                            <div className='grid-container'>
+                        {this.state.addJobRequest ?
+                            <div className='grid-container-edo'>
                                 <div className='item1'>
                                     <label>Opis:</label> <br/>
                                     <textarea className="textarea" name='newJobDescription' value={this.state.newJobDescription} onChange={this.handleChange} required/>
@@ -251,11 +156,110 @@ class GymInfo extends React.Component {
                                     <button onClick={this.handleJobRequestSubmit}>Pošalji</button>
                                     <button onClick={this.handleJobRequestFlag}>Otkaži</button>
                                 </div>
-                                
+
                             </div>
                             :
                             <div/>
-                }
+                        }
+                    </div> 
+
+                    <div>
+                        <div className='gym-info1'>
+                            <h3 id='header'>Članarine</h3>
+                            <div className='locations-container'>
+                                { this.state.memberships.length === 0 ?
+                                    <h5>Ne postoje članarine za odabranu teretanu!</h5>
+                                    :
+                                    this.state.gym &&
+                                    <MembershipListComponent
+                                        memberships={this.state.memberships}/>
+
+                                }
+                            </div>
+                        </div>
+
+                        <div className='gym-info2'>
+                            <h3 id='header'>Lokacije</h3>
+                            <div className='locations-container'>
+                                { this.state.locations.length === 0 ?
+                                    <h5>Ne postoje lokacije za odabranu teretanu!</h5>
+                                    :
+                                    // <p></p>
+                                    this.state.gym &&
+                                    <LocationListComponent
+                                        locations={this.state.locations}/>
+                                }
+
+                                <div className='align'>
+                                    {this.props.role === "OWNER" ?
+                                        this.state.addLocation ?
+                                            <CustomButton onClick={this.handleChangeAddLocationFlag}> Otkaži </CustomButton>
+                                            :
+                                            <CustomButton onClick={this.handleChangeAddLocationFlag}> Dodaj lokaciju </CustomButton>
+                                        :
+                                        <div/>
+                                    }
+
+                                    {this.state.addLocation ?
+                                        <div className='grid-container'>
+                                            <div className='item1'>
+                                                <label>Država: </label>
+                                                <input type="text" name='newCountry' value={this.state.newCountry} onChange={this.handleChange} required/>
+                                            </div>
+
+                                            <div className='item2'>
+                                                <label>Grad: </label>
+                                                <input type="text" name='newCity' value={this.state.newCity} onChange={this.handleChange} required/>
+                                            </div>
+
+                                            <div className='item3'>
+                                                <label>Ulica: </label>
+                                                <input type="text" name='newStreet' value={this.state.newStreet} onChange={this.handleChange} required/>
+                                            </div>
+
+                                            <div className='item4'>
+                                                <label>Broj telefona: </label>
+                                                <input type="text" name='newPhoneNumber' value={this.state.newPhoneNumber} onChange={this.handleChange} minLength="9" maxLength="9" required/>
+                                            </div>
+
+                                            <div className='item5'>
+                                                <label>Od: </label>
+                                                <input type="time" name='newOpensAt' value={this.state.newOpensAt} onChange={this.handleChange} required/>
+                                            </div>
+
+                                            <div className='item6'>
+                                                <label>Do: </label>
+                                                <input type="time" name='newClosesAt' value={this.state.newClosesAt} onChange={this.handleChange} required/>
+                                            </div>
+
+                                            <div className='item7'>
+                                                <br/>
+                                                <button onClick={this.handleNewLocationSubmit}>Dodaj</button>
+                                            </div>
+
+                                        </div>
+                                        :
+                                        <div/>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div className='gym-info3'>
+                            <h3 id='header'>Treneri</h3>
+                            <div className='locations-container'>
+                                { this.state.coaches.length === 0 ?
+                                    <h5>Ne postoje treneri za odabranu teretanu!</h5>
+                                    :
+                                    // <p></p>
+                                    this.state.gym &&
+                                    <CoachListComponent
+                                        coaches={this.state.coaches}/>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         );

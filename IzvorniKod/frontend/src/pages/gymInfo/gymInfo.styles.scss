@@ -25,7 +25,20 @@
 }
 
 .gym-details {
-  grid-row: 1 / 4;
+  display: flex;
+  flex-flow: column;
+  justify-items: flex-start;
+  align-content: center;
+  row-gap: 20px;
+}
+
+.gym-details button{
+  width: 300px;
+}
+
+.item3 button{
+  width: 90px;
+
 }
 
 .locations-container {
@@ -226,17 +239,17 @@
   text-align: center;
 }
 
-.grid-container {
+.grid-container-edo {
   display: grid;
   grid-template-columns: auto auto auto auto;
   border: 1px solid rgba(0, 0, 0, 0.21);
-  width: 1000px;
+  width: 350px;
   border-radius: 5px;
   margin: 15px 0px;
   background-color: white;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  column-width: 1000px/6;
+  column-width: 400px/6;
 }
 
 .item1 {
@@ -277,6 +290,6 @@
 .textarea {
   resize: none;
   overflow: auto;
-  width: 700px;
+  width: 300px;
   height: 250px;
 }
