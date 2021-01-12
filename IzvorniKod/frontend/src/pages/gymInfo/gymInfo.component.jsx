@@ -87,7 +87,6 @@ class GymInfo extends React.Component {
                             { this.state.gym?.coaches.length === 0 ?
                                 <h5>Ne postoje treneri za odabranu teretanu!</h5>
                                 :
-                                // <p></p>
                                 this.state.gym &&
                                 <CoachListComponent
                                     coaches={this.state.gym?.coaches}/>

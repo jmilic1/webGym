@@ -17,9 +17,9 @@ class CoachListComponent extends React.Component {
                 </div>
                 {this.props.coaches.map(coach =>
                     <CoachMetadataContainer
-                        country = {coach.username}
-                        street = {coach.name}
-                        city = {coach.surname}
+                        username = {coach.username}
+                        name = {coach.name}
+                        surname = {coach.surname}
                         key = {coach.username}/>
                 )}
             </div>

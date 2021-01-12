@@ -1,14 +1,31 @@
 import React from 'react'
 import './gym-metadata-container.styles.scss'
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import {Link} from 'react-router-dom'
+import {AiOutlineEdit, AiOutlineInfoCircle, AiOutlineDeleteRow, AiOutlineDelete} from "react-icons/ai";
+import {IconContext} from "react-icons";
 
-const GymMetaDataContainer = ({id, name, description, email}) => (
+import {Link} from 'react-router-dom'
+import {Icon} from "@material-ui/core";
+
+const GymMetaDataContainer = ({id, name, description, email, owner= false, handleRemove}) => (
     <div className = 'gym-metadata-container'>
         <p className = 'gym-grid-content'>{name}</p>
         <p className = 'gym-grid-content'>{description}</p>
         <p className = 'gym-grid-content'>{email}</p>
-        <Link className = 'gym-grid-content' to ={`/gymInfo/${id}`}><AiOutlineInfoCircle /></Link>
+        {!owner ?
+            <p className='gym-grid-content'><Link to={`/gymInfo/${id}`}><AiOutlineInfoCircle/></Link></p>
+            :
+            <p className='gym-grid-content'>
+                <div className='gym-actions'>
+                    <Link to={`/gymInfo/${id}`}><AiOutlineInfoCircle/></Link>
+                    <Link><AiOutlineEdit/></Link>
+                    <p className='button-element'><AiOutlineDeleteRow onClick={handleRemove}/></p>
+                    {/*<IconContext.Provider value={{color: 'red'}}>
+                        <Link to={`/deleteGym/${id}`}><AiOutlineDelete/></Link>
+                    </IconContext.Provider>*/}
+                </div>
+            </p>
+        }
+
     </div>
 )
 

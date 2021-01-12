@@ -1,5 +1,6 @@
 import React from "react";
 import './membershipInfo.styles.scss'
+import CustomButton from "../../components/custom-buttom/custom-button.component";
 
 class MembershipInfo extends React.Component {
     constructor(props) {
@@ -39,57 +40,85 @@ class MembershipInfo extends React.Component {
         // await this.fetchGymName()
     }
 
-    // async fetchGymName() {
-    //     const url = this.props.backendURL + "gymInfo?";
-    //
-    //
-    //     const params = {id: this.state.membership?.idGym};
-    //     const searchParams = new URLSearchParams(params);
-    //
-    //     await fetch(url + searchParams.toString(), {
-    //         method: "GET",
-    //         headers: { 'Content-Type': 'application/json' },
-    //         credentials: 'include'
-    //     }).then(res => {
-    //         if (!res.ok) {
-    //             throw new Error("HTTP Error! " + res.status)
-    //         } else {
-    //             return res.json()
-    //         }
-    //     }).then(gym => {
-    //             this.setState({
-    //                 gym: gym
-    //             })
-    //         }
-    //     ).catch(e => {
-    //         alert("Došlo je do pogreške: " + e.message)
-    //     })
-    //     console.log(this.state.gym)
-    // }
+    async fetchGymName() {
+        const url = this.props.backendURL + "gymInfo?";
+        const params = {id: this.state.membership?.id};
+        const searchParams = new URLSearchParams(params);
+
+        await fetch(url + searchParams.toString(), {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include'
+        }).then(res => {
+            if (!res.ok) {
+                throw new Error("HTTP Error! " + res.status)
+            } else {
+                return res.json()
+            }
+        }).then(gym => {
+                this.setState({
+                    gymName: gym.name
+                })
+            }
+        ).catch(e => {
+            alert("Došlo je do pogreške: " + e.message)
+        })
+    }
+
+    handleButtonJoinClick = () => {
+        fetch(this.props.backendURL + "buyMembership", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({id: this.props.match.params.id, username: this.props.username})
+        }).then(res => {
+            if (!res.ok) {
+                throw new Error("HTTP Error! " + res.status)
+            } else {
+                alert("Uspješno ste se učlanili u odabranu teretanu!");
+            }
+        }).catch(e => {
+            alert("Došlo je do pogreške: " + e.message)
+        })
+    }
 
 
     render() {
         return (
            <div className='membership-page-container'>
                <div className='membership-container'>
-                   {this.state.membership &&
-                   <div className='user-info-form'>
-                       <div className='userInfo-formInput'>
-                           <label htmlFor='interval'>Trajanje</label>
-                           <input type='text' value={this.state.membership.interval} name='interval'
-                                  disabled={!this.state.modifyGymInfo}/>
+                   <div className='membership-info-container'>
+                       {this.state.membership &&
+                       <div className='user-info-form'>
+                           {/*<div className='userInfo-formInput'>
+                               <label htmlFor='gymName'>Ime teretane</label>
+                               <input type='text' value={this.state.gymName} name='gymName'
+                                      disabled/>
+                           </div>*/}
+                           <div className='userInfo-formInput'>
+                               <label htmlFor='interval'>Trajanje</label>
+                               <input type='text' value={this.state.membership.interval} name='interval'
+                                      disabled/>
+                           </div>
+                           <div className='userInfo-formInput'>
+                               <label htmlFor='description'>Opis</label>
+                               <input type='text' value={this.state.membership.description} name='description'
+                                      disabled/>
+                           </div>
+                           <div className='userInfo-formInput'>
+                               <label htmlFor='price'>Cijena</label>
+                               <input type='text' value={this.state.membership.price} name='price'
+                                      disabled/>
+                           </div>
+
                        </div>
-                       <div className='userInfo-formInput'>
-                           <label htmlFor='description'>Opis</label>
-                           <input type='text' value={this.state.membership.description} name='description'
-                                  disabled={!this.state.modifyGymInfo}/>
+                       }
+
+                    </div>
+                   {this.props.loggedIn && this.props.role === "CLIENT" &&
+                       <div className='button-container'>
+                           <CustomButton onClick={this.handleButtonJoinClick}>Učlani se</CustomButton>
                        </div>
-                       <div className='userInfo-formInput'>
-                           <label htmlFor='price'>Cijena</label>
-                           <input type='text' value={this.state.membership.price} name='price'
-                                  disabled={!this.state.modifyGymInfo}/>
-                       </div>
-                   </div>
                    }
                </div>
            </div>
