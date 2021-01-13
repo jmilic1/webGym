@@ -22,7 +22,7 @@ class GymInfo extends React.Component {
             locations: [],
             coaches: [],
             memberships: [],
-            showAddLocation: props.location.aboutProps.showAddLocation
+            showAddLocation: props.location.aboutProps ? props.location.aboutProps.showAddLocation : false
         }
     }
 
