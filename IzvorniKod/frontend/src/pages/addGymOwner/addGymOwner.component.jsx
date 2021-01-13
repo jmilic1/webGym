@@ -12,24 +12,45 @@ class AddGymOwner extends React.Component {
    }
 
    async componentDidMount() {
-      await fetch(this.props.backendURL + "myGyms", {
-         method: "GET",
-         headers: { 'Content-Type': 'application/json' },
-         credentials: 'include',
-      }).then(res => {
-         if (!res.ok) {
-            throw new Error("HTTP Error! " + res.status)
-         } else {
-            return res.json()
+      if (this.props.role === 'OWNER') {
+         await fetch(this.props.backendURL + "myGyms", {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+         }).then(res => {
+            if (!res.ok) {
+               throw new Error("HTTP Error! " + res.status)
+            } else {
+               return res.json()
+            }
+         }).then(gyms => {
+            this.setState({
+               gyms: gyms
+            })
          }
-      }).then(gyms => {
-         this.setState({
-            gyms: gyms
+         ).catch(e => {
+            alert("Došlo je do pogreške: " + e.message)
+         })
+      } else if (this.props.role === 'ADMIN') {
+         await fetch(this.props.backendURL + "gymList", {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+         }).then(res => {
+            if (!res.ok) {
+               throw new Error("HTTP Error! " + res.status)
+            } else {
+               return res.json()
+            }
+         }).then(gyms => {
+            this.setState({
+               gyms: gyms
+            })
+         }
+         ).catch(e => {
+            alert("Došlo je do pogreške: " + e.message)
          })
       }
-      ).catch(e => {
-         alert("Došlo je do pogreške: " + e.message)
-      })
    }
 
    handleChange = event => {
@@ -37,6 +58,10 @@ class AddGymOwner extends React.Component {
    };
 
    handleSubmitClick = () => {
+      if (this.state.gymId === 0) {
+         alert("Vaš izbor nije teretana. Molimo, izaberite teretanu.")
+         return;
+      }
       fetch(this.props.backendURL + "addGymOwner", {
          method: "POST",
          headers: { 'Content-Type': 'application/json' },
