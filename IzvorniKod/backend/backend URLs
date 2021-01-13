@@ -1,0 +1,88 @@
+GET /gymList
+    RESPONSE: List<Gym> (in json format)
+
+GET /userList
+    RESPONSE: List<User> (in json format)
+
+POST /addGym
+    REQUEST: Gym (in json format)
+    RESPONSE: String ("Added Gym")
+
+POST /registration
+    REQUEST: User (in json format)
+    RESPONSE: if successful - status 200
+              if unsuccessful - status 400 and String ("{"reason": "errorMessage"}" in json format)
+
+POST /login
+    REQUEST: User (in json format, only username and password values present)
+    RESPONSE: if successful - User (in json format)
+              if unsuccessful - status 400
+
+GET /login
+    NO REQUEST BODY
+    NO RESPONSE BODY
+    This logs the user out, the reason why this isn't mapped to /logout is because Spring Boot redirects the path "/logout" to "/login?logout"
+
+
+POST /addPlan
+    REQUEST: plan u json obliku{
+	    id:
+	    username: -> mozes zanemarit jer imamo cookie
+	    description:
+	    dateBegin:
+	    dateEnd:
+	    price:
+	    isWorkout:
+    }
+RESPONSE: STATUS 200
+
+GET /getDietPlans
+    REQUEST: nista
+RESPONSE: planovi prehrane u json obliku za trenutnog usera{
+	id:
+	username:
+	description:
+	dateBegin:
+	dateEnd:
+	price:
+	isWorkout
+}
+
+
+
+
+FOR TESTING PURPOSES:
+GET /
+    RESPONSE: "response"
+
+GET /testAuthorization/coach
+    RESPONSE: "This should only be available to coaches"
+    If the last logged in user was a coach, this page should be available
+
+GET /testAuthorization/owner
+    RESPONSE: "This should only be available to owners"
+    If the last logged in user was a owner, this page should be available
+
+GET /testAuthorization/user
+    RESPONSE: "This should only be available to users"
+    If the last logged in user was not an owner, or a coach, this page should be available
+
+GET /testAuthorization/unregistered
+    RESPONSE: "This should be available to everyone"
+    This page should always be available, regardless of logged in user
+
+GET /switchToUser
+    RESPONSE: "Switched to user"
+    Switches the current role to user
+
+GET /switchToCoach
+    RESPONSE: "Switched to coach"
+    Switches the current role to coach
+
+GET /switchToOwner
+    RESPONSE: "Switched to owner"
+    Switches the current role to owner
+
+GET /switchToUnregistered
+    RESPONSE: "Switched to owner" <-- it should say unregistered
+    Switches the current role to unregistered

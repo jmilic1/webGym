@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet  author="master"  id="create_gyms">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="gyms"/>
+            </not>
+        </preConditions>
+        <createTable  tableName="gyms">
+            <column  name="id"  type="INT">
+                <constraints  nullable="false"  primaryKey="true" primaryKeyName="PK_gym"/>
+            </column>
+            <column name="name" type="VARCHAR(50)"/>
+            <column name="city" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet  author="master"  id="create_sequence">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="gym_sequence"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="gym_sequence"/>
+    </changeSet>
+</databaseChangeLog>

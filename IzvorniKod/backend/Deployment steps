@@ -1,0 +1,14 @@
+1. Clone this branch
+
+2. Navigate to IzvorniKod/backend directory
+
+3. Log into Heroku
+
+4. Run "mvn clean heroku:deploy
+
+If you do not have permissions to web-gym2 app on heroku, create your own with "heroku create NAME-OF-APP".
+Go to pom.xml and locate "Heroku Maven Plugin Configuration" (Ctrl+f and search)
+Change <appName>web-gym2</appName> to <appName>NAME-OF-APP</appName>
+Then do step 4
+
+If you make your own app, the frontend service needs to updated with the new deployed backend URL
