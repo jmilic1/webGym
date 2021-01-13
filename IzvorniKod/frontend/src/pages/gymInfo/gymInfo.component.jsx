@@ -201,38 +201,38 @@ class GymInfo extends React.Component {
                                     }
 
                                     {this.state.addLocation ?
-                                        <div className='grid-container'>
-                                            <div className='item1'>
+                                        <div className='grid-containerLoc'>
+                                            <div className='item1Loc'>
                                                 <label>Država: </label>
                                                 <input type="text" name='newCountry' value={this.state.newCountry} onChange={this.handleChange} required/>
                                             </div>
 
-                                            <div className='item2'>
+                                            <div className='item2Loc'>
                                                 <label>Grad: </label>
                                                 <input type="text" name='newCity' value={this.state.newCity} onChange={this.handleChange} required/>
                                             </div>
 
-                                            <div className='item3'>
+                                            <div className='item3Loc'>
                                                 <label>Ulica: </label>
                                                 <input type="text" name='newStreet' value={this.state.newStreet} onChange={this.handleChange} required/>
                                             </div>
 
-                                            <div className='item4'>
+                                            <div className='item4Loc'>
                                                 <label>Broj telefona: </label>
                                                 <input type="text" name='newPhoneNumber' value={this.state.newPhoneNumber} onChange={this.handleChange} minLength="9" maxLength="9" required/>
                                             </div>
 
-                                            <div className='item5'>
+                                            <div className='item5Loc'>
                                                 <label>Od: </label>
                                                 <input type="time" name='newOpensAt' value={this.state.newOpensAt} onChange={this.handleChange} required/>
                                             </div>
 
-                                            <div className='item6'>
+                                            <div className='item6Loc'>
                                                 <label>Do: </label>
                                                 <input type="time" name='newClosesAt' value={this.state.newClosesAt} onChange={this.handleChange} required/>
                                             </div>
 
-                                            <div className='item7'>
+                                            <div className='item7Loc'>
                                                 <br/>
                                                 <button onClick={this.handleNewLocationSubmit}>Dodaj</button>
                                             </div>
