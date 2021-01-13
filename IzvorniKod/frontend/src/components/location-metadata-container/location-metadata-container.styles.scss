@@ -1,9 +1,9 @@
-.location-metadata-container{
+.location-metadata-container {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
 }
 
-.location-grid-content{
+.location-grid-content {
   display: flex;
   align-items: center;
   justify-content: center;

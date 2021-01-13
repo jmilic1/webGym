@@ -29,10 +29,10 @@ class OwnerGyms extends React.Component {
                 return res.json()
             }
         }).then(gyms => {
-                this.setState({
-                    gyms: gyms
-                })
-            }
+            this.setState({
+                gyms: gyms
+            })
+        }
         ).catch(e => {
             alert("Došlo je do pogreške: " + e.message)
         })
@@ -48,7 +48,7 @@ class OwnerGyms extends React.Component {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
-            body: JSON.stringify({name: this.state.gymName, description: this.state.gymDescription, email: this.state.gymEmail})
+            body: JSON.stringify({ name: this.state.gymName, description: this.state.gymDescription, email: this.state.gymEmail })
         }).then(res => {
             if (!res.ok) {
                 throw new Error("HTTP Error! " + res.status)
@@ -65,7 +65,7 @@ class OwnerGyms extends React.Component {
     }
 
     handleRemoveGymClick = async () => {
-        if(window.confirm("Želite li ukloniti teretanu sa svojeg popisa?") === true) {
+        if (window.confirm("Želite li ukloniti teretanu sa svojeg popisa?") === true) {
             await fetch(this.props.backendURL + "myGyms", {
                 method: "DELETE",
                 headers: { 'Content-Type': 'application/json' },
@@ -95,15 +95,15 @@ class OwnerGyms extends React.Component {
         return (
             <div className='ownerGyms-page-container'>
                 {!this.state.addGym ?
-                    <div className = 'gymList-container'>
-                        <div className = 'gymList-header-container'>
+                    <div className='gymList-container'>
+                        <div className='gymList-header-container'>
                             <h3>Ime teretane</h3>
                             <h3>Opis</h3>
                             <h3>E-mail</h3>
-                            <h3>Informacije</h3>
+                            <h3>Mogućnosti</h3>
                         </div>
                         {this.state.gyms.map(gym =>
-                            <GymMetaDataContainer handleRemove = {this.handleRemoveGymClick} id = {gym.id} name = {gym.name} description = {gym.description} email = {gym.email} owner = {true} key = {gym.id}/>
+                            <GymMetaDataContainer handleRemove={this.handleRemoveGymClick} id={gym.id} name={gym.name} description={gym.description} email={gym.email} owner={true} key={gym.id} />
                         )}
                     </div>
                     :
