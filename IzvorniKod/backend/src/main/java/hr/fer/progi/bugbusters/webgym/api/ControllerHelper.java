@@ -28,19 +28,13 @@ public class ControllerHelper {
         response.addCookie(cookie);
     }
 
-    static String deleteUser(HttpServletRequest request, HttpServletResponse response){
-        String username = null;
-
+    static void deleteUser(HttpServletRequest request, HttpServletResponse response){
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("username") || cookie.getName().equals("role")) {
-                if (cookie.getName().equals("username")) {
-                    username = cookie.getValue();
-                }
                 deleteCookie(response, cookie);
             }
         }
-        return username;
     }
 
     static String extractRoleFromCookies(HttpServletRequest request) {

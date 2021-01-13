@@ -78,8 +78,13 @@ public class UserManagementController {
 
     @DeleteMapping("/modifyUser")
     public void deleteUser(HttpServletResponse response, HttpServletRequest request) {
-        String username = ControllerHelper.deleteUser(request, response);
+        try {
+        String username = ControllerHelper.extractUsernameFromCookies(request);
         service.deleteUser(username);
+        ControllerHelper.deleteUser(request, response);}
+        catch (IllegalArgumentException ex){
+            response.setStatus(Integer.parseInt(ex.getMessage()));
+        }
     }
 
     @GetMapping("/logOut")

@@ -123,6 +123,8 @@ public class UserManagementService implements UserDetailsService {
         if (userOptional.isEmpty())
             throw new RuntimeException("Logged in user not found!");
         User user = userOptional.get();
+        if (user.getRole().equals(Role.OWNER) && user.getGymUserList().size() == 0)
+            throw new IllegalArgumentException("405");
 
         for (Goal goal:user.getGoals()){
             goalRepository.deleteById(goal.getId());
