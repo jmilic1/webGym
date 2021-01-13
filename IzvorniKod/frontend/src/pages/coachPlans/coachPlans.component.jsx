@@ -183,29 +183,29 @@ class CoachPlans extends React.Component{
                 </div>
                 
                 {this.state.addNewPlan ?
-                    <div className='grid-container'>
-                        <div className="item1">
+                    <div className='grid-containerCPlans'>
+                        <div className="item1CPlans">
                             <label>Opis:</label>
                             <br></br>
-                            <textarea className="textarea" name='newPlanDescription' value={this.state.newPlanDescription} onChange={this.handleChange} required/>
+                            <textarea className="textareaCPlans" name='newPlanDescription' value={this.state.newPlanDescription} onChange={this.handleChange} required/>
                         </div>
                         
-                        <div className="item2">
+                        <div className="item2CPlans">
                             <label>Od: </label>
                             <input type="date" onChange={(event) => this.setState({ newPlanDateFrom: event.target.value })}/>
                         </div>
                             
-                        <div className="item3">
+                        <div className="item3CPlans">
                             <label>Do: </label>
                             <input type="date" onChange={(event) => this.setState({ newPlanDateTo: event.target.value })}/>
                         </div>
 
-                        <div className="item4">
+                        <div className="item4CPlans">
                             <label>Cijena(kn): </label>
                             <input type='number' min='0' name='newPlanPrice' value={this.state.newPlanPrice} onChange={this.handleChange} />
                         </div>
                         
-                        <div className="item5">
+                        <div className="item5CPlans">
                                 <p>
                                     <button className="btn" onClick={this.handleChangeAddNewPlanFlag}>Otkaži</button>
                                     <button onClick = {this.handleBtnSaveNewPlanClick}> Spremi</button>

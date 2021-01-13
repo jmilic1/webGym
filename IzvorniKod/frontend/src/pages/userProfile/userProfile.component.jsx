@@ -24,7 +24,7 @@ class UserProfile extends React.Component{
             userPlans: [],
             transactions: [],
             userGoals: [],
-            view: props.role === "OWNER" ? TRANSACTIONS : PLANS,
+            view: (props.role === "OWNER" || props.role === "COACH") ? TRANSACTIONS : PLANS,
             addNewGoal: false,
             newGoalDescription: "",
             newGoalPercentage: 12
@@ -34,7 +34,7 @@ class UserProfile extends React.Component{
     componentDidMount() {
         var errorHappened = false
 
-        if(this.props.role === "COACH" || this.props.role === "CLIENT"){
+        if(this.props.role === "CLIENT"){
             fetch(this.props.backendURL + "userPlans" , {
                 method: 'GET',
                 credentials: 'include'
@@ -76,10 +76,11 @@ class UserProfile extends React.Component{
                     userGoals: goals
                 })
             }, function (){
-                if(errorHappened){
-                    alert("Došlo je do pogreške")
-                }
+                errorHappened = true
             })
+        }
+        if(errorHappened){
+            alert("Došlo je do pogreške")
         }
     }
 
@@ -88,11 +89,14 @@ class UserProfile extends React.Component{
             method: 'GET',
             credentials: 'include'
         }).then(response => {
-            return response.json()
+            if(response.status === 200) return response.json()
+            else return Promise.reject()
         }).then(goals => {
             this.setState({
                 userGoals: goals
             })
+        }, function(){
+            alert("Došlo je do pogreške")
         })
     }
 
@@ -116,6 +120,8 @@ class UserProfile extends React.Component{
             }).then(response => {
                 if(response.status === 200){
                     this.props.history.push("/auth")
+                } else{
+                    alert("Došlo je do pogreške prilikom brisanja profila")
                 }
             })
         }
@@ -173,14 +179,28 @@ class UserProfile extends React.Component{
             fetch(this.props.backendURL + "addUserGoal" , {
                 method: 'POST',
                 credentials: 'include',
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({description: this.state.newGoalDescription, percentage: this.state.newGoalPercentage})
+            }).then(response => {
+                if(response.status === 200){
+                    const newGoal = {
+                        description: this.state.newGoalDescription,
+                        percentCompleted: this.state.newGoalPercentage
+                    }
+                    const newGoalsArray = this.state.userGoals
+                    newGoalsArray.push(newGoal)
+                    this.setState({
+                        newGoalDescription: "",
+                        newGoalPercentage: 0,
+                        addNewGoal: false,
+                        userGoals: newGoalsArray
+                    })
+                    alert("Promjene su uspješno spremljene")
+                    this.refreshUserGoals()
+                }else{
+                    alert("Došlo je do pogreške")
+                }
             })
-            this.setState({
-                newGoalDescription: "",
-                newGoalPercentage: 0,
-                addNewGoal: false
-            })
-            this.refreshUserGoals()
         } else{
             alert("Postotak ne može ostati prazan")
         }
@@ -212,7 +232,7 @@ class UserProfile extends React.Component{
                             </div>
                             <div className='userInfo-formInput'>
                                 <label htmlFor='username'>Korisničko ime</label>
-                                <input type='text' value={this.state.username} name='username' disabled={!this.state.modifyUserInfo}
+                                <input type='text' value={this.state.username} name='username' disabled={true}
                                        onChange={this.handleChange}/>
                             </div>
                             {this.state.modifyUserInfo &&
@@ -239,15 +259,12 @@ class UserProfile extends React.Component{
                     </div>
                 </div>
 
-                {(this.state.view === PLANS && (this.props.role === "CLIENT" || this.props.role === "COACH")) &&
+                {(this.state.view === PLANS && (this.props.role === "CLIENT")) &&
                     <div className='userPlans-and-transactions-container'>
                         <div className='view-btns-container'>
                             <p className='active-view-btn'>Planovi</p>
                             <p className='passive-view-btn' onClick={this.handleShowTransactionViewClick}>Transakcije</p>
-                            {this.props.role === 'CLIENT' &&
-                                <p className='passive-view-btn' onClick={this.handleShowGoalsViewClick}>Ciljevi</p>
-                            }
-
+                            <p className='passive-view-btn' onClick={this.handleShowGoalsViewClick}>Ciljevi</p>
                         </div>
                         {
                             this.state.userPlans.map(plan =>
@@ -261,7 +278,7 @@ class UserProfile extends React.Component{
                 {this.state.view === TRANSACTIONS &&
                     <div className='userPlans-and-transactions-container'>
                         <div className='view-btns-container'>
-                            {(this.props.role === 'CLIENT' || this.props.role === 'COACH')&&
+                            {(this.props.role === 'CLIENT')&&
                             <p className='passive-view-btn' onClick={this.handleShowPlanViewClick}>Planovi</p>
                             }
                             <p className='active-view-btn'>Transakcije</p>
@@ -306,7 +323,7 @@ class UserProfile extends React.Component{
                         }
                         {
                         this.state.userGoals.map(goal =>
-                            <UserGoal id = {goal.id} key = {goal.id} description={goal.description} percentage={goal.percentage} update = {false}/>)
+                            <UserGoal refreshUserGoals = {this.refreshUserGoals} backendURL = {this.props.backendURL} id = {goal.id} key = {goal.id} description={goal.description} percentage={goal.percentCompleted} update = {false}/>)
                         }
                     </div>
                 }

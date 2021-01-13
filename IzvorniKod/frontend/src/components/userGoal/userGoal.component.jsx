@@ -31,7 +31,7 @@ class UserGoal extends React.Component {
     }
     handleDescriptionChange = (e) =>{
         this.setState({
-            newDescription: parseInt(e.target.value, 10)
+            newDescription: e.target.value
         })
     }
 
@@ -41,19 +41,23 @@ class UserGoal extends React.Component {
             fetch(this.props.backendURL + "modifyUserGoal" , {
                 method: 'POST',
                 credentials: 'include',
-                body: JSON.stringify({id: this.props.id, description: this.state.description, percentage: this.state.newPercentage})
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({id: this.props.id, description: this.state.newDescription, percentage: this.state.newPercentage})
             }).then(response => {
                 if(response.status === 200){
                     alert("Promjene su spremljene")
+                    this.setState({
+                        update: false,
+                        description: this.state.newDescription,
+                        percentage: this.state.newPercentage,
+                        newPercentage: 0,
+                        newDescription: ""
+                    })
+                    this.props.refreshUserGoals()
                 } else{
                     alert("Došlo je do pogreške prilikom spremanja promjena")
                 }
             })
-
-            this.setState({
-                update: false
-            })
-            window.location.reload()
         } else{
             alert("Postotak ne može ostati prazan")
         }

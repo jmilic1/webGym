@@ -1,0 +1,10 @@
+.user-metadata-container-forcoach{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.user-grid-content-forcoach{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
