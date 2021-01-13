@@ -277,13 +277,32 @@ public class UserController {
         String username = ControllerHelper.extractUsernameFromCookies(request);
         String role = ControllerHelper.extractRoleFromCookies(request);
 
-        if (role == null || !role.equals("CLIENT")) {
+        if (role == null || !role.equals("COACH")) {
             response.setStatus(403);
             return null;
         }
 
         try {
             List<UserDto> userDtoList = userService.getMyClients(username);
+            response.setStatus(200);
+            return userDtoList;
+        } catch (Exception e) {
+            response.setStatus(Integer.parseInt(e.getMessage()));
+            return null;
+        }
+    }
+
+    @GetMapping("/owners")
+    public List<UserDto> getOwners(HttpServletRequest request, HttpServletResponse response) {
+        String role = ControllerHelper.extractRoleFromCookies(request);
+
+        if (role == null || !role.equals("OWNER")) {
+            response.setStatus(403);
+            return null;
+        }
+
+        try {
+            List<UserDto> userDtoList = userService.getOwners();
             response.setStatus(200);
             return userDtoList;
         } catch (Exception e) {

@@ -156,6 +156,17 @@ public class UserService {
         return userDtoList;
     }
 
+    public List<UserDto> getOwners() {
+        List<User> users = userRepository.findAll();
+        List<UserDto> userDtos = new ArrayList<>();
+        for (User user: users) {
+            if (user.getRole() == Role.OWNER)
+                userDtos.add(Mappers.mapUserToDto(user));
+        }
+
+        return userDtos;
+    }
+
     public void modifyGoal(GoalDto dto, String username) {
         Optional<User> userOptional = userRepository.findById(username);
         if (userOptional.isEmpty())
