@@ -21,4 +21,10 @@ public class JobRequest {
     private Gym gym;
     private String description;
     private JobRequestState state;
+
+    @Override
+    public String toString(){
+        return "id: " + id + ", gym.id: " + gym.getId() + ", user.username: " + user.getUsername() + ", description: " + description
+                + ", state: " + state;
+    }
 }

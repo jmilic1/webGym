@@ -1,6 +1,5 @@
 package hr.fer.progi.bugbusters.webgym.api;
 
-import hr.fer.progi.bugbusters.webgym.model.Role;
 import hr.fer.progi.bugbusters.webgym.model.User;
 import hr.fer.progi.bugbusters.webgym.service.TestService;
 import hr.fer.progi.bugbusters.webgym.service.UserManagementService;
@@ -14,75 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class TestController {
-    private UserManagementService service;
     private TestService testService;
 
     private Boolean called = false;
 
-    /**
-     * Constructs MainController and wires it with the service.
-     *
-     * @param userManagementService Service which returns the Gym instances
-     */
     @Autowired
-    public TestController(@Qualifier("userManagementService") UserManagementService userManagementService, @Qualifier("testService") TestService testService) {
-        this.service = userManagementService;
+    public TestController(@Qualifier("testService") TestService testService) {
         this.testService = testService;
     }
 
     @GetMapping("/")
     public String getString(){
         return "response";
-    }
-
-    @GetMapping("/testAuthorization/coach")
-    public String coachSite(){
-        return "This should only be available to coaches";
-    }
-
-    @GetMapping("/testAuthorization/owner")
-    public String ownerSite(){
-        return "This should only be available to owners";
-    }
-
-    @GetMapping("/testAuthorization/user")
-    public String userSite(){
-        return "This should only be available to users";
-    }
-
-    @GetMapping("/testAuthorization/unregistered")
-    public String unregisteredSite(){
-        return "This should be available to everyone";
-    }
-
-    @GetMapping("/switchToUser")
-    public String switchToUser(HttpServletResponse response){
-        User user = new User();
-        user.setRole(Role.CLIENT);
-        UserManagementController.changeRole(user);
-        return "Switched to user!";
-    }
-
-    @GetMapping("/switchToCoach")
-    public String switchToCoach(HttpServletResponse response){
-        User user = new User();
-        user.setRole(Role.COACH);
-        UserManagementController.changeRole(user);
-        return "Switched to coach!";
-    }
-
-    @GetMapping("/switchToOwner")
-    public String switchToOwner(HttpServletResponse response){
-        User user = new User();
-        user.setRole(Role.OWNER);
-        UserManagementController.changeRole(user);
-        return "Switched to owner!";
-    }
-
-    @GetMapping("/switchToUnregistered")
-    public String switchToUnregistered(HttpServletResponse response){
-        UserManagementController.changeRole(null);
-        return "Switched to owner!";
     }
 
     @GetMapping("/populateDatabase")

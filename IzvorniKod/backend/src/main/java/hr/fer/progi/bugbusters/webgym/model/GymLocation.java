@@ -6,7 +6,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.List;
 
 @Data
 @Entity
@@ -23,4 +22,11 @@ public class GymLocation {
     private Time opensAt;
     private Time closesAt;
     private String phoneNumber;
+
+    @Override
+    public String toString(){
+        return "id: " + id + ", gym.id: " + gym.getId() + ", country: " + country + ", city: " + city
+                + ", street: " + street + ", opensAt: " + opensAt + ", closesAt: " + closesAt
+                + ", phoneNumber: " + phoneNumber;
+    }
 }

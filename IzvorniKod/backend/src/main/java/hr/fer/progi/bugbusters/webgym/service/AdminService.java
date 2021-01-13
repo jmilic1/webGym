@@ -40,7 +40,9 @@ public class AdminService {
     }
 
     public List<PlanDto> getAllPlans() {
-        return planRepository.findAll().stream().map(Mappers::mapPlanToPlanDto).collect(Collectors.toList());
+        return planRepository.findAll().stream()
+                .map(Mappers::mapPlanToDto)
+                .collect(Collectors.toList());
     }
 
 }

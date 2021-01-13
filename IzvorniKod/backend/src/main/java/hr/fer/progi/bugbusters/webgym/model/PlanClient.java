@@ -19,4 +19,9 @@ public class PlanClient {
     @JoinColumn(name="username")
     private User client;
     private Date dateBought;
+
+    @Override
+    public String toString(){
+        return "id: " + id;
+    }
 }

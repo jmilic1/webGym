@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -49,21 +51,27 @@ public class GymService {
         this.modelMapper = modelMapper;
     }
 
-    public List<Gym> listGyms() {
+    public List<GymDto> listGyms() {
         Iterable<Gym> it = gymRepository.findAll();
         List<Gym> gyms = new ArrayList<>();
 
         for (Gym gym : it) {
             gyms.add(gym);
         }
-        return gyms;
+        return gyms
+                .stream()
+                .map(Mappers::mapGymToDto)
+                .collect(Collectors.toList());
     }
 
-    public boolean addGym(String username, Gym gym) {
+    public boolean addGym(String username, GymDto dto) {
         Optional<User> optionalUser = userRepository.findById(username);
         if (optionalUser.isEmpty()) return false;
+
         User user = optionalUser.get();
         if (user.getRole() != Role.OWNER) return false;
+
+        Gym gym = Mappers.mapDtoToGym(dto);
 
         GymUser gymUser = new GymUser();
         gymUser.setGym(gym);
@@ -77,11 +85,8 @@ public class GymService {
 
     public GymLocation getGymLocation(Long id) {
         Optional<GymLocation> opGymLoc = gymLocationRepository.findById(id);
-        if (opGymLoc.isPresent()) {
-            return opGymLoc.get();
-        }
+        return opGymLoc.orElse(null);
 
-        return null;
     }
 
     public GymInfoDto getGymInfo(Long id) {
@@ -94,30 +99,28 @@ public class GymService {
 
         List<GymLocation> gymLocations = gym.getGymLocations();
         List<GymLocationDto> gymLocationDtoList = gymLocations.stream()
-                .map(x -> modelMapper.map(x, GymLocationDto.class))
+                .map(Mappers::mapLocationToDto)
                 .collect(Collectors.toList());
 
         List<Membership> memberships = gym.getMemberships();
         List<MembershipDto> membershipDtoList = memberships.stream()
-                .map(x -> modelMapper.map(x, MembershipDto.class))
+                .map(Mappers::mapMembershipToDto)
                 .collect(Collectors.toList());
 
         List<User> coaches = new ArrayList<>();
-        //if (gymLocations != null) {
-        for (GymLocation gymLocation : gymLocations) {
-            List<GymUser> gymUserList = gym.getGymUsers();
-            if (gymUserList != null) {
-                for (GymUser gymUser : gymUserList) {
-                    User user = gymUser.getUser();
-                    if (user != null) {
-                        coaches.add(user);
-                    }
+
+        List<GymUser> gymUserList = gym.getGymUsers();
+        if (gymUserList != null) {
+            for (GymUser gymUser : gymUserList) {
+                User user = gymUser.getUser();
+                if (user != null && user.getRole().equals(Role.COACH)) {
+                    coaches.add(user);
                 }
             }
         }
-        //}
+
         List<UserDto> coachDtoList = coaches.stream()
-                .map(x -> modelMapper.map(x, UserDto.class))
+                .map(Mappers::mapUserToDto)
                 .collect(Collectors.toList());
 
         GymInfoDto gymInfoDto = modelMapper.map(gym, GymInfoDto.class);
@@ -128,32 +131,67 @@ public class GymService {
         return gymInfoDto;
     }
 
-    public void createGymLocation(GymLocation gymLocation){
-        gymLocationRepository.save(gymLocation);
+    public void createGymLocation(GymLocationDto dto, String username) {
+
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+
+        User user = optionalUser.get();
+        if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
+
+        Optional<Gym> optionalGym = gymRepository.findById(dto.getId());
+        if (optionalGym.isEmpty()) throw new IllegalArgumentException("400");
+        Gym gym = optionalGym.get();
+
+        boolean ownsGym = false;
+        for (GymUser gymUser : gymUserRepository.findByGym(gym)) {
+            if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
+        }
+        if (!ownsGym) throw new IllegalArgumentException("403");
+
+        List<GymLocation> gymLocationList = gymLocationRepository.findAll();
+        for (GymLocation location : gymLocationList) {
+            if (location.getCity().equals(dto.getCity())
+                    && location.getCountry().equals(dto.getCountry())
+                    && location.getStreet().equals(dto.getStreet())) return;
+        }
+        Optional<GymLocation> gymLocation = gymLocationRepository.findById(dto.getId());
+        if (gymLocation.isPresent()) return;
+
+        GymLocation location = Mappers.mapDtoToLocation(dto, gym);
+        gymLocationRepository.save(location);
     }
 
-    public Membership getMembership(Long id){
-        return membershipRepository.findById(id).get();
+    public MembershipDto getMembership(Long id) {
+        Optional<Membership> membership = membershipRepository.findById(id);
+        if (membership.isEmpty()) throw new IllegalArgumentException("403");
+
+        return Mappers.mapMembershipToDto(membership.get());
     }
 
-    public void createMembership(Membership membership){
+    public void createMembership(MembershipDto dto) {
+        Optional<Membership> membershipOptional = membershipRepository.findById(dto.getId());
+        if (membershipOptional.isPresent()) return;
+
+        Membership membership = Mappers.mapDtoToMembership(dto);
         membershipRepository.save(membership);
     }
 
     public List<GymDto> getMyGyms(String username) {
         Optional<User> optionalUser = userRepository.findById(username);
 
-        if (optionalUser.isEmpty()) return null;
+        if (optionalUser.isEmpty()) throw new RuntimeException("Logged in user not found!");
         User user = optionalUser.get();
 
-        if (user.getRole() != Role.COACH && user.getRole() != Role.OWNER) return null;
+        if (user.getRole() != Role.COACH && user.getRole() != Role.OWNER)
+            throw new RuntimeException("Only users with roles COACH or OWNER can view their gyms!");
 
         List<GymDto> gymDtoList = new ArrayList<>();
 
         List<GymUser> gymUserList = gymUserRepository.findByUser(user);
-        for (GymUser gymUser: gymUserList) {
+        for (GymUser gymUser : gymUserList) {
             Gym gym = gymUser.getGym();
-            gymDtoList.add(modelMapper.map(gym, GymDto.class));
+            gymDtoList.add(Mappers.mapGymToDto(gym));
         }
 
         return gymDtoList;
@@ -162,15 +200,16 @@ public class GymService {
     public void deleteMyGym(long id, String username) {
         Optional<User> optionalUser = userRepository.findById(username);
         if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+
         User user = optionalUser.get();
         if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
 
         Optional<Gym> optionalGym = gymRepository.findById(id);
-        if (optionalGym.isEmpty()) throw new IllegalArgumentException("404");
+        if (optionalGym.isEmpty()) throw new IllegalArgumentException("400");
         Gym gym = optionalGym.get();
 
         boolean ownsGym = false;
-        for (GymUser gymUser: gymUserRepository.findByGym(gym)) {
+        for (GymUser gymUser : gymUserRepository.findByGym(gym)) {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
         if (!ownsGym) throw new IllegalArgumentException("403");
@@ -182,7 +221,7 @@ public class GymService {
 
         deleteFromRepo(gymUserList, gymUserRepository);
         deleteFromRepo(gymLocationList, gymLocationRepository);
-        for (Membership membership: membershipList) {
+        for (Membership membership : membershipList) {
             List<MembershipUser> membershipUserList = membership.getMembershipUserList();
             deleteFromRepo(membershipUserList, membershipUserRepository);
             membershipRepository.delete(membership);
@@ -195,16 +234,17 @@ public class GymService {
     public void deleteGymLocation(long id, String username) {
         Optional<User> optionalUser = userRepository.findById(username);
         if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+
         User user = optionalUser.get();
         if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
 
         Optional<GymLocation> optionalGymLocation = gymLocationRepository.findById(id);
-        if (optionalGymLocation.isEmpty()) throw new IllegalArgumentException("404");
+        if (optionalGymLocation.isEmpty()) throw new IllegalArgumentException("400");
         GymLocation gymLocation = optionalGymLocation.get();
 
         Gym gym = gymLocation.getGym();
         boolean ownsGym = false;
-        for (GymUser gymUser: gym.getGymUsers()) {
+        for (GymUser gymUser : gym.getGymUsers()) {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
         if (!ownsGym) throw new IllegalArgumentException("403");
@@ -224,7 +264,7 @@ public class GymService {
 
         Gym gym = gymLocation.getGym();
         boolean ownsGym = false;
-        for (GymUser gymUser: gym.getGymUsers()) {
+        for (GymUser gymUser : gym.getGymUsers()) {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
         if (!ownsGym) throw new IllegalArgumentException("403");
@@ -236,17 +276,19 @@ public class GymService {
     public List<JobRequestDto> getAllJobRequests(String username) {
         Optional<User> optionalUser = userRepository.findById(username);
         if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+
         User user = optionalUser.get();
         if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
 
         List<JobRequestDto> jobRequestDtoList = new ArrayList<>();
 
         List<GymUser> gymUserList = user.getGymUserList();
-        for (GymUser gymUser: gymUserList) {
+        for (GymUser gymUser : gymUserList) {
             List<JobRequest> jobRequestList = gymUser.getGym().getJobRequests();
-            for (JobRequest jobRequest: jobRequestList) {
+            for (JobRequest jobRequest : jobRequestList) {
                 if (jobRequest.getState() != JobRequestState.IN_REVIEW) continue;
-                jobRequestDtoList.add(Mappers.mapJobRequestToDto(jobRequest, gymUser.getGym(), modelMapper.map(jobRequest.getUser(), CoachDto.class)));
+
+                jobRequestDtoList.add(Mappers.mapJobRequestToDto(jobRequest));
             }
         }
 
@@ -256,50 +298,58 @@ public class GymService {
     public void responseForJobRequest(JobResponseDto jobResponseDto, String username) {
         Optional<User> optionalUser = userRepository.findById(username);
         if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+
         User user = optionalUser.get();
         if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
 
         Optional<JobRequest> optionalJobRequest = jobRequestRepository.findById(jobResponseDto.getReqId());
-        if (optionalJobRequest.isEmpty()) throw new IllegalArgumentException("404");
+        if (optionalJobRequest.isEmpty()) throw new IllegalArgumentException("400");
         JobRequest jobRequest = optionalJobRequest.get();
 
         boolean ownsGym = false;
-        for (GymUser gymUser: jobRequest.getGym().getGymUsers()) {
+        for (GymUser gymUser : jobRequest.getGym().getGymUsers()) {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
         if (!ownsGym) throw new IllegalArgumentException("403");
 
-        if (jobResponseDto.getResponse()) jobRequest.setState(JobRequestState.APPROVED);
-        else jobRequest.setState(JobRequestState.DENIED);
+        if (jobResponseDto.getResponse()) {
+            if (jobRequest.getState().equals(JobRequestState.APPROVED)) {
+                return;
+            }
+            jobRequest.setState(JobRequestState.APPROVED);
+            GymUser gymUser = createGymUser(jobRequest);
+            gymUserRepository.save(gymUser);
+        } else jobRequest.setState(JobRequestState.DENIED);
 
         jobRequestRepository.save(jobRequest);
-
-        GymUser gymUser = new GymUser();
-        gymUser.setGym(jobRequest.getGym());
-        gymUser.setUser(jobRequest.getUser());
-        gymUser.setWorkDateBegin(Date.valueOf(LocalDate.now()));
-        gymUserRepository.save(gymUser);
     }
 
     public void addGymOwner(AddGymOwnerDto addGymOwnerDto, String username) {
         Optional<User> optionalUser = userRepository.findById(username);
         if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+
         User user = optionalUser.get();
         if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
 
         Optional<User> optionalNewOwner = userRepository.findById(addGymOwnerDto.getUsername());
-        if (optionalNewOwner.isEmpty()) throw new IllegalArgumentException("404");
+        if (optionalNewOwner.isEmpty()) throw new IllegalArgumentException("400");
         User newOwner = optionalNewOwner.get();
 
         Optional<Gym> optionalGym = gymRepository.findById(addGymOwnerDto.getGymId());
-        if (optionalGym.isEmpty()) throw new IllegalArgumentException("404");
+        if (optionalGym.isEmpty()) throw new IllegalArgumentException("400");
         Gym gym = optionalGym.get();
 
         boolean ownsGym = false;
-        for (GymUser gymUser: gym.getGymUsers()) {
+        for (GymUser gymUser : gym.getGymUsers()) {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
         if (!ownsGym) throw new IllegalArgumentException("403");
+
+        List<GymUser> gymUserList = gymUserRepository.findAll();
+        for (GymUser gymUser : gymUserList) {
+            if (gymUser.getUser().getUsername().equals(newOwner.getUsername())
+                    && gymUser.getGym().getId().equals(gym.getId())) throw new IllegalArgumentException("403");
+        }
 
         GymUser gymUser = new GymUser();
         gymUser.setWorkDateBegin(java.util.Date.from(Instant.now()));
@@ -310,19 +360,34 @@ public class GymService {
     }
 
     private static GymLocation mapToGymLocation(GymLocation gymLocation, GymLocationDto gymLocationDto) {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+
         if (gymLocationDto.getCity() != null) gymLocation.setCity(gymLocationDto.getCity());
-        if (gymLocationDto.getClosesAt() != null) gymLocation.setClosesAt(Time.valueOf(gymLocationDto.getClosesAt()));
         if (gymLocationDto.getCountry() != null) gymLocation.setCountry(gymLocationDto.getCountry());
-        if (gymLocationDto.getOpensAt() != null) gymLocation.setOpensAt(Time.valueOf(gymLocationDto.getOpensAt()));
         if (gymLocationDto.getPhoneNumber() != null) gymLocation.setPhoneNumber(gymLocationDto.getPhoneNumber());
         if (gymLocationDto.getStreet() != null) gymLocation.setStreet(gymLocationDto.getStreet());
+
+        try {
+            if (gymLocationDto.getClosesAt() != null) gymLocation.setClosesAt(new Time(sdf.parse(gymLocationDto.getClosesAt()).getTime()));
+            if (gymLocationDto.getOpensAt() != null) gymLocation.setOpensAt(new Time(sdf.parse(gymLocationDto.getOpensAt()).getTime()));
+        } catch (ParseException ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
 
         return gymLocation;
     }
 
     private static <T, S extends JpaRepository<T, Long>> void deleteFromRepo(List<T> deleteList, S repo) {
-        for (T element: deleteList) {
+        for (T element : deleteList) {
             repo.delete(element);
         }
+    }
+
+    private GymUser createGymUser(JobRequest jobRequest) {
+        GymUser gymUser = new GymUser();
+        gymUser.setGym(jobRequest.getGym());
+        gymUser.setUser(jobRequest.getUser());
+        gymUser.setWorkDateBegin(Date.valueOf(LocalDate.now()));
+        return gymUser;
     }
 }

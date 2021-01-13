@@ -3,16 +3,11 @@ package hr.fer.progi.bugbusters.webgym.service;
 import hr.fer.progi.bugbusters.webgym.dao.*;
 import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
 import hr.fer.progi.bugbusters.webgym.model.*;
-import hr.fer.progi.bugbusters.webgym.model.dto.PlanClientDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.PlanDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.TransactionDto;
-import hr.fer.progi.bugbusters.webgym.model.dto.UserDto;
-import org.modelmapper.ModelMapper;
+import hr.fer.progi.bugbusters.webgym.model.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.sql.Date;
 import java.time.Instant;
 import java.util.*;
@@ -28,7 +23,6 @@ public class UserService {
     GoalRepository goalRepository;
     PlanClientRepository planClientRepository;
     MembershipUserRepository membershipUserRepository;
-    ModelMapper modelMapper;
 
     @Autowired
     public UserService(@Qualifier("userRep") UserRepository userRepository,
@@ -36,55 +30,46 @@ public class UserService {
                        @Qualifier("membershipRep") MembershipRepository membershipRepository,
                        @Qualifier("goalRep") GoalRepository goalRepository,
                        @Qualifier("planClientRep") PlanClientRepository planClientRepository,
-                       @Qualifier("membershipUserRep") MembershipUserRepository membershipUserRepository,
-                       ModelMapper modelMapper){
+                       @Qualifier("membershipUserRep") MembershipUserRepository membershipUserRepository) {
         this.userRepository = userRepository;
         this.planRepository = planRepository;
         this.membershipRepository = membershipRepository;
         this.goalRepository = goalRepository;
         this.planClientRepository = planClientRepository;
         this.membershipUserRepository = membershipUserRepository;
-        this.modelMapper = modelMapper;
     }
 
-    public List<User> listUsers() {
-        return userRepository.findAll();
-       /* List<UserDto> users = new ArrayList<>();
+    public List<UserDto> listUsers() {
+        Iterable<User> it = userRepository.findAll();
+        List<User> users = new ArrayList<>();
 
         for (User user : it) {
-            // sredi kasnije mapping
-            UserDto userDto = new UserDto();
-
-            userDto.setName(user.getName());
-            userDto.setSurname(user.getSurname());
-            userDto.setUsername(user.getUsername());
-            userDto.setRole(user.getRole());
-            userDto.setEmail(user.getEmail());
-            userDto.setWeight(user.getWeight());
-            userDto.setHeight(user.getHeight());
-            userDto.setPayPalAccount(user.getPayPalAccount());
-
-            users.add(userDto);
+            users.add(user);
         }
-        return users;*/
+        return users
+                .stream()
+                .map(Mappers::mapUserToDto)
+                .collect(Collectors.toList());
     }
 
-    public List<Plan> getUserDietPlans(String username) {
+    public List<PlanDto> getUserDietPlans(String username) {
         return getSpecificPlans(username, Plan::getIsTraining);
     }
 
-    public List<Plan> getUserWorkoutPlans(String username) {
+    public List<PlanDto> getUserWorkoutPlans(String username) {
         return getSpecificPlans(username, plan -> !plan.getIsTraining());
     }
 
-    public List<Goal> getUserGoals(String username) {
+    public List<GoalDto> getUserGoals(String username) {
         Optional<User> optionalUser = userRepository.findById(username);
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             List<Goal> goals = user.getGoals();
 
-            return goals;
+            return goals.stream()
+                    .map(Mappers::mapGoalToDto)
+                    .collect(Collectors.toList());
         } else {
             throw new RuntimeException("Currently logged in user not found!");
         }
@@ -92,31 +77,28 @@ public class UserService {
 
     public void buyMembership(String username, Long membershipId) {
         Optional<User> optionalUser = userRepository.findById(username);
-        if (optionalUser.isEmpty()) throw new IllegalArgumentException("404");
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
+
         User user = optionalUser.get();
         if (user.getRole() != Role.CLIENT) throw new IllegalArgumentException("403");
 
         Optional<Membership> optionalMembership = membershipRepository.findById(membershipId);
-        if (optionalMembership.isEmpty()) throw new IllegalArgumentException("404");
+        if (optionalMembership.isEmpty()) throw new IllegalArgumentException("403");
         Membership membership = optionalMembership.get();
 
-        MembershipUser membershipUser = new MembershipUser();
-        membershipUser.setDateBegin(java.util.Date.from(Instant.now()));
-        membershipUser.setDateEnd(java.util.Date.from(Instant.now())); // TU CE TREBAT DODAT INTERVAL
-        membershipUser.setMembership(membership);
-        membershipUser.setUser(user);
-
+        MembershipUser membershipUser = Mappers.mapDtoToMembershipUser(membership, user);
         membershipUserRepository.save(membershipUser);
     }
 
     public void buyPlan(String username, Long planId) {
         Optional<User> optionalUser = userRepository.findById(username);
         if (optionalUser.isEmpty()) throw new IllegalArgumentException("404");
+
         User user = optionalUser.get();
         if (user.getRole() != Role.CLIENT) throw new IllegalArgumentException("403");
 
         Optional<Plan> optionalPlan = planRepository.findById(planId);
-        if (optionalPlan.isEmpty()) throw new IllegalArgumentException("404");
+        if (optionalPlan.isEmpty()) throw new IllegalArgumentException("403");
         Plan plan = optionalPlan.get();
 
         PlanClient planClient = new PlanClient();
@@ -131,19 +113,20 @@ public class UserService {
         Optional<User> optionalLogedUser = userRepository.findById(logedUsername);
         if (optionalLogedUser.isEmpty()) throw new IllegalArgumentException("403");
         User logedUser = optionalLogedUser.get();
-        if (logedUser.getRole() != Role.COACH && logedUser.getRole() != Role.ADMIN) throw new IllegalArgumentException("403");
+        if (logedUser.getRole() != Role.COACH && logedUser.getRole() != Role.ADMIN)
+            throw new IllegalArgumentException("403");
 
         Optional<User> optionalUser = userRepository.findById(username);
-        if (optionalUser.isEmpty()) throw new IllegalArgumentException("404");
+        if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
         User user = optionalUser.get();
-        if (user.isEnabled()) throw new IllegalArgumentException("404");
+        if (user.isEnabled()) throw new IllegalArgumentException("403");
 
-        if (logedUser.getRole() == Role.ADMIN) return modelMapper.map(user, UserDto.class);
+        if (logedUser.getRole() == Role.ADMIN) return Mappers.mapUserToDto(user);
         // For coach check if user has bought his plan
-        for (Plan plan: logedUser.getPlans()) {
-            for (PlanClient planClient: planClientRepository.findByPlan(plan)) {
+        for (Plan plan : logedUser.getPlans()) {
+            for (PlanClient planClient : planClientRepository.findByPlan(plan)) {
                 if (planClient.getClient().getUsername().equals(username)) {
-                    return modelMapper.map(user, UserDto.class);
+                    return Mappers.mapUserToDto(user);
                 }
             }
         }
@@ -158,36 +141,56 @@ public class UserService {
         if (user.getRole() != Role.COACH) throw new IllegalArgumentException("403");
 
         Set<String> clientSet = new HashSet<>();
-        for (Plan plan: user.getPlans()) {
-            for (PlanClient planClient: planClientRepository.findByPlan(plan)) {
+        for (Plan plan : user.getPlans()) {
+            for (PlanClient planClient : planClientRepository.findByPlan(plan)) {
                 clientSet.add(planClient.getClient().getUsername());
             }
         }
 
         List<UserDto> userDtoList = new ArrayList<>();
-        for (String clientUsername: clientSet) {
+        for (String clientUsername : clientSet) {
             Optional<User> optionalClient = userRepository.findById(clientUsername);
-            if (optionalClient.isPresent()) userDtoList.add(modelMapper.map(optionalClient.get(), UserDto.class));
+            optionalClient.ifPresent(value -> userDtoList.add(Mappers.mapUserToDto(value)));
         }
 
         return userDtoList;
     }
 
-    public void modifyGoal(Goal goal, String username){
+    public List<UserDto> getOwners() {
+        List<User> users = userRepository.findAll();
+        List<UserDto> userDtos = new ArrayList<>();
+        for (User user: users) {
+            if (user.getRole() == Role.OWNER)
+                userDtos.add(Mappers.mapUserToDto(user));
+        }
+
+        return userDtos;
+    }
+
+    public void modifyGoal(GoalDto dto, String username) {
         Optional<User> userOptional = userRepository.findById(username);
         if (userOptional.isEmpty())
             throw new IllegalArgumentException("403");
-        goal.setUser(userOptional.get());
+
+        Optional<Goal> goalOptional = goalRepository.findById(dto.getId());
+        if (goalOptional.isEmpty()) throw new IllegalArgumentException("400");
+
+        if (!goalOptional.get().getUser().getUsername().equals(username))
+            throw new IllegalArgumentException("403");
+
+        Goal goal = Mappers.mapToGoal(goalOptional.get(), dto, userOptional.get());
         goalRepository.save(goal);
     }
 
-    public void addGoal(Goal goal, String username){
+    public void addGoal(GoalDto dto, String username) {
         Optional<User> user = userRepository.findById(username);
 
-        if (user.isPresent()){
+        if (user.isPresent()) {
             User myUser = user.get();
-            goal.setUser(myUser);
+            Goal goal = Mappers.mapDtoToGoal(dto, myUser);
             goalRepository.save(goal);
+        } else {
+            throw new RuntimeException("Logged in user not found in database!");
         }
     }
 
@@ -199,12 +202,14 @@ public class UserService {
             List<PlanClient> planClients = user.getClientPlans();
 
             List<Plan> plans = new ArrayList<>();
-            for (PlanClient planClient: planClients) {
+            for (PlanClient planClient : planClients) {
                 Optional<Plan> optionalPlan = planRepository.findById(planClient.getId());
-                if (optionalPlan.isPresent()) plans.add(optionalPlan.get());
+                optionalPlan.ifPresent(plans::add);
             }
 
-            return plans.stream().map(Mappers::mapPlanToPlanDto).collect(Collectors.toList());
+            return plans.stream()
+                    .map(Mappers::mapPlanToDto)
+                    .collect(Collectors.toList());
         }
 
         return null;
@@ -228,7 +233,7 @@ public class UserService {
         return true;
     }
 
-    private List<Plan> getSpecificPlans(String username, Predicate<Plan> remove){
+    private List<PlanDto> getSpecificPlans(String username, Predicate<Plan> remove) {
         Optional<User> optionalUser = userRepository.findById(username);
 
         if (optionalUser.isPresent()) {
@@ -237,7 +242,9 @@ public class UserService {
 
             plans.removeIf(remove);
 
-            return plans;
+            return plans.stream()
+                    .map(Mappers::mapPlanToDto)
+                    .collect(Collectors.toList());
         } else {
             throw new RuntimeException("Currently logged in user not found!");
         }
@@ -249,20 +256,32 @@ public class UserService {
 
         List<PlanClient> planClients = planClientRepository.findAll();
 
-        for (PlanClient planClient: planClients) {
+        for (PlanClient planClient : planClients) {
             Plan plan = planClient.getPlan();
             User user = planClient.getClient();
 
             if (role.equals("COACH") && !plan.getUser().getUsername().equals(username)) continue;
             if (role.equals("CLIENT") && !user.getUsername().equals(username)) continue;
 
-            TransactionDto transactionDto = new TransactionDto();
-            transactionDto.setSenderUsername(user.getUsername());
-            transactionDto.setReceiverUsername(plan.getUser().getUsername());
-            transactionDto.setAmount(plan.getPrice());
-            transactionDto.setDateWhen(planClient.getDateBought());
-            transactionDto.setId(plan.getId());
-            transactionDto.setTransactionType(TransactionType.PLAN);
+            TransactionDto transactionDto = Mappers.mapToTransactionDtoFromPlanClient(user.getUsername(),
+                    plan, planClient, TransactionType.PLAN);
+
+            transactions.add(transactionDto);
+        }
+        if (role.equals("COACH")) {
+            return transactions;
+        }
+
+        List<MembershipUser> membershipUsers = membershipUserRepository.findAll();
+
+        for (MembershipUser membershipUser : membershipUsers) {
+            Membership membership = membershipUser.getMembership();
+            User user = membershipUser.getUser();
+
+            if (!user.getUsername().equals(username)) continue;
+
+            TransactionDto transactionDto = Mappers.mapToTransactionDtoFromMembership(user.getUsername(),
+                    membership, membershipUser, TransactionType.MEMBERSHIP);
 
             transactions.add(transactionDto);
         }

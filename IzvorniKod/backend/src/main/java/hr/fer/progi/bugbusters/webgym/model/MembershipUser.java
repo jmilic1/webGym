@@ -21,4 +21,10 @@ public class MembershipUser {
     private Membership membership;
     private Date dateBegin;
     private Date dateEnd;
+
+    @Override
+    public String toString(){
+        return "id: " + id + ", user.username: " + user.getUsername() + ", membership.id: " + membership.getId() + ", dateBegin: " + dateBegin
+                + ", dateEnd: " + dateEnd;
+    }
 }
