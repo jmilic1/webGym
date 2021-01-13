@@ -13,8 +13,8 @@ class LocationListComponent extends React.Component {
                     <h3>Država</h3>
                     <h3>Grad</h3>
                     <h3>Ulica</h3>
-                    <h3>Od</h3>
-                    <h3>Do</h3>
+                    <h3>Radno vrijeme od</h3>
+                    <h3>Radno vrijeme do</h3>
                     <h3>Broj</h3>
                 </div>
                 {this.props.locations.map(location =>

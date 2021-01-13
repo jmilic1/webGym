@@ -120,6 +120,8 @@ class UserProfile extends React.Component{
             }).then(response => {
                 if(response.status === 200){
                     this.props.history.push("/auth")
+                } else{
+                    alert("Došlo je do pogreške prilikom brisanja profila")
                 }
             })
         }
