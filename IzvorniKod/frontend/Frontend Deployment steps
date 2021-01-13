@@ -1,0 +1,21 @@
+https://dev.to/webdevraj/deploy-a-react-app-on-heroku-the-right-way-5efo
+
+Go to IzvorniKod or IzvorniKod/frontend directory (whichever is the frontend root).
+
+If you have access to frontend app:
+Log into heroku (do "heroku login")
+Do "git init"
+Do "heroku git:remote -a web-gym-frontend"
+Do "git add ."
+Do "git commit -m "Initial commit""
+Do "git push heroku master"
+
+If you do not have access to frontend app:
+Log into heroku (do "heroku login")
+Do "heroku create new-app-name --buildpack https://github.com/mars/create-react-app-buildpack.git"
+Do "git init"
+Do "git add ."
+Do "git commit -m "Initial commit""
+Do "git push heroku master" (if you get an error "'heroku' does not appear to be a git repository" do "heroku git:remote -a new-app-name" and repeat push to heroku)
+
+If you are deploying frontend to a new app, there SHOULDN'T be any problems with backend part of the app.

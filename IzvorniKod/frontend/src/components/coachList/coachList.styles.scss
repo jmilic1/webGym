@@ -1,0 +1,17 @@
+.coach-container {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.coach-header-container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 0.2em solid black;
+  h3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+

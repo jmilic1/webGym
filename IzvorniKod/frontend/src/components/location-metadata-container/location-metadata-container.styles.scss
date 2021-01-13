@@ -1,0 +1,15 @@
+.location-metadata-container#complex {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.location-metadata-container#easy {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.location-grid-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
