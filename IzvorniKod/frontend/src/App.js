@@ -79,7 +79,7 @@ class App extends React.Component {
               <Route exact path="/auth" render={(props) => <AuthPage {...props} handleLogin={this.handleLogin} backendURL = {this.state.backendURL} />} />
               <Route exact path="/logout" render={(props) => <Logout {...props} handleLogout={this.handleLogout} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/gymList" render={(props) => <GymList {...props} backendURL={this.state.backendURL} />} />
-              <Route exact path="/userList" render={(props) => <UserList {...props} backendURL = {this.state.backendURL} />} />
+              <Route exact path="/userList" render={(props) => <UserList {...props} backendURL = {this.state.backendURL} role={this.state.role} />} />
               <Route exact path="/myPlans" render={(props) => <CoachPlans {...props} backendURL={this.state.backendURL} />} />
               <Route exact path="/jobRequests" render={(props) => <JobRequests {...props} backendURL={this.state.backendURL} />} />
               <Route exact path="/paymentPage" render={(props) => <PaymentPage {...props} backendURL = {this.state.backendURL}/>} />
