@@ -13,6 +13,8 @@ import UserProfile from "./pages/userProfile/userProfile.component";
 import UserList from './pages/userList/userList.component'
 import GymInfo from './pages/gymInfo/gymInfo.component'
 import MembershipInfo from "./pages/membershipPage/membershipInfo.component";
+import LocationInfo from './pages/locationEditInfo/locationEditInfo.component';
+import AddGymOwner from './pages/addGymOwner/addGymOwner.component'
 import JobRequests from "./pages/jobRequests/jobRequests.component";
 import PaymentPage from './pages/paymentPage/paymentPage.component';
 import CoachInfoPage from "./pages/coachPage/coachPage.component";
@@ -83,7 +85,9 @@ class App extends React.Component {
               <Route exact path="/paymentPage" render={(props) => <PaymentPage {...props} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/myGyms" render={(props) => <OwnerGyms {...props} backendURL = {this.state.backendURL}/>} />
               <Route exact path="/gymInfo/:id" render={(props) => <GymInfo {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
-              <Route exact path="/membership/:id" render={(props) => <MembershipInfo {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
+              <Route exact path="/membership/:id" render={(props) => <MembershipInfo {...props} backendURL = {this.state.backendURL} username = {this.state.username} role = {this.state.role} loggedIn ={this.state.loggedIn}/>}/>
+              <Route exact path="/location/:id" render={(props) => <LocationInfo {...props} backendURL = {this.state.backendURL}/>}/>
+              <Route exact path="/addOwner/:username" render={(props) => <AddGymOwner {...props} backendURL = {this.state.backendURL} role = {this.state.role}/>}/>
               <Route exact path="/myProfile" render={(props) => <UserProfile {...props}
                 username = {this.state.username} name = {this.state.name} surname = {this.state.surname} role = {this.state.role}
                 backendURL = {this.state.backendURL}/>} />

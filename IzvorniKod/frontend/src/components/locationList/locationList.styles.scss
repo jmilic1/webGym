@@ -1,17 +1,29 @@
-.location-container {
+.location-list-container {
   margin: 0 auto;
   width: 80%;
   max-width: 1200px;
 }
 
-.location-header-container{
+.location-header-container#owner {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   border-bottom: 0.2em solid black;
-  h3{
+
+  h3 {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 }
 
+.location-header-container#user {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border-bottom: 0.2em solid black;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
