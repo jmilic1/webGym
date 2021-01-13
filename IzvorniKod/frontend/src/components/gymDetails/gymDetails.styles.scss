@@ -1,0 +1,16 @@
+.gymDetails-container {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-flow: column;
+  border: #072557 2.5px solid;
+  padding: 10px;
+  border-radius: 5px;
+  height: auto;
+  width: 400px;
+}
+
+h3#header {
+  float: left;
+  margin-top: 0;
+}

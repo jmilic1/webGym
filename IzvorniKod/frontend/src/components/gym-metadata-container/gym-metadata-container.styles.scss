@@ -1,0 +1,21 @@
+.gym-metadata-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.gym-grid-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gym-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.button-element:hover {
+    cursor: pointer;
+}

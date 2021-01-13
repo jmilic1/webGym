@@ -1,0 +1,23 @@
+.ownerGyms-page-container {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.insert-gym-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container {
+  display: flex;
+  padding-top: 3em;
+  width: 30%;
+  justify-content: space-evenly;
+}
+
+.toggle-button {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}

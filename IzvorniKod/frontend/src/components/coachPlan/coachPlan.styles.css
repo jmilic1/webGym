@@ -1,0 +1,64 @@
+.grid-containerCPl {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    align-items: left;
+    justify-items: left;
+    border: 1px solid rgba(0, 0, 0, 0.21);
+    width: 1000px;
+    border-radius: 5px;
+    margin: 15px 0px;
+    background-color: white;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    column-width: 1000px/6;
+}
+
+.item1CPl {
+    grid-column-start: 1;
+    grid-column-end: 7;
+} 
+
+.item2CPl {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.item3CPl {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.item4CPl {
+    grid-column: 5;
+    grid-row: 2;
+}
+
+.item5CPl {
+    grid-column: 6;
+    grid-row: 2;
+}
+
+.itempomCPl {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row: 2;
+}
+
+.grid-container:hover {
+    zoom: 1.03;
+}
+
+.btnCPl {
+    margin-right: 15px;
+}
+
+.plan-description-updateCPl {
+    display: grid;
+    width: 950px;
+    height: 250px;
+}
+
+.textareaCPl {
+    resize: none;
+    overflow: auto;
+}
