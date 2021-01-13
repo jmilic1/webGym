@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -358,12 +360,19 @@ public class GymService {
     }
 
     private static GymLocation mapToGymLocation(GymLocation gymLocation, GymLocationDto gymLocationDto) {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+
         if (gymLocationDto.getCity() != null) gymLocation.setCity(gymLocationDto.getCity());
-        if (gymLocationDto.getClosesAt() != null) gymLocation.setClosesAt(Time.valueOf(gymLocationDto.getClosesAt()));
         if (gymLocationDto.getCountry() != null) gymLocation.setCountry(gymLocationDto.getCountry());
-        if (gymLocationDto.getOpensAt() != null) gymLocation.setOpensAt(Time.valueOf(gymLocationDto.getOpensAt()));
         if (gymLocationDto.getPhoneNumber() != null) gymLocation.setPhoneNumber(gymLocationDto.getPhoneNumber());
         if (gymLocationDto.getStreet() != null) gymLocation.setStreet(gymLocationDto.getStreet());
+
+        try {
+            if (gymLocationDto.getClosesAt() != null) gymLocation.setClosesAt(new Time(sdf.parse(gymLocationDto.getClosesAt()).getTime()));
+            if (gymLocationDto.getOpensAt() != null) gymLocation.setOpensAt(new Time(sdf.parse(gymLocationDto.getOpensAt()).getTime()));
+        } catch (ParseException ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
 
         return gymLocation;
     }
