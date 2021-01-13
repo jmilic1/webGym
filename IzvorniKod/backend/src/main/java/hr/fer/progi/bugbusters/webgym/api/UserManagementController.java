@@ -77,18 +77,15 @@ public class UserManagementController {
     }
 
     @DeleteMapping("/modifyUser")
-    public void logoutUser(HttpServletResponse response, HttpServletRequest request) {
+    public void deleteUser(HttpServletResponse response, HttpServletRequest request) {
         String username = ControllerHelper.deleteUser(request, response);
         service.deleteUser(username);
     }
 
-    /*
     @GetMapping("/logOut")
-    public void logoutUser(final HttpServletResponse response) {
-        deleteCookie(response, new Cookie("username", null));
-        deleteCookie(response, new Cookie("role", null));
-        changeRole(null);
-    }*/
+    public void logoutUser(final HttpServletResponse response, HttpServletRequest request) {
+        ControllerHelper.logOutUser(request, response);
+    }
 
     @GetMapping("/login")
     public void doLogout(HttpServletResponse response, HttpServletRequest request) {

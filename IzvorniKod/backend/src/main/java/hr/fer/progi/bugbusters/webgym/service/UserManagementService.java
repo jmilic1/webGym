@@ -1,10 +1,8 @@
 package hr.fer.progi.bugbusters.webgym.service;
 
-import hr.fer.progi.bugbusters.webgym.dao.GymRepository;
-import hr.fer.progi.bugbusters.webgym.dao.PlanRepository;
-import hr.fer.progi.bugbusters.webgym.dao.UserRepository;
+import hr.fer.progi.bugbusters.webgym.dao.*;
 import hr.fer.progi.bugbusters.webgym.mappers.Mappers;
-import hr.fer.progi.bugbusters.webgym.model.User;
+import hr.fer.progi.bugbusters.webgym.model.*;
 import hr.fer.progi.bugbusters.webgym.model.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,15 +23,32 @@ public class UserManagementService implements UserDetailsService {
     private final GymRepository gymRepository;
     private final UserRepository userRepository;
     private final PlanRepository planRepository;
+    private final GoalRepository goalRepository;
+    private final GymUserRepository gymUserRepository;
+    private final JobRequestRepository jobRequestRepository;
+    private final MembershipUserRepository membershipUserRepository;
+    private final PlanClientRepository planClientRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserManagementService(@Qualifier("gymRep") GymRepository gymRepository, @Qualifier("userRep") UserRepository userRepository, @Qualifier("planRep") PlanRepository planRepository) {
+    public UserManagementService(@Qualifier("gymRep") GymRepository gymRepository,
+                                 @Qualifier("userRep") UserRepository userRepository,
+                                 @Qualifier("planRep") PlanRepository planRepository,
+                                 @Qualifier("goalRep") GoalRepository goalRepository,
+                                 @Qualifier("gymUserRep") GymUserRepository gymUserRepository,
+                                 @Qualifier("jobRequestRep") JobRequestRepository jobRequestRepository,
+                                 @Qualifier("membershipUserRep") MembershipUserRepository membershipUserRepository,
+                                 @Qualifier("planClientRep") PlanClientRepository planClientRepository) {
         this.gymRepository = gymRepository;
         this.userRepository = userRepository;
         this.planRepository = planRepository;
+        this.goalRepository = goalRepository;
+        this.gymUserRepository = gymUserRepository;
+        this.jobRequestRepository = jobRequestRepository;
+        this.membershipUserRepository = membershipUserRepository;
+        this.planClientRepository = planClientRepository;
     }
 
     @Override
@@ -104,6 +119,30 @@ public class UserManagementService implements UserDetailsService {
     }
 
     public void deleteUser(String username){
+        Optional<User> userOptional = userRepository.findById(username);
+        if (userOptional.isEmpty())
+            throw new RuntimeException("Logged in user not found!");
+        User user = userOptional.get();
+
+        for (Goal goal:user.getGoals()){
+            goalRepository.deleteById(goal.getId());
+        }
+        for (GymUser gymUser:user.getGymUserList()){
+            gymUserRepository.deleteById(gymUser.getId());
+        }
+        for (JobRequest jobRequest: user.getJobRequests()){
+            jobRequestRepository.deleteById(jobRequest.getId());
+        }
+        for (MembershipUser membershipUser: user.getMembershipUserList()){
+            membershipUserRepository.deleteById(membershipUser.getId());
+        }
+        for (PlanClient planClient: user.getClientPlans()){
+            planClientRepository.deleteById(planClient.getId());
+        }
+        for (Plan plan: user.getPlans()){
+            planRepository.deleteById(plan.getId());
+        }
+
         userRepository.deleteById(username);
     }
 
