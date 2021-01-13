@@ -343,7 +343,7 @@ public class GymService {
         for (GymUser gymUser : gym.getGymUsers()) {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
-        if (!ownsGym) throw new IllegalArgumentException("403");
+        if (!ownsGym) throw new IllegalArgumentException("405");
 
         List<GymUser> gymUserList = gymUserRepository.findAll();
         for (GymUser gymUser : gymUserList) {
