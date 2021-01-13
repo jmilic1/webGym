@@ -64,7 +64,7 @@
     color: white;
 }
 
-.grid-container {
+.grid-containerCPlans {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
     align-items: left;
@@ -80,38 +80,38 @@
     justify-content: baseline;
 }
 
-.item1 {
+.item1CPlans {
     grid-column-start: 1;
     grid-column-end: 7;
 }
 
-.item2 {
+.item2CPlans {
     grid-column: 1;
     grid-row: 2;
 }
 
-.item3 {
+.item3CPlans {
     grid-column: 2;
     grid-row: 2;
 }
 
-.item4 {
+.item4CPlans {
     grid-column: 5;
     grid-row: 2;
 }
 
-.item5 {
+.item5CPlans {
     grid-column: 6;
     grid-row: 2;
 }
 
-.itempom {
+.itempomCPlans {
     grid-column-start: 3;
     grid-column-end: 5;
     grid-row: 2;
 }
 
-.textarea {
+.textareaCPlans {
     resize: none;
     overflow: auto;
     width: 950px;

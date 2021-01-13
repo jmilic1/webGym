@@ -49,44 +49,44 @@ class CoachPlan extends React.Component{
 
     render() {
         return(
-            <div className='grid-container'>
+            <div className='grid-containerCPl'>
             
-                <div className='item2'>
+                <div className='item2CPl'>
                     <p>Od: {this.state.dateFrom}</p>
                 </div>
 
-                <div className="item3">
+                <div className="item3CPl">
                     <p>Do: {this.state.dateTo}</p>
                 </div>
 
-                <div className="item4">
+                <div className="item4CPl">
                     <p>Cijena: {this.state.price} kn</p>
                 </div>
 
                 {!this.state.modifyPlan ?
-                            <div className="item5">
+                            <div className="item5CPl">
                                  <p>
                                     <button onClick={this.handleChangePlanClick}>Uredi</button>
                                 </p>
                             </div>
                             :
-                        	<div className="item5">
+                        	<div className="item5CPl">
                                 <p>
-                                    <button className="btn" onClick={this.handleChangePlanClick}>Otkaži</button>
+                                    <button className="btnCPl" onClick={this.handleChangePlanClick}>Otkaži</button>
                                     <button onClick = {this.handleChangePlanSubmit}> Spremi</button>
                                 </p>
                             </div>
                 }
                 
                 {!this.state.modifyPlan ?
-                            <div className="item1">
+                            <div className="item1CPl">
                                  <p>Opis: <br/> {this.state.description}</p>
                             </div>
                             :
-                        	<div className="item1">
+                        	<div className="item1CPl">
                                 <p>Opis: <br/>
-                                    <div className="plan-description-update">
-                                        <textarea className="textarea" name='description' value={this.state.description} onChange={this.handleChange} required/>
+                                    <div className="plan-description-updateCPl">
+                                        <textarea className="textareaCPl" name='description' value={this.state.description} onChange={this.handleChange} required/>
                                     </div>                 
                                 </p>
                             </div>

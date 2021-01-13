@@ -53,35 +53,35 @@ class JobRequest extends React.Component {
 
     render() {
         return(
-            <div className='grid-container'>
+            <div className='grid-containerJob'>
             
-                <div className='item1'>
+                <div className='item1Job'>
                     <p>Ime: {this.props.coach.name}</p>
                 </div>
 
-                <div className="item3">
+                <div className="item3Job">
                     <p>Prezime: {this.props.coach.surname}</p>
                 </div>
 
-                <div className="item2">
+                <div className="item2Job">
                     <p>Teretana: {this.props.gymName}</p>
                 </div>
 
-                <div className="item4">
+                <div className="item4Job">
                     <p>Zamolba: <br/> {this.props.description}</p>
                 </div>
 
-                <div className="item5">
+                <div className="item5Job">
                     <p>
-                        <button className="btn" onClick={this.handleRequestTrueSubmit}>Prihvati</button>
+                        <button className="btnJob" onClick={this.handleRequestTrueSubmit}>Prihvati</button>
                         <button onClick={this.handleRequestFalseSubmit}>Odbij</button>
                     </p>
                 </div>
 
-                <div className='item6'>
+                <div className='item6Job'>
                     <p>
                         {this.state.view === "EMPTY" ?
-                            <div className='item6'></div>
+                            <div className='item6Job'></div>
                             :
                             this.state.view === "ACCEPTED" ?
                                 <Checkmark size='24px' />
