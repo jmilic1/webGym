@@ -22,6 +22,7 @@ class GymInfo extends React.Component {
             locations: [],
             coaches: [],
             memberships: [],
+            showAddLocation: props.location.aboutProps.showAddLocation
         }
     }
 
@@ -187,11 +188,11 @@ class GymInfo extends React.Component {
                                     // <p></p>
                                     this.state.gym &&
                                     <LocationListComponent
-                                        locations={this.state.locations} />
+                                        locations={this.state.locations} locationComplex={this.state.showAddLocation} />
                                 }
 
                                 <div className='align'>
-                                    {this.props.role === "OWNER" ?
+                                    {this.props.role === "OWNER" && this.state.showAddLocation ?
                                         this.state.addLocation ?
                                             <CustomButton onClick={this.handleChangeAddLocationFlag}> Otkaži </CustomButton>
                                             :

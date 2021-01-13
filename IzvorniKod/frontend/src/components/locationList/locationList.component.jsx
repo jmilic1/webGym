@@ -9,15 +9,26 @@ class LocationListComponent extends React.Component {
     render() {
         return (
             <div className='location-list-container'>
-                <div className='location-header-container'>
-                    <h3>Država</h3>
-                    <h3>Grad</h3>
-                    <h3>Ulica</h3>
-                    <h3>Radno vrijeme od</h3>
-                    <h3>Radno vrijeme do</h3>
-                    <h3>Broj</h3>
-                    <h3>Uredi</h3>
-                </div>
+                {this.props.locationComplex ?
+                    <div id='owner' className='location-header-container'>
+                        <h3>Država</h3>
+                        <h3>Grad</h3>
+                        <h3>Ulica</h3>
+                        <h3>Radno vrijeme od</h3>
+                        <h3>Radno vrijeme do</h3>
+                        <h3>Broj</h3>
+                        <h3>Uredi</h3>
+                    </div>
+                    :
+                    <div id='user' className='location-header-container'>
+                        <h3>Država</h3>
+                        <h3>Grad</h3>
+                        <h3>Ulica</h3>
+                        <h3>Radno vrijeme od</h3>
+                        <h3>Radno vrijeme do</h3>
+                        <h3>Broj</h3>
+                    </div>
+                }
                 {this.props.locations.map(location =>
                     <LocationMetadataContainer
                         country={location.country}
@@ -27,6 +38,7 @@ class LocationListComponent extends React.Component {
                         closesAt={location.closesAt}
                         phoneNumber={location.phoneNumber}
                         id={location.id}
+                        locationComplex={this.props.locationComplex}
                         key={location.id} />
                 )}
             </div>

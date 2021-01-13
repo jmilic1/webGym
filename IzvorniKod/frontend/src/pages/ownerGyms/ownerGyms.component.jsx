@@ -103,7 +103,7 @@ class OwnerGyms extends React.Component {
                             <h3>Mogućnosti</h3>
                         </div>
                         {this.state.gyms.map(gym =>
-                            <GymMetaDataContainer handleRemove={this.handleRemoveGymClick} id={gym.id} name={gym.name} description={gym.description} email={gym.email} owner={true} key={gym.id} />
+                            <GymMetaDataContainer ownerPage={true} handleRemove={this.handleRemoveGymClick} id={gym.id} name={gym.name} description={gym.description} email={gym.email} owner={true} key={gym.id} />
                         )}
                     </div>
                     :
