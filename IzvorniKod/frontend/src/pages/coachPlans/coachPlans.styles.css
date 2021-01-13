@@ -1,0 +1,119 @@
+.coachPlans-dietPlans{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.coachPlans-plansHeader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding:10px;
+}
+
+
+.coachPlans-plansHeader div{
+    width: 350px;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 3px 3px 3px 3px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px rgba(0,0,0,0.2);
+}
+
+.coachPlans-plansHeader .marked{
+    background-color: #072557;
+    color: white;
+}
+
+.btnAdd-container {
+    width: 90%;
+    display: flex;
+}
+
+.btnAdd-container img {
+    cursor: pointer;
+}
+
+.coachPlans-page-container{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.btn1 {
+    background-color: white;
+    border-color: white;
+    font-size: 22px;
+}
+
+.coachPlans-plansHeaderBtn {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: baseline;
+    padding:10px;
+}
+
+.helper {
+    color: white;
+}
+
+.grid-containerCPlans {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    align-items: left;
+    justify-items: left;
+    border: 1px solid rgba(0, 0, 0, 0.21);
+    width: 1000px;
+    border-radius: 5px;
+    margin: 15px 0px;
+    background-color: white;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    column-width: 1000px/6;
+    justify-content: baseline;
+}
+
+.item1CPlans {
+    grid-column-start: 1;
+    grid-column-end: 7;
+}
+
+.item2CPlans {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.item3CPlans {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.item4CPlans {
+    grid-column: 5;
+    grid-row: 2;
+}
+
+.item5CPlans {
+    grid-column: 6;
+    grid-row: 2;
+}
+
+.itempomCPlans {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row: 2;
+}
+
+.textareaCPlans {
+    resize: none;
+    overflow: auto;
+    width: 950px;
+    height: 250px;
+}

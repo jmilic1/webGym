@@ -1,0 +1,10 @@
+.user-metadata-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.user-grid-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
