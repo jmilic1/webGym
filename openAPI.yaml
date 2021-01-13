@@ -1,0 +1,942 @@
+openapi: 3.0.2
+info:
+  title: webGym API
+  description: API for University project of Software Engineering course.
+  version: '1.0'
+servers:
+  - url: 'http://web-gym2.herokuapp.com/'
+    variables: {}
+    description: App backend
+tags:
+  - name: registration
+  - name: gyms
+  - name: users
+  - name: coach
+paths:
+  /login:
+    description: User log in
+    post:
+      tags:
+        - registration
+      description: Log in request from user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Successful log in
+          content:
+            application/json:
+              schema:
+                title: User
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Placeholder description
+                  surname:
+                    type: string
+                    description: Placeholder description
+                  username:
+                    type: string
+                    description: Placeholder description
+                  password:
+                    type: string
+                    description: Placeholder description
+                  role:
+                    type: string
+                    description: Placeholder description
+        '400':
+          description: Unsuccesful log in
+  /registration:
+    description: User registration
+    post:
+      tags:
+        - registration
+      description: Registration request from user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                name:
+                  type: string
+                surname:
+                  type: string
+                email:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
+                payPall:
+                  type: string
+      responses:
+        '200':
+          description: Successful registration
+        '400':
+          description: Unsuccesful log in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                    description: Error message
+  /gymList:
+    get:
+      tags:
+        - gyms
+      description: List of all gyms available
+      responses:
+        '200':
+          description: List of all gyms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    id:
+                      type: integer
+                    description:
+                      type: string
+                    email:
+                      type: string
+  /userList:
+    get:
+      tags:
+        - users
+      description: List of all users
+      responses:
+        '200':
+          description: List of all users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    password:
+                      type: string
+                    role:
+                      type: string
+  /modifyUser:
+    post:
+      tags:
+        - registration
+      description: Personal info update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                name:
+                  type: string
+                surname:
+                  type: string
+                email:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
+                height:
+                  type: number
+                weight: 
+                  type: number
+      responses:
+        '200':
+          description: Update succesful
+        '404':
+          description: Update failed
+    delete:
+      tags:
+        - registration
+      description: User acc delete
+      responses:
+        '200':
+          description: Update succesful
+        '404':
+          description: Update failed
+  /modifyUserGoal:
+    post:
+      tags:
+        - users
+      description: User goals update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                id:
+                  type: integer
+                description:
+                  type: string
+                percentage:
+                  type: integer
+      responses:
+        '200':
+          description: Update succesful
+        '404':
+          description: Update failed
+  /getUserGoals:
+    get:
+      tags:
+        - users
+      description: User goals fetch
+      responses:
+        '200':
+          description: Update succesful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    description:
+                      type: string
+                    percentage:
+                      type: integer
+        '404':
+          description: Update failed
+  /addUserGoal:
+    post:
+      tags:
+        - users
+      description: User goals update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                description:
+                  type: string
+                percentage:
+                  type: string
+      responses:
+        '200':
+          description: Update succesful
+        '404':
+          description: Update failed
+  /addPlan:
+    post:
+      tags:
+        - coach
+      description: Coach plan update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                username:
+                  type: string
+                description:
+                  type: string
+                dateFrom:
+                  type: string
+                dateTo:
+                  type: string
+                price:
+                  type: number
+                isTraining:
+                  type: number
+      responses:
+        '200':
+          description: Update succesful
+        '404':
+          description: Update failed
+  /userPlans:
+    post:
+      tags:
+        - users
+      description: Add user plan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                id:
+                  type: integer
+                currentTime:
+                  type: string
+                username:
+                  type: string
+      responses:
+        '200':
+          description: Update succesful
+        '404':
+          description: Update failed
+    get:
+      tags:
+        - users
+      description: Fetch user plan
+      responses:
+        '200':
+          description: Get user plans
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    dateOfPurchase:
+                      type: string
+                    description:
+                      type: string
+                    coachUsername:
+                      type: string
+                    isTraining:
+                      type: boolean
+                    dateFrom:
+                      type: string
+                    dateTo:
+                      type: string
+        '404':
+          description: Fetch  failed
+  /modifyCoachPlan:
+    post:
+      tags:
+        - coach
+      description: 'Coach plan update, maybe add price change in future'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                id:
+                  type: integer
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Update succesful
+        '404':
+          description: Update failed
+  /addGym:
+    post:
+      tags:
+        - gyms
+      description: Adding gym
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                name: 
+                  type: string
+                description:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Update succesful
+        '404':
+          description: Update failed
+  /gymInfo:
+    get:
+      tags:
+        - gyms
+      description: Fetch gym
+      parameters:
+        - name: id
+          description: id of a gym
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: gym location list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    description:
+                      type: string
+                    id:
+                      type: integer
+                    locations:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          country:
+                            type: string
+                          city:
+                            type: string
+                          street:
+                            type: string
+                          opensAt:
+                            type: string
+                          closesAt:
+                            type: string
+                          phoneNumber:
+                            type: string
+                    coaches:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          username:
+                            type: string
+                          name:
+                            type: string
+                          surname:
+                            type: string
+                    memberships:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          price:
+                            type: number
+                          description:
+                            type: string
+                          interval:
+                            type: string
+        '404':
+          description: Update failed
+    post:
+      tags:
+        - gyms
+      description: promjena 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: obj
+              type: object
+              properties:
+                gymId:
+                  type: number
+                  description: gym id
+                description:
+                  type: string
+                name:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Succes
+        '404':
+          description: Failed
+  /myTransactions:
+    get:
+      tags:
+        - users
+      description: My transactions, useru se posalju njegove transakcije a adminu sve ikad
+      responses:
+        '200':
+          description: list of my transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    senderUsername:
+                      type: string
+                    receiverUsername:
+                      type: string
+                    amount:
+                      type: number
+                    dateWhen:
+                      type: string
+                    id:
+                      description: link do clanarine ili plana na koji si se predplatio
+                      type: integer
+                    transactionType:
+                      description: PLAN || MEMBERSHIP
+                      type: string
+        '404':
+          description: Update failed
+  /coachPlan: 
+    get:
+      tags:
+        - coach
+      description: fetch coach plan
+      parameters:
+        - name: id
+          description: id of a plan
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200' :
+          description: coach plan obj
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  coachUsername:
+                    type: string
+                  description:
+                    type: string
+                  dateFrom:
+                    type: string
+                  dateTo:
+                    type: string
+                  price:
+                    type: number
+                  isTraining:
+                    type: boolean
+        '404':
+          description: Failed
+  /membership: 
+    get:
+      tags:
+        - gyms
+      description: fetch gyms membership
+      parameters:
+        - name: id
+          description: id of a gym membership
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200' :
+          description: membership obj
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  idGym:
+                    type: integer
+                  description:
+                    type: string
+                  price:
+                    type: number
+                  interval:
+                    type: string
+        '404':
+          description: Failed
+    post:
+      tags:
+        - gyms
+      description: Update gym info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                id:
+                  type: string
+      responses:
+        '200':
+          description: Succes
+        '404':
+          description: Failed
+  /buyMembership:
+    post:
+      tags:
+        - users
+      description: Buy membership
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: obj
+              type: object
+              properties:
+                id:
+                  type: number
+                  description: gymMembership
+                username:
+                  type: string
+      responses:
+        '200':
+          description: Succes
+        '404':
+          description: Failed
+  /coach:
+    get:
+      tags:
+        - coach
+      description: fetch coach info
+      parameters:
+        - name: username
+          description: id of a gym membership
+          in: query
+          schema:
+            type: string
+      responses:
+        '200' :
+          description: membership obj
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      surname: 
+                        type: string
+                      username:
+                        type: string
+                      email:
+                        type: string
+                      height:
+                        type: number
+                      weight: 
+                        type: number
+                      payPall:
+                        type: string
+                  plans:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        coachUsername:
+                          type: string
+                        description:
+                          type: string
+                        dateFrom:
+                          type: string
+                        dateTo:
+                          type: string
+                        price:
+                          type: number
+                        idTraining:
+                          type: boolean
+                  gyms:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        name: 
+                          type: string
+        '404':
+          description: Failed  
+  /buyPlan:
+    post:
+      tags:
+        - users
+      description: Buy coach plan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: obj
+              type: object
+              properties:
+                id:
+                  type: number
+                  description: plan id
+      responses:
+        '200':
+          description: Succes
+        '404':
+          description: Failed
+  /jobRequest:
+    post:
+      tags:
+        - coach
+      description: Buy coach plan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: obj
+              type: object
+              properties:
+                gymId:
+                  type: number
+                  description: gym id
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Succes
+        '404':
+          description: Failed
+  /myClients:
+    get:
+      tags:
+        - coach
+      description: fetch users that bought coach's plan
+      responses:
+        '200' :
+          description: membership obj
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                      name:
+                        type: string
+                      surname: 
+                        type: string
+                      username:
+                        type: string
+                      email:
+                        type: string
+                      height:
+                        type: number
+                      weight: 
+                        type: number
+        '404':
+          description: Failed
+  /user:
+    get:
+      tags:
+        - users
+      description: fetch user info, trener moze pogledati informacije o klijentu
+      parameters:
+        - name: username
+          in: query
+          schema:
+            type: string
+      responses:
+        '200' :
+          description: user obj
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    name:
+                      type: string
+                    surname: 
+                      type: string
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    height:
+                      type: number
+                    weight: 
+                      type: number
+        '404':
+          description: Failed
+  /myGyms:
+    get:
+      tags:
+        - gyms
+      description: owners gyms
+      responses:
+        '200' :
+          description: user obj
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    id:
+                      type: number
+                    name: 
+                      type: string
+        '404':
+          description: Failed
+    delete:
+      tags:
+        - gyms
+      description: owner napusta teretanu
+      responses:
+        '200':
+          description: Update succesful
+        '400':
+          description: on je jedini owner tako da to nije moguce napraviti
+        '404':
+          description: failed
+  /gymLocation:
+    delete:
+      tags:
+        - gyms
+      description: brisanje teretane iz sustava
+      parameters:
+        - name: gymId
+          in: query
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Update succesful
+        '404':
+          description: failed
+    post:
+      tags:
+        - gyms
+      description: Update gym info, mjenjanje informacija o poslovnici
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                gymId:
+                  type: integer
+                country:
+                  type: string
+                street:
+                  type: string
+                city:
+                  type: string
+                opensAt:
+                  type: string
+                closesAt: 
+                  type: string
+                phoneNumber:
+                  type: string
+      responses:
+        '200':
+          description: Update succesful
+        '404':
+          description: Update failed
+  /allJobRequests:
+    get:
+      tags:
+        - gyms
+      description: all requests for owners eyes
+      responses:
+        '200' :
+          description: obj
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    id:
+                      type: number
+                      description: request id
+                    description: 
+                      type: string
+                    coach:
+                      type: object
+                      properties:
+                        name: 
+                          type: string
+                        surname: 
+                          type: string
+                        username:
+                          type: string
+                    gymId:
+                      type: number
+                    gymName:
+                      type: string
+        '404':
+          description: Failed
+    post:
+      tags:
+        - gyms
+      description: odgovor poslodavca na jedan job req
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                reqId:
+                  type: integer
+                respose:
+                  type: boolean
+      responses:
+        '200':
+          description: Update succesful
+        '404':
+          description: Update failed
+  /addGymOwner:
+    post:
+      tags:
+        - gyms
+      description: dodavanje ownera gymu
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: User
+              type: object
+              properties:
+                username:
+                  type: string
+      responses:
+        '200':
+          description: Update succesful
+        '404':
+          description: Update failed
