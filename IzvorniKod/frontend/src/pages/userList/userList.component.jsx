@@ -11,16 +11,29 @@ class UserList extends React.Component {
     }
 
     componentDidMount() {
-        fetch(this.props.backendURL + 'userList', {
-            method: 'GET',
-            credentials: "include"
-        }).then(response => {
-            return response.json()
-        }).then(userList => {
-            this.setState({
-                userList: userList
+        if (this.props.role === 'ADMIN') {
+            fetch(this.props.backendURL + 'userList', {
+                method: 'GET',
+                credentials: "include"
+            }).then(response => {
+                return response.json()
+            }).then(userList => {
+                this.setState({
+                    userList: userList
+                })
             })
-        })
+        } else {
+            fetch(this.props.backendURL + 'owners', {
+                method: 'GET',
+                credentials: "include"
+            }).then(response => {
+                return response.json()
+            }).then(userList => {
+                this.setState({
+                    userList: userList
+                })
+            })
+        }
     }
 
     render() {
@@ -32,7 +45,11 @@ class UserList extends React.Component {
                     <h3>Prezime korisnika</h3>
                     <h3>Email</h3>
                     <h3>Korisničko ime</h3>
-                    <h3>Uloga</h3>
+                    {this.props.role === 'OWNER' ?
+                        <h3>Dodaj voditelja</h3>
+                        :
+                        <h3>Uloga</h3>
+                    }
                 </div>
                 {this.state.userList.map(user =>
                     <UserMetaDataContainer name={user.name} surname={user.surname} email={user.email} username={user.username} role={user.role} />
