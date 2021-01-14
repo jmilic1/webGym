@@ -25,7 +25,7 @@ class GymInfo extends React.Component {
             showAddLocation: props.location.aboutProps ? props.location.aboutProps.showAddLocation : false,
             addMembership: false,
             newMembershipDescription: "",
-            newMembershipPrice:0,
+            newMembershipPrice: 0,
             newMembershipInterval: 0
         }
     }
@@ -62,31 +62,31 @@ class GymInfo extends React.Component {
     }
 
     refreshMemberships = () => {
-            const url = this.props.backendURL + "gymInfo?";
-            this.handleChangeAddMembershipFlag()
+        const url = this.props.backendURL + "gymInfo?";
+        this.handleChangeAddMembershipFlag()
 
 
-            const params = { id: this.props.match.params.id };
-            const searchParams = new URLSearchParams(params).toString();
+        const params = { id: this.props.match.params.id };
+        const searchParams = new URLSearchParams(params).toString();
 
-            fetch(url + searchParams, {
+        fetch(url + searchParams, {
             method: "GET",
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include'
-            }).then(res => {
+        }).then(res => {
             if (!res.ok) {
                 throw new Error("HTTP Error! " + res.status)
             } else {
                 return res.json()
             }
-            }).then(gym => {
-                this.setState({
-                    memberships: gym.memberships,
-                    newMembershipInterval: 0,
-                    newMembershipPrice: 0,
-                    newMembershipDescription: ""
-                })
-            }
+        }).then(gym => {
+            this.setState({
+                memberships: gym.memberships,
+                newMembershipInterval: 0,
+                newMembershipPrice: 0,
+                newMembershipDescription: ""
+            })
+        }
         ).catch(e => {
             alert("Došlo je do pogreške: " + e.message)
         })
@@ -97,6 +97,7 @@ class GymInfo extends React.Component {
         this.setState({
             addLocation: !this.state.addLocation
         })
+        this.componentDidMount();
     }
     handleChangeAddMembershipFlag = () => {
         this.setState({
@@ -180,9 +181,9 @@ class GymInfo extends React.Component {
                     newJobDescription: "",
                     addJobRequest: false
                 })
-            } else if(response.status === 428){
+            } else if (response.status === 428) {
                 alert("Već ste zaposlenik ove teretane")
-            }else {
+            } else {
                 throw new Error("HTTP Error! " + response.status)
             }
         }).catch(e => {
