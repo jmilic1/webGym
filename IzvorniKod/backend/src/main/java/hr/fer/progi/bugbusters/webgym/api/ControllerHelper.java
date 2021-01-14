@@ -12,6 +12,9 @@ public class ControllerHelper {
         Cookie roleCookie = new Cookie("role", myUser.getRole().toString());
         response.addCookie(cookie);
         response.addCookie(roleCookie);
+
+        response.addCookie(new Cookie("SameSite", "None"));
+        response.addCookie(new Cookie("Secure", null));
     }
 
     static void logOutUser(HttpServletRequest request, HttpServletResponse response) {
