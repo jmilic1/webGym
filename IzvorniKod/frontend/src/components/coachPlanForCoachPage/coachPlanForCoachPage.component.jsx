@@ -22,7 +22,7 @@ class CoachPlanForCoachPage extends React.Component {
             <div className='userPlan-container'>
                 <div className='plan-coach-metadata' onClick={this.handleExtendLinkClick}>
                     <p>{this.props.isTraining ? "Trening" : "Prehrana"}</p>
-                    <p>Cijena: {this.props.price}</p>
+                    <p>Cijena: {this.props.price}kn</p>
                     <p>Trener: {this.props.coachUsername}</p>
                     <p>{!this.state.extended ? "Proširi" : "Smanji"}</p>
                 </div>
