@@ -170,8 +170,10 @@ public class GymService {
     }
 
     public void createMembership(MembershipDto dto) {
-        Optional<Membership> membershipOptional = membershipRepository.findById(dto.getId());
-        if (membershipOptional.isPresent()) return;
+        if (dto.getId() != null) {
+            Optional<Membership> membershipOptional = membershipRepository.findById(dto.getId());
+            if (membershipOptional.isPresent()) return;
+        }
 
         Membership membership = Mappers.mapDtoToMembership(dto);
         membershipRepository.save(membership);
@@ -368,8 +370,10 @@ public class GymService {
         if (gymLocationDto.getStreet() != null) gymLocation.setStreet(gymLocationDto.getStreet());
 
         try {
-            if (gymLocationDto.getClosesAt() != null) gymLocation.setClosesAt(new Time(sdf.parse(gymLocationDto.getClosesAt()).getTime()));
-            if (gymLocationDto.getOpensAt() != null) gymLocation.setOpensAt(new Time(sdf.parse(gymLocationDto.getOpensAt()).getTime()));
+            if (gymLocationDto.getClosesAt() != null)
+                gymLocation.setClosesAt(new Time(sdf.parse(gymLocationDto.getClosesAt()).getTime()));
+            if (gymLocationDto.getOpensAt() != null)
+                gymLocation.setOpensAt(new Time(sdf.parse(gymLocationDto.getOpensAt()).getTime()));
         } catch (ParseException ex) {
             throw new RuntimeException(ex.getMessage());
         }

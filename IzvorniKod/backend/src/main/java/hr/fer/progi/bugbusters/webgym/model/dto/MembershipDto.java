@@ -6,7 +6,7 @@ import org.postgresql.util.PGInterval;
 @Data
 public class MembershipDto {
     private Long id;
-    private double price;
+    private Double price;
     private String description;
     private String interval;
 }
