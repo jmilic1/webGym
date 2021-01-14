@@ -350,9 +350,7 @@ public class GymService {
         for (GymUser gymUser : gym.getGymUsers()) {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
-        System.out.println("prije");
         if (!ownsGym && user.getRole() != Role.ADMIN) throw new IllegalArgumentException("405");
-        System.out.println("poslije");
 
         List<GymUser> gymUserList = gymUserRepository.findAll();
         for (GymUser gymUser : gymUserList) {
