@@ -118,7 +118,7 @@ class MembershipInfo extends React.Component {
                     </div>
                     {this.props.loggedIn && this.props.role === "CLIENT" &&
                         <div className='button-container'>
-                            <Link to={{ pathname: '/paymentPage', aboutProps: { id: this.props.id, isPlan: false } }}>
+                            <Link to={{ pathname: '/paymentPage', aboutProps: { id: this.props.match.params.id, isPlan: false } }}>
                                 <CustomButton>Učlani se</CustomButton>
                             </Link>
                         </div>
