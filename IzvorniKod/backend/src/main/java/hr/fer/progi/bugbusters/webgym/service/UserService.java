@@ -156,11 +156,11 @@ public class UserService {
         return userDtoList;
     }
 
-    public List<UserDto> getOwners() {
+    public List<UserDto> getOwners(String username) {
         List<User> users = userRepository.findAll();
         List<UserDto> userDtos = new ArrayList<>();
         for (User user: users) {
-            if (user.getRole() == Role.OWNER)
+            if (user.getRole() == Role.OWNER && !user.getUsername().equals(username))
                 userDtos.add(Mappers.mapUserToDto(user));
         }
 
