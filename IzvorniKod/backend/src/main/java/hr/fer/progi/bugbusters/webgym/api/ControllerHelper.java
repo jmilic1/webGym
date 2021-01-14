@@ -9,12 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 public class ControllerHelper {
     static void addUserCookies(HttpServletResponse response, User myUser) {
         Cookie cookie = new Cookie("username", myUser.getUsername());
+        cookie.setSecure(true);
+
         Cookie roleCookie = new Cookie("role", myUser.getRole().toString());
+        roleCookie.setSecure(true);
+
         response.addCookie(cookie);
         response.addCookie(roleCookie);
 
-        response.addCookie(new Cookie("Set-Cookie", "SameSite=None"));
-        response.addCookie(new Cookie("Secure", null));
+        response.setHeader("Set-Cookie", "key=value; SameSite=none");
     }
 
     static void logOutUser(HttpServletRequest request, HttpServletResponse response) {
