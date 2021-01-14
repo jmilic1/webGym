@@ -132,6 +132,7 @@ public class CoachService {
 
         if (!found) {
             JobRequest jobRequest = Mappers.mapDtoToJobRequest(jobRequestDto, user, gym);
+            jobRequest.setState(JobRequestState.IN_REVIEW);
             jobRequestRepository.save(jobRequest);
         }
     }
