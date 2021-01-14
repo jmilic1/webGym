@@ -250,6 +250,13 @@ public class UserService {
         }
     }
 
+    private boolean ownsGym(Gym gym, String username) {
+        for (GymUser gymUser: gym.getGymUsers()) {
+            if (gymUser.getUser().getUsername().equals(username)) return true;
+        }
+        return false;
+    }
+
     // ZA SADA IMPLEMENTIRANO SAMO ZA PLANOVE -> TREBA DODATI I ZA MEMBERSHIPOVE
     public List<TransactionDto> getMyTransactions(String username, String role) {
         List<TransactionDto> transactions = new ArrayList<>();
@@ -278,8 +285,10 @@ public class UserService {
         for (MembershipUser membershipUser : membershipUsers) {
             Membership membership = membershipUser.getMembership();
             User user = membershipUser.getUser();
+            Gym gym = membership.getGym();
 
-            if (!user.getUsername().equals(username)) continue;
+            if (role.equals("CLIENT") && !user.getUsername().equals(username)) continue;
+            if (role.equals("OWNER") && !ownsGym(gym, username)) continue;
 
             TransactionDto transactionDto = Mappers.mapToTransactionDtoFromMembership(user.getUsername(),
                     membership, membershipUser, TransactionType.MEMBERSHIP);
