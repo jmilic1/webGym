@@ -336,7 +336,7 @@ public class GymService {
         if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
 
         User user = optionalUser.get();
-        if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
+        if (user.getRole() != Role.OWNER && user.getRole() != Role.ADMIN) throw new IllegalArgumentException("403");
 
         Optional<User> optionalNewOwner = userRepository.findById(addGymOwnerDto.getUsername());
         if (optionalNewOwner.isEmpty()) throw new IllegalArgumentException("400");
@@ -350,7 +350,9 @@ public class GymService {
         for (GymUser gymUser : gym.getGymUsers()) {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
-        if (ownsGym) throw new IllegalArgumentException("405");
+        System.out.println("prije");
+        if (!ownsGym && user.getRole() != Role.ADMIN) throw new IllegalArgumentException("405");
+        System.out.println("poslije");
 
         List<GymUser> gymUserList = gymUserRepository.findAll();
         for (GymUser gymUser : gymUserList) {

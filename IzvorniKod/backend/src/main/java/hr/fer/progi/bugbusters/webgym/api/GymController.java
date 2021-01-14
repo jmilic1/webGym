@@ -167,9 +167,10 @@ public class GymController {
 
     @PostMapping("/addGymOwner")
     public void addGymOwner(@RequestBody AddGymOwnerDto addGymOwnerDto, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("Ulazak u putanju");
         String username = ControllerHelper.extractUsernameFromCookies(request);
         String role = ControllerHelper.extractRoleFromCookies(request);
-        if (role == null || !role.equals("OWNER")) {
+        if (role == null || (!role.equals("OWNER") && !role.equals("ADMIN"))) {
             response.setStatus(403);
             return;
         }
