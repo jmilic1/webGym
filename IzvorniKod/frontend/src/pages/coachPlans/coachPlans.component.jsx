@@ -3,7 +3,7 @@ import './coachPlans.styles.css'
 import CoachPlan from "../../components/coachPlan/coachPlan.component";
 import BtnAdd from '../../assets/btn_add1.svg'
 
-class CoachPlans extends React.Component{
+class CoachPlans extends React.Component {
 
     constructor() {
         super();
@@ -24,16 +24,16 @@ class CoachPlans extends React.Component{
             method: 'GET',
             credentials: "include"
         }).then(response => {
-            if(response.status === 200){
+            if (response.status === 200) {
                 return response.json()
-            } else{
+            } else {
                 return Promise.reject()
             }
         }).then(dietPlans => {
             this.setState({
                 dietPlans: dietPlans
             })
-        }, function(){
+        }, function () {
             alert("Došlo je do pogreške")
         })
 
@@ -41,16 +41,16 @@ class CoachPlans extends React.Component{
             method: 'GET',
             credentials: "include"
         }).then(response => {
-            if(response.status === 200){
+            if (response.status === 200) {
                 return response.json()
-            } else{
+            } else {
                 return Promise.reject()
             }
         }).then(plans => {
             this.setState({
                 workoutPlans: plans
             })
-        }, function(){
+        }, function () {
             alert("Došlo je do pogreške")
         })
     }
@@ -60,16 +60,16 @@ class CoachPlans extends React.Component{
             method: 'GET',
             credentials: "include"
         }).then(response => {
-            if(response.status === 200){
+            if (response.status === 200) {
                 return response.json()
-            } else{
+            } else {
                 return Promise.reject()
             }
         }).then(dietPlans => {
             this.setState({
                 dietPlans: dietPlans
             })
-        }, function(){
+        }, function () {
             alert("Došlo je do pogreške")
         })
     }
@@ -79,16 +79,16 @@ class CoachPlans extends React.Component{
             method: 'GET',
             credentials: "include"
         }).then(response => {
-            if(response.status === 200){
+            if (response.status === 200) {
                 return response.json()
-            } else{
+            } else {
                 return Promise.reject()
             }
         }).then(plans => {
             this.setState({
                 workoutPlans: plans
             })
-        }, function(){
+        }, function () {
             alert("Došlo je do pogreške")
         })
     }
@@ -116,12 +116,12 @@ class CoachPlans extends React.Component{
         })
     }
 
-    handleBtnSaveNewPlanClick= () => {
-        const body ={
+    handleBtnSaveNewPlanClick = () => {
+        const body = {
             description: this.state.newPlanDescription, dateFrom: this.state.newPlanDateFrom,
             dateTo: this.state.newPlanDateTo, price: this.state.newPlanPrice, isTraining: !this.state.showDietPlans
-            }
-        fetch(this.props.backendURL + "addPlan" , {
+        }
+        fetch(this.props.backendURL + "addPlan", {
             method: 'POST',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
@@ -147,19 +147,19 @@ class CoachPlans extends React.Component{
         // this.state.showDietPlans ? this.refreshDietPlans() : this.refreshWorkoutPlans()
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className='coachPlans-page-container'>
-                
-                
+
+
                 <div className='coachPlans-plansHeaderBtn'>
                     <div className='coachPlans-plansHeader'>
                         <div className={`${this.state.showDietPlans ? "marked" : ''}`} onClick={this.setShowDietPlans}><p>Planovi prehrane</p></div>
-                        <div style={{textAlign: "right"}} className={`${!this.state.showDietPlans ? "marked" : ''}`} onClick={this.removeShowDietPlans}><p>Planovi treninga</p></div>
+                        <div style={{ textAlign: "right" }} className={`${!this.state.showDietPlans ? "marked" : ''}`} onClick={this.removeShowDietPlans}><p>Planovi treninga</p></div>
                     </div>
                     {this.state.addNewPlan ?
                         <div className='btnAdd-container'>
-                            
+
                         </div>
                         :
                         <div className='btnAdd-container'>
@@ -167,38 +167,38 @@ class CoachPlans extends React.Component{
                                 <img src={BtnAdd} width='20px' alt='add btn' /> Dodaj plan
                             </button>
                         </div>
-                   }
+                    }
                 </div>
-                
+
                 {this.state.addNewPlan ?
                     <div className='grid-containerCPlans'>
                         <div className="item1CPlans">
                             <label>Opis:</label>
                             <br></br>
-                            <textarea className="textareaCPlans" name='newPlanDescription' value={this.state.newPlanDescription} onChange={this.handleChange} required/>
+                            <textarea className="textareaCPlans" name='newPlanDescription' value={this.state.newPlanDescription} onChange={this.handleChange} required />
                         </div>
-                        
+
                         <div className="item2CPlans">
                             <label>Od: </label>
-                            <input type="date" onChange={(event) => this.setState({ newPlanDateFrom: event.target.value })}/>
+                            <input type="date" onChange={(event) => this.setState({ newPlanDateFrom: event.target.value })} />
                         </div>
-                            
+
                         <div className="item3CPlans">
                             <label>Do: </label>
-                            <input type="date" onChange={(event) => this.setState({ newPlanDateTo: event.target.value })}/>
+                            <input type="date" onChange={(event) => this.setState({ newPlanDateTo: event.target.value })} />
                         </div>
 
                         <div className="item4CPlans">
                             <label>Cijena(kn): </label>
                             <input type='number' min='0' name='newPlanPrice' value={this.state.newPlanPrice} onChange={this.handleChange} />
                         </div>
-                        
+
                         <div className="item5CPlans">
-                                <p>
-                                    <button className="btn" onClick={this.handleChangeAddNewPlanFlag}>Otkaži</button>
-                                    <button onClick = {this.handleBtnSaveNewPlanClick}> Spremi</button>
-                                </p>
-                            </div>
+                            <p>
+                                <button className="btn" onClick={this.handleChangeAddNewPlanFlag}>Otkaži</button>
+                                <button onClick={this.handleBtnSaveNewPlanClick}> Spremi</button>
+                            </p>
+                        </div>
                     </div>
                     :
                     <div>
@@ -208,15 +208,15 @@ class CoachPlans extends React.Component{
 
                 {this.state.showDietPlans ?
                     (<div className='coachPlans-dietPlans'>
-                    {this.state.dietPlans.map(plan =>
-                        <CoachPlan key = {plan.id} id = {plan.id} description={plan.description} dateFrom={plan.dateFrom} dateTo={plan.dateTo} price={plan.price} backendUrl = {this.props.backendURL}/>
-                    )}    
+                        {this.state.dietPlans.map(plan =>
+                            <CoachPlan refreshPlans={this.refreshDietPlans} key={plan.id} id={plan.id} description={plan.description} dateFrom={plan.dateFrom} dateTo={plan.dateTo} price={plan.price} backendUrl={this.props.backendURL} />
+                        )}
                     </div>)
                     :
                     (<div className='coachPlans-dietPlans'>
-                    {this.state.workoutPlans.map(plan =>
-                        <CoachPlan key = {plan.id} id = {plan.id} description={plan.description} dateFrom={plan.dateFrom} dateTo={plan.dateTo} price={plan.price} backendUrl = {this.props.backendURL}/>
-                    )}
+                        {this.state.workoutPlans.map(plan =>
+                            <CoachPlan refreshPlans={this.refreshWorkoutPlans} key={plan.id} id={plan.id} description={plan.description} dateFrom={plan.dateFrom} dateTo={plan.dateTo} price={plan.price} backendUrl={this.props.backendURL} />
+                        )}
                     </div>)
                 }
             </div>

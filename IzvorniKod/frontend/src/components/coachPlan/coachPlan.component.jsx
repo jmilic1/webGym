@@ -1,7 +1,7 @@
 import React from 'react'
 import './coachPlan.styles.css'
 
-class CoachPlan extends React.Component{
+class CoachPlan extends React.Component {
     constructor(plan) {
         super();
         this.state = {
@@ -27,30 +27,32 @@ class CoachPlan extends React.Component{
             modifyPlan: !this.state.modifyPlan
         })
     }
-handleChangePlanSubmit
+    handleChangePlanSubmit
     handleChangePlanSubmit = () => {
-        fetch(this.props.backendUrl + "modifyCoachPlan" , {
+        fetch(this.props.backendUrl + "modifyCoachPlan", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
-            body: JSON.stringify({id: this.state.id, description: this.state.description})
+            body: JSON.stringify({ id: this.state.id, description: this.state.description })
         }).then(response => {
             if (response.ok) {
                 this.setState({
                     modifyPlan: false
                 })
+                this.props.refreshPlans();
             } else {
                 throw new Error("HTTP Error! " + response.status)
             }
         }).catch(e => {
             alert("Došlo je do pogreške: " + e.message)
         })
+
     }
 
     render() {
-        return(
+        return (
             <div className='grid-containerCPl'>
-            
+
                 <div className='item2CPl'>
                     <p>Od: {this.state.dateFrom}</p>
                 </div>
@@ -64,37 +66,37 @@ handleChangePlanSubmit
                 </div>
 
                 {!this.state.modifyPlan ?
-                            <div className="item5CPl">
-                                 <p>
-                                    <button onClick={this.handleChangePlanClick}>Uredi</button>
-                                </p>
-                            </div>
-                            :
-                        	<div className="item5CPl">
-                                <p>
-                                    <button className="btnCPl" onClick={this.handleChangePlanClick}>Otkaži</button>
-                                    <button onClick = {this.handleChangePlanSubmit}> Spremi</button>
-                                </p>
-                            </div>
+                    <div className="item5CPl">
+                        <p>
+                            <button onClick={this.handleChangePlanClick}>Uredi</button>
+                        </p>
+                    </div>
+                    :
+                    <div className="item5CPl">
+                        <p>
+                            <button className="btnCPl" onClick={this.handleChangePlanClick}>Otkaži</button>
+                            <button onClick={this.handleChangePlanSubmit}> Spremi</button>
+                        </p>
+                    </div>
                 }
-                
+
                 {!this.state.modifyPlan ?
-                            <div className="item1CPl">
-                                 <p>Opis: <br/> {this.state.description}</p>
+                    <div className="item1CPl">
+                        <p>Opis: <br /> {this.state.description}</p>
+                    </div>
+                    :
+                    <div className="item1CPl">
+                        <p>Opis: <br />
+                            <div className="plan-description-updateCPl">
+                                <textarea className="textareaCPl" name='description' value={this.state.description} onChange={this.handleChange} required />
                             </div>
-                            :
-                        	<div className="item1CPl">
-                                <p>Opis: <br/>
-                                    <div className="plan-description-updateCPl">
-                                        <textarea className="textareaCPl" name='description' value={this.state.description} onChange={this.handleChange} required/>
-                                    </div>                 
-                                </p>
-                            </div>
+                        </p>
+                    </div>
                 }
 
             </div>
         )
-    }   
+    }
 }
 
 export default CoachPlan
