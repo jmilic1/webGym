@@ -63,6 +63,7 @@ class GymInfo extends React.Component {
 
     refreshMemberships = () => {
             const url = this.props.backendURL + "gymInfo?";
+            this.handleChangeAddMembershipFlag()
 
 
             const params = { id: this.props.match.params.id };
@@ -80,7 +81,10 @@ class GymInfo extends React.Component {
             }
             }).then(gym => {
                 this.setState({
-                    memberships: gym.memberships
+                    memberships: gym.memberships,
+                    newMembershipInterval: 0,
+                    newMembershipPrice: 0,
+                    newMembershipDescription: ""
                 })
             }
         ).catch(e => {
@@ -145,9 +149,9 @@ class GymInfo extends React.Component {
 
     }
 
-    handleNewLocationSubmit = () => {
+    handleNewMembershipSubmit = () => {
         const body = {
-            description: this.state.newMembershipDescription, price: parseInt(this.state.newMembershipPrice), interval: parseInt(this.state.newMembershipInterval)
+            description: this.state.newMembershipDescription, price: parseInt(this.state.newMembershipPrice), interval: parseInt(this.state.newMembershipInterval), id: this.state.gym.id
         }
         fetch(this.props.backendURL + "membership", {
             method: 'POST',
@@ -261,7 +265,7 @@ class GymInfo extends React.Component {
                                                 <label>Razdoblje u danima: </label>
                                                 <input type="number" name='newMembershipInterval' value={this.state.newMembershipInterval} onChange={this.handleChange} required />
                                             </div>
-                                            <button onClick={this.handleNewLocationSubmit}>Dodaj</button>
+                                            <button onClick={this.handleNewMembershipSubmit}>Dodaj</button>
                                         </div>
                                         :
                                         <div />
