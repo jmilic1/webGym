@@ -1,4 +1,4 @@
-.userPlan-container{
+.userPlan-container {
     font-size: 20px;
     background-color: white;
     margin: 30px 0px;
@@ -7,32 +7,32 @@
     border-radius: 10px;
 }
 
-.plan-metadata{
+.plan-metadata {
     display: grid;
     grid-template-columns: 20% 70% 10%;
     margin: 20px 20px 0px 20px;
     text-align: center;
 }
 
-.plan-metadata:hover{
+.plan-metadata:hover {
     cursor: pointer;
 }
 
-.cursor-on-hover:hover{
+.cursor-on-hover:hover {
     cursor: pointer;
     color: #072557;
 }
 
-.user-plan-details{
+.user-plan-details {
     display: grid;
     grid-template-columns: auto auto auto;
 }
 
-.userplans-details-container{
+.userplans-details-container {
     margin: 0px 20px 20px 20px;
 }
 
-.userplans-details-container textarea{
+.userplans-details-container textarea {
     width: 90%;
     height: 300px;
     font-size: 15px;
