@@ -17,7 +17,7 @@ public class ControllerHelper {
         response.addCookie(cookie);
         response.addCookie(roleCookie);
 
-        response.setHeader("Set-Cookie", "key=value; SameSite=none");
+        response.setHeader("Set-Cookie", "SameSite=none");
     }
 
     static void logOutUser(HttpServletRequest request, HttpServletResponse response) {
