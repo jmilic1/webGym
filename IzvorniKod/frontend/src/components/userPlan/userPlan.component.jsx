@@ -22,6 +22,7 @@ class UserPlan extends React.Component {
                     <p>{this.props.isTraining ? "Trening" : "Prehrana"}</p>
                     <p>Cijena: {this.props.price}</p>
                     <p>Trener: {this.props.coachUsername}</p>
+                    <p>{this.state.extended ? 'Smanji' : 'Proširi'}</p>
                 </div>
                 {this.state.extended &&
                     <div className='userplans-details-container'>
