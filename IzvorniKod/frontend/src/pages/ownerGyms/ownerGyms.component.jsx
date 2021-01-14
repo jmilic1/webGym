@@ -104,9 +104,13 @@ class OwnerGyms extends React.Component {
                             <h3>E-mail</h3>
                             <h3>Mogućnosti</h3>
                         </div>
-                        {this.state.gyms.map(gym =>
-                            <GymMetaDataContainer ownerPage={true} handleRemove={this.handleRemoveGymClick} id={gym.id} name={gym.name} description={gym.description} email={gym.email} owner={true} key={gym.id} />
-                        )}
+                        {this.state.gyms.length !== 0 ?
+                            this.state.gyms.map(gym =>
+                                <GymMetaDataContainer ownerPage={true} handleRemove={this.handleRemoveGymClick} id={gym.id} name={gym.name} description={gym.description} email={gym.email} owner={true} key={gym.id} />
+                            )
+                            :
+                            <h3>Trenutno ne vodite niti jednu teretanu</h3>
+                        }
                     </div>
                     :
                     <fieldset>

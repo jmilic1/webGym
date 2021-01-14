@@ -1,10 +1,10 @@
-.userList-container {
+.coach-userList-container {
     margin: 0 auto;
     width: 80%;
     max-width: 1200px;
 }
 
-.userList-header-container {
+.coach-userList-header-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     border-bottom: 0.2em solid black;

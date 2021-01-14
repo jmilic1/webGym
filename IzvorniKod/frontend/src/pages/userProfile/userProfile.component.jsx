@@ -327,7 +327,7 @@ class UserProfile extends React.Component {
                         }
                         {
                             this.state.userGoals.map(goal =>
-                                <UserGoal refreshUserGoals={this.refreshUserGoals} backendURL={this.props.backendURL} id={goal.id} key={goal.id} description={goal.description} percentage={goal.percentCompleted} update={false} />)
+                                <UserGoal refreshUserGoals={this.refreshUserGoals} backendURL={this.props.backendURL} id={goal.id} key={goal.id} description={goal.description} percentage={goal.percentage} update={false} />)
                         }
                     </div>
                 }
