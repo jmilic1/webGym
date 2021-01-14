@@ -13,7 +13,7 @@ public class ControllerHelper {
         response.addCookie(cookie);
         response.addCookie(roleCookie);
 
-        response.addCookie(new Cookie("SameSite", "None"));
+        response.addCookie(new Cookie("Set-Cookie", "SameSite=None"));
         response.addCookie(new Cookie("Secure", null));
     }
 
