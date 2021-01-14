@@ -7,7 +7,7 @@ class AddGymOwner extends React.Component {
       super(props);
       this.state = {
          gyms: [],
-         gymId: 0
+         gymId: '0'
       }
    }
 
@@ -58,7 +58,7 @@ class AddGymOwner extends React.Component {
    };
 
    handleSubmitClick = () => {
-      if (this.state.gymId === 0) {
+      if (this.state.gymId === '0') {
          alert("Vaš izbor nije teretana. Molimo, izaberite teretanu.")
          return;
       }
@@ -98,7 +98,7 @@ class AddGymOwner extends React.Component {
                         <div className='userInfo-formInput'>
                            <label htmlFor='gym'>Izaberite teretanu</label>
                            <select value={this.state.gymId} onChange={this.handleChange} name='gym'>
-                              <option selected value={0}>Izaberite teretanu</option>
+                              <option defaultValue value='0'>Izaberite teretanu</option>
                               {this.state.gyms.map(gym => (
                                  <option key={gym.id} value={gym.id}>
                                     {gym.name}
