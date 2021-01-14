@@ -9,7 +9,7 @@
 
 .plan-coach-metadata {
     display: grid;
-    grid-template-columns: 20% 70% 10%;
+    grid-template-columns: 20% 20% 50% 10%;
     margin: 20px 20px 0px 20px;
     text-align: center;
 }

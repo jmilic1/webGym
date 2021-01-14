@@ -20,7 +20,6 @@ class UserPlan extends React.Component {
             <div className='userPlan-container'>
                 <div className='plan-metadata' onClick={this.handleExtendLinkClick}>
                     <p>{this.props.isTraining ? "Trening" : "Prehrana"}</p>
-                    <p>Cijena: {this.props.price}</p>
                     <p>Trener: {this.props.coachUsername}</p>
                     <p>{this.state.extended ? 'Smanji' : 'Proširi'}</p>
                 </div>

@@ -8,14 +8,14 @@ import CoachPlanForCoachPage from "../../components/coachPlanForCoachPage/coachP
 const PLANS = "PLANS"
 const GYMS = "GYMS"
 
-class CoachInfoPage extends React.Component{
+class CoachInfoPage extends React.Component {
     constructor(props) {
         super();
         this.state = {
-            name:"",
-            surname:"",
-            username:"",
-            email:"",
+            name: "",
+            surname: "",
+            username: "",
+            email: "",
             gyms: [],
             plans: [],
             view: PLANS
@@ -24,7 +24,7 @@ class CoachInfoPage extends React.Component{
 
     componentDidMount() {
 
-        const params = {username: this.props.match.params.username};
+        const params = { username: this.props.match.params.username };
         const searchParams = new URLSearchParams(params).toString();
 
         fetch(this.props.backendURL + "coach?" + searchParams.toString(), {
@@ -32,7 +32,7 @@ class CoachInfoPage extends React.Component{
             //credentials: 'include'
         }).then(response => {
             console.log(response.status)
-            if(response.status === 200) return response.json()
+            if (response.status === 200) return response.json()
             else return Promise.reject()
         }).then(coach => {
             this.setState({
@@ -44,7 +44,7 @@ class CoachInfoPage extends React.Component{
                 gyms: coach.gyms,
                 view: PLANS
             })
-        }, function (){
+        }, function () {
             alert("Došlo je do pogreške")
         })
     }
@@ -61,24 +61,24 @@ class CoachInfoPage extends React.Component{
         return (
             <div className='userProfile-page'>
                 <div className='userInfo-container'>
-                    <img src = {userProfileIcon} width='200px' alt='profile icon'/>
+                    <img src={userProfileIcon} width='200px' alt='profile icon' />
                     <div>
                         <div className='user-info-form'>
                             <div className='userInfo-formInput'>
                                 <label htmlFor='name'>Ime</label>
-                                <input type='text' value={this.state.name} name='name' disabled={true}/>
+                                <input type='text' value={this.state.name} name='name' disabled={true} />
                             </div>
                             <div className='userInfo-formInput'>
                                 <label htmlFor='surname'>Prezime</label>
-                                <input type='text' value={this.state.surname} name='surname' disabled={true}/>
+                                <input type='text' value={this.state.surname} name='surname' disabled={true} />
                             </div>
                             <div className='userInfo-formInput'>
                                 <label htmlFor='username'>Korisničko ime</label>
-                                <input type='text' value={this.state.username} name='username' disabled={true}/>
+                                <input type='text' value={this.state.username} name='username' disabled={true} />
                             </div>
                             <div className='userInfo-formInput'>
                                 <label htmlFor='email'>Email</label>
-                                <input type='text' value={this.state.email} name='username' disabled={true}/>
+                                <input type='text' value={this.state.email} name='username' disabled={true} />
                             </div>
                         </div>
                     </div>
@@ -93,11 +93,11 @@ class CoachInfoPage extends React.Component{
                         </div>
                         {
                             this.state.plans.map(plan =>
-                                <CoachPlanForCoachPage key = {plan.id} id={plan.id} dateOfPurchase={plan.dateOfPurchase} description={plan.description}
-                                          coachUsername={plan.coachUsername} isTraining={plan.isTraining}
-                                          dateFrom={plan.dateFrom}
-                                          dateTo={plan.dateTo}
-                                          loggedIn={this.props.loggedIn}/>)
+                                <CoachPlanForCoachPage key={plan.id} id={plan.id} dateOfPurchase={plan.dateOfPurchase} description={plan.description}
+                                    coachUsername={plan.coachUsername} isTraining={plan.isTraining} price={plan.price}
+                                    dateFrom={plan.dateFrom}
+                                    dateTo={plan.dateTo}
+                                    loggedIn={this.props.loggedIn} />)
                         }
                     </div>
                 }
@@ -110,7 +110,7 @@ class CoachInfoPage extends React.Component{
                         </div>
                         {
                             this.state.gyms.map(gym =>
-                                <GymMetaDataContainerCoachPage  id = {gym.id} name = {gym.name} key={gym.id}/>)
+                                <GymMetaDataContainerCoachPage id={gym.id} name={gym.name} key={gym.id} />)
                         }
                     </div>
                 }
