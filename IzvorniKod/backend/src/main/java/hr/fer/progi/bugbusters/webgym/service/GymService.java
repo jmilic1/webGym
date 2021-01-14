@@ -101,6 +101,11 @@ public class GymService {
         List<GymLocationDto> gymLocationDtoList = gymLocations.stream()
                 .map(Mappers::mapLocationToDto)
                 .collect(Collectors.toList());
+        int i = 0;
+        for (GymLocationDto gymLocationDto: gymLocationDtoList) {
+            gymLocationDto.setId(gymLocations.get(i).getId());
+            i++;
+        }
 
         List<Membership> memberships = gym.getMemberships();
         List<MembershipDto> membershipDtoList = memberships.stream()
