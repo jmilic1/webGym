@@ -59,7 +59,7 @@ public class TestController {
     public String logInAsOwner(final HttpServletResponse resp){
         User user = testService.logInAsOwner();
         resp.addCookie(new Cookie("username", user.getUsername()));
-        resp.addCookie(new Cookie("role", "ADMIN"));
+        resp.addCookie(new Cookie("role", "OWNER"));
         resp.setStatus(200);
         return "Logged in!";
     }
