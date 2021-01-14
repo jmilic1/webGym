@@ -69,7 +69,11 @@ class AddGymOwner extends React.Component {
          body: JSON.stringify({ gymId: this.state.gymId, username: this.props.match.params.username })
       }).then(res => {
          if (!res.ok) {
-            throw new Error("HTTP Error! " + res.status)
+            if (res.status === 405) {
+               throw new Error("Voditelj već vodi odabranu teretanu!")
+            } else {
+               throw new Error("HTTP Error! " + res.status)
+            }
          } else {
             alert("Voditelj uspješno dodan!")
          }

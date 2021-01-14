@@ -64,12 +64,13 @@ class OwnerGyms extends React.Component {
         })
     }
 
-    handleRemoveGymClick = async () => {
+    handleRemoveGymClick = async (id) => {
         if (window.confirm("Želite li ukloniti teretanu sa svojeg popisa?") === true) {
             await fetch(this.props.backendURL + "myGyms", {
                 method: "DELETE",
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
+                body: JSON.stringify({ id: id })
             }).then(res => {
                 if (res.status === 400) {
                     throw new Error("Teretanu nije moguće ukloniti jer ste jedini voditelj u njoj!")
@@ -79,6 +80,7 @@ class OwnerGyms extends React.Component {
             }).catch(e => {
                 alert("Došlo je do pogreške, teretana nije uklonjena s popisa: " + e.message)
             })
+            this.componentDidMount();
         }
     }
 
