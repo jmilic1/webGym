@@ -3,6 +3,8 @@ import './user-metadata-container.styles.scss'
 import { AiOutlineUserAdd } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 
+
+
 const UserMetaDataContainer = ({ name, surname, email, username, role }) => (
     <div className='user-metadata-container'>
         <p className='user-grid-content'>{name}</p>
