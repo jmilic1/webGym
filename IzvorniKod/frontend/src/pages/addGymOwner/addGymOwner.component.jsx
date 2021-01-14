@@ -70,7 +70,7 @@ class AddGymOwner extends React.Component {
       }).then(res => {
          if (!res.ok) {
             if (res.status === 405) {
-               throw new Error("Voditelj je već vodi odabranu teretanu!")
+               throw new Error("Voditelj već vodi odabranu teretanu!")
             } else {
                throw new Error("HTTP Error! " + res.status)
             }
