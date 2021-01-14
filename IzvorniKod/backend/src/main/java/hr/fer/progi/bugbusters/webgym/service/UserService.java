@@ -262,6 +262,7 @@ public class UserService {
 
             if (role.equals("COACH") && !plan.getUser().getUsername().equals(username)) continue;
             if (role.equals("CLIENT") && !user.getUsername().equals(username)) continue;
+            if (role.equals("OWNER")) continue;
 
             TransactionDto transactionDto = Mappers.mapToTransactionDtoFromPlanClient(user.getUsername(),
                     plan, planClient, TransactionType.PLAN);
