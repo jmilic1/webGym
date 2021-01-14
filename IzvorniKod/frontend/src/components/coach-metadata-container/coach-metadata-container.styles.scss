@@ -2,6 +2,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+.coach-metadata-container:hover{
+  border: 1px solid black;
+  border-radius: 5px;
+}
 
 .coach-grid-content{
   display: flex;

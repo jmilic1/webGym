@@ -22,7 +22,11 @@ class GymInfo extends React.Component {
             locations: [],
             coaches: [],
             memberships: [],
-            showAddLocation: props.location.aboutProps.showAddLocation
+            showAddLocation: props.location.aboutProps ? props.location.aboutProps.showAddLocation : false,
+            addMembership: false,
+            newMembershipDescription: "",
+            newMembershipPrice:0,
+            newMembershipInterval: 0
         }
     }
 
@@ -57,9 +61,46 @@ class GymInfo extends React.Component {
         console.log(this.state.gym)
     }
 
+    refreshMemberships = () => {
+            const url = this.props.backendURL + "gymInfo?";
+            this.handleChangeAddMembershipFlag()
+
+
+            const params = { id: this.props.match.params.id };
+            const searchParams = new URLSearchParams(params).toString();
+
+            fetch(url + searchParams, {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include'
+            }).then(res => {
+            if (!res.ok) {
+                throw new Error("HTTP Error! " + res.status)
+            } else {
+                return res.json()
+            }
+            }).then(gym => {
+                this.setState({
+                    memberships: gym.memberships,
+                    newMembershipInterval: 0,
+                    newMembershipPrice: 0,
+                    newMembershipDescription: ""
+                })
+            }
+        ).catch(e => {
+            alert("Došlo je do pogreške: " + e.message)
+        })
+        console.log(this.state.gym)
+    }
+
     handleChangeAddLocationFlag = () => {
         this.setState({
             addLocation: !this.state.addLocation
+        })
+    }
+    handleChangeAddMembershipFlag = () => {
+        this.setState({
+            addMembership: !this.state.addMembership
         })
     }
 
@@ -108,6 +149,25 @@ class GymInfo extends React.Component {
 
     }
 
+    handleNewMembershipSubmit = () => {
+        const body = {
+            description: this.state.newMembershipDescription, price: parseInt(this.state.newMembershipPrice), interval: parseInt(this.state.newMembershipInterval), id: this.state.gym.id
+        }
+        fetch(this.props.backendURL + "membership", {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        }).then(response => {
+            if (response.ok) {
+                this.refreshMemberships()
+            } else {
+                throw new Error("HTTP Error! " + response.status)
+            }
+        }).catch(e => alert("Došlo je do pogreške: " + e.message))
+
+    }
+
     handleJobRequestSubmit = () => {
         fetch(this.props.backendURL + "jobRequest", {
             method: 'POST',
@@ -115,12 +175,14 @@ class GymInfo extends React.Component {
             credentials: 'include',
             body: JSON.stringify({ gymId: this.state.gym.id, description: this.state.newJobDescription })
         }).then(response => {
-            if (response.ok) {
+            if (response.status === 200) {
                 this.setState({
                     newJobDescription: "",
                     addJobRequest: false
                 })
-            } else {
+            } else if(response.status === 428){
+                alert("Već ste zaposlenik ove teretane")
+            }else {
                 throw new Error("HTTP Error! " + response.status)
             }
         }).catch(e => {
@@ -176,6 +238,39 @@ class GymInfo extends React.Component {
                                         memberships={this.state.memberships} />
 
                                 }
+
+                                <div className='align'>
+                                    {this.props.role === "OWNER" && this.state.showAddLocation ?
+                                        this.state.addMembership ?
+                                            <CustomButton onClick={this.handleChangeAddMembershipFlag}> Otkaži </CustomButton>
+                                            :
+                                            <CustomButton onClick={this.handleChangeAddMembershipFlag}> Dodaj članarinu </CustomButton>
+                                        :
+                                        <div />
+                                    }
+
+                                    {this.state.addMembership ?
+                                        <div className='grid-container-membership'>
+
+                                            <div>
+                                                <label>Cijena: </label>
+                                                <input type="number" name='newMembershipPrice' value={this.state.newMembershipPrice} onChange={this.handleChange} required />
+                                            </div>
+                                            <div >
+                                                <label>Opis: </label>
+                                                <input type="textarea" name='newMembershipDescription' value={this.state.newMembershipDescription} onChange={this.handleChange} required />
+                                            </div>
+
+                                            <div >
+                                                <label>Razdoblje u danima: </label>
+                                                <input type="number" name='newMembershipInterval' value={this.state.newMembershipInterval} onChange={this.handleChange} required />
+                                            </div>
+                                            <button onClick={this.handleNewMembershipSubmit}>Dodaj</button>
+                                        </div>
+                                        :
+                                        <div />
+                                    }
+                                </div>
                             </div>
                         </div>
 

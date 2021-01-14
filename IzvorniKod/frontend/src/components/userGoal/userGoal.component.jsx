@@ -46,13 +46,6 @@ class UserGoal extends React.Component {
             }).then(response => {
                 if(response.status === 200){
                     alert("Promjene su spremljene")
-                    this.setState({
-                        update: false,
-                        description: this.state.newDescription,
-                        percentage: this.state.newPercentage,
-                        newPercentage: 0,
-                        newDescription: ""
-                    })
                     this.props.refreshUserGoals()
                 } else{
                     alert("Došlo je do pogreške prilikom spremanja promjena")
