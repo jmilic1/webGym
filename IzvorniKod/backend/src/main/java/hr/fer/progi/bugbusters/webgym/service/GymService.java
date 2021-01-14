@@ -148,6 +148,7 @@ public class GymService {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
         if (!ownsGym) throw new IllegalArgumentException("403");
+        System.out.println("Ispis nakon toga sto je skuzeno da je njegov gym");
 
         List<GymLocation> gymLocationList = gymLocationRepository.findAll();
         for (GymLocation location : gymLocationList) {
@@ -156,9 +157,10 @@ public class GymService {
                     && location.getStreet().equals(dto.getStreet())) return;
         }
         Optional<GymLocation> gymLocation = gymLocationRepository.findById(dto.getId());
-        if (gymLocation.isPresent()) return;
+        //if (gymLocation.isPresent()) return;
 
         GymLocation location = Mappers.mapDtoToLocation(dto, gym);
+        System.out.println("dolazim do upisa lokacije u bazu");
         gymLocationRepository.save(location);
     }
 
@@ -367,7 +369,7 @@ public class GymService {
     }
 
     private static GymLocation mapToGymLocation(GymLocation gymLocation, GymLocationDto gymLocationDto) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
         if (gymLocationDto.getCity() != null) gymLocation.setCity(gymLocationDto.getCity());
         if (gymLocationDto.getCountry() != null) gymLocation.setCountry(gymLocationDto.getCountry());
