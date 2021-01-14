@@ -168,6 +168,8 @@ public class UserController {
         String role = ControllerHelper.extractRoleFromCookies(request);
 
         if (username == null || role == null) {
+            System.out.println("username: " + username);
+            System.out.println("role: " + role);
             response.setStatus(403);
             return null;
         }

@@ -251,6 +251,7 @@ public class UserService {
     }
 
     private boolean ownsGym(Gym gym, String username) {
+        if (gym == null) return false;
         for (GymUser gymUser: gym.getGymUsers()) {
             if (gymUser.getUser().getUsername().equals(username)) return true;
         }
