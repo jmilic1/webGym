@@ -40,7 +40,7 @@ public class Mappers {
     }
     public static Goal mapToGoal(Goal goal, GoalDto dto, User user) {
         if (dto.getDescription() != null) goal.setDescription(dto.getDescription());
-        if (dto.getPercentCompleted() != null) goal.setPercentCompleted(dto.getPercentCompleted());
+        if (dto.getPercentage() != null) goal.setPercentage(dto.getPercentage());
         if (user != null) goal.setUser(user);
 
         return goal;

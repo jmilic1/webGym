@@ -18,16 +18,16 @@ public class Goal {
     @JoinColumn(name="username")
     private User user;
     private String description;
-    private Double percentCompleted = Double.valueOf(0);
+    private Double percentage = (double) 0;
 
      public Goal(User user, String description, Double percentCompleted) {
          this.user = user;
          this.description = description;
-         this.percentCompleted = percentCompleted;
+         this.percentage = percentCompleted;
      }
 
      @Override
      public String toString(){
-         return "id: " + id + ", User.username: " + user.getUsername() + ", description: " + description + ", percentCompleted: " + percentCompleted;
+         return "id: " + id + ", User.username: " + user.getUsername() + ", description: " + description + ", percentCompleted: " + percentage;
      }
 }
