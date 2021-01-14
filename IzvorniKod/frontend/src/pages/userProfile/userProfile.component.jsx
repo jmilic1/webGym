@@ -119,7 +119,9 @@ class UserProfile extends React.Component{
                 credentials: 'include'
             }).then(response => {
                 if(response.status === 200){
-                    this.props.history.push("/auth")
+                    this.props.history.push("/logOut")
+                }else if(response.status === 405){
+                    alert("Ne možete izbrisati profil dok imate prijavljenu teretanu u sustavu")
                 } else{
                     alert("Došlo je do pogreške prilikom brisanja profila")
                 }

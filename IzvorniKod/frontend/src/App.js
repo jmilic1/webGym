@@ -41,6 +41,8 @@ class App extends React.Component {
     }
   }
 
+
+
   handleLogin = (username, name, surname, role, email, height, weight, payPalAccount) => {
     this.setState({
       name:name,

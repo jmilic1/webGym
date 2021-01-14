@@ -129,25 +129,13 @@ class CoachPlans extends React.Component{
         }).then(response => {
             if (response.ok) {
                 if (this.state.showDietPlans) {
-                    const newArray = this.state.dietPlans
-                    newArray.push(body)
+                    this.refreshDietPlans()
                     this.setState({
-                        dietPlans: newArray,
-                        newPlanDescription: "",
-                        newPlanDateFrom: "",
-                        newPlanDateTo: "",
-                        newPlanPrice: "",
                         addNewPlan: false
                     })
                 } else {
-                    const newArray = this.state.workoutPlans
-                    newArray.push(body)
+                    this.refreshWorkoutPlans()
                     this.setState({
-                        workoutPlans: newArray,
-                        newPlanDescription: "",
-                        newPlanDateFrom: "",
-                        newPlanDateTo: "",
-                        newPlanPrice: "",
                         addNewPlan: false
                     })
                 }

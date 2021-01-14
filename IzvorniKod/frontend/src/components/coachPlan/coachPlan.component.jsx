@@ -27,7 +27,7 @@ class CoachPlan extends React.Component{
             modifyPlan: !this.state.modifyPlan
         })
     }
-
+handleChangePlanSubmit
     handleChangePlanSubmit = () => {
         fetch(this.props.backendUrl + "modifyCoachPlan" , {
             method: 'POST',
