@@ -169,9 +169,16 @@ public class GymService {
         return Mappers.mapMembershipToDto(membership.get());
     }
 
-    public void createMembership(MembershipDto dto) {
+    public void createMembership(MembershipDto dto, String username) {
         Optional<Gym> gymOptional = gymRepository.findById(dto.getId());
         if (gymOptional.isEmpty()) throw new IllegalArgumentException("400");
+
+        Gym gym = gymOptional.get();
+        boolean ownsGym = false;
+        for (GymUser gymUser : gymUserRepository.findByGym(gym)) {
+            if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
+        }
+        if (!ownsGym) throw new IllegalArgumentException("403");
 
         Membership membership = Mappers.mapDtoToMembership(dto, gymOptional.get());
         membershipRepository.save(membership);

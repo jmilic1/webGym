@@ -90,7 +90,8 @@ public class Mappers {
         Membership membership = new Membership();
         membership.setGym(gym);
         membership.setDescription(description);
-        membership.setPrice(price);
+        if (price == null) membership.setPrice((double) 0);
+            else membership.setPrice(price);
         membership.setInterval(interval);
         return membership;
     }
