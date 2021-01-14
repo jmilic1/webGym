@@ -116,6 +116,10 @@ public class CoachService {
         if (optionalGym.isEmpty()) throw new IllegalArgumentException("403");
         Gym gym = optionalGym.get();
 
+        for (GymUser gymUser: gym.getGymUsers()) {
+            if (gymUser.getUser().getUsername().equals(username)) throw new IllegalArgumentException("428");
+        }
+
         List<GymUser> gymUserList = gymUserRepository.findAll();
         boolean found = false;
         for (GymUser gymUser : gymUserList) {
