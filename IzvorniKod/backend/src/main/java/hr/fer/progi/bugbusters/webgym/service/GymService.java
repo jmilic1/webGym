@@ -170,12 +170,10 @@ public class GymService {
     }
 
     public void createMembership(MembershipDto dto) {
-        if (dto.getId() != null) {
-            Optional<Membership> membershipOptional = membershipRepository.findById(dto.getId());
-            if (membershipOptional.isPresent()) return;
-        }
+        Optional<Gym> gymOptional = gymRepository.findById(dto.getId());
+        if (gymOptional.isEmpty()) throw new IllegalArgumentException("400");
 
-        Membership membership = Mappers.mapDtoToMembership(dto);
+        Membership membership = Mappers.mapDtoToMembership(dto, gymOptional.get());
         membershipRepository.save(membership);
     }
 

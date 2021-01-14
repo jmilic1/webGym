@@ -82,8 +82,17 @@ public class Mappers {
         return gymLocationDto;
     }
 
-    public static Membership mapDtoToMembership(MembershipDto dto) {
-        return modelMapper.map(dto, Membership.class);
+    public static Membership mapDtoToMembership(MembershipDto dto, Gym gym) {
+        String description = dto.getDescription();
+        Double price = dto.getPrice();
+        String interval = dto.getInterval();
+
+        Membership membership = new Membership();
+        membership.setGym(gym);
+        membership.setDescription(description);
+        membership.setPrice(price);
+        membership.setInterval(interval);
+        return membership;
     }
 
     public static MembershipDto mapMembershipToDto(Membership membership) {
