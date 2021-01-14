@@ -182,9 +182,12 @@ public class Mappers {
                                                                    Membership membership,
                                                                    MembershipUser membershipUser,
                                                                    TransactionType transactionType) {
+        String gymName = "";
+        if (membership.getGym() != null && membership.getGym().getName() != null) gymName = membership.getGym().getName();
+
         TransactionDto transactionDto = new TransactionDto();
         transactionDto.setSenderUsername(name);
-        transactionDto.setReceiverUsername(membership.getGym().getName());
+        transactionDto.setReceiverUsername(gymName);
         transactionDto.setAmount(membership.getPrice());
         transactionDto.setDateWhen(membershipUser.getDateBegin());
         transactionDto.setId(membership.getId());
