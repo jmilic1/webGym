@@ -294,6 +294,7 @@ public class UserController {
 
     @GetMapping("/owners")
     public List<UserDto> getOwners(HttpServletRequest request, HttpServletResponse response) {
+        String username = ControllerHelper.extractUsernameFromCookies(request);
         String role = ControllerHelper.extractRoleFromCookies(request);
 
         if (role == null || !role.equals("OWNER")) {
@@ -302,7 +303,7 @@ public class UserController {
         }
 
         try {
-            List<UserDto> userDtoList = userService.getOwners();
+            List<UserDto> userDtoList = userService.getOwners(username);
             response.setStatus(200);
             return userDtoList;
         } catch (Exception e) {

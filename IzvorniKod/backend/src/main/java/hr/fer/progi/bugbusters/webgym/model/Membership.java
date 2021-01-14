@@ -17,7 +17,7 @@ public class Membership {
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     private Gym gym;
-    private double price;
+    private Double price;
     private String description;
     private String interval;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "membership")

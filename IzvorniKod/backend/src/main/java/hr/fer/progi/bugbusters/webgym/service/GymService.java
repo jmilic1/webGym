@@ -101,6 +101,11 @@ public class GymService {
         List<GymLocationDto> gymLocationDtoList = gymLocations.stream()
                 .map(Mappers::mapLocationToDto)
                 .collect(Collectors.toList());
+        int i = 0;
+        for (GymLocationDto gymLocationDto: gymLocationDtoList) {
+            gymLocationDto.setId(gymLocations.get(i).getId());
+            i++;
+        }
 
         List<Membership> memberships = gym.getMemberships();
         List<MembershipDto> membershipDtoList = memberships.stream()
@@ -148,6 +153,7 @@ public class GymService {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
         if (!ownsGym) throw new IllegalArgumentException("403");
+        System.out.println("Ispis nakon toga sto je skuzeno da je njegov gym");
 
         List<GymLocation> gymLocationList = gymLocationRepository.findAll();
         for (GymLocation location : gymLocationList) {
@@ -156,9 +162,10 @@ public class GymService {
                     && location.getStreet().equals(dto.getStreet())) return;
         }
         Optional<GymLocation> gymLocation = gymLocationRepository.findById(dto.getId());
-        if (gymLocation.isPresent()) return;
+        //if (gymLocation.isPresent()) return;
 
         GymLocation location = Mappers.mapDtoToLocation(dto, gym);
+        System.out.println("dolazim do upisa lokacije u bazu");
         gymLocationRepository.save(location);
     }
 
@@ -169,11 +176,18 @@ public class GymService {
         return Mappers.mapMembershipToDto(membership.get());
     }
 
-    public void createMembership(MembershipDto dto) {
-        Optional<Membership> membershipOptional = membershipRepository.findById(dto.getId());
-        if (membershipOptional.isPresent()) return;
+    public void createMembership(MembershipDto dto, String username) {
+        Optional<Gym> gymOptional = gymRepository.findById(dto.getId());
+        if (gymOptional.isEmpty()) throw new IllegalArgumentException("400");
 
-        Membership membership = Mappers.mapDtoToMembership(dto);
+        Gym gym = gymOptional.get();
+        boolean ownsGym = false;
+        for (GymUser gymUser : gymUserRepository.findByGym(gym)) {
+            if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
+        }
+        if (!ownsGym) throw new IllegalArgumentException("403");
+
+        Membership membership = Mappers.mapDtoToMembership(dto, gymOptional.get());
         membershipRepository.save(membership);
     }
 
@@ -329,7 +343,7 @@ public class GymService {
         if (optionalUser.isEmpty()) throw new IllegalArgumentException("403");
 
         User user = optionalUser.get();
-        if (user.getRole() != Role.OWNER) throw new IllegalArgumentException("403");
+        if (user.getRole() != Role.OWNER && user.getRole() != Role.ADMIN) throw new IllegalArgumentException("403");
 
         Optional<User> optionalNewOwner = userRepository.findById(addGymOwnerDto.getUsername());
         if (optionalNewOwner.isEmpty()) throw new IllegalArgumentException("400");
@@ -343,7 +357,7 @@ public class GymService {
         for (GymUser gymUser : gym.getGymUsers()) {
             if (gymUser.getUser().getUsername().equals(username)) ownsGym = true;
         }
-        if (!ownsGym) throw new IllegalArgumentException("403");
+        if (user.getRole() != Role.ADMIN && !ownsGym) throw new IllegalArgumentException("405");
 
         List<GymUser> gymUserList = gymUserRepository.findAll();
         for (GymUser gymUser : gymUserList) {
@@ -360,7 +374,7 @@ public class GymService {
     }
 
     private static GymLocation mapToGymLocation(GymLocation gymLocation, GymLocationDto gymLocationDto) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
         if (gymLocationDto.getCity() != null) gymLocation.setCity(gymLocationDto.getCity());
         if (gymLocationDto.getCountry() != null) gymLocation.setCountry(gymLocationDto.getCountry());
@@ -368,8 +382,10 @@ public class GymService {
         if (gymLocationDto.getStreet() != null) gymLocation.setStreet(gymLocationDto.getStreet());
 
         try {
-            if (gymLocationDto.getClosesAt() != null) gymLocation.setClosesAt(new Time(sdf.parse(gymLocationDto.getClosesAt()).getTime()));
-            if (gymLocationDto.getOpensAt() != null) gymLocation.setOpensAt(new Time(sdf.parse(gymLocationDto.getOpensAt()).getTime()));
+            if (gymLocationDto.getClosesAt() != null)
+                gymLocation.setClosesAt(new Time(sdf.parse(gymLocationDto.getClosesAt()).getTime()));
+            if (gymLocationDto.getOpensAt() != null)
+                gymLocation.setOpensAt(new Time(sdf.parse(gymLocationDto.getOpensAt()).getTime()));
         } catch (ParseException ex) {
             throw new RuntimeException(ex.getMessage());
         }

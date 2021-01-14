@@ -156,11 +156,11 @@ public class UserService {
         return userDtoList;
     }
 
-    public List<UserDto> getOwners() {
+    public List<UserDto> getOwners(String username) {
         List<User> users = userRepository.findAll();
         List<UserDto> userDtos = new ArrayList<>();
         for (User user: users) {
-            if (user.getRole() == Role.OWNER)
+            if (user.getRole() == Role.OWNER && !user.getUsername().equals(username))
                 userDtos.add(Mappers.mapUserToDto(user));
         }
 
@@ -250,6 +250,14 @@ public class UserService {
         }
     }
 
+    private boolean ownsGym(Gym gym, String username) {
+        if (gym == null) return false;
+        for (GymUser gymUser: gym.getGymUsers()) {
+            if (gymUser.getUser().getUsername().equals(username)) return true;
+        }
+        return false;
+    }
+
     // ZA SADA IMPLEMENTIRANO SAMO ZA PLANOVE -> TREBA DODATI I ZA MEMBERSHIPOVE
     public List<TransactionDto> getMyTransactions(String username, String role) {
         List<TransactionDto> transactions = new ArrayList<>();
@@ -262,6 +270,7 @@ public class UserService {
 
             if (role.equals("COACH") && !plan.getUser().getUsername().equals(username)) continue;
             if (role.equals("CLIENT") && !user.getUsername().equals(username)) continue;
+            if (role.equals("OWNER")) continue;
 
             TransactionDto transactionDto = Mappers.mapToTransactionDtoFromPlanClient(user.getUsername(),
                     plan, planClient, TransactionType.PLAN);
@@ -277,8 +286,10 @@ public class UserService {
         for (MembershipUser membershipUser : membershipUsers) {
             Membership membership = membershipUser.getMembership();
             User user = membershipUser.getUser();
+            Gym gym = membership.getGym();
 
-            if (!user.getUsername().equals(username)) continue;
+            if (role.equals("CLIENT") && !user.getUsername().equals(username)) continue;
+            if (role.equals("OWNER") && !ownsGym(gym, username)) continue;
 
             TransactionDto transactionDto = Mappers.mapToTransactionDtoFromMembership(user.getUsername(),
                     membership, membershipUser, TransactionType.MEMBERSHIP);

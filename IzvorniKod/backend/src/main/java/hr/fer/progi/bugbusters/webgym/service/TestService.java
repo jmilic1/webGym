@@ -190,7 +190,7 @@ public class TestService {
     }
 
     public User logInAsOwner(){
-        Optional<User> user = userRepository.findById("voditelj");
+        Optional<User> user = userRepository.findById("jJel");
         if (user.isPresent()){
             changeRole(user.get());
             return user.get();

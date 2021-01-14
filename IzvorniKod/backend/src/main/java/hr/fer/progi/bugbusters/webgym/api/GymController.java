@@ -169,7 +169,7 @@ public class GymController {
     public void addGymOwner(@RequestBody AddGymOwnerDto addGymOwnerDto, HttpServletRequest request, HttpServletResponse response) {
         String username = ControllerHelper.extractUsernameFromCookies(request);
         String role = ControllerHelper.extractRoleFromCookies(request);
-        if (role == null || !role.equals("OWNER")) {
+        if (role == null || (!role.equals("OWNER") && !role.equals("ADMIN"))) {
             response.setStatus(403);
             return;
         }
@@ -211,12 +211,13 @@ public class GymController {
 
     @PostMapping("/membership")
     public void createMembership(@RequestBody MembershipDto membershipDto, HttpServletResponse response, HttpServletRequest request) {
+        String username = ControllerHelper.extractUsernameFromCookies(request);
         String role = ControllerHelper.extractRoleFromCookies(request);
         if (role == null || !role.equals("OWNER")) {
             response.setStatus(403);
             return;
         }
 
-        service.createMembership(membershipDto);
+        service.createMembership(membershipDto, username);
     }
 }

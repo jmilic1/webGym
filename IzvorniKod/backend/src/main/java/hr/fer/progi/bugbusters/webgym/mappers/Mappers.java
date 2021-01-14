@@ -40,7 +40,7 @@ public class Mappers {
     }
     public static Goal mapToGoal(Goal goal, GoalDto dto, User user) {
         if (dto.getDescription() != null) goal.setDescription(dto.getDescription());
-        if (dto.getPercentCompleted() != null) goal.setPercentCompleted(dto.getPercentCompleted());
+        if (dto.getPercentage() != null) goal.setPercentage(dto.getPercentage());
         if (user != null) goal.setUser(user);
 
         return goal;
@@ -82,8 +82,18 @@ public class Mappers {
         return gymLocationDto;
     }
 
-    public static Membership mapDtoToMembership(MembershipDto dto) {
-        return modelMapper.map(dto, Membership.class);
+    public static Membership mapDtoToMembership(MembershipDto dto, Gym gym) {
+        String description = dto.getDescription();
+        Double price = dto.getPrice();
+        String interval = dto.getInterval();
+
+        Membership membership = new Membership();
+        membership.setGym(gym);
+        membership.setDescription(description);
+        if (price == null) membership.setPrice((double) 0);
+            else membership.setPrice(price);
+        membership.setInterval(interval);
+        return membership;
     }
 
     public static MembershipDto mapMembershipToDto(Membership membership) {
@@ -172,9 +182,12 @@ public class Mappers {
                                                                    Membership membership,
                                                                    MembershipUser membershipUser,
                                                                    TransactionType transactionType) {
+        String gymName = "";
+        if (membership.getGym() != null && membership.getGym().getName() != null) gymName = membership.getGym().getName();
+
         TransactionDto transactionDto = new TransactionDto();
         transactionDto.setSenderUsername(name);
-        transactionDto.setReceiverUsername(membership.getGym().getName());
+        transactionDto.setReceiverUsername(gymName);
         transactionDto.setAmount(membership.getPrice());
         transactionDto.setDateWhen(membershipUser.getDateBegin());
         transactionDto.setId(membership.getId());
