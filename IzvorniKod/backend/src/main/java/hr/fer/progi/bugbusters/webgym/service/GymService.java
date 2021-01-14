@@ -367,7 +367,7 @@ public class GymService {
     }
 
     private static GymLocation mapToGymLocation(GymLocation gymLocation, GymLocationDto gymLocationDto) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
         if (gymLocationDto.getCity() != null) gymLocation.setCity(gymLocationDto.getCity());
         if (gymLocationDto.getCountry() != null) gymLocation.setCountry(gymLocationDto.getCountry());
